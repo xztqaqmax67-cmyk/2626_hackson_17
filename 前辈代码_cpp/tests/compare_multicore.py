@@ -1,4 +1,4 @@
-"""小型 DAG 覆盖跨核搬运、直接依赖、缓存、空核及搜索邻域的完整记录。"""
+"""小型 DAG 覆盖场景 B 跨核搬运、直接依赖、空核及搜索邻域的完整记录。"""
 import random
 from compare_original import *
 from problem2 import official, search, activation
@@ -58,11 +58,6 @@ def main():
         compare('boundary', graph, official.build_boundary_graphs(graph, plan, 7), plan=plan, bandwidth=7)
         result = evaluate_scene_b(graph, plan, 7, CAPACITY, 13)
         compare('scene_b', graph, result, plan=plan, bandwidth=7, delay=13)
-        compare('scene_a', graph, evaluate_scene_a(graph, plan, 7, CAPACITY, 17, 3),
-                plan=plan, bandwidth=7, cross_wait=17, same_wait=3)
-        for cache in (0, 32, 128):
-            compare('problem3', graph, evaluate_problem_3(graph, plan, 7, CAPACITY, 13, cache, 23),
-                    plan=plan, bandwidth=7, delay=13, cache_capacity=cache, cache_bandwidth=23)
         profile = official.build_profile(graph, plan, settings, result)
         compare('profile', graph, profile, plan=plan, bandwidth=7, delay=13)
         info = core.GraphInfo(graph)

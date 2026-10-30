@@ -44,8 +44,7 @@ Capacity read_integer_settings(const fs::path &path, const std::string &section,
     std::ifstream input(path);
     std::string line, active;
     int line_no = 0;
-    const std::set<std::string> sections = {"capacity", "bandwidth", "multicore_scene_a",
-                                            "multicore_scene_b", "problem_3"};
+    const std::set<std::string> sections = {"capacity", "bandwidth", "multicore_scene_b"};
     while (std::getline(input, line)) {
         ++line_no;
         line = trim(line.substr(0, line.find('#')));

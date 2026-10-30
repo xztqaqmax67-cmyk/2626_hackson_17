@@ -539,13 +539,16 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                        const GraphInfo *provided_graph = nullptr,
                        const Settings *provided_settings = nullptr, Json *memory_plan = nullptr) {
     const bool memory_only = memory_plan != nullptr;
+    if (cores < 2 || cores > 5) {
+        throw std::invalid_argument("核心数必须为 2 至 5");
+    }
     if (memory_only && (!options.warm_start.empty() || !options.inherited_checkpoint.empty() ||
                         !options.resume_checkpoint.empty())) {
         throw std::invalid_argument("内存入口不接受外部检查点或预生成方案");
     }
     struct EvaluationLimit : std::exception {};
     double started = monotonic(), time_limit = options.time_limit,
-           grace = cores == 1 ? 0 : options.feasibility_grace;
+           grace = options.feasibility_grace;
     if (!std::isfinite(time_limit) || time_limit <= 0 || !std::isfinite(grace) || grace < 0 ||
         grace > 120) {
         throw std::invalid_argument("invalid search target or feasibility grace");
@@ -859,9 +862,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
         double global_bound = std::max(
             {maximum(totals) / cores, longest, route_bytes(graph, fallback) / settings.bandwidth});
         record["global_lower_bound"] = global_bound;
-        if (cores == 1) {
-            record["termination"] = "fixed_singlecore";
-        } else {
+        {
             auto row_for = [&](const Plan &plan,
                                const std::string &label) -> std::optional<SearchRow> {
                 if (last_result.is_object() && last_result.at("status") == "ok") {

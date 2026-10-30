@@ -14,13 +14,11 @@ from schedule_step2 import step2_spill_insertion, _build_extended_graph
 from schedule_step3 import step3_simulation
 from stub_multicore_cut_and_schedule import generate_multicore_plan
 from multicore_cut_evaluate_problem_2 import evaluate_scene_b
-from multicore_cut_evaluate_problem_1 import evaluate_scene_a
-from multicore_cut_evaluate_problem_3 import evaluate_problem_3
 from evaluation_validation import validate_graph, EvaluationValidationError
 sys.path.insert(0, str(ROOT / '前辈代码'))
 from problem2 import core, bootstrap, structure, pipeline
 
-# 原题只有四条 Pipe。测试只在内存中补齐备注确认的硬件列表，调度函数原样执行。
+# 原题只有四条 Pipe。测试只在内存中补齐提交要求的硬件列表，调度函数原样执行。
 # 不修改原版文件，也不把本地扩展冒充成新比赛官方评估器的确认结果。
 for module in list(sys.modules.values()):
     pipes = getattr(module, 'PIPES', None)
@@ -127,8 +125,6 @@ def main():
                 'core_schedules': [[0], []]}
         expected = evaluate_scene_b(graph, plan, 60, CAPACITY, 500)
         compare('scene_b', graph, expected, plan=plan)
-        compare('scene_a', graph, evaluate_scene_a(graph, plan, 60, CAPACITY, 1000, 100), plan=plan)
-        compare('problem3', graph, evaluate_problem_3(graph, plan, 60, CAPACITY, 500, 1048576, 250), plan=plan)
 
 if __name__ == '__main__':
     main()

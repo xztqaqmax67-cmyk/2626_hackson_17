@@ -1,4 +1,4 @@
-"""备注约束：五条独立 Pipe、COPY 占位、配置、原生批量预算和失败不冒充成功。"""
+"""硬件与开发工具检查：五条 Pipe、COPY 占位、配置、批量预算和失败不冒充成功。"""
 import tempfile
 import time
 from compare_original import *
