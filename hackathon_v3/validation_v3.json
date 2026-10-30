@@ -1,0 +1,59 @@
+{
+  "version": "3.0.0",
+  "verified_on": "2026-10-30",
+  "platform": "win32",
+  "python": "3.11.11 (main, Feb 11 2025, 07:53:58) [MSC v.1929 64 bit (AMD64)]",
+  "python_executable": "Python 3.11.11 (Windows test environment)",
+  "compiler": "g++ (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.1.0",
+  "unit_tests_passed": 24,
+  "full_evaluation": {
+    "evaluator_version": "3.0.0",
+    "is_official": false,
+    "engine": "local",
+    "user_provided_evaluation_scripts": false,
+    "metric_definition": "arithmetic mean per-case speedup T1/TN; solver wall-time; scheduled DDR COPY bytes",
+    "cases_total": 10,
+    "cases_valid": 10,
+    "cases_speedup_available": 10,
+    "cases_solve_time_available": 10,
+    "average_speedup": 2.1303412009594975,
+    "mean_solve_seconds": 0.734253009967506,
+    "total_solve_seconds": 7.342530099675059,
+    "mean_ddr_bytes": 249141440,
+    "total_ddr_bytes": 2491414400,
+    "is_complete": true,
+    "warning": "Rebuilt v3 local model with explicit memory reuse dependencies; NOT OFFICIAL.",
+    "weights": {
+      "speedup": 40,
+      "algorithm_time": 30,
+      "DDR": 30
+    },
+    "absolute_official_points": null,
+    "notes": "40/30/30 weights alone cannot define scoring normalization."
+  },
+  "data_unchanged_against_original_zip": true,
+  "backups_verified": true,
+  "source_sha256": {
+    "solver.cpp": "df3361463645711da919cc03edd3d7e47e7f7349e91d44b4478e9d7bc056e308",
+    "score.py": "a4f0d527f3a0dc15804a5a758c1e070521fb5aa831b4d3f458a1d0ab20c7b431",
+    "config_LOCAL_ASSUMPTIONS.txt": "9c9bbddb5ed07f3cd089f4fbae529fdde2bd2908800e93c84e6c603e487f82cd",
+    "local_eval\\__init__.py": "f4b36da17a033636ede57f142a657ead7b2f4baa62cc29a2a7ef025af410faa9",
+    "local_eval\\memory.py": "c0b6a5ab7085788476c65c2aa43ee8b5101f09c8328af9c8e58efffc6c9ccb8c",
+    "local_eval\\model.py": "403026cbbe6f2e682bfa09b7872cf7f1db90f5ca979ee3ce9649b594f6f96709",
+    "local_eval\\runner.py": "e7bf8823d647d13a264b05f9a46707cbaf2fce471df0947e34026fe2f7b47ce2",
+    "local_eval\\simulator.py": "620eba2604d09fe8ea4558649f2d89a48ecfbc9ac421d6fe941225281552ccb1"
+  },
+  "data_sha256": {
+    "case_00.json": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+    "case_01.json": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+    "case_02.json": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+    "case_03.json": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+    "case_04.json": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+    "case_05.json": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+    "case_06.json": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+    "case_07.json": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+    "case_08.json": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+    "case_09.json": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4"
+  },
+  "note": "Historical validation before packaging. C++ solver and local_eval sources are unchanged; paths/launchers are adapted for this repository. Input JSON contents match root hackathon_data; byte hashes may differ with checkout line endings."
+}

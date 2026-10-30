@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-30",
+  "unit_tests_passed": 24,
+  "relocated_smoke_cases": [
+    "case_01",
+    "case_07"
+  ],
+  "relocated_smoke_audits_passed": true,
+  "original_evaluator_relocated_smoke_case": "case_01",
+  "original_multicore_makespan": 95720,
+  "original_singlecore_makespan": 85856,
+  "solver_and_local_evaluator_identical_to_validated_source": true,
+  "source_sha256": {
+    "solver.cpp": "df3361463645711da919cc03edd3d7e47e7f7349e91d44b4478e9d7bc056e308",
+    "score.py": "a4f0d527f3a0dc15804a5a758c1e070521fb5aa831b4d3f458a1d0ab20c7b431",
+    "local_eval/__init__.py": "f4b36da17a033636ede57f142a657ead7b2f4baa62cc29a2a7ef025af410faa9",
+    "local_eval/memory.py": "c0b6a5ab7085788476c65c2aa43ee8b5101f09c8328af9c8e58efffc6c9ccb8c",
+    "local_eval/model.py": "403026cbbe6f2e682bfa09b7872cf7f1db90f5ca979ee3ce9649b594f6f96709",
+    "local_eval/runner.py": "e7bf8823d647d13a264b05f9a46707cbaf2fce471df0947e34026fe2f7b47ce2",
+    "local_eval/simulator.py": "620eba2604d09fe8ea4558649f2d89a48ecfbc9ac421d6fe941225281552ccb1"
+  }
+}
