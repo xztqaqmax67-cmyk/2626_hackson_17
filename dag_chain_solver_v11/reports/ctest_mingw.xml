@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="(empty)"
+	tests="19"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname=""
+	time="1"
+	timestamp="2026-10-31T07:05:29"
+	>
+	<testcase name="tensor_groups" classname="tensor_groups" time="0.0878892" status="run">
+		<properties/>
+		<system-out>tensor destination-core marginal COPY, branching groups, non-atomic scheduling, writer-safe splits and bounded deterministic candidates passed
+</system-out>
+	</testcase>
+	<testcase name="official_timing" classname="official_timing" time="0.0817152" status="run">
+		<properties/>
+		<system-out>official timing tests passed
+</system-out>
+	</testcase>
+	<testcase name="v10_portfolio" classname="v10_portfolio" time="0.0993786" status="run">
+		<properties/>
+		<system-out>v10 portfolio invariants passed
+</system-out>
+	</testcase>
+	<testcase name="timing_feedback" classname="timing_feedback" time="0.0786552" status="run">
+		<properties/>
+		<system-out>timing feedback tests passed
+</system-out>
+	</testcase>
+	<testcase name="annealing_assignment" classname="annealing_assignment" time="0.090767" status="run">
+		<properties/>
+		<system-out>annealing tests passed
+</system-out>
+	</testcase>
+	<testcase name="annealing_portfolio" classname="annealing_portfolio" time="0.101875" status="run">
+		<properties/>
+		<system-out>annealing portfolio passed
+</system-out>
+	</testcase>
+	<testcase name="chain_invariants" classname="chain_invariants" time="0.100295" status="run">
+		<properties/>
+		<system-out>chain invariants, segmentation, dependency preservation, determinism and transfer estimates: passed
+</system-out>
+	</testcase>
+	<testcase name="parallel_jobs" classname="parallel_jobs" time="0.0824124" status="run">
+		<properties/>
+		<system-out>parallel jobs: indexed results, caller participation, deterministic errors, joining and launch fallback passed
+</system-out>
+	</testcase>
+	<testcase name="rules_memory" classname="rules_memory" time="0.0820343" status="run">
+		<properties/>
+		<system-out>new rules: soft/hard limits, allocation peak, partial writes and dirty backing passed
+</system-out>
+	</testcase>
+	<testcase name="rules_contract" classname="rules_contract" time="0.0803581" status="run">
+		<properties/>
+		<system-out>rules contract validation checks passed; no evaluator invoked
+</system-out>
+	</testcase>
+	<testcase name="shared_ddr_refinement" classname="shared_ddr_refinement" time="0.089731" status="run">
+		<properties/>
+		<system-out>shared DDR, sync, cycles, partial writes, memory reuse and join propagation: passed
+</system-out>
+	</testcase>
+	<testcase name="v5_structure" classname="v5_structure" time="0.098538" status="run">
+		<properties/>
+		<system-out>v5 phase/core-budget/dependency/writer/slack/determinism invariants passed
+</system-out>
+	</testcase>
+	<testcase name="anytime_deadline" classname="anytime_deadline" time="0.273501" status="run">
+		<properties/>
+		<system-out>anytime deadline, completed incumbent, useful search, writer/dependency preservation passed
+</system-out>
+	</testcase>
+	<testcase name="solution_comparison" classname="solution_comparison" time="0.0888082" status="run">
+		<properties/>
+		<system-out>comparison keys preserve scalar/vector tie-breaks and stable order without vector copies
+</system-out>
+	</testcase>
+	<testcase name="memory_cache_equivalence" classname="memory_cache_equivalence" time="0.103001" status="run">
+		<properties/>
+		<system-out>cached Tensor uses preserve legacy prices, states and traversal order
+</system-out>
+	</testcase>
+	<testcase name="spill_optimization" classname="spill_optimization" time="0.101395" status="run">
+		<properties/>
+		<system-out>spill pressure reduction, writer/dependency preservation, relabeling and determinism passed
+</system-out>
+	</testcase>
+	<testcase name="official_spill_feedback" classname="official_spill_feedback" time="0.0937733" status="run">
+		<properties/>
+		<system-out>spill feedback, legality backfill, local distance, late producers, neutral beam and shared budgets passed
+</system-out>
+	</testcase>
+	<testcase name="feedback_portfolio" classname="feedback_portfolio" time="0.109415" status="run">
+		<properties/>
+		<system-out>bounded refined portfolios preserve incumbent; event moves preserve writer groups and DAG order
+</system-out>
+	</testcase>
+	<testcase name="communication_grouping" classname="communication_grouping" time="0.102998" status="run">
+		<properties/>
+		<system-out>communication-only grouping, cheap cuts, non-atomic interleaving, transitive closures and guarded deterministic selection passed
+</system-out>
+	</testcase>
+</testsuite>

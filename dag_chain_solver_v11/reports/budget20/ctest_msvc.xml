@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="(empty)"
+	tests="21"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname=""
+	time="1"
+	timestamp="2026-10-31T07:23:57"
+	>
+	<testcase name="tensor_groups" classname="tensor_groups" time="0.0356071" status="run">
+		<properties/>
+		<system-out>tensor destination-core marginal COPY, branching groups, non-atomic scheduling, writer-safe splits and bounded deterministic candidates passed
+</system-out>
+	</testcase>
+	<testcase name="official_timing" classname="official_timing" time="0.0415383" status="run">
+		<properties/>
+		<system-out>official timing tests passed
+</system-out>
+	</testcase>
+	<testcase name="v10_portfolio" classname="v10_portfolio" time="0.0497998" status="run">
+		<properties/>
+		<system-out>v10 portfolio invariants passed
+</system-out>
+	</testcase>
+	<testcase name="timing_feedback" classname="timing_feedback" time="0.0369926" status="run">
+		<properties/>
+		<system-out>timing feedback tests passed
+</system-out>
+	</testcase>
+	<testcase name="annealing_assignment" classname="annealing_assignment" time="0.032791" status="run">
+		<properties/>
+		<system-out>annealing tests passed
+</system-out>
+	</testcase>
+	<testcase name="annealing_portfolio" classname="annealing_portfolio" time="0.0424429" status="run">
+		<properties/>
+		<system-out>annealing portfolio passed
+</system-out>
+	</testcase>
+	<testcase name="budget_chain" classname="budget_chain" time="0.0410929" status="run">
+		<properties/>
+		<system-out>budget chain tests passed
+</system-out>
+	</testcase>
+	<testcase name="budget_stages" classname="budget_stages" time="0.0441838" status="run">
+		<properties/>
+		<system-out>budget stage tests passed
+</system-out>
+	</testcase>
+	<testcase name="chain_invariants" classname="chain_invariants" time="0.0515363" status="run">
+		<properties/>
+		<system-out>chain invariants, segmentation, dependency preservation, determinism and transfer estimates: passed
+</system-out>
+	</testcase>
+	<testcase name="parallel_jobs" classname="parallel_jobs" time="0.0334128" status="run">
+		<properties/>
+		<system-out>parallel jobs: indexed results, caller participation, deterministic errors, joining and launch fallback passed
+</system-out>
+	</testcase>
+	<testcase name="rules_memory" classname="rules_memory" time="0.0320285" status="run">
+		<properties/>
+		<system-out>new rules: soft/hard limits, allocation peak, partial writes and dirty backing passed
+</system-out>
+	</testcase>
+	<testcase name="rules_contract" classname="rules_contract" time="0.0401196" status="run">
+		<properties/>
+		<system-out>rules contract validation checks passed; no evaluator invoked
+</system-out>
+	</testcase>
+	<testcase name="shared_ddr_refinement" classname="shared_ddr_refinement" time="0.0376271" status="run">
+		<properties/>
+		<system-out>shared DDR, sync, cycles, partial writes, memory reuse and join propagation: passed
+</system-out>
+	</testcase>
+	<testcase name="v5_structure" classname="v5_structure" time="0.0429176" status="run">
+		<properties/>
+		<system-out>v5 phase/core-budget/dependency/writer/slack/determinism invariants passed
+</system-out>
+	</testcase>
+	<testcase name="anytime_deadline" classname="anytime_deadline" time="0.241098" status="run">
+		<properties/>
+		<system-out>anytime deadline, completed incumbent, useful search, writer/dependency preservation passed
+</system-out>
+	</testcase>
+	<testcase name="solution_comparison" classname="solution_comparison" time="0.200374" status="run">
+		<properties/>
+		<system-out>comparison keys preserve scalar/vector tie-breaks and stable order without vector copies
+</system-out>
+	</testcase>
+	<testcase name="memory_cache_equivalence" classname="memory_cache_equivalence" time="0.0572482" status="run">
+		<properties/>
+		<system-out>cached Tensor uses preserve legacy prices, states and traversal order
+</system-out>
+	</testcase>
+	<testcase name="spill_optimization" classname="spill_optimization" time="0.0440278" status="run">
+		<properties/>
+		<system-out>spill pressure reduction, writer/dependency preservation, relabeling and determinism passed
+</system-out>
+	</testcase>
+	<testcase name="official_spill_feedback" classname="official_spill_feedback" time="0.0381336" status="run">
+		<properties/>
+		<system-out>spill feedback, legality backfill, local distance, late producers, neutral beam and shared budgets passed
+</system-out>
+	</testcase>
+	<testcase name="feedback_portfolio" classname="feedback_portfolio" time="0.0498326" status="run">
+		<properties/>
+		<system-out>bounded refined portfolios preserve incumbent; event moves preserve writer groups and DAG order
+</system-out>
+	</testcase>
+	<testcase name="communication_grouping" classname="communication_grouping" time="0.0425473" status="run">
+		<properties/>
+		<system-out>communication-only grouping, cheap cuts, non-atomic interleaving, transitive closures and guarded deterministic selection passed
+</system-out>
+	</testcase>
+</testsuite>

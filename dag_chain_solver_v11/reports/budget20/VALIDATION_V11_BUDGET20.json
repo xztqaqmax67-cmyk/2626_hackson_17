@@ -1,0 +1,257 @@
+{
+  "version": "0.11.1",
+  "verified_utc": "2026-10-30T23:37:55.272615+00:00",
+  "source": {
+    "path": "reports/budget20/SOURCE_V11_BUDGET20.json",
+    "sha256": "67c9341eccd2a7384c718f0df38323e57fa184fbc7de7187176c295425ae9b61"
+  },
+  "cpp_tests": {
+    "msvc": {
+      "passed": 21,
+      "tests": [
+        "annealing_assignment",
+        "annealing_portfolio",
+        "anytime_deadline",
+        "budget_chain",
+        "budget_stages",
+        "chain_invariants",
+        "communication_grouping",
+        "feedback_portfolio",
+        "memory_cache_equivalence",
+        "official_spill_feedback",
+        "official_timing",
+        "parallel_jobs",
+        "rules_contract",
+        "rules_memory",
+        "shared_ddr_refinement",
+        "solution_comparison",
+        "spill_optimization",
+        "tensor_groups",
+        "timing_feedback",
+        "v10_portfolio",
+        "v5_structure"
+      ],
+      "junit": {
+        "path": "reports/budget20/ctest_msvc.xml",
+        "sha256": "b9bd329479c020cc0332fa9a86c26e62e8fe9a6702838961bc20ddff1fc7703e"
+      },
+      "log": {
+        "path": "build_msvc_budget20/Testing/Temporary/LastTest.log",
+        "sha256": "cb5700d54015c765e87b7f5059c478f4faea90fde6f360c6a31d4bace813579c"
+      },
+      "executable_sha256": {
+        "build_msvc_budget20/bin/tensor_group_tests.exe": "6c1405ee159e4555c765ef573d273fe6df5663e2e10ace0198f59b7b02784b50",
+        "build_msvc_budget20/bin/official_timing_tests.exe": "ca3e4185da10f1a636f0d4446b767886ec56cf248ae1ceff819c9a6c65ee8105",
+        "build_msvc_budget20/bin/v10_search_tests.exe": "80bcb1a2cea6424184b69754f8c46aaf06356a33f508349c52710fdeb4768cff",
+        "build_msvc_budget20/bin/timing_feedback_tests.exe": "1bbb888106737fdfeed336ebb866f5e2d0d8fae096cd73917d888a9b36db2465",
+        "build_msvc_budget20/bin/annealing_tests.exe": "034ce137c512ce220af3f70c4ac7efb2efad82cab8f01dc740b2f4b173791ed3",
+        "build_msvc_budget20/bin/annealing_search_tests.exe": "44001123bbdfacd8a7c7d1a7e8889b6c3125197cbc9a2a23e20167c1a58bf4b0",
+        "build_msvc_budget20/bin/budget_chain_tests.exe": "c132870ac95ae60127cca7ef6323b474b7afbd6fcd605a55da40d1823f2321a3",
+        "build_msvc_budget20/bin/budget_stage_tests.exe": "039f437b00c5f7640c45afd28674e3a7242c705e495971e9d66e6b7e1de1b9da",
+        "build_msvc_budget20/bin/chain_tests.exe": "ba777bf87c62bf0c03b87efe7fb4963c245ec23120097422667d20d39e858aa8",
+        "build_msvc_budget20/bin/parallel_jobs_tests.exe": "936fad4868189a84ee6fcd9be24a50ba8d6b0d4c8395c59a18aa4803b339bfbd",
+        "build_msvc_budget20/bin/rules_memory_tests.exe": "ef3a221e57da35a6b7179863f7cdc58c393db16e2f2296ddf180c32f0e7a1c07",
+        "build_msvc_budget20/bin/rules_contract_tests.exe": "d41de02431c809f2a94995ff637f071bbcfbd73d53b3d8f76eb15e046bd5af47",
+        "build_msvc_budget20/bin/refine_tests.exe": "1dd9c20a97f8d47994c991f7c636b4cfa1a87b3463f0e2775594347631d132e3",
+        "build_msvc_budget20/bin/v5_structure_tests.exe": "07c68a8afd485de05ad4aa7c967aa267395dff6954cb982cecd0391e5e3e9f7e",
+        "build_msvc_budget20/bin/anytime_tests.exe": "90e597353ccfb2ec6655f01fe4543e04f30ada0b131066414b82120387db24e6",
+        "build_msvc_budget20/bin/comparison_tests.exe": "4439446103d339de808342df609d0e5581dfc224d16e9e8bd5b312d38592432a",
+        "build_msvc_budget20/bin/memory_cache_tests.exe": "8f870653e42219d394d39778da9d6a7f8511d2b5314339ae795a5b628bd15e73",
+        "build_msvc_budget20/bin/spill_tests.exe": "9a973263a3539b19b2afad81761085f58aa029e0b70c594060fe311133b044a2",
+        "build_msvc_budget20/bin/feedback_tests.exe": "61a71bede2256b773b98f749e9a63da4af370c5b3fead13c20e8d537bffa022a",
+        "build_msvc_budget20/bin/portfolio_tests.exe": "699a546f12a8ac60125eb80a3bb2a5376a92740e2fef4f73cf56c1cdb5de4f2c",
+        "build_msvc_budget20/bin/communication_tests.exe": "d884769d2dbc51198f072619a3d62d027c11cab10345b436b817bf92c1ab6923"
+      }
+    },
+    "mingw": {
+      "passed": 21,
+      "tests": [
+        "annealing_assignment",
+        "annealing_portfolio",
+        "anytime_deadline",
+        "budget_chain",
+        "budget_stages",
+        "chain_invariants",
+        "communication_grouping",
+        "feedback_portfolio",
+        "memory_cache_equivalence",
+        "official_spill_feedback",
+        "official_timing",
+        "parallel_jobs",
+        "rules_contract",
+        "rules_memory",
+        "shared_ddr_refinement",
+        "solution_comparison",
+        "spill_optimization",
+        "tensor_groups",
+        "timing_feedback",
+        "v10_portfolio",
+        "v5_structure"
+      ],
+      "junit": {
+        "path": "reports/budget20/ctest_mingw.xml",
+        "sha256": "4c3b44faf9599666fee8b42dbd4dceb93a7f81a73afabdb8a2d60ccf72a4d103"
+      },
+      "log": {
+        "path": "build_mingw_budget20/Testing/Temporary/LastTest.log",
+        "sha256": "5d405fac0cba8e1dbaf8cf13ba06ddf4f3fe3c4dc09cceffbed81261c13f0261"
+      },
+      "executable_sha256": {
+        "build_mingw_budget20/bin/tensor_group_tests.exe": "5e53c95eca69c96bcbe666ec032628f9a22b0d37290d89dd2b672909d01f8683",
+        "build_mingw_budget20/bin/official_timing_tests.exe": "0a8c52e199fce2a883412977159a9d4e86ca55c931d6e06ebf6d79e7e4561783",
+        "build_mingw_budget20/bin/v10_search_tests.exe": "b2691799b46a15154c0eb86f0211f2ceb19f196ab495e12343b007b957cf035f",
+        "build_mingw_budget20/bin/timing_feedback_tests.exe": "2d640e42187cd1b875c6d198d8db630115ca93e8c956a9b8a11f558ee2f924e2",
+        "build_mingw_budget20/bin/annealing_tests.exe": "a8743cd3daaada16cf08ce0820ecc44f67731a5b78921329447828c9a102567f",
+        "build_mingw_budget20/bin/annealing_search_tests.exe": "72a041e65cab8cdd3f46944b483c9f3449d5cd9f18fcbe13e2263c9c3e74dbdf",
+        "build_mingw_budget20/bin/budget_chain_tests.exe": "0188c9928e928e22b2855fa91aab7f03c5d783feb82c70b2b3f8f0210426a260",
+        "build_mingw_budget20/bin/budget_stage_tests.exe": "fae027c7b3c39ee84d19abd3f0a5d5aecab32f209c071a0bdde185d49ad44db5",
+        "build_mingw_budget20/bin/chain_tests.exe": "418faae4be9219fcdda9f0d8038ab1e501788695a0f32709bafe4a1e9dcdb5f0",
+        "build_mingw_budget20/bin/parallel_jobs_tests.exe": "a5ccbb403cff6617a044714ab44145906e480ef301b8c4a9b54dc3863f3077e3",
+        "build_mingw_budget20/bin/rules_memory_tests.exe": "562e2f59947c61fe4f4c58341f735bbbd7c4ecc983bca9ae043885944906aca1",
+        "build_mingw_budget20/bin/rules_contract_tests.exe": "72fe478ddf48b6312fe1ad7cb567e14a312302e690eaeefd4d18ee8b7e9e1b7b",
+        "build_mingw_budget20/bin/refine_tests.exe": "c404c848ce39aed012aba74e035215189f3941c22c1819596fc5a2dadc9fce75",
+        "build_mingw_budget20/bin/v5_structure_tests.exe": "75a82d02004690217ebf0d3f820121f9cd9c6d55111f389f38582ba14ccb7260",
+        "build_mingw_budget20/bin/anytime_tests.exe": "17c26b2d4a02e91730daa232f4848b80aaa583fdee2e7db67018beb8b9636c6e",
+        "build_mingw_budget20/bin/comparison_tests.exe": "c029b9f2de160fc0fbe2aebb72e11f491e6be2925bf9efc09ec25feafcee087d",
+        "build_mingw_budget20/bin/memory_cache_tests.exe": "369c294369bb0cbe668af173d3dbeec422b5e52b797dc26740c3aea8d99adc33",
+        "build_mingw_budget20/bin/spill_tests.exe": "dc56b14437767311466e23e84ec759871754862013f61e269cfe0110a362b660",
+        "build_mingw_budget20/bin/feedback_tests.exe": "7345cc192269e263bd15ac2aadb17a5cb91f5f1b62c140ecbf9a5697afebe3d8",
+        "build_mingw_budget20/bin/portfolio_tests.exe": "604e6f11b8e3c3d72c8e9fce5394c99272a6d5a448eb7e7c1f65d8e763fef562",
+        "build_mingw_budget20/bin/communication_tests.exe": "6f0f71e3409c6a406297882a63f8d56c153170a44ab8bbc093542c8f01c7d158"
+      }
+    }
+  },
+  "cli_and_graph_contracts": {
+    "checks": [
+      {
+        "name": "msvc_cli",
+        "command": [
+          "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\tests\\contracts.py",
+          "--solver",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\build_msvc_budget20\\bin\\npu_sched.exe",
+          "--out",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\runs\\budget20_validation\\contracts_msvc"
+        ],
+        "exit_code": 0,
+        "stdout_log": "runs/budget20_validation/msvc_cli.stdout.txt",
+        "stdout_sha256": "0f672d9d85538bae192eaa346713528bd4f6e5a270b1edaaf54a9e803a2bd6d0",
+        "stderr_log": "runs/budget20_validation/msvc_cli.stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solver_path": "build_msvc_budget20/bin/npu_sched.exe",
+        "solver_sha256": "a8c7aa07fa8ad1e0a926edd50b1d0f093a2f5e4a35f946493dedb5ffd3e8f3b7",
+        "checker_path": "tests/contracts.py",
+        "checker_sha256": "2d21fd3d42b409bab2e343d7526c57aa24010bc5969ad6d96a099945d872b8db"
+      },
+      {
+        "name": "mingw_cli",
+        "command": [
+          "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\tests\\contracts.py",
+          "--solver",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\build_mingw_budget20\\bin\\npu_sched.exe",
+          "--out",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\runs\\budget20_validation\\contracts_mingw"
+        ],
+        "exit_code": 0,
+        "stdout_log": "runs/budget20_validation/mingw_cli.stdout.txt",
+        "stdout_sha256": "0f672d9d85538bae192eaa346713528bd4f6e5a270b1edaaf54a9e803a2bd6d0",
+        "stderr_log": "runs/budget20_validation/mingw_cli.stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solver_path": "build_mingw_budget20/bin/npu_sched.exe",
+        "solver_sha256": "503854893796b0c92fb9700484cb6efa80f6198c87a6e3b041190aa6972a7c51",
+        "checker_path": "tests/contracts.py",
+        "checker_sha256": "2d21fd3d42b409bab2e343d7526c57aa24010bc5969ad6d96a099945d872b8db"
+      },
+      {
+        "name": "msvc_graph_26",
+        "command": [
+          "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\tests\\rules_contracts.py",
+          "--solver",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\build_msvc_budget20\\bin\\npu_sched.exe",
+          "--out",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v11\\runs\\budget20_validation\\contracts_msvc"
+        ],
+        "exit_code": 0,
+        "stdout_log": "runs/budget20_validation/msvc_graph_26.stdout.txt",
+        "stdout_sha256": "0474db8bc3fe8ef63aea539165dce1e5c61856ef9dad8267c5fd1ce9f82deaa9",
+        "stderr_log": "runs/budget20_validation/msvc_graph_26.stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solver_path": "build_msvc_budget20/bin/npu_sched.exe",
+        "solver_sha256": "a8c7aa07fa8ad1e0a926edd50b1d0f093a2f5e4a35f946493dedb5ffd3e8f3b7",
+        "checker_path": "tests/rules_contracts.py",
+        "checker_sha256": "f5e8746044aedb5aa4f8b7fb905ec98577135256a018184a9669dd688094a135"
+      }
+    ],
+    "report": {
+      "path": "runs/budget20_validation/contracts_checks.json",
+      "sha256": "6da531c06aad59fce3da53ee5b897f25f423bdf66c5b1bbc3e9fe94fac94e107"
+    }
+  },
+  "synthetic": {
+    "passed": 64,
+    "repeat_official_valid_passed": 64,
+    "repeat_identity_observed": 64,
+    "different_repeats_officially_scored": 0,
+    "report": {
+      "path": "runs/budget20_synthetic/report.json",
+      "sha256": "0df5cfe2e182bdb4e7f4449832bd5178746dc8be07a7ff1cabe2050084c9bd49"
+    }
+  },
+  "exact_timing": {
+    "passed": 144,
+    "by_group": {
+      "public": 40,
+      "synthetic": 64,
+      "adversarial": 16,
+      "collisions": 4,
+      "precision": 20
+    },
+    "matched_official_rejections": 16,
+    "report": {
+      "path": "runs/budget20_timing_diff/report.json",
+      "sha256": "d615596d196c7ef0d973465a78392ab5456282fa642cbf3edfaa7c8a7229d5e7"
+    },
+    "compared": [
+      "validity",
+      "cycles",
+      "route/spill bytes",
+      "local cycles",
+      "memory peak",
+      "pipe orders",
+      "full memory-dependency metadata",
+      "local/global op timelines"
+    ]
+  },
+  "official": {
+    "passed": 40,
+    "cycles_regressions": 12,
+    "report": {
+      "path": "reports/budget20/RESULTS_V11_BUDGET20.json",
+      "sha256": "f176fad3de92881bf4cd94fa7a4f31127f9c0bc9671f50d44d18ce0947881528"
+    }
+  },
+  "generation_budget": {
+    "target_seconds": 20,
+    "met_on_all_40": true,
+    "over_20_seconds": 0,
+    "max_seconds": 17.880875300150365
+  },
+  "preservation": {
+    "official_unchanged_files": 24,
+    "v10_1_tested_archive_sha256": "5cb2f12e7753f6811a8047e3026d486ee456d0110acae7efeb489e9a4be84331",
+    "v10_1_tested_source_files": 34,
+    "v10_1_eol_only_source_differences": 21,
+    "v10_1_unchanged_binaries": 6,
+    "v10_1_unchanged_evidence_files": 84,
+    "v10_1_unchanged_inputs": 10,
+    "v11_0_preserved_evidence_and_binaries": 55
+  },
+  "limitations": [
+    "Finite differential cases are regression evidence, not universal proof.",
+    "Windows MSVC/MinGW tested; native Linux/older GCC not tested.",
+    "Historical v10.1 generation times may differ due to machine conditions.",
+    "Cooperative deadlines are not universal wall-time guarantees; repeat plans may differ when deadlines trigger."
+  ]
+}
