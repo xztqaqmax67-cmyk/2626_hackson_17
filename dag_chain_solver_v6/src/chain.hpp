@@ -27,6 +27,8 @@ struct Result {
 };
 // Extension bits are a development/test API, not submission CLI tuning flags.
 // 0 retains the exact v4 search; 1 adds regions; 2 adds slack; 3 adds both.
+// An optional portfolio retains each feasible core-budget winner, in ascending
+// budget order, for independent continuation. The returned winner is unchanged.
 Result solve(const Graph &graph, int cores, bool baseline_only = false,
-             unsigned extensions = 3);
+             unsigned extensions = 3, vector<Result> *seed_portfolio = nullptr);
 } // namespace dag_chain

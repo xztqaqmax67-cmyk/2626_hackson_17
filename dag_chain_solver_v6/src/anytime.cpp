@@ -2,11 +2,12 @@
 #include "parallel_jobs.hpp"
 #include "search_limits.hpp"
 #include "solution_key.hpp"
+#include "tensor_neighborhood.hpp"
 
 namespace dag_chain {
 namespace {
 using Signature = pair<uint64_t, uint64_t>;
-constexpr size_t family_count = 8;
+constexpr size_t family_count = 9;
 
 // 去重用的固定雙雜湊，不是隨機搜尋。碰撞最多略過候選，絕不使非法候選通過。
 // 只記錄固定大小的簽章，避免為大型圖保存數十萬份完整方案。
@@ -44,10 +45,11 @@ auto result_key(const Result &r) {
 struct Neighborhoods {
     vector<vector<int>> writers, chains;
     vector<int> tensors;
+    unique_ptr<TensorNeighborhoods> consumer_moves;
     array<uint64_t, family_count> counts{};
 };
 
-Neighborhoods neighborhoods(const Graph &g, int cores, const Deadline &deadline) {
+Neighborhoods neighborhoods(const Graph &g, int cores, Deadline &deadline) {
     Neighborhoods result;
     vector<vector<int>> writers(g.size());
     for (int v : g.topo) {
@@ -87,10 +89,12 @@ Neighborhoods neighborhoods(const Graph &g, int cores, const Deadline &deadline)
         return make_pair(-tensor_work(a), a) < make_pair(-tensor_work(b), b);
     });
     const uint64_t m = result.writers.size(), k = uint64_t(cores);
+    result.consumer_moves = make_unique<TensorNeighborhoods>(g, &deadline);
     result.counts = {160, product({m,k,4}), product({m,m,4}),
                      product({uint64_t(result.tensors.size()),k,4}),
                      product({uint64_t(result.chains.size()),k,4}), 576,
-                     product({uint64_t(g.size()),2}), product({m,m,k,k,4})};
+                     product({uint64_t(g.size()),2}), product({m,m,k,k,4}),
+                     product({result.consumer_moves->count(cores),2})};
     deadline.check();
     return result;
 }
@@ -99,8 +103,8 @@ struct SearchNode {
     Result result;
     array<uint64_t, family_count> cursor{};
     size_t next_family = 0;
-    explicit SearchNode(Result value, int lane) : result(move(value)) {
-        cursor.fill(uint64_t(lane));
+    explicit SearchNode(Result value, int lane, int cursor_start) : result(move(value)) {
+        cursor.fill(uint64_t(cursor_start));
         next_family = size_t(lane) % family_count;
     }
     bool exhausted(const Neighborhoods &space) const {
@@ -175,6 +179,14 @@ bool proposal(const Graph &g, int cores, const Neighborhoods &space,
         options.communication = weights[(index / 24) % 6];
         options.window = windows[(index / 144) % 4];
         out = operation_plan(g, cores, cfg, options, nullptr, &deadline);
+    } else if (family == 8) {
+        // Preserve producer parallelism: move only one source core's consumers,
+        // optionally swapping an unrelated writer group back to balance work.
+        if (!space.consumer_moves->propose(g, base, cores, index / 2, &deadline, out))
+            return false;
+        if (index & 1U)
+            out = operation_plan(g, cores, cfg, order_options(uint64_t(lane), lane),
+                                 &out.core, &deadline);
     } else if (family == 6) {
         out = rotated_order(g, base, index, deadline);
     } else {
@@ -237,14 +249,14 @@ struct Lane {
     TimedSearchStats stats;
 };
 
-Lane search_lane(const Graph &g, int cores, int lane, int workers, const Result &seed,
+Lane search_lane(const Graph &g, int cores, int lane, int cursor_start, int cursor_stride, const Result &seed,
                  const Neighborhoods &space, Clock::time_point started, double limit) {
     Lane result;
     result.best = seed;
     Deadline deadline;
     deadline.start = started; deadline.limit = limit; deadline.enabled = true;
     const Config cfg;
-    vector<shared_ptr<SearchNode>> beam{make_shared<SearchNode>(seed, lane)};
+    vector<shared_ptr<SearchNode>> beam{make_shared<SearchNode>(seed, lane, cursor_start)};
     set<Signature> seen{signature(seed.solution, cores)};
     size_t round = 0;
     auto prune_beam = [&]() {
@@ -286,7 +298,7 @@ Lane search_lane(const Graph &g, int cores, int lane, int workers, const Result 
                 size_t family = parent->next_family++ % family_count;
                 if (parent->cursor[family] >= space.counts[family]) continue;
                 uint64_t index = parent->cursor[family];
-                parent->cursor[family] += min(uint64_t(workers),
+                parent->cursor[family] += min(uint64_t(cursor_stride),
                     numeric_limits<uint64_t>::max() - parent->cursor[family]);
                 ++attempted_in_round; ++result.stats.attempted;
                 Solution candidate;
@@ -325,7 +337,7 @@ Lane search_lane(const Graph &g, int cores, int lane, int workers, const Result 
                         ++result.stats.improvements;
                     result.best = candidate;
                 }
-                beam.push_back(make_shared<SearchNode>(move(candidate), lane));
+                beam.push_back(make_shared<SearchNode>(move(candidate), lane, cursor_start));
             }
             prune_beam();
         }
@@ -345,7 +357,8 @@ Result solve_for_budget(const Graph &g, int cores, Clock::time_point started,
     auto elapsed = [&]() { return chrono::duration<double>(Clock::now() - started).count(); };
     // 此階段不被預算打斷，以保留原 v5 可用方案；超大圖的種子可能已超出預算。
     const auto base_started = Clock::now();
-    Result seed = solve(g, cores);
+    vector<Result> seed_portfolio;
+    Result seed = solve(g, cores, false, 3, &seed_portfolio);
     stats.base_seconds = chrono::duration<double>(Clock::now() - base_started).count();
     const double limit = max(0.0, seconds - search_limits::timed_reserve_seconds);
     Result best = seed;
@@ -355,10 +368,36 @@ Result solve_for_budget(const Graph &g, int cores, Clock::time_point started,
         try {
             const auto space = neighborhoods(g, cores, deadline);
             const int workers = search_limits::timed_workers;
+            // Reuse completed core-budget winners as independent routes, as in
+            // the predecessor solver's portfolio search. Lane 0 keeps the old
+            // incumbent; other lanes can escape its placement basin without
+            // paying for another seed search or weakening final selection.
+            stable_sort(seed_portfolio.begin(), seed_portfolio.end(),
+                        [](const Result &a, const Result &b) { return result_key(a) < result_key(b); });
+            vector<const Result *> lane_seeds{&seed};
+            set<Signature> seed_keys{signature(seed.solution, cores)};
+            for (const auto &candidate : seed_portfolio) {
+                if (lane_seeds.size() >= size_t(workers)) break;
+                if (seed_keys.insert(signature(candidate.solution, cores)).second)
+                    lane_seeds.push_back(&candidate);
+            }
+            while (lane_seeds.size() < size_t(workers)) lane_seeds.push_back(&seed);
+            // Partition indices only among lanes sharing a starting solution.
+            // A unique route must see all styles, rather than just index%4==lane.
+            // When every route shares the seed, this retains the old 0..3/4 split.
+            array<int,4> cursor_start{}, cursor_stride{};
+            for (int i = 0; i < workers; ++i)
+                for (int j = 0; j < workers; ++j)
+                    if (lane_seeds[size_t(i)] == lane_seeds[size_t(j)]) {
+                        ++cursor_stride[size_t(i)];
+                        if (j < i) ++cursor_start[size_t(i)];
+                    }
             array<Lane,4> lanes;
             stats.workers = size_t(workers);
             detail::run_independent_jobs(workers, [&](int index) {
-                lanes[size_t(index)] = search_lane(g, cores, index, workers, seed, space, started, limit);
+                lanes[size_t(index)] = search_lane(g, cores, index,
+                    cursor_start[size_t(index)], cursor_stride[size_t(index)],
+                    *lane_seeds[size_t(index)], space, started, limit);
             });
             for (int i = 0; i < workers; ++i) {
                 const auto &lane = lanes[size_t(i)];
