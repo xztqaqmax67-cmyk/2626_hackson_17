@@ -1,0 +1,29 @@
+{
+  "path": "dist/dag_chain_solver_v7.zip",
+  "sha256": "d6cf38322a801fb1a626d8cbebfc011c47a2a1c2f26276dc6f91bc940e4504e2",
+  "file_count": 21,
+  "files": {
+    "CMakeLists.txt": "5b41900da8896b6df7a7fe3af7503d2e7ea4195edfea6182258ec8920e9cc092",
+    "README.md": "c248c051975f28d8e0868deb22bcbca74518bc89266d046bbf5a72762ef80652",
+    "SEARCH_LIMITS_zh.md": "77f80f62d1dd8b3219198a30d180f8456ea12bb250ec65dcc88fc130a5283929",
+    "CHANGES_v7_zh.md": "2a1fb4f98023008994512a11eb546712b3527bc971c59841772084cfac0b3df6",
+    "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "src/chain.cpp": "f54262ba9613105979f49b9e1fdb53e39b8f2e800f45938fa877e010bac3f77a",
+    "src/chain.hpp": "d3e9bc519559489b38ecc9e0d55fb0e8529646316ce99e63f42d821194b1bcea",
+    "src/main.cpp": "9422162322dee7682162c169ea13026b8b329661f83efcbcbc815d42a7dc14e5",
+    "src/model.hpp": "61a566ca38b4dbe643fdf917e7665996728248e9f76ab37e630eb2aaaad4ede5",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "4261cd15a8a05505ad8d48ddf23a83b61972ad683b53137e5619086dce2482d8",
+    "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+    "src/spill.cpp": "39a08c53f3b88d8fbbbc9b0dce48bf89ce46019725176983ae979b74923f10fe",
+    "src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a"
+  },
+  "source_only": true
+}

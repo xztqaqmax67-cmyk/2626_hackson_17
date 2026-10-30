@@ -1,0 +1,5843 @@
+{
+  "scene": "A",
+  "makespan": 85856,
+  "num_cores": 1,
+  "bandwidth_bytes_per_cycle": 60,
+  "capacity_bytes": {
+    "L1": 1572864,
+    "UB": 131072
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 327680,
+      "UB": 0
+    }
+  },
+  "step3_by_task": {
+    "0": {
+      "local_makespan": 85856,
+      "memory_dependency_count": 278,
+      "pipe_op_counts": {
+        "PIPE_MTE2": 156,
+        "PIPE_MTE3": 12,
+        "PIPE_M": 144,
+        "PIPE_V": 0,
+        "PIPE_FIX": 0
+      }
+    }
+  },
+  "task_cross_core_wait_cycles": 1000,
+  "task_same_core_wait_cycles": 100,
+  "cross_task_traffic": 0,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 5111808,
+    "scheduled_copy_bytes": 5111808,
+    "added_copy_bytes": 0,
+    "partition_added_copy_bytes": 0,
+    "spill_added_copy_bytes": 0
+  },
+  "task_dependencies": [],
+  "per_core_timeline": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 85856,
+          "duration": 85856
+        }
+      ],
+      "subgraphs": [
+        {
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 85856,
+          "duration": 85856
+        }
+      ],
+      "ops": [
+        {
+          "task_id": 0,
+          "op_id": 456,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 0,
+          "end": 547,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 743,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 547,
+          "end": 821,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 37,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 821,
+          "end": 1333,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 457,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 821,
+          "end": 1368,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 745,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 1368,
+          "end": 1642,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 74,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 1642,
+          "end": 2154,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 458,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 1642,
+          "end": 2189,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1071,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 2189,
+          "end": 2463,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 111,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 2463,
+          "end": 2975,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 459,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 2463,
+          "end": 3010,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1072,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 3010,
+          "end": 3284,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 148,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 3284,
+          "end": 3796,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 461,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 3284,
+          "end": 3831,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1073,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 3831,
+          "end": 4105,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 185,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 4105,
+          "end": 4617,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 463,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 4105,
+          "end": 4652,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1074,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 4652,
+          "end": 4926,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 222,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 4926,
+          "end": 5438,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 465,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 4926,
+          "end": 5473,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1075,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 5473,
+          "end": 5747,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 259,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 5747,
+          "end": 6259,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 467,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 5747,
+          "end": 6294,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1076,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 6294,
+          "end": 6568,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 296,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 6568,
+          "end": 7080,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 469,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 6568,
+          "end": 7115,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1077,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 7115,
+          "end": 7389,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 333,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 7389,
+          "end": 7901,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 471,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 7389,
+          "end": 7936,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1078,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 7936,
+          "end": 8210,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 370,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 8210,
+          "end": 8722,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 473,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 8210,
+          "end": 8757,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1079,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 8757,
+          "end": 9031,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 407,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 9031,
+          "end": 9543,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 475,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 9031,
+          "end": 9578,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 1080,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 9578,
+          "end": 9852,
+          "duration": 274
+        },
+        {
+          "task_id": 0,
+          "op_id": 432,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 9852,
+          "end": 10364,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 477,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 9852,
+          "end": 10434,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 741,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 10364,
+          "end": 10912,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 41,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 10434,
+          "end": 10946,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 479,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 10434,
+          "end": 11220,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 78,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 11220,
+          "end": 11732,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 481,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 11220,
+          "end": 11767,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 115,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 11767,
+          "end": 12279,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 483,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 11767,
+          "end": 12314,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 152,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 12314,
+          "end": 12826,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 485,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 12314,
+          "end": 12861,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 189,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 12861,
+          "end": 13373,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 487,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 12861,
+          "end": 13408,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 226,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 13408,
+          "end": 13920,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 489,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 13408,
+          "end": 13955,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 263,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 13955,
+          "end": 14467,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 491,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 13955,
+          "end": 14502,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 300,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 14502,
+          "end": 15014,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 493,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 14502,
+          "end": 15049,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 337,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 15049,
+          "end": 15561,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 495,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 15049,
+          "end": 15596,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 374,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 15596,
+          "end": 16108,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 497,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 15596,
+          "end": 16143,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 410,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 16143,
+          "end": 16655,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 499,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 16143,
+          "end": 16690,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 433,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 16690,
+          "end": 17202,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 501,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 16690,
+          "end": 17272,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1081,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 17202,
+          "end": 17750,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 44,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 17272,
+          "end": 17784,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 503,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 17272,
+          "end": 18058,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 81,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 18058,
+          "end": 18570,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 505,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 18058,
+          "end": 18605,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 118,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 18605,
+          "end": 19117,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 507,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 18605,
+          "end": 19152,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 155,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 19152,
+          "end": 19664,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 509,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 19152,
+          "end": 19699,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 192,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 19699,
+          "end": 20211,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 511,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 19699,
+          "end": 20246,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 229,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 20246,
+          "end": 20758,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 513,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 20246,
+          "end": 20793,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 266,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 20793,
+          "end": 21305,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 515,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 20793,
+          "end": 21340,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 303,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 21340,
+          "end": 21852,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 517,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 21340,
+          "end": 21887,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 340,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 21887,
+          "end": 22399,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 519,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 21887,
+          "end": 22434,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 377,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 22434,
+          "end": 22946,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 521,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 22434,
+          "end": 22981,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 412,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 22981,
+          "end": 23493,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 523,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 22981,
+          "end": 23528,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 434,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 23528,
+          "end": 24040,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 525,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 23528,
+          "end": 24110,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1082,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 24040,
+          "end": 24588,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 47,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 24110,
+          "end": 24622,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 527,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 24110,
+          "end": 24896,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 84,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 24896,
+          "end": 25408,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 529,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 24896,
+          "end": 25443,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 121,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 25443,
+          "end": 25955,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 531,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 25443,
+          "end": 25990,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 158,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 25990,
+          "end": 26502,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 533,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 25990,
+          "end": 26537,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 195,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 26537,
+          "end": 27049,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 535,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 26537,
+          "end": 27084,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 232,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 27084,
+          "end": 27596,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 537,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 27084,
+          "end": 27631,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 269,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 27631,
+          "end": 28143,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 539,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 27631,
+          "end": 28178,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 306,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 28178,
+          "end": 28690,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 541,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 28178,
+          "end": 28725,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 343,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 28725,
+          "end": 29237,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 543,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 28725,
+          "end": 29272,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 380,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 29272,
+          "end": 29784,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 545,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 29272,
+          "end": 29819,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 414,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 29819,
+          "end": 30331,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 547,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 29819,
+          "end": 30366,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 435,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 30366,
+          "end": 30878,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 549,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 30366,
+          "end": 30948,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1083,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 30878,
+          "end": 31426,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 50,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 30948,
+          "end": 31460,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 551,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 30948,
+          "end": 31734,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 87,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 31734,
+          "end": 32246,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 553,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 31734,
+          "end": 32281,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 124,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 32281,
+          "end": 32793,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 555,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 32281,
+          "end": 32828,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 161,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 32828,
+          "end": 33340,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 557,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 32828,
+          "end": 33375,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 198,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 33375,
+          "end": 33887,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 559,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 33375,
+          "end": 33922,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 235,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 33922,
+          "end": 34434,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 561,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 33922,
+          "end": 34469,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 272,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 34469,
+          "end": 34981,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 563,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 34469,
+          "end": 35016,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 309,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 35016,
+          "end": 35528,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 565,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 35016,
+          "end": 35563,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 346,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 35563,
+          "end": 36075,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 567,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 35563,
+          "end": 36110,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 383,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 36110,
+          "end": 36622,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 569,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 36110,
+          "end": 36657,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 416,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 36657,
+          "end": 37169,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 571,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 36657,
+          "end": 37204,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 436,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 37204,
+          "end": 37716,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 573,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 37204,
+          "end": 37786,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1084,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 37716,
+          "end": 38264,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 53,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 37786,
+          "end": 38298,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 575,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 37786,
+          "end": 38572,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 90,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 38572,
+          "end": 39084,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 577,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 38572,
+          "end": 39119,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 127,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 39119,
+          "end": 39631,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 579,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 39119,
+          "end": 39666,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 164,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 39666,
+          "end": 40178,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 581,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 39666,
+          "end": 40213,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 201,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 40213,
+          "end": 40725,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 583,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 40213,
+          "end": 40760,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 238,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 40760,
+          "end": 41272,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 585,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 40760,
+          "end": 41307,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 275,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 41307,
+          "end": 41819,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 587,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 41307,
+          "end": 41854,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 312,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 41854,
+          "end": 42366,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 589,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 41854,
+          "end": 42401,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 349,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 42401,
+          "end": 42913,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 591,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 42401,
+          "end": 42948,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 386,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 42948,
+          "end": 43460,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 593,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 42948,
+          "end": 43495,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 418,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 43495,
+          "end": 44007,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 595,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 43495,
+          "end": 44042,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 437,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 44042,
+          "end": 44554,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 597,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 44042,
+          "end": 44624,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1085,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 44554,
+          "end": 45102,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 56,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 44624,
+          "end": 45136,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 599,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 44624,
+          "end": 45410,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 93,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 45410,
+          "end": 45922,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 601,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 45410,
+          "end": 45957,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 130,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 45957,
+          "end": 46469,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 603,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 45957,
+          "end": 46504,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 167,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 46504,
+          "end": 47016,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 605,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 46504,
+          "end": 47051,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 204,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 47051,
+          "end": 47563,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 607,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 47051,
+          "end": 47598,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 241,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 47598,
+          "end": 48110,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 609,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 47598,
+          "end": 48145,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 278,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 48145,
+          "end": 48657,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 611,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 48145,
+          "end": 48692,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 315,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 48692,
+          "end": 49204,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 613,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 48692,
+          "end": 49239,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 352,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 49239,
+          "end": 49751,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 615,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 49239,
+          "end": 49786,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 389,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 49786,
+          "end": 50298,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 617,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 49786,
+          "end": 50333,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 420,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 50333,
+          "end": 50845,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 619,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 50333,
+          "end": 50880,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 438,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 50880,
+          "end": 51392,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 621,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 50880,
+          "end": 51462,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1086,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 51392,
+          "end": 51940,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 59,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 51462,
+          "end": 51974,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 623,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 51462,
+          "end": 52248,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 96,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 52248,
+          "end": 52760,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 625,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 52248,
+          "end": 52795,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 133,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 52795,
+          "end": 53307,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 627,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 52795,
+          "end": 53342,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 170,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 53342,
+          "end": 53854,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 629,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 53342,
+          "end": 53889,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 207,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 53889,
+          "end": 54401,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 631,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 53889,
+          "end": 54436,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 244,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 54436,
+          "end": 54948,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 633,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 54436,
+          "end": 54983,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 281,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 54983,
+          "end": 55495,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 635,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 54983,
+          "end": 55530,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 318,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 55530,
+          "end": 56042,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 637,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 55530,
+          "end": 56077,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 355,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 56077,
+          "end": 56589,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 639,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 56077,
+          "end": 56624,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 392,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 56624,
+          "end": 57136,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 641,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 56624,
+          "end": 57171,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 422,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 57171,
+          "end": 57683,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 643,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 57171,
+          "end": 57718,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 439,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 57718,
+          "end": 58230,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 645,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 57718,
+          "end": 58300,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1087,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 58230,
+          "end": 58778,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 62,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 58300,
+          "end": 58812,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 647,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 58300,
+          "end": 59086,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 99,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 59086,
+          "end": 59598,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 649,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 59086,
+          "end": 59633,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 136,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 59633,
+          "end": 60145,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 651,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 59633,
+          "end": 60180,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 173,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 60180,
+          "end": 60692,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 653,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 60180,
+          "end": 60727,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 210,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 60727,
+          "end": 61239,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 655,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 60727,
+          "end": 61274,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 247,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 61274,
+          "end": 61786,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 657,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 61274,
+          "end": 61821,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 284,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 61821,
+          "end": 62333,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 659,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 61821,
+          "end": 62368,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 321,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 62368,
+          "end": 62880,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 661,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 62368,
+          "end": 62915,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 358,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 62915,
+          "end": 63427,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 663,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 62915,
+          "end": 63462,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 395,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 63462,
+          "end": 63974,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 665,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 63462,
+          "end": 64009,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 424,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 64009,
+          "end": 64521,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 667,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 64009,
+          "end": 64556,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 440,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 64556,
+          "end": 65068,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 669,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 64556,
+          "end": 65138,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1088,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 65068,
+          "end": 65616,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 65,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 65138,
+          "end": 65650,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 671,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 65138,
+          "end": 65924,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 102,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 65924,
+          "end": 66436,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 673,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 65924,
+          "end": 66471,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 139,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 66471,
+          "end": 66983,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 675,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 66471,
+          "end": 67018,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 176,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 67018,
+          "end": 67530,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 677,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 67018,
+          "end": 67565,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 213,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 67565,
+          "end": 68077,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 679,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 67565,
+          "end": 68112,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 250,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 68112,
+          "end": 68624,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 681,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 68112,
+          "end": 68659,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 287,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 68659,
+          "end": 69171,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 683,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 68659,
+          "end": 69206,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 324,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 69206,
+          "end": 69718,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 685,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 69206,
+          "end": 69753,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 361,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 69753,
+          "end": 70265,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 687,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 69753,
+          "end": 70300,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 398,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 70300,
+          "end": 70812,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 689,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 70300,
+          "end": 70847,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 426,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 70847,
+          "end": 71359,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 691,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 70847,
+          "end": 71394,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 441,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 71394,
+          "end": 71906,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 693,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 71394,
+          "end": 71976,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1089,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 71906,
+          "end": 72454,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 68,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 71976,
+          "end": 72488,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 695,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 71976,
+          "end": 72762,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 105,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 72762,
+          "end": 73274,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 697,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 72762,
+          "end": 73309,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 142,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 73309,
+          "end": 73821,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 699,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 73309,
+          "end": 73856,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 179,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 73856,
+          "end": 74368,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 701,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 73856,
+          "end": 74403,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 216,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 74403,
+          "end": 74915,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 703,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 74403,
+          "end": 74950,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 253,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 74950,
+          "end": 75462,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 705,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 74950,
+          "end": 75497,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 290,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 75497,
+          "end": 76009,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 707,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 75497,
+          "end": 76044,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 327,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 76044,
+          "end": 76556,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 709,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 76044,
+          "end": 76591,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 364,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 76591,
+          "end": 77103,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 711,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 76591,
+          "end": 77138,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 401,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 77138,
+          "end": 77650,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 713,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 77138,
+          "end": 77685,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 428,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 77685,
+          "end": 78197,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 715,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 77685,
+          "end": 78232,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 442,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 78232,
+          "end": 78744,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 717,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 78232,
+          "end": 78814,
+          "duration": 582
+        },
+        {
+          "task_id": 0,
+          "op_id": 1090,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 78744,
+          "end": 79292,
+          "duration": 548
+        },
+        {
+          "task_id": 0,
+          "op_id": 71,
+          "op": "A_MUL_B",
+          "pipe": "PIPE_M",
+          "start": 78814,
+          "end": 79326,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 719,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 78814,
+          "end": 79600,
+          "duration": 786
+        },
+        {
+          "task_id": 0,
+          "op_id": 108,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 79600,
+          "end": 80112,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 721,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 79600,
+          "end": 80147,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 145,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 80147,
+          "end": 80659,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 723,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 80147,
+          "end": 80694,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 182,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 80694,
+          "end": 81206,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 725,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 80694,
+          "end": 81241,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 219,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 81241,
+          "end": 81753,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 727,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 81241,
+          "end": 81788,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 256,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 81788,
+          "end": 82300,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 729,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 81788,
+          "end": 82335,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 293,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 82335,
+          "end": 82847,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 731,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 82335,
+          "end": 82882,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 330,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 82882,
+          "end": 83394,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 733,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 82882,
+          "end": 83429,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 367,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 83429,
+          "end": 83941,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 735,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 83429,
+          "end": 83976,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 404,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 83976,
+          "end": 84488,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 737,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 83976,
+          "end": 84523,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 430,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 84523,
+          "end": 85035,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 739,
+          "op": "COPY_IN",
+          "pipe": "PIPE_MTE2",
+          "start": 84523,
+          "end": 85070,
+          "duration": 547
+        },
+        {
+          "task_id": 0,
+          "op_id": 443,
+          "op": "A_MULACC_B",
+          "pipe": "PIPE_M",
+          "start": 85070,
+          "end": 85582,
+          "duration": 512
+        },
+        {
+          "task_id": 0,
+          "op_id": 1091,
+          "op": "COPY_OUT",
+          "pipe": "PIPE_MTE3",
+          "start": 85582,
+          "end": 85856,
+          "duration": 274
+        }
+      ]
+    }
+  ],
+  "ddr_contention_log": [
+    {
+      "time": 0,
+      "issued": {
+        "task_id": 0,
+        "op_id": 456,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 456,
+          "end": 547
+        }
+      ]
+    },
+    {
+      "time": 547,
+      "issued": {
+        "task_id": 0,
+        "op_id": 743,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 743,
+          "end": 821
+        }
+      ]
+    },
+    {
+      "time": 821,
+      "issued": {
+        "task_id": 0,
+        "op_id": 457,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 457,
+          "end": 1368
+        }
+      ]
+    },
+    {
+      "time": 1368,
+      "issued": {
+        "task_id": 0,
+        "op_id": 745,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 745,
+          "end": 1642
+        }
+      ]
+    },
+    {
+      "time": 1642,
+      "issued": {
+        "task_id": 0,
+        "op_id": 458,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 458,
+          "end": 2189
+        }
+      ]
+    },
+    {
+      "time": 2189,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1071,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1071,
+          "end": 2463
+        }
+      ]
+    },
+    {
+      "time": 2463,
+      "issued": {
+        "task_id": 0,
+        "op_id": 459,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 459,
+          "end": 3010
+        }
+      ]
+    },
+    {
+      "time": 3010,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1072,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1072,
+          "end": 3284
+        }
+      ]
+    },
+    {
+      "time": 3284,
+      "issued": {
+        "task_id": 0,
+        "op_id": 461,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 461,
+          "end": 3831
+        }
+      ]
+    },
+    {
+      "time": 3831,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1073,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1073,
+          "end": 4105
+        }
+      ]
+    },
+    {
+      "time": 4105,
+      "issued": {
+        "task_id": 0,
+        "op_id": 463,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 463,
+          "end": 4652
+        }
+      ]
+    },
+    {
+      "time": 4652,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1074,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1074,
+          "end": 4926
+        }
+      ]
+    },
+    {
+      "time": 4926,
+      "issued": {
+        "task_id": 0,
+        "op_id": 465,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 465,
+          "end": 5473
+        }
+      ]
+    },
+    {
+      "time": 5473,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1075,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1075,
+          "end": 5747
+        }
+      ]
+    },
+    {
+      "time": 5747,
+      "issued": {
+        "task_id": 0,
+        "op_id": 467,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 467,
+          "end": 6294
+        }
+      ]
+    },
+    {
+      "time": 6294,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1076,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1076,
+          "end": 6568
+        }
+      ]
+    },
+    {
+      "time": 6568,
+      "issued": {
+        "task_id": 0,
+        "op_id": 469,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 469,
+          "end": 7115
+        }
+      ]
+    },
+    {
+      "time": 7115,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1077,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1077,
+          "end": 7389
+        }
+      ]
+    },
+    {
+      "time": 7389,
+      "issued": {
+        "task_id": 0,
+        "op_id": 471,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 471,
+          "end": 7936
+        }
+      ]
+    },
+    {
+      "time": 7936,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1078,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1078,
+          "end": 8210
+        }
+      ]
+    },
+    {
+      "time": 8210,
+      "issued": {
+        "task_id": 0,
+        "op_id": 473,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 473,
+          "end": 8757
+        }
+      ]
+    },
+    {
+      "time": 8757,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1079,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1079,
+          "end": 9031
+        }
+      ]
+    },
+    {
+      "time": 9031,
+      "issued": {
+        "task_id": 0,
+        "op_id": 475,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 475,
+          "end": 9578
+        }
+      ]
+    },
+    {
+      "time": 9578,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1080,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1080,
+          "end": 9852
+        }
+      ]
+    },
+    {
+      "time": 9852,
+      "issued": {
+        "task_id": 0,
+        "op_id": 477,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 477,
+          "end": 10399
+        }
+      ]
+    },
+    {
+      "time": 10364,
+      "issued": {
+        "task_id": 0,
+        "op_id": 741,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 477,
+          "end": 10434
+        },
+        {
+          "task_id": 0,
+          "op_id": 741,
+          "end": 10673
+        }
+      ]
+    },
+    {
+      "time": 10434,
+      "issued": {
+        "task_id": 0,
+        "op_id": 479,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 479,
+          "end": 11220
+        },
+        {
+          "task_id": 0,
+          "op_id": 741,
+          "end": 10912
+        }
+      ]
+    },
+    {
+      "time": 11220,
+      "issued": {
+        "task_id": 0,
+        "op_id": 481,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 481,
+          "end": 11767
+        }
+      ]
+    },
+    {
+      "time": 11767,
+      "issued": {
+        "task_id": 0,
+        "op_id": 483,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 483,
+          "end": 12314
+        }
+      ]
+    },
+    {
+      "time": 12314,
+      "issued": {
+        "task_id": 0,
+        "op_id": 485,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 485,
+          "end": 12861
+        }
+      ]
+    },
+    {
+      "time": 12861,
+      "issued": {
+        "task_id": 0,
+        "op_id": 487,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 487,
+          "end": 13408
+        }
+      ]
+    },
+    {
+      "time": 13408,
+      "issued": {
+        "task_id": 0,
+        "op_id": 489,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 489,
+          "end": 13955
+        }
+      ]
+    },
+    {
+      "time": 13955,
+      "issued": {
+        "task_id": 0,
+        "op_id": 491,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 491,
+          "end": 14502
+        }
+      ]
+    },
+    {
+      "time": 14502,
+      "issued": {
+        "task_id": 0,
+        "op_id": 493,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 493,
+          "end": 15049
+        }
+      ]
+    },
+    {
+      "time": 15049,
+      "issued": {
+        "task_id": 0,
+        "op_id": 495,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 495,
+          "end": 15596
+        }
+      ]
+    },
+    {
+      "time": 15596,
+      "issued": {
+        "task_id": 0,
+        "op_id": 497,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 497,
+          "end": 16143
+        }
+      ]
+    },
+    {
+      "time": 16143,
+      "issued": {
+        "task_id": 0,
+        "op_id": 499,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 499,
+          "end": 16690
+        }
+      ]
+    },
+    {
+      "time": 16690,
+      "issued": {
+        "task_id": 0,
+        "op_id": 501,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 501,
+          "end": 17237
+        }
+      ]
+    },
+    {
+      "time": 17202,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1081,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 501,
+          "end": 17272
+        },
+        {
+          "task_id": 0,
+          "op_id": 1081,
+          "end": 17511
+        }
+      ]
+    },
+    {
+      "time": 17272,
+      "issued": {
+        "task_id": 0,
+        "op_id": 503,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 503,
+          "end": 18058
+        },
+        {
+          "task_id": 0,
+          "op_id": 1081,
+          "end": 17750
+        }
+      ]
+    },
+    {
+      "time": 18058,
+      "issued": {
+        "task_id": 0,
+        "op_id": 505,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 505,
+          "end": 18605
+        }
+      ]
+    },
+    {
+      "time": 18605,
+      "issued": {
+        "task_id": 0,
+        "op_id": 507,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 507,
+          "end": 19152
+        }
+      ]
+    },
+    {
+      "time": 19152,
+      "issued": {
+        "task_id": 0,
+        "op_id": 509,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 509,
+          "end": 19699
+        }
+      ]
+    },
+    {
+      "time": 19699,
+      "issued": {
+        "task_id": 0,
+        "op_id": 511,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 511,
+          "end": 20246
+        }
+      ]
+    },
+    {
+      "time": 20246,
+      "issued": {
+        "task_id": 0,
+        "op_id": 513,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 513,
+          "end": 20793
+        }
+      ]
+    },
+    {
+      "time": 20793,
+      "issued": {
+        "task_id": 0,
+        "op_id": 515,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 515,
+          "end": 21340
+        }
+      ]
+    },
+    {
+      "time": 21340,
+      "issued": {
+        "task_id": 0,
+        "op_id": 517,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 517,
+          "end": 21887
+        }
+      ]
+    },
+    {
+      "time": 21887,
+      "issued": {
+        "task_id": 0,
+        "op_id": 519,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 519,
+          "end": 22434
+        }
+      ]
+    },
+    {
+      "time": 22434,
+      "issued": {
+        "task_id": 0,
+        "op_id": 521,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 521,
+          "end": 22981
+        }
+      ]
+    },
+    {
+      "time": 22981,
+      "issued": {
+        "task_id": 0,
+        "op_id": 523,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 523,
+          "end": 23528
+        }
+      ]
+    },
+    {
+      "time": 23528,
+      "issued": {
+        "task_id": 0,
+        "op_id": 525,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 525,
+          "end": 24075
+        }
+      ]
+    },
+    {
+      "time": 24040,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1082,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 525,
+          "end": 24110
+        },
+        {
+          "task_id": 0,
+          "op_id": 1082,
+          "end": 24349
+        }
+      ]
+    },
+    {
+      "time": 24110,
+      "issued": {
+        "task_id": 0,
+        "op_id": 527,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 527,
+          "end": 24896
+        },
+        {
+          "task_id": 0,
+          "op_id": 1082,
+          "end": 24588
+        }
+      ]
+    },
+    {
+      "time": 24896,
+      "issued": {
+        "task_id": 0,
+        "op_id": 529,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 529,
+          "end": 25443
+        }
+      ]
+    },
+    {
+      "time": 25443,
+      "issued": {
+        "task_id": 0,
+        "op_id": 531,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 531,
+          "end": 25990
+        }
+      ]
+    },
+    {
+      "time": 25990,
+      "issued": {
+        "task_id": 0,
+        "op_id": 533,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 533,
+          "end": 26537
+        }
+      ]
+    },
+    {
+      "time": 26537,
+      "issued": {
+        "task_id": 0,
+        "op_id": 535,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 535,
+          "end": 27084
+        }
+      ]
+    },
+    {
+      "time": 27084,
+      "issued": {
+        "task_id": 0,
+        "op_id": 537,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 537,
+          "end": 27631
+        }
+      ]
+    },
+    {
+      "time": 27631,
+      "issued": {
+        "task_id": 0,
+        "op_id": 539,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 539,
+          "end": 28178
+        }
+      ]
+    },
+    {
+      "time": 28178,
+      "issued": {
+        "task_id": 0,
+        "op_id": 541,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 541,
+          "end": 28725
+        }
+      ]
+    },
+    {
+      "time": 28725,
+      "issued": {
+        "task_id": 0,
+        "op_id": 543,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 543,
+          "end": 29272
+        }
+      ]
+    },
+    {
+      "time": 29272,
+      "issued": {
+        "task_id": 0,
+        "op_id": 545,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 545,
+          "end": 29819
+        }
+      ]
+    },
+    {
+      "time": 29819,
+      "issued": {
+        "task_id": 0,
+        "op_id": 547,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 547,
+          "end": 30366
+        }
+      ]
+    },
+    {
+      "time": 30366,
+      "issued": {
+        "task_id": 0,
+        "op_id": 549,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 549,
+          "end": 30913
+        }
+      ]
+    },
+    {
+      "time": 30878,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1083,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 549,
+          "end": 30948
+        },
+        {
+          "task_id": 0,
+          "op_id": 1083,
+          "end": 31187
+        }
+      ]
+    },
+    {
+      "time": 30948,
+      "issued": {
+        "task_id": 0,
+        "op_id": 551,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 551,
+          "end": 31734
+        },
+        {
+          "task_id": 0,
+          "op_id": 1083,
+          "end": 31426
+        }
+      ]
+    },
+    {
+      "time": 31734,
+      "issued": {
+        "task_id": 0,
+        "op_id": 553,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 553,
+          "end": 32281
+        }
+      ]
+    },
+    {
+      "time": 32281,
+      "issued": {
+        "task_id": 0,
+        "op_id": 555,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 555,
+          "end": 32828
+        }
+      ]
+    },
+    {
+      "time": 32828,
+      "issued": {
+        "task_id": 0,
+        "op_id": 557,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 557,
+          "end": 33375
+        }
+      ]
+    },
+    {
+      "time": 33375,
+      "issued": {
+        "task_id": 0,
+        "op_id": 559,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 559,
+          "end": 33922
+        }
+      ]
+    },
+    {
+      "time": 33922,
+      "issued": {
+        "task_id": 0,
+        "op_id": 561,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 561,
+          "end": 34469
+        }
+      ]
+    },
+    {
+      "time": 34469,
+      "issued": {
+        "task_id": 0,
+        "op_id": 563,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 563,
+          "end": 35016
+        }
+      ]
+    },
+    {
+      "time": 35016,
+      "issued": {
+        "task_id": 0,
+        "op_id": 565,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 565,
+          "end": 35563
+        }
+      ]
+    },
+    {
+      "time": 35563,
+      "issued": {
+        "task_id": 0,
+        "op_id": 567,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 567,
+          "end": 36110
+        }
+      ]
+    },
+    {
+      "time": 36110,
+      "issued": {
+        "task_id": 0,
+        "op_id": 569,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 569,
+          "end": 36657
+        }
+      ]
+    },
+    {
+      "time": 36657,
+      "issued": {
+        "task_id": 0,
+        "op_id": 571,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 571,
+          "end": 37204
+        }
+      ]
+    },
+    {
+      "time": 37204,
+      "issued": {
+        "task_id": 0,
+        "op_id": 573,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 573,
+          "end": 37751
+        }
+      ]
+    },
+    {
+      "time": 37716,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1084,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 573,
+          "end": 37786
+        },
+        {
+          "task_id": 0,
+          "op_id": 1084,
+          "end": 38025
+        }
+      ]
+    },
+    {
+      "time": 37786,
+      "issued": {
+        "task_id": 0,
+        "op_id": 575,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 575,
+          "end": 38572
+        },
+        {
+          "task_id": 0,
+          "op_id": 1084,
+          "end": 38264
+        }
+      ]
+    },
+    {
+      "time": 38572,
+      "issued": {
+        "task_id": 0,
+        "op_id": 577,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 577,
+          "end": 39119
+        }
+      ]
+    },
+    {
+      "time": 39119,
+      "issued": {
+        "task_id": 0,
+        "op_id": 579,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 579,
+          "end": 39666
+        }
+      ]
+    },
+    {
+      "time": 39666,
+      "issued": {
+        "task_id": 0,
+        "op_id": 581,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 581,
+          "end": 40213
+        }
+      ]
+    },
+    {
+      "time": 40213,
+      "issued": {
+        "task_id": 0,
+        "op_id": 583,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 583,
+          "end": 40760
+        }
+      ]
+    },
+    {
+      "time": 40760,
+      "issued": {
+        "task_id": 0,
+        "op_id": 585,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 585,
+          "end": 41307
+        }
+      ]
+    },
+    {
+      "time": 41307,
+      "issued": {
+        "task_id": 0,
+        "op_id": 587,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 587,
+          "end": 41854
+        }
+      ]
+    },
+    {
+      "time": 41854,
+      "issued": {
+        "task_id": 0,
+        "op_id": 589,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 589,
+          "end": 42401
+        }
+      ]
+    },
+    {
+      "time": 42401,
+      "issued": {
+        "task_id": 0,
+        "op_id": 591,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 591,
+          "end": 42948
+        }
+      ]
+    },
+    {
+      "time": 42948,
+      "issued": {
+        "task_id": 0,
+        "op_id": 593,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 593,
+          "end": 43495
+        }
+      ]
+    },
+    {
+      "time": 43495,
+      "issued": {
+        "task_id": 0,
+        "op_id": 595,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 595,
+          "end": 44042
+        }
+      ]
+    },
+    {
+      "time": 44042,
+      "issued": {
+        "task_id": 0,
+        "op_id": 597,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 597,
+          "end": 44589
+        }
+      ]
+    },
+    {
+      "time": 44554,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1085,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 597,
+          "end": 44624
+        },
+        {
+          "task_id": 0,
+          "op_id": 1085,
+          "end": 44863
+        }
+      ]
+    },
+    {
+      "time": 44624,
+      "issued": {
+        "task_id": 0,
+        "op_id": 599,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 599,
+          "end": 45410
+        },
+        {
+          "task_id": 0,
+          "op_id": 1085,
+          "end": 45102
+        }
+      ]
+    },
+    {
+      "time": 45410,
+      "issued": {
+        "task_id": 0,
+        "op_id": 601,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 601,
+          "end": 45957
+        }
+      ]
+    },
+    {
+      "time": 45957,
+      "issued": {
+        "task_id": 0,
+        "op_id": 603,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 603,
+          "end": 46504
+        }
+      ]
+    },
+    {
+      "time": 46504,
+      "issued": {
+        "task_id": 0,
+        "op_id": 605,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 605,
+          "end": 47051
+        }
+      ]
+    },
+    {
+      "time": 47051,
+      "issued": {
+        "task_id": 0,
+        "op_id": 607,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 607,
+          "end": 47598
+        }
+      ]
+    },
+    {
+      "time": 47598,
+      "issued": {
+        "task_id": 0,
+        "op_id": 609,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 609,
+          "end": 48145
+        }
+      ]
+    },
+    {
+      "time": 48145,
+      "issued": {
+        "task_id": 0,
+        "op_id": 611,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 611,
+          "end": 48692
+        }
+      ]
+    },
+    {
+      "time": 48692,
+      "issued": {
+        "task_id": 0,
+        "op_id": 613,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 613,
+          "end": 49239
+        }
+      ]
+    },
+    {
+      "time": 49239,
+      "issued": {
+        "task_id": 0,
+        "op_id": 615,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 615,
+          "end": 49786
+        }
+      ]
+    },
+    {
+      "time": 49786,
+      "issued": {
+        "task_id": 0,
+        "op_id": 617,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 617,
+          "end": 50333
+        }
+      ]
+    },
+    {
+      "time": 50333,
+      "issued": {
+        "task_id": 0,
+        "op_id": 619,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 619,
+          "end": 50880
+        }
+      ]
+    },
+    {
+      "time": 50880,
+      "issued": {
+        "task_id": 0,
+        "op_id": 621,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 621,
+          "end": 51427
+        }
+      ]
+    },
+    {
+      "time": 51392,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1086,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 621,
+          "end": 51462
+        },
+        {
+          "task_id": 0,
+          "op_id": 1086,
+          "end": 51701
+        }
+      ]
+    },
+    {
+      "time": 51462,
+      "issued": {
+        "task_id": 0,
+        "op_id": 623,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 623,
+          "end": 52248
+        },
+        {
+          "task_id": 0,
+          "op_id": 1086,
+          "end": 51940
+        }
+      ]
+    },
+    {
+      "time": 52248,
+      "issued": {
+        "task_id": 0,
+        "op_id": 625,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 625,
+          "end": 52795
+        }
+      ]
+    },
+    {
+      "time": 52795,
+      "issued": {
+        "task_id": 0,
+        "op_id": 627,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 627,
+          "end": 53342
+        }
+      ]
+    },
+    {
+      "time": 53342,
+      "issued": {
+        "task_id": 0,
+        "op_id": 629,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 629,
+          "end": 53889
+        }
+      ]
+    },
+    {
+      "time": 53889,
+      "issued": {
+        "task_id": 0,
+        "op_id": 631,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 631,
+          "end": 54436
+        }
+      ]
+    },
+    {
+      "time": 54436,
+      "issued": {
+        "task_id": 0,
+        "op_id": 633,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 633,
+          "end": 54983
+        }
+      ]
+    },
+    {
+      "time": 54983,
+      "issued": {
+        "task_id": 0,
+        "op_id": 635,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 635,
+          "end": 55530
+        }
+      ]
+    },
+    {
+      "time": 55530,
+      "issued": {
+        "task_id": 0,
+        "op_id": 637,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 637,
+          "end": 56077
+        }
+      ]
+    },
+    {
+      "time": 56077,
+      "issued": {
+        "task_id": 0,
+        "op_id": 639,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 639,
+          "end": 56624
+        }
+      ]
+    },
+    {
+      "time": 56624,
+      "issued": {
+        "task_id": 0,
+        "op_id": 641,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 641,
+          "end": 57171
+        }
+      ]
+    },
+    {
+      "time": 57171,
+      "issued": {
+        "task_id": 0,
+        "op_id": 643,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 643,
+          "end": 57718
+        }
+      ]
+    },
+    {
+      "time": 57718,
+      "issued": {
+        "task_id": 0,
+        "op_id": 645,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 645,
+          "end": 58265
+        }
+      ]
+    },
+    {
+      "time": 58230,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1087,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 645,
+          "end": 58300
+        },
+        {
+          "task_id": 0,
+          "op_id": 1087,
+          "end": 58539
+        }
+      ]
+    },
+    {
+      "time": 58300,
+      "issued": {
+        "task_id": 0,
+        "op_id": 647,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 647,
+          "end": 59086
+        },
+        {
+          "task_id": 0,
+          "op_id": 1087,
+          "end": 58778
+        }
+      ]
+    },
+    {
+      "time": 59086,
+      "issued": {
+        "task_id": 0,
+        "op_id": 649,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 649,
+          "end": 59633
+        }
+      ]
+    },
+    {
+      "time": 59633,
+      "issued": {
+        "task_id": 0,
+        "op_id": 651,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 651,
+          "end": 60180
+        }
+      ]
+    },
+    {
+      "time": 60180,
+      "issued": {
+        "task_id": 0,
+        "op_id": 653,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 653,
+          "end": 60727
+        }
+      ]
+    },
+    {
+      "time": 60727,
+      "issued": {
+        "task_id": 0,
+        "op_id": 655,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 655,
+          "end": 61274
+        }
+      ]
+    },
+    {
+      "time": 61274,
+      "issued": {
+        "task_id": 0,
+        "op_id": 657,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 657,
+          "end": 61821
+        }
+      ]
+    },
+    {
+      "time": 61821,
+      "issued": {
+        "task_id": 0,
+        "op_id": 659,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 659,
+          "end": 62368
+        }
+      ]
+    },
+    {
+      "time": 62368,
+      "issued": {
+        "task_id": 0,
+        "op_id": 661,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 661,
+          "end": 62915
+        }
+      ]
+    },
+    {
+      "time": 62915,
+      "issued": {
+        "task_id": 0,
+        "op_id": 663,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 663,
+          "end": 63462
+        }
+      ]
+    },
+    {
+      "time": 63462,
+      "issued": {
+        "task_id": 0,
+        "op_id": 665,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 665,
+          "end": 64009
+        }
+      ]
+    },
+    {
+      "time": 64009,
+      "issued": {
+        "task_id": 0,
+        "op_id": 667,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 667,
+          "end": 64556
+        }
+      ]
+    },
+    {
+      "time": 64556,
+      "issued": {
+        "task_id": 0,
+        "op_id": 669,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 669,
+          "end": 65103
+        }
+      ]
+    },
+    {
+      "time": 65068,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1088,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 669,
+          "end": 65138
+        },
+        {
+          "task_id": 0,
+          "op_id": 1088,
+          "end": 65377
+        }
+      ]
+    },
+    {
+      "time": 65138,
+      "issued": {
+        "task_id": 0,
+        "op_id": 671,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 671,
+          "end": 65924
+        },
+        {
+          "task_id": 0,
+          "op_id": 1088,
+          "end": 65616
+        }
+      ]
+    },
+    {
+      "time": 65924,
+      "issued": {
+        "task_id": 0,
+        "op_id": 673,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 673,
+          "end": 66471
+        }
+      ]
+    },
+    {
+      "time": 66471,
+      "issued": {
+        "task_id": 0,
+        "op_id": 675,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 675,
+          "end": 67018
+        }
+      ]
+    },
+    {
+      "time": 67018,
+      "issued": {
+        "task_id": 0,
+        "op_id": 677,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 677,
+          "end": 67565
+        }
+      ]
+    },
+    {
+      "time": 67565,
+      "issued": {
+        "task_id": 0,
+        "op_id": 679,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 679,
+          "end": 68112
+        }
+      ]
+    },
+    {
+      "time": 68112,
+      "issued": {
+        "task_id": 0,
+        "op_id": 681,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 681,
+          "end": 68659
+        }
+      ]
+    },
+    {
+      "time": 68659,
+      "issued": {
+        "task_id": 0,
+        "op_id": 683,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 683,
+          "end": 69206
+        }
+      ]
+    },
+    {
+      "time": 69206,
+      "issued": {
+        "task_id": 0,
+        "op_id": 685,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 685,
+          "end": 69753
+        }
+      ]
+    },
+    {
+      "time": 69753,
+      "issued": {
+        "task_id": 0,
+        "op_id": 687,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 687,
+          "end": 70300
+        }
+      ]
+    },
+    {
+      "time": 70300,
+      "issued": {
+        "task_id": 0,
+        "op_id": 689,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 689,
+          "end": 70847
+        }
+      ]
+    },
+    {
+      "time": 70847,
+      "issued": {
+        "task_id": 0,
+        "op_id": 691,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 691,
+          "end": 71394
+        }
+      ]
+    },
+    {
+      "time": 71394,
+      "issued": {
+        "task_id": 0,
+        "op_id": 693,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 693,
+          "end": 71941
+        }
+      ]
+    },
+    {
+      "time": 71906,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1089,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 693,
+          "end": 71976
+        },
+        {
+          "task_id": 0,
+          "op_id": 1089,
+          "end": 72215
+        }
+      ]
+    },
+    {
+      "time": 71976,
+      "issued": {
+        "task_id": 0,
+        "op_id": 695,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 695,
+          "end": 72762
+        },
+        {
+          "task_id": 0,
+          "op_id": 1089,
+          "end": 72454
+        }
+      ]
+    },
+    {
+      "time": 72762,
+      "issued": {
+        "task_id": 0,
+        "op_id": 697,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 697,
+          "end": 73309
+        }
+      ]
+    },
+    {
+      "time": 73309,
+      "issued": {
+        "task_id": 0,
+        "op_id": 699,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 699,
+          "end": 73856
+        }
+      ]
+    },
+    {
+      "time": 73856,
+      "issued": {
+        "task_id": 0,
+        "op_id": 701,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 701,
+          "end": 74403
+        }
+      ]
+    },
+    {
+      "time": 74403,
+      "issued": {
+        "task_id": 0,
+        "op_id": 703,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 703,
+          "end": 74950
+        }
+      ]
+    },
+    {
+      "time": 74950,
+      "issued": {
+        "task_id": 0,
+        "op_id": 705,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 705,
+          "end": 75497
+        }
+      ]
+    },
+    {
+      "time": 75497,
+      "issued": {
+        "task_id": 0,
+        "op_id": 707,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 707,
+          "end": 76044
+        }
+      ]
+    },
+    {
+      "time": 76044,
+      "issued": {
+        "task_id": 0,
+        "op_id": 709,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 709,
+          "end": 76591
+        }
+      ]
+    },
+    {
+      "time": 76591,
+      "issued": {
+        "task_id": 0,
+        "op_id": 711,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 711,
+          "end": 77138
+        }
+      ]
+    },
+    {
+      "time": 77138,
+      "issued": {
+        "task_id": 0,
+        "op_id": 713,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 713,
+          "end": 77685
+        }
+      ]
+    },
+    {
+      "time": 77685,
+      "issued": {
+        "task_id": 0,
+        "op_id": 715,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 715,
+          "end": 78232
+        }
+      ]
+    },
+    {
+      "time": 78232,
+      "issued": {
+        "task_id": 0,
+        "op_id": 717,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 717,
+          "end": 78779
+        }
+      ]
+    },
+    {
+      "time": 78744,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1090,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 717,
+          "end": 78814
+        },
+        {
+          "task_id": 0,
+          "op_id": 1090,
+          "end": 79053
+        }
+      ]
+    },
+    {
+      "time": 78814,
+      "issued": {
+        "task_id": 0,
+        "op_id": 719,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 2,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 719,
+          "end": 79600
+        },
+        {
+          "task_id": 0,
+          "op_id": 1090,
+          "end": 79292
+        }
+      ]
+    },
+    {
+      "time": 79600,
+      "issued": {
+        "task_id": 0,
+        "op_id": 721,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 721,
+          "end": 80147
+        }
+      ]
+    },
+    {
+      "time": 80147,
+      "issued": {
+        "task_id": 0,
+        "op_id": 723,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 723,
+          "end": 80694
+        }
+      ]
+    },
+    {
+      "time": 80694,
+      "issued": {
+        "task_id": 0,
+        "op_id": 725,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 725,
+          "end": 81241
+        }
+      ]
+    },
+    {
+      "time": 81241,
+      "issued": {
+        "task_id": 0,
+        "op_id": 727,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 727,
+          "end": 81788
+        }
+      ]
+    },
+    {
+      "time": 81788,
+      "issued": {
+        "task_id": 0,
+        "op_id": 729,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 729,
+          "end": 82335
+        }
+      ]
+    },
+    {
+      "time": 82335,
+      "issued": {
+        "task_id": 0,
+        "op_id": 731,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 731,
+          "end": 82882
+        }
+      ]
+    },
+    {
+      "time": 82882,
+      "issued": {
+        "task_id": 0,
+        "op_id": 733,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 733,
+          "end": 83429
+        }
+      ]
+    },
+    {
+      "time": 83429,
+      "issued": {
+        "task_id": 0,
+        "op_id": 735,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 735,
+          "end": 83976
+        }
+      ]
+    },
+    {
+      "time": 83976,
+      "issued": {
+        "task_id": 0,
+        "op_id": 737,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 737,
+          "end": 84523
+        }
+      ]
+    },
+    {
+      "time": 84523,
+      "issued": {
+        "task_id": 0,
+        "op_id": 739,
+        "core_id": 0,
+        "pipe": "PIPE_MTE2"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 739,
+          "end": 85070
+        }
+      ]
+    },
+    {
+      "time": 85582,
+      "issued": {
+        "task_id": 0,
+        "op_id": 1091,
+        "core_id": 0,
+        "pipe": "PIPE_MTE3"
+      },
+      "active_count": 1,
+      "projected_ends": [
+        {
+          "task_id": 0,
+          "op_id": 1091,
+          "end": 85856
+        }
+      ]
+    }
+  ],
+  "execution_mode": "singlecore",
+  "input_plan": null,
+  "input_graph": "case_01.json"
+}
