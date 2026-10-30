@@ -10,6 +10,7 @@ struct SearchOptions {
     // compact 控制原算法已有的探索宽度；正式入口与原命令行默认值保持一致。
     double time_limit = DEFAULT_CASE_TIME_LIMIT, feasibility_grace = 0;
     fs::path warm_start, inherited_checkpoint, resume_checkpoint;
+    // no-chain 仅供开发回归对照，正常求解使用 full。
     std::string ablation = "full";
     Id max_evaluations = 0;
     bool compact = false, export_results = true;

@@ -6,6 +6,7 @@
 #include "official_code/evaluation_validation.hpp"
 #include "core.hpp"
 #include "bootstrap.hpp"
+#include "chain.hpp"
 #include "pipeline.hpp"
 #include "structure.hpp"
 #include "activation.hpp"
@@ -27,7 +28,46 @@ int main() {
         } else {
             Capacity capacity = request.at("capacity").get<Capacity>();
             double bandwidth = request.value("bandwidth", 60.);
-            if (action == "core") {
+            if (action == "chain_seeds" || action == "legacy_seeds") {
+                GraphInfo g(graph);
+                Settings cfg{capacity, bandwidth, request.value("delay", 1000.)};
+                const Id cores = request.value("cores", 4);
+                const Id limit = request.value("limit", 8);
+                if (cores < 2 || cores > 5 || limit < 1 || limit > 64) {
+                    throw std::invalid_argument("invalid seed benchmark cores/limit");
+                }
+                const double began = monotonic();
+                NamedPlans seeds;
+                if (action == "chain_seeds") {
+                    seeds = chain_seed_plans(g, cores, cfg, 0, limit);
+                } else {
+                    append(seeds, pipeline_seed_plans(g, cores, cfg));
+                    append(seeds, structure_seed_plans(g, cores, cfg));
+                    for (double lambda : {0., .2, 1.}) {
+                        seeds.emplace_back("native_lambda_" + std::to_string(lambda),
+                                           construct(g, cores, lambda, cfg));
+                    }
+                }
+                Json rows = array();
+                std::set<std::string> seen;
+                for (const auto &[label, plan] : seeds) {
+                    if (!seen.insert(plan.fingerprint()).second) continue;
+                    plan.validate(g);
+                    const Id traffic = route_bytes(g, plan);
+                    const double sketch = replay_sketch(g, plan, cfg);
+                    const auto memory = lifetime_proxy(g, plan, cfg.capacity);
+                    const double average_excess = double(memory.first) /
+                        std::max<std::size_t>(1, plan.order.size());
+                    const double cost = std::max(sketch, traffic / cfg.bandwidth) +
+                        .15 * traffic / cfg.bandwidth + 2 * average_excess / cfg.bandwidth;
+                    rows.push_back({{"label", label}, {"plan", plan.to_dict()},
+                        {"proxy", {{"sketch", sketch}, {"route_bytes", traffic},
+                            {"lifetime_excess", memory.first}, {"lifetime_peak", memory.second},
+                            {"cost", cost}}}});
+                    if (Id(rows.size()) >= limit) break;
+                }
+                result = {{"seeds", rows}, {"construction_seconds", monotonic() - began}};
+            } else if (action == "core") {
                 GraphInfo g(graph);
                 Settings cfg{capacity, bandwidth, 500};
                 Id cores = request.value("cores", 3);
@@ -85,6 +125,7 @@ int main() {
                 options.time_limit = request.value("time_limit", 120.);
                 options.max_evaluations = request.value("max_evaluations", 12);
                 options.compact = request.value("compact", false);
+                options.ablation = request.value("ablation", std::string("full"));
                 options.export_results = false;
                 result = solve_in_memory(GraphInfo(graph), request.value("cores", 3), options);
             } else if (action == "solve") {
@@ -93,6 +134,7 @@ int main() {
                 options.max_evaluations = request.value("max_evaluations", 12);
                 options.export_results = false;
                 options.compact = request.value("compact", false);
+                options.ablation = request.value("ablation", std::string("full"));
                 result = solve(path_from_utf8(request.at("graph_path").get<std::string>()),
                                request.value("cores", 3),
                                path_from_utf8(request.at("config_path").get<std::string>()),

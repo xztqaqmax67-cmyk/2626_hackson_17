@@ -4,6 +4,7 @@
 #include "activation.hpp"
 #include "artifacts.hpp"
 #include "bootstrap.hpp"
+#include "chain.hpp"
 #include "generator.hpp"
 #include "inheritance.hpp"
 #include "official.hpp"
@@ -901,6 +902,19 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                     }
                 });
             };
+            auto chain_source = [&]() -> Generator<std::pair<std::string, Plan>> {
+                return Generator<std::pair<std::string, Plan>>([&](const auto &yield) {
+                    const double construction_deadline =
+                        std::min(deadline, monotonic() + std::max(1., time_limit * .1));
+                    try {
+                        for (auto row : chain_seed_plans(graph, cores, settings, construction_deadline, 2)) {
+                            yield(row);
+                        }
+                    } catch (const TimeoutError &) {
+                        // 此来源的局部预算用完后继续原搜索；全局预算由外层统一检查。
+                    }
+                });
+            };
             auto activation_source = [&]() -> Generator<std::pair<std::string, Plan>> {
                 return Generator<std::pair<std::string, Plan>>([&](const auto &yield) {
                     for (auto row : activation_plans(graph, *inherited, settings, deadline, 6)) {
@@ -914,6 +928,11 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 sources.push_back(pipeline_source());
             }
             sources.push_back(legacy());
+            const bool with_chain = options.ablation != "construction-only" &&
+                                    options.ablation != "no-chain";
+            if (with_chain) {
+                sources.push_back(chain_source());
+            }
             if (inherited && options.ablation != "construction-only") {
                 sources.push_back(activation_source());
             }
@@ -922,6 +941,10 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
             double seed_cutoff = started + std::min(time_limit * .25, 180.);
             Id seed_limit = options.compact ? (inherited ? 8 : 6) : (inherited ? 24 : 18),
                seed_count = 0;
+            // 为新增来源保留两个精评名额，避免直接吃掉原有来源的数量预算。
+            if (with_chain) {
+                seed_limit += 2;
+            }
             while (!active_sources.empty() && seed_count < seed_limit) {
                 std::vector<std::size_t> active;
                 for (auto index : active_sources) {

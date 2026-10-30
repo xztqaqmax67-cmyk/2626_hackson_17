@@ -16,7 +16,7 @@ Ids assignment_key(const GraphInfo &g, const Plan &p) {
 std::string seed_family(const std::string &label) {
     for (std::string prefix :
          {"structure_separator", "structure_stage", "structure_atoms", "structure_dfs", "pipe_",
-          "native_", "activate_", "inherited_", "resumed_"}) {
+          "native_", "chain_", "activate_", "inherited_", "resumed_"}) {
         if (label.rfind(prefix, 0) == 0) {
             if (prefix == "inherited_" || prefix == "resumed_") {
                 return "inherited";

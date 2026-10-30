@@ -26,7 +26,8 @@ def main():
                     expected = search.solve(graph_path, 3, config, directory/'python',
                         time_limit=120, max_evaluations=limit, export_results=False)
                 request = dict(action='solve', graph=graph, capacity=CAPACITY, graph_path=str(graph_path),
-                    config_path=str(config), output=str(directory/'cpp'), max_evaluations=limit, cores=3)
+                    config_path=str(config), output=str(directory/'cpp'), max_evaluations=limit,
+                    cores=3, ablation='no-chain')
                 result = subprocess.run([str(RUNNER)], input=json.dumps(request), text=True,
                     encoding='utf-8', capture_output=True, timeout=130)
                 assert result.returncode == 0, result.stdout + result.stderr

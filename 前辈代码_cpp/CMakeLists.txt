@@ -30,6 +30,7 @@ target_sources(problem2_lib PRIVATE
     problem2/utils.cpp
     problem2/core.cpp
     problem2/bootstrap.cpp
+    problem2/chain.cpp
     problem2/pipeline.cpp
     problem2/activation.cpp
     problem2/structure.cpp)
@@ -95,11 +96,17 @@ if(BUILD_TESTING)
         target_link_options(generator_test PRIVATE -static -static-libgcc -static-libstdc++)
     endif()
     add_test(NAME generator_protocol COMMAND generator_test)
+    add_executable(chain_tests tests/chain_tests.cpp)
+    target_link_libraries(chain_tests PRIVATE problem2_lib)
+    if(MINGW)
+        target_link_options(chain_tests PRIVATE -static -static-libgcc -static-libstdc++)
+    endif()
+    add_test(NAME chain_seed_invariants COMMAND chain_tests)
     set_tests_properties(generator_protocol PROPERTIES TIMEOUT 15)
     # 仅由开发者显式提供测试解释器；正常构建不搜索 Python 或包外资源。
     set(PROBLEM2_TEST_PYTHON "" CACHE FILEPATH "可选：运行原版对照脚本的 Python 路径")
     if(PROBLEM2_TEST_PYTHON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../前辈代码/problem2/main.py")
-        foreach(test compare_multicore compare_search compare_workflow check_hackathon)
+        foreach(test compare_multicore compare_search compare_workflow check_hackathon check_chain_integration)
             add_test(NAME ${test} COMMAND "${PROBLEM2_TEST_PYTHON}"
                 "${CMAKE_CURRENT_SOURCE_DIR}/tests/${test}.py")
             set_tests_properties(${test} PROPERTIES ENVIRONMENT
