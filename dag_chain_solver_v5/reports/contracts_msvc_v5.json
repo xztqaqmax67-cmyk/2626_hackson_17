@@ -1,0 +1,36 @@
+{
+  "solver_executable_sha256": "c0ff7a3f94256a815bdf68c8e5947e828f46930537b48e980d0a636114e69a75",
+  "compiler": "MSVC",
+  "rows": [
+    {
+      "script": "contracts.py",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v5\\tests\\contracts.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v5\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v5\\runs\\final\\cli_msvc"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.541040200041607,
+      "stdout": "CLI contract checks passed: fixed options, exit codes, Unicode/spaces, determinism, input preservation\n",
+      "stderr": ""
+    },
+    {
+      "script": "rules_contracts.py",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v5\\tests\\rules_contracts.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v5\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v5\\runs\\final\\rules_contracts_msvc"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.7719765000510961,
+      "stdout": "26 graph contract checks passed; no evaluator invoked.\n",
+      "stderr": ""
+    }
+  ]
+}

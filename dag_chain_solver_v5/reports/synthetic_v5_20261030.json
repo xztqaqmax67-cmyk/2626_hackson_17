@@ -1,0 +1,2284 @@
+{
+  "version": "0.5.0",
+  "public_benchmark_inputs_used": false,
+  "purpose": "General structural and rule regression checks; finite tests are not a universal proof.",
+  "fixture_count": 16,
+  "requested_cores": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "solver_executable_sha256": "c0ff7a3f94256a815bdf68c8e5947e828f46930537b48e980d0a636114e69a75",
+  "official_source_sha256": {
+    "code/contest_io.py": "3deb2d3179f7b02063edc55beb236f525fa8fed5884ce1ca5b1fe89156c63a52",
+    "code/evaluation_validation.py": "99ef09a446b2d9752a83584629c5a158118ae3d7026bbb4723a648d5bc74126f",
+    "code/multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "code/multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "code/multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "code/schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "code/schedule_step2.py": "b80256b9b9e1a2d3ec2a42cf4938123da76ed959bab24fc8dadb8aac32f457d1",
+    "code/schedule_step3.py": "424fea21c6cec1c170fe5b0e4e08c5bb48f24ccb08b5fb38a836a2cb528d7466",
+    "code/singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "code/stub_multicore_cut_and_schedule.py": "9ae9ae4e8875e348e4e2e8f97b78e709bf88e6d0cbcc0bcd888707d34dfcd3ae",
+    "data/config.txt": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7"
+  },
+  "variant_pairs": [
+    [
+      "fork_join",
+      "fork_join_relabelled"
+    ],
+    [
+      "writers_across_phases",
+      "writers_relabelled"
+    ]
+  ],
+  "rows": [
+    {
+      "fixture": "fork_join",
+      "cores": 2,
+      "input_sha256": "91f8389cbdf9923992b21dbdab61f713d45dd6b46e42c7628299489efec89bb0",
+      "status": "ok",
+      "generation_seconds": 0.02081199991516769,
+      "structure_passed": true,
+      "plan_sha256": "82e126b99e0d6bf7bd1e4d14b4f9dc9a225c671e1ae842ecb4ef5391377a1272",
+      "evaluation_seconds": 0.23695189994759858,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        }
+      },
+      "result_sha256": "da2411ed6c803046eddf9566b803d1fd650339bd87afdbe16b3de2f3f79284b0"
+    },
+    {
+      "fixture": "fork_join",
+      "cores": 3,
+      "input_sha256": "91f8389cbdf9923992b21dbdab61f713d45dd6b46e42c7628299489efec89bb0",
+      "status": "ok",
+      "generation_seconds": 0.02154270000755787,
+      "structure_passed": true,
+      "plan_sha256": "72ac2e05f7e83b6a76d3be2f0e81e66b20a109a09032c60dc5758389efcab873",
+      "evaluation_seconds": 0.2552823000587523,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "6dd8e25b11804ffb0d42b238204154407de57432af7240542e09c9addae2b0de"
+    },
+    {
+      "fixture": "fork_join",
+      "cores": 4,
+      "input_sha256": "91f8389cbdf9923992b21dbdab61f713d45dd6b46e42c7628299489efec89bb0",
+      "status": "ok",
+      "generation_seconds": 0.03934199991635978,
+      "structure_passed": true,
+      "plan_sha256": "18039d87ae9541feef1d6f823c6b6c8669178404eb8f3119c60ade37bac9493b",
+      "evaluation_seconds": 0.26057939999736845,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "f6fd9f84d0ca2ffb930c89fbb062510f80c63149dea9f3875d530c090ea3c071"
+    },
+    {
+      "fixture": "fork_join",
+      "cores": 5,
+      "input_sha256": "91f8389cbdf9923992b21dbdab61f713d45dd6b46e42c7628299489efec89bb0",
+      "status": "ok",
+      "generation_seconds": 0.024727700045332313,
+      "structure_passed": true,
+      "plan_sha256": "1d6f2bb3c171e419dbb7eb66331385fe7604ee21008140d163bbfa5e47dc60c0",
+      "repeat_identical": true,
+      "evaluation_seconds": 0.3236791000235826,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "81a6b830aec4c7ffdf156e131b7221b857c10dd030866c16e724fb31bd76d9be"
+    },
+    {
+      "fixture": "unequal_branches",
+      "cores": 2,
+      "input_sha256": "924ad25efcf7d6283b18aa0a996899dcbbb19e2a4ebfc892f82acfea857165c5",
+      "status": "ok",
+      "generation_seconds": 0.017136800102889538,
+      "structure_passed": true,
+      "plan_sha256": "82e126b99e0d6bf7bd1e4d14b4f9dc9a225c671e1ae842ecb4ef5391377a1272",
+      "evaluation_seconds": 0.22141659981571138,
+      "cycles": 55197,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        }
+      },
+      "result_sha256": "79866e3e49e8a6ee2bee0ebfa1444da6ee09961911a762f60a94a7bf37acc3b0"
+    },
+    {
+      "fixture": "unequal_branches",
+      "cores": 3,
+      "input_sha256": "924ad25efcf7d6283b18aa0a996899dcbbb19e2a4ebfc892f82acfea857165c5",
+      "status": "ok",
+      "generation_seconds": 0.019452700158581138,
+      "structure_passed": true,
+      "plan_sha256": "72ac2e05f7e83b6a76d3be2f0e81e66b20a109a09032c60dc5758389efcab873",
+      "evaluation_seconds": 0.20175389992073178,
+      "cycles": 55197,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "6a0a3ec37348f218d3c571e1e00381bf325cb1d87d318b39c708a2a3647d1318"
+    },
+    {
+      "fixture": "unequal_branches",
+      "cores": 4,
+      "input_sha256": "924ad25efcf7d6283b18aa0a996899dcbbb19e2a4ebfc892f82acfea857165c5",
+      "status": "ok",
+      "generation_seconds": 0.0242595998570323,
+      "structure_passed": true,
+      "plan_sha256": "18039d87ae9541feef1d6f823c6b6c8669178404eb8f3119c60ade37bac9493b",
+      "evaluation_seconds": 0.21536249993368983,
+      "cycles": 55197,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "c4063536a16b79a957a071377e84cf44296d42a0e6db7e7791f82c90e6b6de58"
+    },
+    {
+      "fixture": "unequal_branches",
+      "cores": 5,
+      "input_sha256": "924ad25efcf7d6283b18aa0a996899dcbbb19e2a4ebfc892f82acfea857165c5",
+      "status": "ok",
+      "generation_seconds": 0.028769700089469552,
+      "structure_passed": true,
+      "plan_sha256": "1d6f2bb3c171e419dbb7eb66331385fe7604ee21008140d163bbfa5e47dc60c0",
+      "evaluation_seconds": 0.2621751001570374,
+      "cycles": 55197,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "cba21348c13a2356d3fefe5c0a58746a1fa5b5bf20a0ef79b516f228d707cc0b"
+    },
+    {
+      "fixture": "skip_edges",
+      "cores": 2,
+      "input_sha256": "5ee928315597a3b3feddfcce930cecb2ca09d077e9e987ebeccfdfe160bb078f",
+      "status": "ok",
+      "generation_seconds": 0.027621200075373054,
+      "structure_passed": true,
+      "plan_sha256": "6fee352e8c7d51ceb3d6cee97f7af07c1898fab7137c1005a77ad2804462a2af",
+      "evaluation_seconds": 0.25742759997956455,
+      "cycles": 4025,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        }
+      },
+      "result_sha256": "c2ad90217538cbcdd2215e25a31dac41a8a1d68e35158a71ddc92fde22d592f2"
+    },
+    {
+      "fixture": "skip_edges",
+      "cores": 3,
+      "input_sha256": "5ee928315597a3b3feddfcce930cecb2ca09d077e9e987ebeccfdfe160bb078f",
+      "status": "ok",
+      "generation_seconds": 0.023280699970200658,
+      "structure_passed": true,
+      "plan_sha256": "f7c01a8f32904655b3bd8efcf3b32b76c3a9b093426688ab652deb23af13adce",
+      "evaluation_seconds": 0.20471710013225675,
+      "cycles": 4025,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "4d6ed17879d47899cf1fff3b56e915fd63746c64a253acc7a032afa39b417175"
+    },
+    {
+      "fixture": "skip_edges",
+      "cores": 4,
+      "input_sha256": "5ee928315597a3b3feddfcce930cecb2ca09d077e9e987ebeccfdfe160bb078f",
+      "status": "ok",
+      "generation_seconds": 0.03078459994867444,
+      "structure_passed": true,
+      "plan_sha256": "7c83f8c9a945545c1d4164634407c201ba4b6915ffcd2a0bdee1170300a87a3e",
+      "evaluation_seconds": 0.19241969985887408,
+      "cycles": 4025,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "78b54b9e1ed21ed3f0caf89baaa7a82831ec83b32d1348e1e75a281c6afac0c5"
+    },
+    {
+      "fixture": "skip_edges",
+      "cores": 5,
+      "input_sha256": "5ee928315597a3b3feddfcce930cecb2ca09d077e9e987ebeccfdfe160bb078f",
+      "status": "ok",
+      "generation_seconds": 0.036130799911916256,
+      "structure_passed": true,
+      "plan_sha256": "cb2420609246266703535027e72dd6b81bc34359eddd3061208c7efa88d464db",
+      "evaluation_seconds": 0.2176224000286311,
+      "cycles": 4025,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "dc79517cee672052bc72c2bcdcd0380f7ee68de5c18259239a6f5396695ea6ab"
+    },
+    {
+      "fixture": "shared_external_input",
+      "cores": 2,
+      "input_sha256": "df38532bde3fccf17a5ad13c8a93771da41cf046c1e3cbef5d28d07028b793a3",
+      "status": "ok",
+      "generation_seconds": 0.028726999880746007,
+      "structure_passed": true,
+      "plan_sha256": "546e4b19138b681bb9c959fee31c060edb9807b93df2d64d5817ae3f441cc463",
+      "evaluation_seconds": 0.2507628998719156,
+      "cycles": 13205,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 14336,
+        "added_copy_bytes": 9216,
+        "partition_added_copy_bytes": 9216,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        }
+      },
+      "result_sha256": "a4e5918eae9258d1b6ebe525c573b5dcfb82e8a7bfce43e0c9e262ff5e4ecd4f"
+    },
+    {
+      "fixture": "shared_external_input",
+      "cores": 3,
+      "input_sha256": "df38532bde3fccf17a5ad13c8a93771da41cf046c1e3cbef5d28d07028b793a3",
+      "status": "ok",
+      "generation_seconds": 0.023531500017270446,
+      "structure_passed": true,
+      "plan_sha256": "ec3fd2158a380608e5f5a7e39542d49400c5514054fc2bdbe9b1e4e9bbac62d6",
+      "evaluation_seconds": 0.2347862001042813,
+      "cycles": 13205,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 14336,
+        "added_copy_bytes": 9216,
+        "partition_added_copy_bytes": 9216,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "863ed02b2cf5628d64f8dbcc7babe410c7a930ffb97658994265c1bbfc865903"
+    },
+    {
+      "fixture": "shared_external_input",
+      "cores": 4,
+      "input_sha256": "df38532bde3fccf17a5ad13c8a93771da41cf046c1e3cbef5d28d07028b793a3",
+      "status": "ok",
+      "generation_seconds": 0.022592100081965327,
+      "structure_passed": true,
+      "plan_sha256": "0a6a07292248dad9176f3714d6f91fce138ae08bbed940702dbdba7105711e7f",
+      "evaluation_seconds": 0.2415471998974681,
+      "cycles": 13205,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 14336,
+        "added_copy_bytes": 9216,
+        "partition_added_copy_bytes": 9216,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "5cc654d565a1aa409a42b490eb7c32979c7aca46165d27c57e1541ddc29650ea"
+    },
+    {
+      "fixture": "shared_external_input",
+      "cores": 5,
+      "input_sha256": "df38532bde3fccf17a5ad13c8a93771da41cf046c1e3cbef5d28d07028b793a3",
+      "status": "ok",
+      "generation_seconds": 0.022580800112336874,
+      "structure_passed": true,
+      "plan_sha256": "156a2381b9e2ffc56c5289beb3ebff1bef7b790fe8847b42dbe539fc32f45250",
+      "evaluation_seconds": 0.2157441999297589,
+      "cycles": 13205,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 14336,
+        "added_copy_bytes": 9216,
+        "partition_added_copy_bytes": 9216,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "d527ec4af24438638cf0a3b7fff55c36e5b0b502fa9b9327e7264bcbae3d9148"
+    },
+    {
+      "fixture": "writers_across_phases",
+      "cores": 2,
+      "input_sha256": "4c02ea43113289aaa7618575af276395c913355e66828036c74b3f810b3e57de",
+      "status": "ok",
+      "generation_seconds": 0.023167100036516786,
+      "structure_passed": true,
+      "plan_sha256": "1e98c970ee16b0eefe3e202534638478716045c1b28a8e038d7bb1e29f9fbfef",
+      "evaluation_seconds": 0.22347570001147687,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a6aaf3bcf1252cc705779d36a4a0060f2c7ea1425029f0b6c0aca64d60628a4c"
+    },
+    {
+      "fixture": "writers_across_phases",
+      "cores": 3,
+      "input_sha256": "4c02ea43113289aaa7618575af276395c913355e66828036c74b3f810b3e57de",
+      "status": "ok",
+      "generation_seconds": 0.04137649992480874,
+      "structure_passed": true,
+      "plan_sha256": "75cb17c4013b3d8ef2d31471363e5d0c136bf39c4aaeb4ec44924bb9b66e098d",
+      "evaluation_seconds": 0.22583680017851293,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "93a06ff7bb44b5d5ba23d315b90ef0d71125cec0e6540d2e401540fb90e3906f"
+    },
+    {
+      "fixture": "writers_across_phases",
+      "cores": 4,
+      "input_sha256": "4c02ea43113289aaa7618575af276395c913355e66828036c74b3f810b3e57de",
+      "status": "ok",
+      "generation_seconds": 0.025952500058338046,
+      "structure_passed": true,
+      "plan_sha256": "5f5a85a4cde152fcc013928225064e5de484efd529e3368cb03879b9ab109dfc",
+      "evaluation_seconds": 0.19745779992081225,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "855681f9c13ed006bf38ced068f389718b3fdcbab89b21fb43e9debda31cf2c6"
+    },
+    {
+      "fixture": "writers_across_phases",
+      "cores": 5,
+      "input_sha256": "4c02ea43113289aaa7618575af276395c913355e66828036c74b3f810b3e57de",
+      "status": "ok",
+      "generation_seconds": 0.01806079992093146,
+      "structure_passed": true,
+      "plan_sha256": "9761009953a41c121d3cdff5df2b7b2f51218cb2a80ec8690777506f97fb0c92",
+      "repeat_identical": true,
+      "evaluation_seconds": 0.20771069987677038,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "3959e477a642ffc56e9196e6ac61b1d63e55a59a9d5c338df978daab15a42ebc"
+    },
+    {
+      "fixture": "zero_cycles_mixed_pipes",
+      "cores": 2,
+      "input_sha256": "e45956b5ace8f158662bd99e528563e4dbed323377f06d0ab8fc29b54404d6cf",
+      "status": "ok",
+      "generation_seconds": 0.023174599977210164,
+      "structure_passed": true,
+      "plan_sha256": "fb9d2703eaace105f72da9cbbca1ae504841469c6975c9c9bcdfbf38bd166751",
+      "evaluation_seconds": 0.2551879999227822,
+      "cycles": 4091,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 16384
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "59d12c44026473263ec03ae9c9ef74df36f71bccb6cbfebab7311c72e5eea753"
+    },
+    {
+      "fixture": "zero_cycles_mixed_pipes",
+      "cores": 3,
+      "input_sha256": "e45956b5ace8f158662bd99e528563e4dbed323377f06d0ab8fc29b54404d6cf",
+      "status": "ok",
+      "generation_seconds": 0.02398280007764697,
+      "structure_passed": true,
+      "plan_sha256": "e3b5ee6015b3b60c4bc2ede3646803266ebf764dfece4b0a36d95c50228cd566",
+      "evaluation_seconds": 0.20661800005473197,
+      "cycles": 4091,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 16384
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a15f6a2690408aea73dc0370580c93a6652a205a1be32210886d6e2edf9c8837"
+    },
+    {
+      "fixture": "zero_cycles_mixed_pipes",
+      "cores": 4,
+      "input_sha256": "e45956b5ace8f158662bd99e528563e4dbed323377f06d0ab8fc29b54404d6cf",
+      "status": "ok",
+      "generation_seconds": 0.028702900046482682,
+      "structure_passed": true,
+      "plan_sha256": "03637dc333bc98e3f4d02bf322e136fdcbc46cf4deac8ddcab23e8e5d3d6f65d",
+      "evaluation_seconds": 0.17159929987974465,
+      "cycles": 4091,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 16384
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "2283945e032229fb8e793a63fd8472c53c58413d64836fd0b96e511502683a65"
+    },
+    {
+      "fixture": "zero_cycles_mixed_pipes",
+      "cores": 5,
+      "input_sha256": "e45956b5ace8f158662bd99e528563e4dbed323377f06d0ab8fc29b54404d6cf",
+      "status": "ok",
+      "generation_seconds": 0.044999999925494194,
+      "structure_passed": true,
+      "plan_sha256": "9a9caa9eda2e7da341c6f58a6524fb50958fdfad6c28f84545ca6af9f139148b",
+      "evaluation_seconds": 0.24315580003894866,
+      "cycles": 4091,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 16384
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "df9cec076a301b6bb6189f8dc4ea192b7181a3e21b0e23ccaa3ce8df75ff011d"
+    },
+    {
+      "fixture": "ub_soft_threshold",
+      "cores": 2,
+      "input_sha256": "7b74bb974b500947d07ae5b290ea5a0763376edfa5e89da9c1c0e76dfe3c22ad",
+      "status": "ok",
+      "generation_seconds": 0.01837350009009242,
+      "structure_passed": true,
+      "plan_sha256": "a6960c3893dfd96f785bd75048d0baf48d0bef4b6c4c52969bc87ba159a77274",
+      "evaluation_seconds": 0.23173280013725162,
+      "cycles": 3418,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 61024,
+        "scheduled_copy_bytes": 61024,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 120000
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "95e2faa788bfe18259c6a34cbbcac5b8c5740945997f835c10d262d14df313b4"
+    },
+    {
+      "fixture": "ub_soft_threshold",
+      "cores": 3,
+      "input_sha256": "7b74bb974b500947d07ae5b290ea5a0763376edfa5e89da9c1c0e76dfe3c22ad",
+      "status": "ok",
+      "generation_seconds": 0.02118259994313121,
+      "structure_passed": true,
+      "plan_sha256": "c8f66f958d2094fef950f0402c502b7b7c189082ab8d94db82782e8ab6f2ac0c",
+      "evaluation_seconds": 0.21907969983294606,
+      "cycles": 3418,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 61024,
+        "scheduled_copy_bytes": 61024,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 120000
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "52d20a9b964261473ca81f3480c5389d3fba18d541487b6f6c1b1bd3d5088f46"
+    },
+    {
+      "fixture": "ub_soft_threshold",
+      "cores": 4,
+      "input_sha256": "7b74bb974b500947d07ae5b290ea5a0763376edfa5e89da9c1c0e76dfe3c22ad",
+      "status": "ok",
+      "generation_seconds": 0.019223800161853433,
+      "structure_passed": true,
+      "plan_sha256": "1b396edde19348ea90bb19a3a047eef300047493e7bc342588da7c88e9b5a54b",
+      "evaluation_seconds": 0.20844580000266433,
+      "cycles": 3418,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 61024,
+        "scheduled_copy_bytes": 61024,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 120000
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "367c2d90973a5e79d38ef1e4f11a6cfed2cb5ae6c9620dc72c9e89f7b0dadf46"
+    },
+    {
+      "fixture": "ub_soft_threshold",
+      "cores": 5,
+      "input_sha256": "7b74bb974b500947d07ae5b290ea5a0763376edfa5e89da9c1c0e76dfe3c22ad",
+      "status": "ok",
+      "generation_seconds": 0.02155419997870922,
+      "structure_passed": true,
+      "plan_sha256": "2b58a5d2b8dc458c634840c2d8cdff1a48a0e8eed0a376855df379e9e60ee2d0",
+      "evaluation_seconds": 0.23944259993731976,
+      "cycles": 3418,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 61024,
+        "scheduled_copy_bytes": 61024,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 120000
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a53dc6f0b7abd29af0b4c5f9ce67edbfb8bdd15bfe9b745eb92f770aad643090"
+    },
+    {
+      "fixture": "partial_writer_pressure",
+      "cores": 2,
+      "input_sha256": "aef82d3a0fc0344fc8e9f4733c4b40153d6779b82f571faea702b5c981d86b44",
+      "status": "ok",
+      "generation_seconds": 0.027961899992078543,
+      "structure_passed": true,
+      "plan_sha256": "b2a844d8a74152bdde1ca254a1eaf8616e2fa61ae7a578972977ab60ae9402ff",
+      "evaluation_seconds": 0.23219010001048446,
+      "cycles": 268,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 4096,
+        "scheduled_copy_bytes": 4096,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 83072
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "c2418ba6ba018e40c5d782c5775e65f509f0b52277691749f7b26cea803e78e7"
+    },
+    {
+      "fixture": "partial_writer_pressure",
+      "cores": 3,
+      "input_sha256": "aef82d3a0fc0344fc8e9f4733c4b40153d6779b82f571faea702b5c981d86b44",
+      "status": "ok",
+      "generation_seconds": 0.020409000106155872,
+      "structure_passed": true,
+      "plan_sha256": "2978664b6bba1605ad61923c5623b4b90e05ec00108a5b10fd29804da256d9f0",
+      "evaluation_seconds": 0.18214430008083582,
+      "cycles": 268,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 4096,
+        "scheduled_copy_bytes": 4096,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 83072
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "ecf6cffd1d91e702fa523d9fea3be96099b5d57d814670bcd39651f33bdd9be4"
+    },
+    {
+      "fixture": "partial_writer_pressure",
+      "cores": 4,
+      "input_sha256": "aef82d3a0fc0344fc8e9f4733c4b40153d6779b82f571faea702b5c981d86b44",
+      "status": "ok",
+      "generation_seconds": 0.023170100059360266,
+      "structure_passed": true,
+      "plan_sha256": "dfbf5c8dcf9ea35412ec90866dc44742b76097ec1cd12c6a7ff65c64afd28925",
+      "evaluation_seconds": 0.32568880007602274,
+      "cycles": 268,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 4096,
+        "scheduled_copy_bytes": 4096,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 83072
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "8117fc134e5ad384fb555f8f393530a4f86c8822b6003644e988f5ecd6c9cfad"
+    },
+    {
+      "fixture": "partial_writer_pressure",
+      "cores": 5,
+      "input_sha256": "aef82d3a0fc0344fc8e9f4733c4b40153d6779b82f571faea702b5c981d86b44",
+      "status": "ok",
+      "generation_seconds": 0.01714400015771389,
+      "structure_passed": true,
+      "plan_sha256": "3dd28121004d4a1cfad84486b7a1654eb20173d7f64c73e8e895b5dfb837d286",
+      "evaluation_seconds": 0.20919750002212822,
+      "cycles": 268,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 4096,
+        "scheduled_copy_bytes": 4096,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 83072
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "c1a52c37a9474cd0442b77ef93aaad6df6c522a362de05ec026f28b844a9408b"
+    },
+    {
+      "fixture": "random_00",
+      "cores": 2,
+      "input_sha256": "4fc6775c7325e45b11c94b9e656399b95ee6b302419aa5732c62532d117f9c1e",
+      "status": "ok",
+      "generation_seconds": 0.02587929996661842,
+      "structure_passed": true,
+      "plan_sha256": "3100221ec485aac17b552f7bca8e06d646a465621f1e00636a11ca93f9489bf2",
+      "evaluation_seconds": 0.20700540021061897,
+      "cycles": 82112,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 22528,
+        "scheduled_copy_bytes": 58368,
+        "added_copy_bytes": 35840,
+        "partition_added_copy_bytes": 35840,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 45056
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        }
+      },
+      "result_sha256": "a41b3062819c2c1dbb247f89a0381c05d5a6cdd1ae8aa9801891f071a9147a79"
+    },
+    {
+      "fixture": "random_00",
+      "cores": 3,
+      "input_sha256": "4fc6775c7325e45b11c94b9e656399b95ee6b302419aa5732c62532d117f9c1e",
+      "status": "ok",
+      "generation_seconds": 0.01920620002783835,
+      "structure_passed": true,
+      "plan_sha256": "1a03e51105903a1d60f68ae1e0ce0eb8f1a7073aaaf8741aecf032a7f879fa37",
+      "evaluation_seconds": 0.1881502999458462,
+      "cycles": 82112,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 22528,
+        "scheduled_copy_bytes": 58368,
+        "added_copy_bytes": 35840,
+        "partition_added_copy_bytes": 35840,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 45056
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "6ae4ca4e14188344941d6203deec3bbd71977dd963004e9cfa60e12785e58f95"
+    },
+    {
+      "fixture": "random_00",
+      "cores": 4,
+      "input_sha256": "4fc6775c7325e45b11c94b9e656399b95ee6b302419aa5732c62532d117f9c1e",
+      "status": "ok",
+      "generation_seconds": 0.025995800038799644,
+      "structure_passed": true,
+      "plan_sha256": "cf9662d7daad8fae1a467aafb2fc3eaadab9fecbb39a38c870364a8aa753b72f",
+      "evaluation_seconds": 0.19010140001773834,
+      "cycles": 82112,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 22528,
+        "scheduled_copy_bytes": 58368,
+        "added_copy_bytes": 35840,
+        "partition_added_copy_bytes": 35840,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 45056
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "c85854fe8d0d84ee73677d369a823015115531f8790aa1af233ed5a57847a3e1"
+    },
+    {
+      "fixture": "random_00",
+      "cores": 5,
+      "input_sha256": "4fc6775c7325e45b11c94b9e656399b95ee6b302419aa5732c62532d117f9c1e",
+      "status": "ok",
+      "generation_seconds": 0.02785119996406138,
+      "structure_passed": true,
+      "plan_sha256": "9947206ef6e7f3201c0326053e9df4df436521e19b4c6664bcf0272abf56ea3c",
+      "evaluation_seconds": 0.26101720007136464,
+      "cycles": 82112,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 22528,
+        "scheduled_copy_bytes": 58368,
+        "added_copy_bytes": 35840,
+        "partition_added_copy_bytes": 35840,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 45056
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "2651d4e0ea1f5f5cebd2c6a38be5ac9f0c4eba82a43c021c54deab5e1b0bff58"
+    },
+    {
+      "fixture": "random_01",
+      "cores": 2,
+      "input_sha256": "a7b4d814672c43f548774a1d825699236c05c3f612629173bbe7ac5fa172666d",
+      "status": "ok",
+      "generation_seconds": 0.05078690010122955,
+      "structure_passed": true,
+      "plan_sha256": "1d64688ae1897a7d3a6887f04d603268d44a832e88b35b789d5037673dce629b",
+      "evaluation_seconds": 0.26103730010800064,
+      "cycles": 64868,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 25600,
+        "scheduled_copy_bytes": 53248,
+        "added_copy_bytes": 27648,
+        "partition_added_copy_bytes": 27648,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 28672
+        },
+        "1": {
+          "L1": 0,
+          "UB": 21504
+        }
+      },
+      "result_sha256": "719d531d752e05bdee84711c1f676d8fe66201df447607484ba81cde78f89828"
+    },
+    {
+      "fixture": "random_01",
+      "cores": 3,
+      "input_sha256": "a7b4d814672c43f548774a1d825699236c05c3f612629173bbe7ac5fa172666d",
+      "status": "ok",
+      "generation_seconds": 0.02176319994032383,
+      "structure_passed": true,
+      "plan_sha256": "12422303d2afb0de88a95191ad5e8fef1954e68070f5b04b173bd6362df66745",
+      "evaluation_seconds": 0.2687937000300735,
+      "cycles": 64477,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 25600,
+        "scheduled_copy_bytes": 69632,
+        "added_copy_bytes": 44032,
+        "partition_added_copy_bytes": 44032,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 21504
+        },
+        "1": {
+          "L1": 0,
+          "UB": 14336
+        },
+        "2": {
+          "L1": 0,
+          "UB": 23552
+        }
+      },
+      "result_sha256": "274b1d84eae60c5630fff4f6f46871380bd7a90645655ad72322ff34ac98b66b"
+    },
+    {
+      "fixture": "random_01",
+      "cores": 4,
+      "input_sha256": "a7b4d814672c43f548774a1d825699236c05c3f612629173bbe7ac5fa172666d",
+      "status": "ok",
+      "generation_seconds": 0.06032139994204044,
+      "structure_passed": true,
+      "plan_sha256": "05d594b30841bc52af3b7f7820375fffd6e48b6f9a92756c59358f5a3857dc1a",
+      "evaluation_seconds": 0.28835620009340346,
+      "cycles": 64477,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 25600,
+        "scheduled_copy_bytes": 69632,
+        "added_copy_bytes": 44032,
+        "partition_added_copy_bytes": 44032,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 21504
+        },
+        "1": {
+          "L1": 0,
+          "UB": 14336
+        },
+        "2": {
+          "L1": 0,
+          "UB": 23552
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "6136f974f77051ccb616a3ef627414ab5bf48c8abccc48cf61fdecd766a01fbd"
+    },
+    {
+      "fixture": "random_01",
+      "cores": 5,
+      "input_sha256": "a7b4d814672c43f548774a1d825699236c05c3f612629173bbe7ac5fa172666d",
+      "status": "ok",
+      "generation_seconds": 0.03494749986566603,
+      "structure_passed": true,
+      "plan_sha256": "3fedec713d3ba57b9d5f2024a155905bec3bec2457c911ff13f34491d76ac0c3",
+      "evaluation_seconds": 0.2557736998423934,
+      "cycles": 64477,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 25600,
+        "scheduled_copy_bytes": 69632,
+        "added_copy_bytes": 44032,
+        "partition_added_copy_bytes": 44032,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 21504
+        },
+        "1": {
+          "L1": 0,
+          "UB": 14336
+        },
+        "2": {
+          "L1": 0,
+          "UB": 23552
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "71049bd76ed79cfedb65ac61b66c90f68e9fdcebc3451390dacd2b1e85de7e27"
+    },
+    {
+      "fixture": "random_02",
+      "cores": 2,
+      "input_sha256": "a5ba197a7e49441b6a92aa4edf6a8474a8cb952d484a5b3926571743ac9e9039",
+      "status": "ok",
+      "generation_seconds": 0.023805500008165836,
+      "structure_passed": true,
+      "plan_sha256": "20960e189d5f0118a6356584197dce8b212885ae9c61652f1e401240e25c5587",
+      "evaluation_seconds": 0.22519899997860193,
+      "cycles": 68623,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 27648,
+        "scheduled_copy_bytes": 79872,
+        "added_copy_bytes": 52224,
+        "partition_added_copy_bytes": 52224,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 30720
+        },
+        "1": {
+          "L1": 0,
+          "UB": 43008
+        }
+      },
+      "result_sha256": "75f5cf8525d112b26608cf790773818a09cbd28d9898917cc790f91739920b0b"
+    },
+    {
+      "fixture": "random_02",
+      "cores": 3,
+      "input_sha256": "a5ba197a7e49441b6a92aa4edf6a8474a8cb952d484a5b3926571743ac9e9039",
+      "status": "ok",
+      "generation_seconds": 0.02377059985883534,
+      "structure_passed": true,
+      "plan_sha256": "387a238bff22122881e58076a9ac5bc55e864369c9ab0cd5ef98f482aa8f91bf",
+      "evaluation_seconds": 0.2443649999331683,
+      "cycles": 68623,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 27648,
+        "scheduled_copy_bytes": 79872,
+        "added_copy_bytes": 52224,
+        "partition_added_copy_bytes": 52224,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 30720
+        },
+        "1": {
+          "L1": 0,
+          "UB": 43008
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a5341c04383d201595e463230ff37dea93b44209d6928f0d287f950211011614"
+    },
+    {
+      "fixture": "random_02",
+      "cores": 4,
+      "input_sha256": "a5ba197a7e49441b6a92aa4edf6a8474a8cb952d484a5b3926571743ac9e9039",
+      "status": "ok",
+      "generation_seconds": 0.035854600137099624,
+      "structure_passed": true,
+      "plan_sha256": "d90bc4d02bcc2f18a3e9e74e70e9ebd4c8fb8da27b5b747c3c61a187be118932",
+      "evaluation_seconds": 0.20407159999012947,
+      "cycles": 68623,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 27648,
+        "scheduled_copy_bytes": 79872,
+        "added_copy_bytes": 52224,
+        "partition_added_copy_bytes": 52224,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 30720
+        },
+        "1": {
+          "L1": 0,
+          "UB": 43008
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "85b084088e5812ed41f213e000c387c05aecae6fe761fa965454df1b481ec83a"
+    },
+    {
+      "fixture": "random_02",
+      "cores": 5,
+      "input_sha256": "a5ba197a7e49441b6a92aa4edf6a8474a8cb952d484a5b3926571743ac9e9039",
+      "status": "ok",
+      "generation_seconds": 0.038763999938964844,
+      "structure_passed": true,
+      "plan_sha256": "6daad96074fa2b873b4fae63827da8508ca800168d7b6a1bf3e9b055fd8faca1",
+      "evaluation_seconds": 0.23937559989281,
+      "cycles": 68623,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 27648,
+        "scheduled_copy_bytes": 79872,
+        "added_copy_bytes": 52224,
+        "partition_added_copy_bytes": 52224,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 30720
+        },
+        "1": {
+          "L1": 0,
+          "UB": 43008
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "66e434e803188006f2722f1d46c972148ca8a617204d264642324fc285bdf3f3"
+    },
+    {
+      "fixture": "random_03",
+      "cores": 2,
+      "input_sha256": "3c16a659bd785f7619fe04b569f1d93eb72771491d19a6c13b62a28426e796bb",
+      "status": "ok",
+      "generation_seconds": 0.04062250000424683,
+      "structure_passed": true,
+      "plan_sha256": "03805a78ad7a0d0c28e8f1dfd792e34526dd110809b79879b8b2504e7821fa0a",
+      "evaluation_seconds": 0.2856640999671072,
+      "cycles": 66529,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 29696,
+        "scheduled_copy_bytes": 90112,
+        "added_copy_bytes": 60416,
+        "partition_added_copy_bytes": 60416,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 41984
+        },
+        "1": {
+          "L1": 0,
+          "UB": 32768
+        }
+      },
+      "result_sha256": "238e5821d04632137e6d523acaf95e462dddce27ac90dca1b566be7eb9b911e7"
+    },
+    {
+      "fixture": "random_03",
+      "cores": 3,
+      "input_sha256": "3c16a659bd785f7619fe04b569f1d93eb72771491d19a6c13b62a28426e796bb",
+      "status": "ok",
+      "generation_seconds": 0.041042600059881806,
+      "structure_passed": true,
+      "plan_sha256": "992c4fad0dc12be96bfdcda56a6c70aae6516fc666650321d3ad201f36ecf7ba",
+      "evaluation_seconds": 0.2715318000409752,
+      "cycles": 62339,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 29696,
+        "scheduled_copy_bytes": 122880,
+        "added_copy_bytes": 93184,
+        "partition_added_copy_bytes": 93184,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 32768
+        },
+        "1": {
+          "L1": 0,
+          "UB": 27648
+        },
+        "2": {
+          "L1": 0,
+          "UB": 41984
+        }
+      },
+      "result_sha256": "16fe035e09700daed7924b4aaff0f1d4741fd0c95ba23276f4a736bcfd77fb05"
+    },
+    {
+      "fixture": "random_03",
+      "cores": 4,
+      "input_sha256": "3c16a659bd785f7619fe04b569f1d93eb72771491d19a6c13b62a28426e796bb",
+      "status": "ok",
+      "generation_seconds": 0.05582650005817413,
+      "structure_passed": true,
+      "plan_sha256": "0c18d7375efee264ff292e12d7fc7e79f6beb639f43f94ea81be1c34b5e49657",
+      "evaluation_seconds": 0.36617959989234805,
+      "cycles": 62339,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 29696,
+        "scheduled_copy_bytes": 122880,
+        "added_copy_bytes": 93184,
+        "partition_added_copy_bytes": 93184,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 32768
+        },
+        "1": {
+          "L1": 0,
+          "UB": 27648
+        },
+        "2": {
+          "L1": 0,
+          "UB": 41984
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "f74796e9ed5bd0e17e2ca862675dcf5a5b775884a10d0cc22dea32ef1d541bcd"
+    },
+    {
+      "fixture": "random_03",
+      "cores": 5,
+      "input_sha256": "3c16a659bd785f7619fe04b569f1d93eb72771491d19a6c13b62a28426e796bb",
+      "status": "ok",
+      "generation_seconds": 0.0758125998545438,
+      "structure_passed": true,
+      "plan_sha256": "e23595aa40e6ad3a7fd93db6b300e1b7ee1ba79bef1c5cbb9605d927cb1900ba",
+      "repeat_identical": true,
+      "evaluation_seconds": 0.2512505000922829,
+      "cycles": 62339,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 29696,
+        "scheduled_copy_bytes": 122880,
+        "added_copy_bytes": 93184,
+        "partition_added_copy_bytes": 93184,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 32768
+        },
+        "1": {
+          "L1": 0,
+          "UB": 27648
+        },
+        "2": {
+          "L1": 0,
+          "UB": 41984
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "8049e35e8564c3005e016e7611401733843ad72dbfaafcc3a16f7f24c4b4f69b"
+    },
+    {
+      "fixture": "random_04",
+      "cores": 2,
+      "input_sha256": "a118c66a5c75a42242425a28582cd2d3d25554438dc0004d7d250793586fb71f",
+      "status": "ok",
+      "generation_seconds": 0.03368090000003576,
+      "structure_passed": true,
+      "plan_sha256": "d1f7766d64d379940b84fac1b11564c422789d02b246eafc3f37879be31454d7",
+      "evaluation_seconds": 0.23190100002102554,
+      "cycles": 76938,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 53248,
+        "scheduled_copy_bytes": 93184,
+        "added_copy_bytes": 39936,
+        "partition_added_copy_bytes": 39936,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 35840
+        },
+        "1": {
+          "L1": 0,
+          "UB": 38912
+        }
+      },
+      "result_sha256": "4f2533f83fe7a31d273e3ee29f83bcb43577671f0a470b64498045c1956a7471"
+    },
+    {
+      "fixture": "random_04",
+      "cores": 3,
+      "input_sha256": "a118c66a5c75a42242425a28582cd2d3d25554438dc0004d7d250793586fb71f",
+      "status": "ok",
+      "generation_seconds": 0.0272834999486804,
+      "structure_passed": true,
+      "plan_sha256": "01f5781aa76e9177772f40397fcfb8e2e0185b0461ec9d4c328bcc251dc887e0",
+      "evaluation_seconds": 0.24923980003222823,
+      "cycles": 75902,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 53248,
+        "scheduled_copy_bytes": 123904,
+        "added_copy_bytes": 70656,
+        "partition_added_copy_bytes": 70656,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 24576
+        },
+        "1": {
+          "L1": 0,
+          "UB": 24576
+        },
+        "2": {
+          "L1": 0,
+          "UB": 29696
+        }
+      },
+      "result_sha256": "4065b3897158a83002a26c55474b449fa96dacb555ab8a62b598f523b2b249db"
+    },
+    {
+      "fixture": "random_04",
+      "cores": 4,
+      "input_sha256": "a118c66a5c75a42242425a28582cd2d3d25554438dc0004d7d250793586fb71f",
+      "status": "ok",
+      "generation_seconds": 0.043390899896621704,
+      "structure_passed": true,
+      "plan_sha256": "9fec40dc410dd5cd80350abba1d6f1783e195065af1874b616b7084a23e95b5e",
+      "evaluation_seconds": 0.25133359991014004,
+      "cycles": 75902,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 53248,
+        "scheduled_copy_bytes": 123904,
+        "added_copy_bytes": 70656,
+        "partition_added_copy_bytes": 70656,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 24576
+        },
+        "1": {
+          "L1": 0,
+          "UB": 24576
+        },
+        "2": {
+          "L1": 0,
+          "UB": 29696
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "107bed76541bb10904488f50e666b6f079d3a4ad18d03c54c1882468ee935c5a"
+    },
+    {
+      "fixture": "random_04",
+      "cores": 5,
+      "input_sha256": "a118c66a5c75a42242425a28582cd2d3d25554438dc0004d7d250793586fb71f",
+      "status": "ok",
+      "generation_seconds": 0.040031000040471554,
+      "structure_passed": true,
+      "plan_sha256": "538b77292ddfc23b3bbf55b708497e6566062f58a78f5a2df372b64b1ca19e7e",
+      "evaluation_seconds": 0.29162469995208085,
+      "cycles": 75902,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 53248,
+        "scheduled_copy_bytes": 123904,
+        "added_copy_bytes": 70656,
+        "partition_added_copy_bytes": 70656,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 24576
+        },
+        "1": {
+          "L1": 0,
+          "UB": 24576
+        },
+        "2": {
+          "L1": 0,
+          "UB": 29696
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "41f492ba6b4a7a48cbeef8f3b2ec4b2d1fd5f105d72139ae08e0fcc59c99dbe5"
+    },
+    {
+      "fixture": "random_05",
+      "cores": 2,
+      "input_sha256": "11b67b6af1432aab9b06ff5de89ca1bb6ef71362bfe14eac64693cb0e9e14c4a",
+      "status": "ok",
+      "generation_seconds": 0.05371000012382865,
+      "structure_passed": true,
+      "plan_sha256": "ce535af8df1e1b5bb693741d5660ee1290b1f20533a5d9ecae791b2404c49a79",
+      "evaluation_seconds": 0.3146882001310587,
+      "cycles": 57181,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 63488,
+        "scheduled_copy_bytes": 121856,
+        "added_copy_bytes": 58368,
+        "partition_added_copy_bytes": 58368,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 46080
+        },
+        "1": {
+          "L1": 0,
+          "UB": 47104
+        }
+      },
+      "result_sha256": "963a71b10888d37bbbe441c4d036548a37e3eb5240ac0583c6ca67b5c6a0f896"
+    },
+    {
+      "fixture": "random_05",
+      "cores": 3,
+      "input_sha256": "11b67b6af1432aab9b06ff5de89ca1bb6ef71362bfe14eac64693cb0e9e14c4a",
+      "status": "ok",
+      "generation_seconds": 0.0285328000318259,
+      "structure_passed": true,
+      "plan_sha256": "d3b1071a051c708faca62abd18fed628a80eea86f35b8caccf8bdb196d8dec09",
+      "evaluation_seconds": 0.29632189986296,
+      "cycles": 53434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 63488,
+        "scheduled_copy_bytes": 112640,
+        "added_copy_bytes": 49152,
+        "partition_added_copy_bytes": 49152,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 17408
+        },
+        "1": {
+          "L1": 0,
+          "UB": 46080
+        },
+        "2": {
+          "L1": 0,
+          "UB": 41984
+        }
+      },
+      "result_sha256": "0533938aa81dd29ef7a8d6288d032920cdbb30b075a7e3e166f79eb4d0f0ccf2"
+    },
+    {
+      "fixture": "random_05",
+      "cores": 4,
+      "input_sha256": "11b67b6af1432aab9b06ff5de89ca1bb6ef71362bfe14eac64693cb0e9e14c4a",
+      "status": "ok",
+      "generation_seconds": 0.05083999992348254,
+      "structure_passed": true,
+      "plan_sha256": "d626342d5f28b5b4211dde9e15763e78ebde4691a9872924543a13b4c2b7a646",
+      "evaluation_seconds": 0.26085339998826385,
+      "cycles": 53434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 63488,
+        "scheduled_copy_bytes": 112640,
+        "added_copy_bytes": 49152,
+        "partition_added_copy_bytes": 49152,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 17408
+        },
+        "1": {
+          "L1": 0,
+          "UB": 46080
+        },
+        "2": {
+          "L1": 0,
+          "UB": 41984
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "fb78d4e56b09a5b251cefe95bdccfda6f6f7805826d1c507270e582baebdd42d"
+    },
+    {
+      "fixture": "random_05",
+      "cores": 5,
+      "input_sha256": "11b67b6af1432aab9b06ff5de89ca1bb6ef71362bfe14eac64693cb0e9e14c4a",
+      "status": "ok",
+      "generation_seconds": 0.03684229985810816,
+      "structure_passed": true,
+      "plan_sha256": "5d635d03c66689450ea4dffc31bd63b88093faa08a3c96b4765a0334ac800537",
+      "evaluation_seconds": 0.25027149985544384,
+      "cycles": 53434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 63488,
+        "scheduled_copy_bytes": 112640,
+        "added_copy_bytes": 49152,
+        "partition_added_copy_bytes": 49152,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 17408
+        },
+        "1": {
+          "L1": 0,
+          "UB": 46080
+        },
+        "2": {
+          "L1": 0,
+          "UB": 41984
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "16e14cd87caa9a98ac4f6cffa64f9dfe114a58f8bbb587ca316510c4f3b3fa2a"
+    },
+    {
+      "fixture": "fork_join_relabelled",
+      "cores": 2,
+      "input_sha256": "1b5fb1c2e0c434d7c890b8f6939e84f0c12627efa3fb61df17195020df660fd3",
+      "status": "ok",
+      "generation_seconds": 0.019241899950429797,
+      "structure_passed": true,
+      "plan_sha256": "ccd6a226cd289f63b0e0b8ec5ee376364b9de3a8cace7f16fe95da9bbba50d66",
+      "evaluation_seconds": 0.3500023998785764,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        }
+      },
+      "result_sha256": "014b9da8ce223333fb36448ed86076dd8adf288277db56c51e739d8f5e4742bb"
+    },
+    {
+      "fixture": "fork_join_relabelled",
+      "cores": 3,
+      "input_sha256": "1b5fb1c2e0c434d7c890b8f6939e84f0c12627efa3fb61df17195020df660fd3",
+      "status": "ok",
+      "generation_seconds": 0.018282299861311913,
+      "structure_passed": true,
+      "plan_sha256": "d20160c6dec5a7dd83d7c2495c908919494f7256d17473c4bc453568efaf6aa5",
+      "evaluation_seconds": 0.20784580009058118,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "e395141cfe2d7f23c3227963d7043b5e2360e42d8d11a936ba7a8c37e4ecc682"
+    },
+    {
+      "fixture": "fork_join_relabelled",
+      "cores": 4,
+      "input_sha256": "1b5fb1c2e0c434d7c890b8f6939e84f0c12627efa3fb61df17195020df660fd3",
+      "status": "ok",
+      "generation_seconds": 0.027738000033423305,
+      "structure_passed": true,
+      "plan_sha256": "33665623bab82b55b00de7b110fcc9e6a41837c0c5958f479e90bee6340fea20",
+      "evaluation_seconds": 0.2771097000222653,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "712f8d63ff6be5a54c993c282a803ac3e4c240ed8d9bc0f543d9c7cb6975ff96"
+    },
+    {
+      "fixture": "fork_join_relabelled",
+      "cores": 5,
+      "input_sha256": "1b5fb1c2e0c434d7c890b8f6939e84f0c12627efa3fb61df17195020df660fd3",
+      "status": "ok",
+      "generation_seconds": 0.043155400082468987,
+      "structure_passed": true,
+      "plan_sha256": "9dbc593d3902b6e0f22440e7f619dfd83f57a285e4615e7734c548717c774050",
+      "evaluation_seconds": 0.28078190004453063,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "9ceef08f3937c3a297426299b12d3e6a1caf64b3431235176f8b3b86caece172"
+    },
+    {
+      "fixture": "writers_relabelled",
+      "cores": 2,
+      "input_sha256": "5babac6c64f495cb1d055cb5b482d4beb5241ca77b2896fd903eb6e86338f31e",
+      "status": "ok",
+      "generation_seconds": 0.03575719986110926,
+      "structure_passed": true,
+      "plan_sha256": "7ff722587a62fc87bea37307fae43a0586d69ade45d7d3781dde75f5e88cbbb1",
+      "evaluation_seconds": 0.265837199985981,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "2d7a043fad6940299a64620b0005b450cd69387feb8f612b1fb54f51044da44b"
+    },
+    {
+      "fixture": "writers_relabelled",
+      "cores": 3,
+      "input_sha256": "5babac6c64f495cb1d055cb5b482d4beb5241ca77b2896fd903eb6e86338f31e",
+      "status": "ok",
+      "generation_seconds": 0.027483099838718772,
+      "structure_passed": true,
+      "plan_sha256": "ba18795cfc88bfcb3180ca299b09040d0d0f1f62e0e85f9ad5ae2903ce405a90",
+      "evaluation_seconds": 0.2307581000495702,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "3e58145ec4277c29a55c3dfee51227167c3a8a1fee42d1b327790ced197656af"
+    },
+    {
+      "fixture": "writers_relabelled",
+      "cores": 4,
+      "input_sha256": "5babac6c64f495cb1d055cb5b482d4beb5241ca77b2896fd903eb6e86338f31e",
+      "status": "ok",
+      "generation_seconds": 0.020336200017482042,
+      "structure_passed": true,
+      "plan_sha256": "572402436477aec333c0a2c172652a515ac479ad25a5b0c47a254e99c42645d9",
+      "evaluation_seconds": 0.29688849998638034,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "5921dc98c837970ee6d784fbd458efbe91c4c2ae175f938cde526f0c9220feb7"
+    },
+    {
+      "fixture": "writers_relabelled",
+      "cores": 5,
+      "input_sha256": "5babac6c64f495cb1d055cb5b482d4beb5241ca77b2896fd903eb6e86338f31e",
+      "status": "ok",
+      "generation_seconds": 0.020415999926626682,
+      "structure_passed": true,
+      "plan_sha256": "a1427d0897d246da3ca27ee9073be31fac5ad6074b204feacee3750d29b23e10",
+      "evaluation_seconds": 0.23462720005773008,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "2db3b103429dde7afd55eda5fe02b76ae593d73b86512c9a56420f68b44bfda2"
+    }
+  ],
+  "completed": true,
+  "passed": 64,
+  "failed": 0
+}

@@ -1,0 +1,87 @@
+{
+  "version": "0.5.0",
+  "date": "2026-10-30",
+  "source_frozen_before_public_scoring": true,
+  "builds": [
+    "MSVC 19.44.35209",
+    "GCC/MinGW 15.1.0"
+  ],
+  "cpp_regression_suites": {
+    "msvc": 6,
+    "mingw": 6
+  },
+  "cli_contracts_passed": [
+    "MSVC",
+    "MinGW"
+  ],
+  "graph_contract_checks": {
+    "MSVC": 26,
+    "MinGW": 26
+  },
+  "official_public_valid": 40,
+  "synthetic_valid": 64,
+  "synthetic_fixtures": 16,
+  "deterministic_public": 40,
+  "cross_compiler_identical": 4,
+  "v4_path_reproduced": 9,
+  "v4_files_unchanged": 51,
+  "official_files_unchanged": 24,
+  "original_archive_unchanged": true,
+  "clean_package_build": true,
+  "clean_package_changed_plan_matches": true,
+  "solver_executable_sha256": "c0ff7a3f94256a815bdf68c8e5947e828f46930537b48e980d0a636114e69a75",
+  "mingw_executable_sha256": "4c43efa9cd1143a39679990837fe887174d8b209641b44ecbe91c6da0f35f7f8",
+  "source_sha256": {
+    "CMakeLists.txt": "2656b8e52b210008ae75ab80da2396fbd4dc804a6cb8b2857046303388e13cd1",
+    "src/chain.cpp": "58e28f17c2147ec41684fe0adf2625cb2445c2e5b984dc55ad44e46c6797c7a7",
+    "src/chain.hpp": "0f9f50ad0e957898262ec54b66459a4cfcb239885c9b0268cf8502c97b559f59",
+    "src/main.cpp": "cc56a94ed7cfc40bdb6bed44a414214ea805be9a81bcd21e634808e4c42be2d8",
+    "src/model.hpp": "9a5a4ad3a458e835ab93a2064fd790415757780b13f39d4394186a630df48337",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "65f56e6b92199be667481eb6fb7aa788207db9e6ce51cd73423f95164c278381",
+    "src/refine.hpp": "6fd170a794c7abf6a79fda71080368431b7866766d34b29cb94c073be2b16ad1",
+    "src/regions.cpp": "54a8f91febdbd49b238ca6babb9c0aa50cfcc9a2e9c828a5a2fc255d297dd4a4",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/slack.cpp": "860865e4be6361dc34e6e1ba1996ffe45c1fd231a56b4c90559f47a322c5a38f",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2"
+  },
+  "package_sha256": "926e32cf12d5a6d05de5a44542e28680e3ebdcedf0d9c28daeacb550b8740007",
+  "package_bytes": 42664,
+  "package_members": [
+    "dag_chain_solver_v5/CMakeLists.txt",
+    "dag_chain_solver_v5/README.md",
+    "dag_chain_solver_v5/src/chain.cpp",
+    "dag_chain_solver_v5/src/chain.hpp",
+    "dag_chain_solver_v5/src/main.cpp",
+    "dag_chain_solver_v5/src/model.hpp",
+    "dag_chain_solver_v5/src/parallel_jobs.hpp",
+    "dag_chain_solver_v5/src/refine.cpp",
+    "dag_chain_solver_v5/src/refine.hpp",
+    "dag_chain_solver_v5/src/regions.cpp",
+    "dag_chain_solver_v5/src/regions.hpp",
+    "dag_chain_solver_v5/src/slack.cpp",
+    "dag_chain_solver_v5/src/slack.hpp"
+  ],
+  "resource_observations": {
+    "max_generation_seconds": 8.266076799947768,
+    "max_working_set_bytes": 182816768,
+    "max_sampled_process_threads": 7
+  },
+  "comparison": {
+    "v4_mean_speedup": 1.9094827938202361,
+    "v5_mean_speedup": 1.9146999390706354,
+    "improved": 5,
+    "unchanged": 35,
+    "regressed": 0,
+    "v4_cycles": 144335197,
+    "cycles": 143606031,
+    "v4_copy_bytes": 7235510848,
+    "copy_bytes": 7141261632,
+    "mean_speedup_increase_percent": 0.2732229516434481,
+    "cycles_sum_reduction_percent": 0.5051893198302793,
+    "copy_sum_reduction_percent": 1.3025924220133267
+  },
+  "native_linux_tested": false,
+  "gcc_9_4_or_11_tested": false,
+  "note": "No original dependency removal or dataset-specific solver branches. Finite tests and inherited heuristic refinement are not a proof of arbitrary-input official feasibility or nonregression."
+}
