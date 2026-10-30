@@ -1,0 +1,113 @@
+{
+  "version": "0.6.0",
+  "renamed_from": "0.5.1",
+  "original_directory": "../dag_chain_solver_v5_30s",
+  "v5_directory": "../dag_chain_solver_v5",
+  "v5_preserved_files_verified": 59,
+  "algorithm_changed": false,
+  "search_limits_changed": false,
+  "source_comparison": [
+    {
+      "file": "src/anytime.cpp",
+      "original_sha256": "93573f1cba219e4a5081298b2e5ba94cb7ac3c7b33138bedf2c7499a2e4c6e74",
+      "v6_sha256": "93573f1cba219e4a5081298b2e5ba94cb7ac3c7b33138bedf2c7499a2e4c6e74",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/anytime.hpp",
+      "original_sha256": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+      "v6_sha256": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/chain.cpp",
+      "original_sha256": "86cc636853ceee2060e04883e8161472374383c50a43badf7dc80864c5d308da",
+      "v6_sha256": "86cc636853ceee2060e04883e8161472374383c50a43badf7dc80864c5d308da",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/chain.hpp",
+      "original_sha256": "0f9f50ad0e957898262ec54b66459a4cfcb239885c9b0268cf8502c97b559f59",
+      "v6_sha256": "0f9f50ad0e957898262ec54b66459a4cfcb239885c9b0268cf8502c97b559f59",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/main.cpp",
+      "original_sha256": "fae1e2047def84325598f2168153b11bf73dfa65a3f5579e029e4ce1bc825405",
+      "v6_sha256": "1435c693887fb087e8b3ecbedbb2ccb0c9070d8114492984a48465bea54e581b",
+      "change": "Only --version string changed; text otherwise identical"
+    },
+    {
+      "file": "src/model.hpp",
+      "original_sha256": "934517d5975379791a479f6e67716af2261847b26c13d2aed54123195d24666e",
+      "v6_sha256": "934517d5975379791a479f6e67716af2261847b26c13d2aed54123195d24666e",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/parallel_jobs.hpp",
+      "original_sha256": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+      "v6_sha256": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/refine.cpp",
+      "original_sha256": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+      "v6_sha256": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/refine.hpp",
+      "original_sha256": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+      "v6_sha256": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/regions.cpp",
+      "original_sha256": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+      "v6_sha256": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/regions.hpp",
+      "original_sha256": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+      "v6_sha256": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/search_limits.hpp",
+      "original_sha256": "7ea15c4d5bacc88898353b55a86a146a2b6a8db5602d00722c38046af3cc034b",
+      "v6_sha256": "7ea15c4d5bacc88898353b55a86a146a2b6a8db5602d00722c38046af3cc034b",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/slack.cpp",
+      "original_sha256": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+      "v6_sha256": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+      "change": "Byte-identical"
+    },
+    {
+      "file": "src/slack.hpp",
+      "original_sha256": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+      "v6_sha256": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+      "change": "Byte-identical"
+    }
+  ],
+  "build_compiler": "MinGW GCC 15.1",
+  "executable_version": "dag-chain-solver 0.6.0",
+  "executable_sha256": "d216a0d7f7bf49e4ac9c64be691322758b8655adc7a0cd56b542d223eba0c7f9",
+  "cli_contracts": {
+    "passed": true,
+    "command": [
+      "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+      "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\tests\\contracts.py",
+      "--solver",
+      "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\npu_sched_quick.exe",
+      "--out",
+      "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\version_check_cli"
+    ],
+    "stdout": "CLI contract checks passed: fixed options, exit codes, Unicode/spaces, input/output preservation; timed search need not repeat identically\n",
+    "stderr": ""
+  },
+  "official_scoring_rerun": false,
+  "historical_results": "../dag_chain_solver_v5_30s/reports/FIVE_CORES_30S.json"
+}

@@ -1,0 +1,27 @@
+{
+  "version": "0.5.1",
+  "ctest": {
+    "msvc": {
+      "passed": 7,
+      "failed": 0,
+      "log": "build_msvc/Testing/Temporary/LastTest.log",
+      "sha256": "72c737490a105145e16b706587d486751ae9bb633d24936112b4a7326ffba828",
+      "executable_sha256": "1901aa8de15860717c3229f08ad8aeae9387468030719662cee1fcac54945333"
+    },
+    "mingw": {
+      "passed": 7,
+      "failed": 0,
+      "log": "build_mingw/Testing/Temporary/LastTest.log",
+      "sha256": "16dc43c5815841cd299e0e7829d70dbc50d13707e454c7e107b13e9e7056d33f",
+      "executable_sha256": "13566783b27cad96e71a706a51a91942fc12a213c48af83e43cd1e0f39fac2eb"
+    }
+  },
+  "original_v5_unchanged_files": 59,
+  "official_reference_unchanged_files": 24,
+  "original_rules_zip_sha256": "f8671388c3839f7bd9263da22d38a90da9c8e799fdb11b678195cfd01513127e",
+  "measured_source_unchanged": true,
+  "measured_executable_unchanged": true,
+  "official_public_passed": 10,
+  "official_public_failed": 0,
+  "quick_validation_log": "runs/validation_30s/msvc_validation_commands.json"
+}
