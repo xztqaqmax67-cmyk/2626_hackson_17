@@ -1,0 +1,142 @@
+{
+  "team": "17",
+  "version": "0.8.3",
+  "source_project": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\final_stage\\17",
+  "team_directory": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\17",
+  "archive": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\17.zip",
+  "archive_sha256": "8ab361e68539bcc5e02cf958fc1c01f4010ed0ca576a686688cd81679b0d22b3",
+  "archive_bytes": 67693,
+  "zip_timestamp": [
+    2026,
+    10,
+    31,
+    5,
+    0,
+    0
+  ],
+  "source_sha256": {
+    "src/anytime.cpp": "f6f2fa1dfdbd8df26516cbd6f15f6ff8a90110a47d4c379d0412621e79d2e6c6",
+    "src/anytime.hpp": "921b8fe1ff98f1a5b76bcfb7bed7417b9724f293d21c9072220729b06eaf02ce",
+    "src/chain.cpp": "0b651ab5ff7a98524bfb47511e37fb7989c8b0f3323aafb36f1455f83686cd3f",
+    "src/chain.hpp": "666a22914e0292efbde789618b83266238f3a4bd7a18a905ba44fb0ebaedc9fb",
+    "src/main.cpp": "084b9e137d6a344779ebb700491a16956c8d1d0e1936bc93b775c4ec8c07a87c",
+    "src/memory_grid.hpp": "d9194d52f9fd04570fa8fd2643c7c4f10e56027f7a80428807075d2fdd2bef54",
+    "src/model.hpp": "397bbb089840678b269da62e02a5dced5a6e1fa54fa1a1eaf37a978fbea5400c",
+    "src/parallel_jobs.hpp": "55a84920da3537c94d0b611fbf67ceb2caed5ab0d54e49ad944e3a1639acde98",
+    "src/refine.cpp": "749646af711f78d79f15ef0faf719d10169bc7c10ae45c09d40a324e503c3176",
+    "src/refine.hpp": "ef1b8bd659c496598d28b170fa9decabf0aa1d486582d2e2406ea9b261c1b9fb",
+    "src/regions.cpp": "025a739669caa7acac69dec2e5669ba1435679f4e5f8bb91a8ddd3a99c223367",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "52034cc8a0ad3a1e3e558dc8ec52338590db0ceaf90bcc06caeaed2d7a405e26",
+    "src/slack.cpp": "9d2787042b02e0a0358abff153b2416afe33e6051579bede9f3533675ad1af6c",
+    "src/slack.hpp": "cac4e771e11d4e8bf6e12688d9bbc0377c880cba64ed4cb79db81e039a1fa918",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+    "src/spill.cpp": "69750c59f20bf465d798359cdd4713475bb51ef0638a0bf402fbeaba381d8b7b",
+    "src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a",
+    "src/tensor_neighborhood.cpp": "9eb136160fb85d82442db6df4b73509926394413592a171793993dc6bdbe67d9",
+    "src/tensor_neighborhood.hpp": "1d267989bf3426c10ddf2885c956614628afbbd7ff2fe24f8837716061ae128a"
+  },
+  "excluded_reference_sources": [],
+  "package_files": {
+    "CMakeLists.txt": {
+      "bytes": 1102,
+      "sha256": "63cde013f539a2e694e253c02296904b2a0923c71389b9b3a3fe367a77d6efa1"
+    },
+    "README.md": {
+      "bytes": 4952,
+      "sha256": "3679942f927fb86dd9710211cb1b26598423bd27939f0a92e54c018c11287532"
+    },
+    "src/anytime.cpp": {
+      "bytes": 28793,
+      "sha256": "f6f2fa1dfdbd8df26516cbd6f15f6ff8a90110a47d4c379d0412621e79d2e6c6"
+    },
+    "src/anytime.hpp": {
+      "bytes": 1807,
+      "sha256": "921b8fe1ff98f1a5b76bcfb7bed7417b9724f293d21c9072220729b06eaf02ce"
+    },
+    "src/chain.cpp": {
+      "bytes": 38265,
+      "sha256": "0b651ab5ff7a98524bfb47511e37fb7989c8b0f3323aafb36f1455f83686cd3f"
+    },
+    "src/chain.hpp": {
+      "bytes": 1633,
+      "sha256": "666a22914e0292efbde789618b83266238f3a4bd7a18a905ba44fb0ebaedc9fb"
+    },
+    "src/main.cpp": {
+      "bytes": 7483,
+      "sha256": "084b9e137d6a344779ebb700491a16956c8d1d0e1936bc93b775c4ec8c07a87c"
+    },
+    "src/memory_grid.hpp": {
+      "bytes": 2127,
+      "sha256": "d9194d52f9fd04570fa8fd2643c7c4f10e56027f7a80428807075d2fdd2bef54"
+    },
+    "src/model.hpp": {
+      "bytes": 50404,
+      "sha256": "397bbb089840678b269da62e02a5dced5a6e1fa54fa1a1eaf37a978fbea5400c"
+    },
+    "src/parallel_jobs.hpp": {
+      "bytes": 2216,
+      "sha256": "55a84920da3537c94d0b611fbf67ceb2caed5ab0d54e49ad944e3a1639acde98"
+    },
+    "src/refine.cpp": {
+      "bytes": 18046,
+      "sha256": "749646af711f78d79f15ef0faf719d10169bc7c10ae45c09d40a324e503c3176"
+    },
+    "src/refine.hpp": {
+      "bytes": 910,
+      "sha256": "ef1b8bd659c496598d28b170fa9decabf0aa1d486582d2e2406ea9b261c1b9fb"
+    },
+    "src/regions.cpp": {
+      "bytes": 19230,
+      "sha256": "025a739669caa7acac69dec2e5669ba1435679f4e5f8bb91a8ddd3a99c223367"
+    },
+    "src/regions.hpp": {
+      "bytes": 811,
+      "sha256": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203"
+    },
+    "src/search_limits.hpp": {
+      "bytes": 6080,
+      "sha256": "52034cc8a0ad3a1e3e558dc8ec52338590db0ceaf90bcc06caeaed2d7a405e26"
+    },
+    "src/slack.cpp": {
+      "bytes": 10292,
+      "sha256": "9d2787042b02e0a0358abff153b2416afe33e6051579bede9f3533675ad1af6c"
+    },
+    "src/slack.hpp": {
+      "bytes": 936,
+      "sha256": "cac4e771e11d4e8bf6e12688d9bbc0377c880cba64ed4cb79db81e039a1fa918"
+    },
+    "src/solution_key.hpp": {
+      "bytes": 844,
+      "sha256": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726"
+    },
+    "src/spill.cpp": {
+      "bytes": 13272,
+      "sha256": "69750c59f20bf465d798359cdd4713475bb51ef0638a0bf402fbeaba381d8b7b"
+    },
+    "src/spill.hpp": {
+      "bytes": 410,
+      "sha256": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a"
+    },
+    "src/tensor_neighborhood.cpp": {
+      "bytes": 6147,
+      "sha256": "9eb136160fb85d82442db6df4b73509926394413592a171793993dc6bdbe67d9"
+    },
+    "src/tensor_neighborhood.hpp": {
+      "bytes": 1021,
+      "sha256": "1d267989bf3426c10ddf2885c956614628afbbd7ff2fe24f8837716061ae128a"
+    }
+  },
+  "checks": {
+    "source_unchanged": true,
+    "only_allowed_entries": true,
+    "utf8": true,
+    "no_third_party": true,
+    "no_official_reference_sources": true,
+    "local_includes_complete": true,
+    "zip_crc": true,
+    "within_20_mib": true,
+    "build_and_runtime_tests_performed": false
+  },
+  "note": "Source-only packaging verification. Build/runtime acceptance is performed separately on the extracted package."
+}

@@ -1,0 +1,71 @@
+# 17 队多核调度方案生成程序 0.8.3
+
+本工程对应场景 B（问题 2），读取计算图和核心数，生成切图及调度方案。全部算法与 JSON 解析使用 C++17 和标准库实现，构建及运行不需要联网，也不需要 Python 或配置文件。
+
+## 构建和运行
+
+Linux：GCC 9.4 及以上，CMake 3.16 及以上。在本目录执行：
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
+./build/bin/npu_sched "/path with spaces/graph.json" -n 4 -o "/path with spaces/plan.json"
+```
+
+Windows：Visual Studio 2019 16.8 / Visual Studio 2022，CMake 3.20 及以上。在本目录执行：
+
+```powershell
+cmake -S . -B build -A x64
+cmake --build build --config Release -j
+.\build\bin\npu_sched.exe "C:\input with spaces\graph.json" -n 4 -o "C:\output with spaces\plan.json"
+```
+
+可执行文件位于 `build/bin/`。相对输入输出路径按启动目录解释，绝对路径不受启动目录影响；路径可以包含空格和中文。Windows 命令行转换以 `_WIN32` 隔离。
+
+## 程序接口
+
+```text
+npu_sched <graph.json> [-n N] [-o plan.json]
+npu_sched --version
+```
+
+`-n` / `--cores` 的合法值为 2、3、4、5，默认 4；`-o` / `--output` 指定方案文件。支持 `--option value` 与 `--option=value`。省略输出时，写到输入目录的 `<case>_multicore_res.json`，输出目录不存在时自动创建。`--version` 输出 `dag-chain-solver 0.8.3`。
+
+退出码为：0 成功；1 内部错误；2 命令行错误；3 输入错误；4 输出失败；5 无法获得合法方案。错误信息写入 stderr，不读取 stdin，不等待交互。
+
+硬件常量固定为 L1 **1572864 bytes**、UB **131072 bytes**、DDR 总带宽 **60 bytes/cycle**、跨核等待 **1000 cycles**。这些值不接受命令行、环境变量或文件覆盖。
+
+输出顶层只有 `node_to_subgraph` 和 `core_schedules`。每个非 `COPY_IN` / `COPY_OUT` 操作对应一个子图；全部子图恰好分配一次，外层核心队列长度等于 N，允许空核心。程序仅输出方案，评分由组委会评估器完成。
+
+## 算法思路与过程
+
+1. **计算图建模。** 解析 Tensor 和 Op 的生产、消费关系，收缩边界 COPY，建立计算操作 DAG。计算关键路径和拓扑顺序；共享 Tensor 的多个写入者保持同核，避免将写入关系拆开。
+2. **链分解与放置。** 选取关键前驱形成不分叉的计算链，再按负载与通信权重切成链段。结合核心管道负载和跨核通信代价进行放置，兼顾并行度和数据复用。
+3. **多初解。** 对不同核心预算生成候选，结合区域划分、关键路径、依赖等待空隙及内存压力策略，避免搜索只围绕单一起点。所有决策由输入图和 N 驱动。
+4. **分层评估。** 先用快速模型筛选候选，再对少量候选进行共享 DDR 和多管道事件估价。内部估价只是搜索比较依据，不写进方案文件，也不等同官方分数。
+5. **固定工作量改进。** 从多个已完成候选继续尝试链段迁移、消费者组迁移、合法拓扑重排及内存窗口策略。每条路线使用固定的搜索额度，较大图缩减额度，始终保留完整可用候选。
+6. **归并与写出。** 独立工作完成后按固定顺序和方案比较键合并结果，线程完成先后不参与选择。验证操作覆盖和依赖顺序后，完整写出临时文件，再替换目标文件。
+
+代码中的中文注释说明固定工作量、写者约束、关键候选比较及输出处理。性能和合法性应对最终压缩包解压后的程序独立验收；包内不包含测试数据或评分结果。
+
+## 源码阅读顺序
+
+| 文件 | 作用 |
+|---|---|
+| `src/main.cpp` | 命令行、输入输出、退出码和文件完整写出 |
+| `src/model.hpp` | JSON 解析、计算图、硬件常量、拓扑与快速估价 |
+| `src/chain.cpp` | 链分解、初始方案与各核心预算搜索 |
+| `src/regions.cpp` | 区域划分与核心配额候选 |
+| `src/slack.cpp` | 利用依赖等待空隙生成候选 |
+| `src/spill.cpp` | 内存压力导向的自主重排策略 |
+| `src/anytime.cpp` | 多起点候选搜索与确定性归并 |
+| `src/tensor_neighborhood.cpp` | 消费者组迁移和写者闭包 |
+| `src/refine.cpp` | 共享 DDR 与多管道的内部事件估价 |
+| `src/search_limits.hpp` | 固定搜索次数与图规模配额 |
+| `src/parallel_jobs.hpp` | 独立并行工作与固定顺序收集 |
+
+建议答辩时依次说明“图建模 → 链分解 → 多初解 → 两级估价 → 固定次数局部搜索 → 确定性输出”，再按表定位实现。
+
+## 第三方库清单
+
+**无第三方库。** 项目自行实现 JSON 解析和调度算法；只依赖 C++17 标准库及 Windows 下受宏隔离的系统字符转换、文件替换接口。没有第三方名称、版本、LICENSE 或源码路径需要另列，不包含任何第三方预编译库。
