@@ -5,7 +5,6 @@
 #include "evaluation_validation.hpp"
 #include "schedule_step1.hpp"
 #include "schedule_step2.hpp"
-#include "multicore_cut_evaluate_problem_3.hpp"
 namespace problem2 {
 Id copy_traffic_bytes(const Json &graph) {
     auto v = build_graph_views(graph.at("ops"), graph.at("edges"));
@@ -284,11 +283,6 @@ void validate_execution(const std::map<Id, PreparedTask> &tasks, const Json &lin
 }
 Json evaluate_scene_b(const Json &graph, const Json &plan, double bandwidth,
                       const Capacity &capacity, double delay, Id max_iter) {
-    return evaluate_scene_b_with_cache(graph, plan, bandwidth, capacity, delay, max_iter, nullptr);
-}
-Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double bandwidth,
-                                 const Capacity &capacity, double delay, Id max_iter,
-                                 ReadOnlyCache *cache) {
     validate_parameters(bandwidth, capacity, max_iter);
     require_number(delay, "cross_core_copy_delay");
     auto built = build_scene_b_tasks(graph, plan, bandwidth, capacity);
@@ -300,8 +294,6 @@ Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double ban
     std::map<OpKey, std::string> status;
     std::map<OpKey, Id> remaining;
     std::map<OpKey, double> starts, ends, work;
-    std::map<OpKey, double> cache_work;
-    double cache_last = 0;
     std::map<OpKey, std::vector<OpKey>> external_preds, external_succs;
     std::map<PipeKey, std::size_t> cursor;
     std::map<PipeKey, std::optional<OpKey>> running, ready;
@@ -361,19 +353,12 @@ Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double ban
             ends[item] = end;
         }
     };
-    auto reschedule_cache = [&]() {
-        for (auto [item, end] : project_ddr_ends(cache_work, now)) {
-            ends[item] = end;
-        }
-    };
     bool completed = false;
     for (Id iteration = 0; iteration < max_iter; ++iteration) {
         poll_search_deadline();
         advance_ddr_work(work, last, now);
         bool retired_ddr = false;
         std::vector<OpKey> retired;
-        advance_ddr_work(cache_work, cache_last, now);
-        bool retired_cache = false;
         for (Id c = 0; c < cores; ++c) {
             for (auto pipe : PIPES) {
                 PipeKey pk = {c, pipe};
@@ -388,12 +373,6 @@ Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double ban
                 retired.push_back(item);
                 if (work.erase(item)) {
                     retired_ddr = true;
-                }
-                if (cache_work.erase(item)) {
-                    retired_cache = true;
-                }
-                if (cache) {
-                    cache->retire(task, c, op, now);
                 }
                 auto index = ++cursor[pk];
                 if (index < task.pipe_ops.at(pipe).size()) {
@@ -414,9 +393,6 @@ Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double ban
                 queue(target);
             }
         }
-        if (retired_cache) {
-            reschedule_cache();
-        }
         while (!releases.empty() && releases.begin()->first <= now) {
             auto item = releases.begin()->second;
             releases.erase(releases.begin());
@@ -433,21 +409,12 @@ Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double ban
                 ready[pk].reset();
                 auto &task = tasks.at(c);
                 const auto &op = task.ops.at(item.second);
-                bool hit = cache && cache->issue(task, c, item.second, now);
-                Id duration =
-                    op_duration(op, task.views, task.tensors, hit ? cache->bandwidth() : bandwidth);
+                Id duration = op_duration(op, task.views, task.tensors, bandwidth);
                 status[item] = "running";
                 starts[item] = now;
                 ends[item] = now + duration;
                 running[pk] = item;
-                if (hit) {
-                    advance_ddr_work(cache_work, cache_last, now);
-                    cache_work[item] = double(duration);
-                    reschedule_cache();
-                } else if (uses_ddr_bandwidth(op, task.views, task.tensors)) {
-                    if (cache) {
-                        cache->mark_ddr(c, item.second);
-                    }
+                if (uses_ddr_bandwidth(op, task.views, task.tensors)) {
                     advance_ddr_work(work, last, now);
                     work[item] = double(duration);
                     reschedule();
@@ -499,11 +466,6 @@ Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double ban
                  {"start", a},
                  {"end", b},
                  {"duration", b - a}});
-        }
-        if (cache) {
-            for (auto &entry : entries) {
-                cache->annotate(entry, c, field_id(entry, "op_id"));
-            }
         }
         std::stable_sort(entries.begin(), entries.end(), [](const Json &a, const Json &b) {
             return std::make_pair(a.at("start").get<double>(), field_id(a, "op_id")) <
@@ -565,9 +527,6 @@ Json evaluate_scene_b_with_cache(const Json &graph, const Json &plan, double ban
                    {"task_dependencies", built.links},
                    {"cross_core_transfers", transfers},
                    {"per_core_timeline", timeline}};
-    if (cache) {
-        cache->finish(result);
-    }
     return result;
 }
 } // namespace problem2

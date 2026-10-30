@@ -3,7 +3,7 @@ project(problem2_cpp LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-# 原目录和模块均保留。正式目标与开发工具共享同一套算法库。
+# 场景 B 的正式目标与开发工具共享同一套算法库。
 option(BUILD_TESTING "显式构建本地对照工具；默认不构建测试" OFF)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 foreach(config IN LISTS CMAKE_CONFIGURATION_TYPES)
@@ -32,10 +32,7 @@ target_sources(problem2_lib PRIVATE
     problem2/bootstrap.cpp
     problem2/pipeline.cpp
     problem2/activation.cpp
-    problem2/structure.cpp
-    problem2/official_code/multicore_cut_evaluate_problem_1.cpp
-    problem2/official_code/multicore_cut_evaluate_problem_3.cpp
-    problem2/official_code/singlecore_evaluate.cpp)
+    problem2/structure.cpp)
 target_include_directories(problem2_lib PUBLIC problem2)
 # 标准线程只保存生成器调用栈；GCC/Clang 使用系统 pthread，无第三方包查找。
 # MSVC 的 std::thread 由其运行库提供，不需要额外链接选项。
@@ -69,16 +66,10 @@ else()
 endif()
 add_executable(parity_runner EXCLUDE_FROM_ALL tests/parity_runner.cpp)
 target_link_libraries(parity_runner PRIVATE problem2_lib)
-foreach(problem RANGE 1 3)
-    add_executable(multicore_cut_evaluate_problem_${problem} EXCLUDE_FROM_ALL problem2/official_code/cli_main.cpp)
-    target_compile_definitions(multicore_cut_evaluate_problem_${problem} PRIVATE EVALUATION_PROBLEM=${problem})
-    target_link_libraries(multicore_cut_evaluate_problem_${problem} PRIVATE problem2_lib)
-endforeach()
-add_executable(singlecore_evaluate EXCLUDE_FROM_ALL problem2/official_code/cli_main.cpp)
-target_compile_definitions(singlecore_evaluate PRIVATE EVALUATION_PROBLEM=0)
-target_link_libraries(singlecore_evaluate PRIVATE problem2_lib)
+add_executable(multicore_cut_evaluate_problem_2 EXCLUDE_FROM_ALL problem2/official_code/cli_main.cpp)
+target_link_libraries(multicore_cut_evaluate_problem_2 PRIVATE problem2_lib)
 add_executable(stub_multicore_cut_and_schedule EXCLUDE_FROM_ALL problem2/official_code/cli_main.cpp)
-target_compile_definitions(stub_multicore_cut_and_schedule PRIVATE EVALUATION_PROBLEM=-1)
+target_compile_definitions(stub_multicore_cut_and_schedule PRIVATE MULTICORE_STUB_ENTRY=1)
 target_link_libraries(stub_multicore_cut_and_schedule PRIVATE problem2_lib)
 add_executable(problem2 EXCLUDE_FROM_ALL problem2/main.cpp)
 target_link_libraries(problem2 PRIVATE problem2_lib)
@@ -87,7 +78,7 @@ add_executable(npu_sched problem2/main.cpp)
 target_compile_definitions(npu_sched PRIVATE NPU_SCHED_ENTRY=1)
 target_link_libraries(npu_sched PRIVATE problem2_lib)
 if(MINGW)
-    foreach(target npu_sched problem2 multicore_cut_evaluate_problem_1 multicore_cut_evaluate_problem_2 multicore_cut_evaluate_problem_3 singlecore_evaluate stub_multicore_cut_and_schedule)
+    foreach(target npu_sched problem2 multicore_cut_evaluate_problem_2 stub_multicore_cut_and_schedule)
         target_link_options(${target} PRIVATE -municode -static -static-libgcc -static-libstdc++)
     endforeach()
     target_link_options(parity_runner PRIVATE -static -static-libgcc -static-libstdc++)
@@ -95,9 +86,8 @@ endif()
 
 if(BUILD_TESTING)
     enable_testing()
-    set_target_properties(parity_runner problem2 singlecore_evaluate
-        multicore_cut_evaluate_problem_1 multicore_cut_evaluate_problem_2
-        multicore_cut_evaluate_problem_3 stub_multicore_cut_and_schedule
+    set_target_properties(parity_runner problem2
+        multicore_cut_evaluate_problem_2 stub_multicore_cut_and_schedule
         PROPERTIES EXCLUDE_FROM_ALL FALSE)
     add_executable(generator_test tests/generator_test.cpp)
     target_link_libraries(generator_test PRIVATE problem2_lib)

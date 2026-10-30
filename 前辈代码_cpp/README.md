@@ -2,7 +2,13 @@
 
 ## 当前原地改造方式
 
-本目录是当前继续维护的完整移植工程。按用户最新要求，在原文件内适配接口，**保留全部算法、模块和文件**。`17/` 与 `17.zip` 是之前的精简草稿，暂时保留，不作为本次成果；最终目录整理、文件剔除及打包，等待用户最后明确要求后再做。
+本目录集中维护**问题 2／场景 B**。已移除问题 1、问题 3、独立单核评估器及对应构建目标、配置和测试分支；问题 2 评估器中的共享缓存分支也已移除。正式入口和开发求解入口均只接受 2..5 核。
+
+多核搜索中的 `single_core_plan(graph, cores)` 仍用于构造初始候选：方案有 `cores` 个核，暂时将工作集中到一个核，随后尝试迁移和激活空闲核。这属于场景 B 搜索流程。
+
+初次阅读请看 [代码阅读指南](https://github.com/xztqaqmax67-cmyk/2626_hackson_17/blob/main/%E5%89%8D%E8%BE%88%E4%BB%A3%E7%A0%81_cpp/%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97.md)：包含整体调用关系、结构体字段、各模块函数与局部辅助函数说明，以及从入口追踪到评分的示例。
+
+本次清理已通过 Windows / MinGW 编译，以及五组回归测试：生成器、场景 B 完整评分对照、搜索对照、命令行工作流和硬件/批量约束。搜索对照首次因 Python 参考程序替换临时文件时拒绝访问而中断，重跑通过。
 
 默认构建 `npu_sched`，直接调用原 `search.cpp` 的同一套完整搜索：结构种子、流水线候选、精英池、多路线、切块合并、交换迁移、生命周期修复、空闲核激活和完整评分均保留。没有使用精简版的内部估价替换原算法。
 
@@ -28,13 +34,17 @@ cmake --build build --config Release -j
 
 `npu_sched` 的核数范围为 2..5、默认 4，支持 `--version`、`--help`、两种参数写法。省略输出路径时写到图同目录的 `<case>_multicore_res.json`。不接受配置、检查点或评分导出参数。退出码：0 成功、1 内部错误、2 参数错误、3 输入错误、4 输出错误、5 无合法方案。
 
-仍保留默认 25 秒限时搜索及 compact 探索宽度。生成器最多使用 6 条休眠路线线程加 1 条主线程，compact 最多 4 条路线，路线交替运行。按用户要求保留限时搜索，因此不保证重复输出完全相同；90 秒、16 GB 及指定 GCC/MSVC 环境的完整验收仍待核验。
+正式验收以 `材料/提交要求文档.md` v3.0 为准；与旧 `备注.txt` 冲突时采用提交要求。`npu_sched` 按单次运行 **90 秒**分配预算：从程序开始计时，搜索截止于第 **85 秒**，实际搜索额度扣除输入处理耗时，最后 **5 秒**用于校验和写出。正式入口不再受 `DEFAULT_CASE_TIME_LIMIT = 25` 限制，也不受旧整批 5 分钟预算限制；该常量仍是 `problem2` 开发入口的单图默认值。候选搜索提前结束时可提前输出。
 
-**留待最后调整：** 源码、第三方库仍在原 `problem2/` 目录下；评估器移植、配置、测试和开发工具全部保留。本目录尚未完成最终打包，不能直接宣称满足“不得包含官方评估器副本”等条款。
+保留 compact 探索宽度。生成器最多使用 6 条休眠路线线程加 1 条主线程，compact 最多 4 条路线，路线交替运行。限时搜索仍不保证重复输出完全相同；90 秒、16 GB 及指定 GCC/MSVC 环境的完整验收仍待核验。截止时间通过协作式检查实现，5 秒收尾预留仍须结合大图与评测机器验证，不能视为硬实时保证。
+
+本次时限调整已在当前 Windows / MinGW 环境编译并验证（4 核）：`example_graph.json` 整个进程耗时 0.13 秒，`case_03.json` 耗时 86.86 秒，均退出 0、只输出规定的两字段方案，且通过独立 C++ 场景 B 本地复评。大例子确认正式入口已不受 25 秒预算限制；这两例不代替全用例和指定平台的正式验收。
+
+**留待最后调整：** 源码、第三方库仍在原 `problem2/` 目录下；场景 B 评估器移植、配置、测试和开发工具仍保留。本目录尚未完成最终打包，不能直接宣称满足“不得包含官方评估器副本”等条款。
 
 自有 C++ 代码统一为四空格缩进，Tab 显示宽度 4，禁止实际 Tab 字符；`.clang-format` 与 `.editorconfig` 一起约束后续编辑。公共结构、搜索路线和接口边界补充中文注释，第三方文件保留上游格式。
 
-本轮检查：保留原工程全部 74 个已跟踪文件；49 个未涉及接口适配的算法文件，忽略空白与注释后代码一致。搜索的邻域、种子、路线、修复和选择逻辑均未裁剪；步骤 2、3 原文未改。新旧入口在 1、6、24 次固定评估预算下输出相同方案。正式入口的参数、退出码、中文/空格路径及无配置运行检查通过。完整工程通过 Windows MinGW 编译和 Linux 交叉编译；未重跑整批性能测试，未在 MSVC 或原生 Linux GCC 环境验收。
+此前接口适配已检查新旧入口在 1、6、24 次固定评估预算下输出相同方案，并验证正式入口参数、退出码、中文/空格路径及无配置运行。本次模块清理继续保留多核搜索的邻域、种子、路线、修复和选择逻辑。
 
 以下是原模块说明和开发工具用法。运行原工具前，显式构建目标：
 
@@ -42,13 +52,13 @@ cmake --build build --config Release -j
 cmake --build build --config Release --target problem2 multicore_cut_evaluate_problem_2
 ```
 
-原目录内的 **25 个 Python 文件**均已对应移植，包括 `official_code` 中的问题 1、2、3 评估器。保留 `problem2/official_code/` 层次和原模块名称，函数声明放在 `.hpp`，实现放在同名 `.cpp`；包入口 `__init__.py` 对应 `__init__.hpp`。原 Python 源码和题目数据没有修改。
+保留问题 2 所需的原模块名称和 `problem2/official_code/` 层次，函数声明放在 `.hpp`，实现放在同名 `.cpp`；包入口 `__init__.py` 对应 `__init__.hpp`。同级原 Python 源码和题目数据没有修改。
 
 算法使用原生 **C++17**，以标准 CMake 工程支持 **Windows / Linux**，运行时不调用 Python。关键步骤、数据结构和易混淆的执行规则有中文注释。`tests/` 中的 Python 只负责调用原版进行对照，不是运行依赖。
 
-## 根据备注更新的比赛约束
+## 当前提交约束与开发兼容性
 
-本版已按 `材料/备注.txt` 更新硬件参数，和原数学建模附件的默认配置有所不同：
+正式入口的硬件参数以 `材料/提交要求文档.md` 第 5.2 节为准，和原数学建模附件的默认配置有所不同：
 
 | 参数 | 当前值 |
 |---|---|
@@ -57,13 +67,15 @@ cmake --build build --config Release --target problem2 multicore_cut_evaluate_pr
 | DDR 带宽 | **60 bytes/cycle** |
 | 场景 B 跨核 COPY 等待 | **1000 cycles** |
 
-新备注还要求：C++17 及以下、Windows / Linux 标准 CMake 构建、无复杂第三方依赖，运行资源不超过 10 个 CPU 核和 16 GB 内存。求解程序按顺序运行用例和搜索路线；`-n` 指模拟芯片核数，不控制主机并行度。当前 C++17 版未重新测量整批用例的内存峰值。
+提交要求还规定：C++17 及以下、Windows / Linux 标准 CMake 构建、无复杂第三方依赖，运行线程数不超过 10，内存不超过 16 GB。求解程序按顺序运行用例和搜索路线；`-n` 指模拟芯片核数，不控制主机并行度。当前 C++17 版未重新测量整批用例的内存峰值。
 
 `PIPE_FIX` 是第五条独立流水线，与 `PIPE_MTE2`、`PIPE_MTE3`、`PIPE_M`、`PIPE_V` 并列，每条流水线仍只有一个在飞指令。`L1_COPY_UB`、`L1_LOOP_ENHANCE` 等操作按输入的 `pipe` 和 `cycles` 执行，不被误当作 DDR COPY。
 
 第 2 步的最晚使用 victim 规则、第 3 步的乱序/FIFO/内存复用规则没有修改。核内顺序优化仍通过标准方案表达：`pipeline.cpp` 的候选将每个非 DDR COPY 算子作为单独子图，再给出每核子图顺序。搜索也保留较粗分块候选，只有完整评估更好的方案才会保留。目标按 `(makespan, added_copy_bytes)` 比较，优先执行时间，其次数据搬运量。
 
-## 10 个用例在共享的 5 分钟预算内运行
+## 开发工具：共享 5 分钟的批量运行
+
+本节是保留的 `problem2` 开发工具用法；300 秒只是该批量接口的默认预算，不作为正式 `npu_sched` 的验收时限。
 
 在本目录执行（以下以 **4 核**为例，核数仍由 `-n` 指定）：
 
@@ -94,7 +106,7 @@ cmake --build build --config Release --target problem2 multicore_cut_evaluate_pr
 - `output/example_graph_problem_2_trace.json`：Perfetto / Chrome 时间线。
 - `output/example_graph_problem_2_log.txt`：评估日志。
 
-换成实际计算图时，替换第一个路径即可。省略 `--config` 会读取计算图同目录的 `config.txt`；批量模式读取输入目录中的配置。建议明确传入已按备注更新的 `problem2/config.txt`。
+换成实际计算图时，替换第一个路径即可。省略 `--config` 会读取计算图同目录的 `config.txt`；批量模式读取输入目录中的配置。开发工具建议明确传入与提交要求硬件参数一致的 `problem2/config.txt`；正式入口不读取此文件。
 
 **下发图现已可直接读取：** 允许 `COPY_IN` / `COPY_OUT` 的 `cycles=-1` 作为带宽计算占位符，实际 COPY 耗时仍按原有规则由张量大小和带宽决定。其他负耗时、未知 Pipe 仍会报错。`PIPE_FIX` 已在输入校验、搜索估算、独立评估和时间线中统一接入。整个流程不改写磁盘上的原始图。
 
@@ -131,15 +143,13 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 
 **验证范围：** Windows x64 使用 GCC 16.1.0 实际编译、运行回归测试；Linux x86-64 使用 Zig 0.13.0 自带的 Clang / libc++ 交叉编译。当前电脑没有 Linux 发行版，Linux 运行验证和 MSVC 编译验证尚未执行。
 
-原有六个开发入口在显式构建后位于 `build/bin/`（默认只构建 `npu_sched`）：
+正式入口及保留的三个开发工具位于 `build/bin/`（默认只构建 `npu_sched`，开发工具须显式构建）：
 
 | 程序 | 用途 |
 |---|---|
-| `problem2.exe` | 问题 2 的完整搜索和提交入口 |
-| `multicore_cut_evaluate_problem_1.exe` | 问题 1 / 场景 A 独立评估 |
+| `npu_sched.exe` | 正式提交入口，固定硬件和 90 秒总预算 |
+| `problem2.exe` | 问题 2 开发求解入口，支持调试、继承和批量运行 |
 | `multicore_cut_evaluate_problem_2.exe` | 问题 2 / 场景 B 独立评估 |
-| `multicore_cut_evaluate_problem_3.exe` | 问题 3 / 带缓存的独立评估 |
-| `singlecore_evaluate.exe` | 单核基线评估 |
 | `stub_multicore_cut_and_schedule.exe` | 生成随机示例方案 |
 
 `parity_runner.exe` 是测试辅助入口。不同平台或多配置构建器的可执行文件后缀、配置子目录可能不同。
@@ -170,10 +180,7 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 | `problem2/official_code/schedule_step1` | 固定调度序列 |
 | `problem2/official_code/schedule_step2` | 内存换出、换入和张量重载 |
 | `problem2/official_code/schedule_step3` | FIFO、内存复用依赖和执行时间线 |
-| `problem2/official_code/multicore_cut_evaluate_problem_1` | 场景 A |
 | `problem2/official_code/multicore_cut_evaluate_problem_2` | 场景 B |
-| `problem2/official_code/multicore_cut_evaluate_problem_3` | 场景 B 与共享只读缓存 |
-| `problem2/official_code/singlecore_evaluate` | 单核方案及评分 |
 | `problem2/official_code/stub_multicore_cut_and_schedule` | 随机示例方案及方案派生信息 |
 
 额外的 `common.hpp` 集中公共类型与五条 Pipe 的硬件表；`batch.cpp/.hpp` 管理整批时间预算；`python_order.hpp` 复现影响内存复用的 Python 整数集合顺序；`generator.hpp` 用 C++17 标准线程和条件变量保存多路线生成器的推进位置；`utf8_entry.hpp` 处理 Windows 中文参数及两系统的程序路径；`official_code/cli_main.cpp` 为各评估程序提供薄入口，算法仍在各自原名文件中。
@@ -182,9 +189,11 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 
 建议阅读顺序：`main.cpp` → `core.hpp` → `search.cpp` → `official.cpp` → `official_code/schedule_step1/2/3.cpp`。图中的 **op** 是算子，**tensor** 是张量，**block/subgraph** 是子图块，**core** 是核心，**pipe** 是流水线。场景 B 中同核全部子图合为一个 **Task**。
 
-## 常用参数与复评
+## 开发工具的常用参数与复评
 
-- `-n 1..5`：**待模拟芯片的核心数**，不代表求解程序使用的电脑 CPU 核数。1 核采用整图方案并正式评分；2–5 核搜索优化。
+以下为 `problem2` 的参数；正式入口的 90 秒预算由程序内固定常量控制。
+
+- `-n 2..5`：**待模拟芯片的核心数**，不代表求解程序使用的电脑 CPU 核数。
 - `--time-limit SECONDS` / `--budget SECONDS`：单例时限，范围 `(1, 1200]`。单图默认 **25 秒**；目录模式默认动态均分余时，显式设置则作为单例上限。
 - `--total-time-limit SECONDS`：仅目录模式，范围 `(1, 300]`，默认 **300 秒**。
 - `--feasibility-grace SECONDS`：单图调试时可显式启用首解延时，默认 **0 秒**，最多 120 秒；批量模式必须为 0，避免突破总预算。
@@ -200,24 +209,26 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 .\build\bin\multicore_cut_evaluate_problem_2.exe examples/example_graph.json output/example_graph_multicore_res.json --config problem2/config.txt -o output/check_res.json --trace-output output/check_trace.json --log-output output/check_log.txt
 ```
 
-问题 1、3 使用同样的图与方案参数，换成对应程序即可；单核评估入口只需图路径。各入口支持 `--help`。
+各保留入口支持 `--help`。
 
 检查点会校验输入和配置的 SHA-256。C++ 评估模块及公共硬件表的源码指纹在编译时写入程序，移动程序不影响继承。也接受来源与 `original_official_hashes.json` 一致、且输入和配置哈希均一致的 Python 检查点，但必须重新评估；旧容量/等待参数的检查点不能冒充当前参数的结果。修改评估模块或硬件表后须重新编译，旧 C++ 检查点会因指纹不符而拒绝。
 
+`original_official_hashes.json` 保留原 Python 附件的完整历史指纹，因此仍有已移除模块的文件名。这只是旧检查点的来源识别数据，不包含或编译相应算法。
+
 ## 已执行的对照验证
 
-对比完整结果结构中的数组顺序、时间线、评分、搬运量、峰值和缓存记录，不只检查最终 makespan。本次新增约束的回归测试包括：
+对比完整结果结构中的数组顺序、时间线、评分、搬运量和峰值，不只检查最终 makespan。保留的回归测试覆盖：
 
-- 20 组小型 DAG，其中 4 组包含 `PIPE_FIX`：跨核搬运、直接依赖、三种缓存容量、执行分析、三类邻域与核心启用候选一致。
+- 20 组小型 DAG，其中 4 组包含 `PIPE_FIX`：跨核搬运、直接依赖、执行分析、三类邻域与核心启用候选一致。
 - 6 组固定评估次数搜索：剔除耗时字段后，候选历史、统计项、最终评分和最优方案一致。
 - 2 组更长的搜索：确认进入路线探索，并用原 Python 评估器独立复核完整评分。路线分配使用实测耗时，因此此阶段不要求跨语言的候选出现顺序一致。
 - C++17 生成器的延迟启动、暂停/恢复、移动、取消清理、异常传播和截止时间传递。
-- 中文路径、六个独立入口、检查点继承、2 秒限时、错误输入不覆盖旧结果。
+- 中文路径、场景 B 开发入口、检查点继承、2 秒限时、拒绝单核求解、错误输入不覆盖旧结果。
 - 独立 `PIPE_FIX` 与 M/V 重叠执行、同一 Pipe 串行、1 MiB 的 L1 张量、COPY `-1` 占位、非法负耗时和未知 Pipe 拒绝。
 - 原生批量入口处理任意图名、共享时限、输出字段检查、失败不误用残留方案。
 - 此前 C++20 版的真实 10 例批量输出：逐个使用补齐硬件表的 Python 场景 B 原算法重新评分，与 C++ 检查点的**完整结果结构**全部一致；C++17 版未重跑整批。
 
-**对照范围：** 旧 Python 附件本身没有第五条 Pipe，也拒绝 COPY `-1`。测试仅在内存中给原版补充 `PIPE_FIX` 硬件列表，并为参考输入替换 COPY 占位值，调度函数保持原样；C++ 正式入口直接读取原始图。这是基于备注的本地对照，不代表已经拿到并验证过新比赛官方评估器。原 Python 文件及下发数据均未改动。
+**对照范围：** 旧 Python 附件本身没有第五条 Pipe，也拒绝 COPY `-1`。测试仅在内存中给原版补充提交要求中的 `PIPE_FIX` 硬件列表，并为参考输入替换 COPY 占位值，调度函数保持原样；C++ 正式入口直接读取原始图。这是旧算法的本地对照，不代表已经拿到并验证过新比赛官方评估器。原 Python 文件及下发数据均未改动。
 
 保留同级原版目录时可重跑：
 
@@ -235,7 +246,7 @@ python tests/compare_original.py
 python tests/verify_batch.py output/hackathon_cores_4/batch_report.json --inputs ../hackathon_data --work-dir build/hackathon_cores_4_work_v2
 ```
 
-大数据中的原 Python 场景 A 评估较慢，第二条命令可能需要较长时间。`python tests/compare_original.py 1` 只跑首例；`--start 7` 从第 8 例开始。测试需要 Python 3.11+，不安装任何额外 Python 包。Windows 上固定评估次数测试只替换原版不支持的 `SIGALRM` 外壳，不修改搜索算法。
+`python tests/compare_original.py 1` 只跑首例；`--start 7` 从第 8 例开始。测试需要 Python 3.11+，不安装任何额外 Python 包。Windows 上固定评估次数测试只替换原版不支持的 `SIGALRM` 外壳，不修改搜索算法。
 
 ## 等价范围与差异
 

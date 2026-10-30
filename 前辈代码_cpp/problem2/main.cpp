@@ -15,7 +15,12 @@
 namespace problem2 {
 #ifdef NPU_SCHED_ENTRY
 int submission_main(int argc, char **argv) {
+    // 以《提交要求文档》4.3 为准：单次运行 90 秒，包含读图、搜索、校验和写出。
+    constexpr double submission_time_limit = 90.0;
+    constexpr double finalization_reserve = 5.0;
     const double started = monotonic();
+    const double finish_deadline = started + submission_time_limit;
+    const double search_deadline = finish_deadline - finalization_reserve;
     int failure_code = 2;
     // 每条搜索线程有自己的截止时间；生成器会在交接时同步该值。
     // 正式入口不创建子进程，搜索本身仍按原有的限时规则收尾。
@@ -38,19 +43,19 @@ int submission_main(int argc, char **argv) {
             return 0;
         }
         failure_code = 3;
-        execution_deadline = started + 85.0;
+        execution_deadline = search_deadline;
         if (!fs::is_regular_file(args.input)) {
             throw std::invalid_argument("输入计算图不是可读取的文件");
         }
         const GraphInfo graph(read_json_strict(args.input));
 
-        // 沿用原 problem2 默认的 compact 搜索配置和 25 秒预算，不删减候选类型。
-        // 输入处理已消耗的时间计入 90 秒总上限，并为输出保留至少 5 秒余量。
+        // 正式入口使用扣除输入处理和收尾预留后的全部搜索时间。
+        // DEFAULT_CASE_TIME_LIMIT 仅用于开发入口，不限制正式入口的搜索预算。
         failure_code = 1;
         SearchOptions options;
         options.compact = true;
         options.export_results = false;
-        options.time_limit = std::min(DEFAULT_CASE_TIME_LIMIT, started + 85.0 - monotonic());
+        options.time_limit = search_deadline - monotonic();
         if (options.time_limit <= 0) {
             std::cerr << "输入处理后剩余时间不足，未生成方案\n";
             return 5;
@@ -60,9 +65,11 @@ int submission_main(int argc, char **argv) {
             std::cerr << "时限内未找到通过完整评估的方案\n";
             return 5;
         }
-        execution_deadline = started + 85.0;
+        // 搜索结束后启用收尾预算，避免在搜索截止时丢弃已经找到的合法方案。
+        execution_deadline = finish_deadline;
         // 仍使用原有结构校验，不以简化估价代替官方规则的本地移植。
         validate_task_order(derive_multicore_plan(graph.graph, plan));
+        poll_search_deadline();
         failure_code = 4;
         atomic_write(args.output, plan);
         return 0;
@@ -211,11 +218,8 @@ int submission_main(int argc, char **argv) {
         if (!std::isfinite(grace) || grace < 0 || grace > 120) {
             throw std::invalid_argument("首解延时必须在 [0, 120] 秒内");
         }
-        if (cores == 1) {
-            grace = 0;
-        }
-        if (cores < 1 || cores > 5 || !std::isfinite(limit) || limit <= 1 || limit > 1200) {
-            throw std::invalid_argument("核心数必须为 1 至 5，时限必须在 (1, 1200] 秒内");
+        if (cores < 2 || cores > 5 || !std::isfinite(limit) || limit <= 1 || limit > 1200) {
+            throw std::invalid_argument("核心数必须为 2 至 5，时限必须在 (1, 1200] 秒内");
         }
         std::string profile =
             flags.count("--search-profile") ? flags.at("--search-profile") : "compact";

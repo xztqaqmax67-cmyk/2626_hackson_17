@@ -1,4 +1,4 @@
-"""验证中文路径、六个独立入口、限时搜索及原版/C++ 检查点继承。"""
+"""验证中文路径、场景 B 开发入口、限时搜索及原版/C++ 检查点继承。"""
 import os
 import shutil
 import tempfile
@@ -6,7 +6,6 @@ import time
 from compare_multicore import fixture
 from compare_original import *
 from problem2 import inheritance
-from singlecore_evaluate import evaluate_singlecore
 
 BIN = Path(os.environ.get('PROBLEM2_BIN', BUILD / 'bin'))
 SUFFIX = '.exe' if sys.platform == 'win32' else ''
@@ -28,7 +27,7 @@ def main():
     config = directory / 'config.txt'
     graph_path.write_text(json.dumps(graph), encoding='utf-8')
     shutil.copyfile(ROOT / '前辈代码_cpp/problem2/config.txt', config)
-    for cores in (1, 3):
+    for cores in (2, 3):
         result_dir, work = directory / f'结果_{cores}', directory / f'工作_{cores}'
         args = [graph_path, '-n', cores, '--config', config, '--time-limit', 6,
                 '--feasibility-grace', 0, '--output-dir', result_dir, '--work-dir', work,
@@ -43,7 +42,7 @@ def main():
         assert (result_dir / '中文 计算图_problem_2_trace.json').is_file()
         print(f'PASS solver {cores} cores / original reevaluation', flush=True)
 
-    checkpoint = directory / '工作_1/best_checkpoint.json'
+    checkpoint = directory / '工作_2/best_checkpoint.json'
     for kind in ('cpp', 'python'):
         inherited = checkpoint
         if kind == 'python':
@@ -65,31 +64,27 @@ def main():
     plan = json.loads(plan_path.read_text(encoding='utf-8'))
     assert not difference(normalized(generate_multicore_plan(graph, num_cores=3, seed=7,
         min_subgraph_size=1, max_subgraph_size=3)), plan)
-    for problem in (0, 1, 2, 3):
-        name = 'singlecore_evaluate' if problem == 0 else f'multicore_cut_evaluate_problem_{problem}'
-        args = [graph_path] if problem == 0 else [graph_path, plan_path]
-        result_path = directory / f'独立评估_{problem}.json'
-        run(BIN / f'{name}.exe', [*args, '-o', result_path])
-        actual = json.loads(result_path.read_text(encoding='utf-8'))
-        if problem == 0:
-            expected = evaluate_singlecore(graph, 60, CAPACITY, 1000, 100)
-        elif problem == 1:
-            expected = evaluate_scene_a(graph, plan, 60, CAPACITY, 1000, 100)
-        elif problem == 2:
-            expected = evaluate_scene_b(graph, plan, 60, CAPACITY, 1000)
-        else:
-            expected = evaluate_problem_3(graph, plan, 60, CAPACITY, 1000, 1048576, 250)
-        expected['input_graph'] = graph_path.name
-        if problem != 0:
-            expected['input_plan'] = plan_path.name
-        assert not difference(normalized(expected), actual), difference(normalized(expected), actual)
-        print(f'PASS {name} CLI / Unicode paths', flush=True)
+    result_path = directory / '独立评估_2.json'
+    run(BIN / 'multicore_cut_evaluate_problem_2.exe', [graph_path, plan_path, '-o', result_path])
+    actual = json.loads(result_path.read_text(encoding='utf-8'))
+    expected = evaluate_scene_b(graph, plan, 60, CAPACITY, 1000)
+    expected.update(input_graph=graph_path.name, input_plan=plan_path.name)
+    assert not difference(normalized(expected), actual), difference(normalized(expected), actual)
+    print('PASS scene B evaluator CLI / Unicode paths', flush=True)
+
+    # 求解器只接受当前提交要求的 2..5 核；单核入口已移除。
+    for executable in ('problem2', 'npu_sched'):
+        target = directory / f'{executable}_单核.json'
+        rejected = subprocess.run([str(BIN/(executable+SUFFIX)), str(graph_path), '-n', '1',
+            '-o', str(target)], capture_output=True, timeout=10)
+        assert rejected.returncode != 0 and not target.exists(), executable
+    print('PASS both solvers reject one-core mode', flush=True)
 
     original_path = os.environ['PATH']
     try:
         # Windows CreateProcess 在父进程的 PATH 中定位可执行文件。
         os.environ['PATH'] = str(BIN) + os.pathsep + original_path
-        run('problem2.exe', [graph_path, '-n', 1, '--time-limit', 5, '-o', directory/'PATH启动.json'])
+        run('problem2.exe', [graph_path, '-n', 2, '--time-limit', 5, '-o', directory/'PATH启动.json'])
     finally:
         os.environ['PATH'] = original_path
     # 严格解析错误不能被静默接受；已有的目标文件不得因此被覆盖。
@@ -97,7 +92,7 @@ def main():
     invalid.write_text('{"ops":[],"ops":[],"tensors":[],"edges":[]}', encoding='utf-8')
     protected = directory / '保留.json'
     protected.write_text('unchanged', encoding='utf-8')
-    rejected = subprocess.run([str(BIN/('problem2'+SUFFIX)), str(invalid), '-n', '1', '--time-limit', '3',
+    rejected = subprocess.run([str(BIN/('problem2'+SUFFIX)), str(invalid), '-n', '2', '--time-limit', '3',
         '-o', str(protected)], capture_output=True, timeout=10)
     assert rejected.returncode != 0 and protected.read_text(encoding='utf-8') == 'unchanged'
     print('PASS PATH launch / invalid input preserves existing output', flush=True)

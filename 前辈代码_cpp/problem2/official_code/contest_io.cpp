@@ -2,10 +2,7 @@
 // 官方入口的公共参数解析、配置读取、结果日志与时间线输出。
 #include "contest_io.hpp"
 #include "evaluation_validation.hpp"
-#include "multicore_cut_evaluate_problem_1.hpp"
 #include "multicore_cut_evaluate_problem_2.hpp"
-#include "multicore_cut_evaluate_problem_3.hpp"
-#include "singlecore_evaluate.hpp"
 #include "stub_multicore_cut_and_schedule.hpp"
 namespace problem2 {
 namespace {
@@ -63,22 +60,16 @@ fs::path option_path(const Arguments &a, const std::string &name, const fs::path
 }
 } // namespace
 std::string format_data_movement_log(const Json &result) {
-    auto m = result.value("data_movement_bytes", object()),
-         c = result.value("cache_stats", object());
+    auto m = result.value("data_movement_bytes", object());
     std::string text =
         "data movement: scheduled_copy_bytes=" + scalar(m.value("scheduled_copy_bytes", Json(0))) +
         ", physical_ddr_bytes=" +
         scalar(m.value("physical_ddr_bytes", m.value("scheduled_copy_bytes", Json(0))));
-    if (!c.empty()) {
-        text += ", cache_hits=" + scalar(c.value("hits", Json(0))) + "/" +
-                scalar(c.value("accesses", Json(0))) +
-                ", cache_hit_bytes=" + scalar(c.value("hit_bytes", Json(0)));
-    }
     return text;
 }
 std::string format_multicore_result_log(const std::string &filename, const Json &result) {
     std::string text = "input_graph: " + filename +
-                       "\nscene: " + result.value("scene", std::string("A")) +
+                       "\nscene: " + result.value("scene", std::string("B")) +
                        "\nmakespan: " + scalar(result.at("makespan")) +
                        "\nnum_cores: " + scalar(result.at("num_cores")) + "\n" +
                        format_data_movement_log(result) + "\n";
@@ -186,7 +177,7 @@ std::string format_trace_json(const std::string &filename, const Json &result) {
           {"subgraph_spans", "X events named Subgraph <id> carry start/end in args"}}}}
         .dump(2);
 }
-int run_problem_cli(int problem, int argc, char **argv) {
+int run_problem_cli(int argc, char **argv) {
     try {
         auto args = parse(argc, argv, {"--config", "--output", "--trace-output", "--log-output"});
         if (args.help) {
@@ -194,12 +185,12 @@ int run_problem_cli(int problem, int argc, char **argv) {
                          "FILE] [--log-output FILE]\n";
             return 0;
         }
-        if (args.positional.empty() || args.positional.size() > std::size_t(problem == 0 ? 1 : 2)) {
+        if (args.positional.empty() || args.positional.size() > 2) {
             throw std::invalid_argument("expected graph and optional plan path");
         }
         fs::path graph_path = path_from_utf8(args.positional[0]), stem = graph_path;
         stem.replace_extension();
-        std::string name = problem == 0 ? "singlecore" : "problem_" + std::to_string(problem);
+        const std::string name = "problem_2";
         auto suffix = [&](std::string s) {
             auto path = stem;
             path += s;
@@ -213,45 +204,14 @@ int run_problem_cli(int problem, int argc, char **argv) {
         auto settings = read_evaluation_config(config);
         auto plan_path = args.positional.size() > 1 ? path_from_utf8(args.positional[1])
                                                     : suffix("_multicore_res.json");
-        Json result;
-        if (problem == 0 || problem == 1) {
-            auto waits = read_required_settings(
-                config, "multicore_scene_a",
-                {"task_cross_core_wait_cycles", "task_same_core_wait_cycles"});
-            if (problem == 0) {
-                result = evaluate_singlecore(graph, settings.bandwidth, settings.capacity,
-                                             waits.at("task_cross_core_wait_cycles"),
-                                             waits.at("task_same_core_wait_cycles"));
-            } else {
-                result =
-                    evaluate_scene_a(graph, read_json_strict(plan_path), settings.bandwidth,
-                                     settings.capacity, waits.at("task_cross_core_wait_cycles"),
-                                     waits.at("task_same_core_wait_cycles"));
-            }
-        } else {
-            auto delay = read_required_settings(config, "multicore_scene_b",
-                                                {"cross_core_copy_delay_cycles"})
-                             .at("cross_core_copy_delay_cycles");
-            if (problem == 2) {
-                result = evaluate_scene_b(graph, read_json_strict(plan_path), settings.bandwidth,
-                                          settings.capacity, delay);
-            } else if (problem == 3) {
-                auto cache = read_required_settings(
-                    config, "problem_3",
-                    {"cache_capacity_bytes", "cache_bandwidth_bytes_per_cycle"});
-                result =
-                    evaluate_problem_3(graph, read_json_strict(plan_path), settings.bandwidth,
-                                       settings.capacity, delay, cache.at("cache_capacity_bytes"),
-                                       cache.at("cache_bandwidth_bytes_per_cycle"));
-            } else {
-                throw std::invalid_argument("problem must be 1, 2 or 3");
-            }
-        }
+        auto delay = read_required_settings(config, "multicore_scene_b",
+                                            {"cross_core_copy_delay_cycles"})
+                         .at("cross_core_copy_delay_cycles");
+        auto result = evaluate_scene_b(graph, read_json_strict(plan_path), settings.bandwidth,
+                                       settings.capacity, delay);
         auto trace_text = format_trace_json(path_utf8(graph_path.filename()), result);
         result["input_graph"] = path_utf8(graph_path.filename());
-        if (problem != 0) {
-            result["input_plan"] = path_utf8(plan_path.filename());
-        }
+        result["input_plan"] = path_utf8(plan_path.filename());
         write_text(output, result.dump(2) + "\n");
         write_text(trace, trace_text + "\n");
         write_text(log, format_multicore_result_log(path_utf8(graph_path.filename()), result));

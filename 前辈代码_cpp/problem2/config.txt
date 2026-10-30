@@ -1,5 +1,5 @@
-# Hackathon 场景 B 参数，依据“材料/备注.txt”。容量按 1 KiB = 1024 bytes 换算。
-# 问题 1、3 的额外参数仅供保留的独立评估入口使用，不参与场景 B 搜索。
+# 场景 B 开发工具配置，与《提交要求文档》第 5.2 节一致。
+# 正式 npu_sched 使用程序内固定参数，不读取此文件。
 
 [capacity]
 L1 1572864
@@ -8,13 +8,5 @@ UB 131072
 [bandwidth]
 bandwidth 60
 
-[multicore_scene_a]
-task_cross_core_wait_cycles 1000
-task_same_core_wait_cycles 100
-
 [multicore_scene_b]
 cross_core_copy_delay_cycles 1000
-
-[problem_3]
-cache_capacity_bytes 1048576
-cache_bandwidth_bytes_per_cycle 250

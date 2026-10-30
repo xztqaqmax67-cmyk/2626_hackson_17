@@ -4,8 +4,6 @@
 #include "official_code/stub_multicore_cut_and_schedule.hpp"
 #include "official_code/multicore_cut_evaluate_problem_2.hpp"
 #include "official_code/evaluation_validation.hpp"
-#include "official_code/multicore_cut_evaluate_problem_1.hpp"
-#include "official_code/multicore_cut_evaluate_problem_3.hpp"
 #include "core.hpp"
 #include "bootstrap.hpp"
 #include "pipeline.hpp"
@@ -102,15 +100,6 @@ int main() {
             } else if (action == "scene_b") {
                 result = evaluate_scene_b(graph, request.at("plan"), bandwidth, capacity,
                                           request.value("delay", 500.));
-            } else if (action == "scene_a") {
-                result = evaluate_scene_a(graph, request.at("plan"), bandwidth, capacity,
-                                          request.value("cross_wait", 1000.),
-                                          request.value("same_wait", 100.));
-            } else if (action == "problem3") {
-                result = evaluate_problem_3(graph, request.at("plan"), bandwidth, capacity,
-                                            request.value("delay", 500.),
-                                            request.value("cache_capacity", Id(1048576)),
-                                            request.value("cache_bandwidth", 250.));
             } else if (action == "step3") {
                 result = step3_simulation(graph, capacity, bandwidth);
             } else if (action == "step2") {
