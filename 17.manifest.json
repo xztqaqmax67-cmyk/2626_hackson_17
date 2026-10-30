@@ -4,8 +4,8 @@
   "source_project": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\final_stage_v8_4\\17",
   "team_directory": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\17",
   "archive": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\17.zip",
-  "archive_sha256": "d8ffe7336cc8319fd3a499fd9455731d266b27997f7ad8a919d320f77b05642f",
-  "archive_bytes": 69036,
+  "archive_sha256": "f45d8ce338030e933977639a5a87ce70e837f23915d10654d325c13e248aa2f5",
+  "archive_bytes": 68429,
   "zip_timestamp": [
     2026,
     10,
@@ -38,16 +38,15 @@
   },
   "excluded_reference_sources": [],
   "search_mode": "20_second_pure_search_budget",
-  "user_accepted_nondeterminism": true,
-  "runtime_validation": "skipped_at_explicit_user_request",
+  "runtime_validation": "not_performed",
   "package_files": {
     "CMakeLists.txt": {
       "bytes": 1102,
       "sha256": "333f2675d26c5c70d1d443449e804e67bda43a59ccb3daddd290618c90371dd8"
     },
     "README.md": {
-      "bytes": 6012,
-      "sha256": "9366200fddd892b9304a873050880ad90b5a1913e9ab899d09613dee25130541"
+      "bytes": 5048,
+      "sha256": "ccf89a6fee5d9c8eec92a8e00b15a4889e0565bdf6f325cdb3c23a7ae4611059"
     },
     "src/anytime.cpp": {
       "bytes": 29377,
@@ -141,5 +140,5 @@
     "within_20_mib": true,
     "build_and_runtime_tests_performed": false
   },
-  "note": "Source-only package metadata. Build/runtime validation explicitly skipped at user request; no claim of strict repeat determinism."
+  "note": "Source-only archive manifest; build and runtime results are not included."
 }
