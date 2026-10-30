@@ -1,0 +1,56 @@
+{
+  "version": "0.3.0",
+  "date": "2026-10-30",
+  "scoring_performed": false,
+  "platform": "Windows x64",
+  "builds": [
+    {
+      "compiler": "MSVC 19.44",
+      "configuration": "Release",
+      "compiled": true,
+      "ctest_passed": 2,
+      "ctest_failed": 0,
+      "cli_contract_passed": true
+    },
+    {
+      "compiler": "MinGW GCC 15.1",
+      "configuration": "Release",
+      "compiled": true,
+      "ctest_passed": 2,
+      "ctest_failed": 0,
+      "cli_contract_passed": true
+    }
+  ],
+  "checks": {
+    "v2_v3_byte_identical": 40,
+    "v3_repeat_byte_identical": 40,
+    "msvc_mingw_byte_identical": 40,
+    "v2_preserved_file_count": 22,
+    "model_identical_to_v2": true,
+    "public_header_identical_to_v2": true
+  },
+  "resource_observations": {
+    "msvc_sample_period_seconds": 0.05,
+    "observed_max_process_threads": 7,
+    "observed_peak_working_set_bytes": 87539712,
+    "algorithm_thread_limit_including_main": 4,
+    "observations_are_not_worst_case_guarantees": true
+  },
+  "performance_benchmark_performed": false,
+  "linux_tested": false,
+  "thread_sanitizer_run": false,
+  "source_sha256": {
+    "CMakeLists.txt": "d864a9572b1afb7c6c676253bfe84384bdc89d817d5769432d97f99f57caf9c1",
+    "README.md": "21f8e386be4586353a1965399e388102231d1c50f83f226f6ff8f4aeb2d26138",
+    "src/chain.cpp": "20ad5f7d967ce66dbf5f5dad7ae3524fc6b64df0f082cbdf2b76437755bf4cb7",
+    "src/chain.hpp": "8fcd7ba4c80aa21f3169a1157326cb3cdbfe5df90c14ff9f63fc90a2d7afb415",
+    "src/main.cpp": "9b6a735f2ac9d6673385fb32219d7ac64680a60ec7ee7c3bea54dde73d9dc11c",
+    "src/model.hpp": "ef3f1cd82dd3fa92123f1492988f8f20594ccd72e8039945d20fcf77714d9def",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399"
+  },
+  "reports": [
+    "output_checks_msvc_20261030.json",
+    "output_checks_mingw_20261030.json",
+    "v2_source_manifest.json"
+  ]
+}
