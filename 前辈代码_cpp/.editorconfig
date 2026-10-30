@@ -1,0 +1,14 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+tab_width = 4
+insert_final_newline = true
+
+# 第三方源码保留上游格式；仅约束本项目自行维护的文件。
+[problem2/third_party/**]
+indent_style = unset
+indent_size = unset
+tab_width = unset

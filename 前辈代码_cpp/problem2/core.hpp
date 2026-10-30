@@ -14,6 +14,8 @@ struct GraphInfo {
     std::map<Id, Ids> op_inputs, op_outputs;
     std::vector<Json> direct_edges;
     std::map<Id, std::vector<std::tuple<Id, Id, Id>>> direct_inputs;
+    // weight 是算子耗时；rank 是反向关键路径权重；position 是拓扑序位置。
+    // atom_of 把属于同一连通结构的算子归组，供后续分块与迁移使用。
     std::map<Id, Id> weight, rank, position, atom_of;
     std::map<std::pair<Id, Id>, Id> edge_bytes;
     std::vector<Ids> atoms;
@@ -35,6 +37,7 @@ struct Plan {
     static Plan from_dict(const GraphInfo &graph, const Json &data);
 };
 std::pair<Adjacency, Adjacency> block_dependencies(const GraphInfo &graph, const Blocks &blocks);
+// 将算子依赖提升到子图依赖，再按优先级做拓扑排序；依赖始终优先于启发式权重。
 Ids topological_blocks(const Adjacency &preds, const Adjacency &succs,
                        const std::map<Id, double> &priority = {});
 Blocks build_blocks(const GraphInfo &graph, Id cores, Id max_ops = 64, double deadline = 0);
@@ -50,7 +53,7 @@ class Sketch {
     std::map<std::pair<Id, Id>, double> local_ready_;
     std::set<std::pair<Id, Id>> output_done_;
 
-  public:
+public:
     PipeLoads available, fixed;
     std::map<Id, double> finish;
     std::map<Id, Id> core;

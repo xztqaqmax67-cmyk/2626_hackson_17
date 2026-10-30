@@ -6,4 +6,4 @@ output/
 outputs/
 tmp/
 *.log
-build/
+/17/build*/

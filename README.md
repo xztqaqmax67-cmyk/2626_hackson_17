@@ -1,5 +1,7 @@
 # Hackathon 多核排程實驗
 
+- **当前维护工程：[前辈代码_cpp/](前辈代码_cpp/README.md)**，在原文件内适配 `npu_sched`，保留完整算法和所有模块。
+- `17/`、`17.zip` 是旧精简草稿，已停止沿用，按用户要求暂不删除；最终提交包等待用户确认后再整理。
 - **新電腦／GPT 接手：先讀 [HANDOFF_zh.md](HANDOFF_zh.md)。**
 - 新規範提交版：[舊算法](hackathon_v3/submission/README.md)、[模組化新算法](前辈代码_cpp/submission/README.md)，只打包各自的 `submission/`。
 - 修改與重測紀錄：[SUBMISSION_REVIEW_20261030.md](SUBMISSION_REVIEW_20261030.md)。

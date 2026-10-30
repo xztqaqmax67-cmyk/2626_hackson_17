@@ -173,7 +173,7 @@ class PythonRandom {
         return y;
     }
 
-  public:
+public:
     explicit PythonRandom(std::uint64_t seed) {
         std::vector<std::uint32_t> keys = {std::uint32_t(seed)};
         if (seed >> 32) {

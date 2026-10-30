@@ -81,11 +81,20 @@ int main() {
                 for (const auto &[label, candidate] : activation_plans(g, plan, cfg)) {
                     result.push_back({label, candidate.to_dict()});
                 }
+            } else if (action == "solve_memory") {
+                // 与原 solve 使用同一预算比较方案，检查正式入口没有丢失算法步骤。
+                SearchOptions options;
+                options.time_limit = request.value("time_limit", 120.);
+                options.max_evaluations = request.value("max_evaluations", 12);
+                options.compact = request.value("compact", false);
+                options.export_results = false;
+                result = solve_in_memory(GraphInfo(graph), request.value("cores", 3), options);
             } else if (action == "solve") {
                 SearchOptions options;
                 options.time_limit = request.value("time_limit", 120.);
                 options.max_evaluations = request.value("max_evaluations", 12);
                 options.export_results = false;
+                options.compact = request.value("compact", false);
                 result = solve(path_from_utf8(request.at("graph_path").get<std::string>()),
                                request.value("cores", 3),
                                path_from_utf8(request.at("config_path").get<std::string>()),

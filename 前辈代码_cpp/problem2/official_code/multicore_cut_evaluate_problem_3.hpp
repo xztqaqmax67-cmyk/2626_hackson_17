@@ -14,7 +14,7 @@ class ReadOnlyCache {
     Id hits_ = 0, misses_ = 0, hit_bytes_ = 0, miss_bytes_ = 0;
     std::pair<std::optional<Id>, Id> tensor_info(const PreparedTask &task, Id op) const;
 
-  public:
+public:
     ReadOnlyCache(Id capacity, double bandwidth);
     bool issue(const PreparedTask &task, Id core, Id op, double now);
     void retire(const PreparedTask &task, Id core, Id op, double now);

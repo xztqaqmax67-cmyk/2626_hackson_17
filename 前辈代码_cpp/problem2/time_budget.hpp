@@ -5,7 +5,7 @@ class ChildProcess {
     struct Impl;
     std::unique_ptr<Impl> impl_;
 
-  public:
+public:
     ChildProcess(const fs::path &executable, const std::vector<std::string> &args,
                  const fs::path &log);
     ~ChildProcess();
