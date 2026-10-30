@@ -1,0 +1,13 @@
+{
+  "variant": "new",
+  "case": "case_05",
+  "cores": 5,
+  "peak_working_set_bytes": 142336000,
+  "peak_pagefile_bytes": 143597568,
+  "max_observed_threads": 4,
+  "child_executables": [],
+  "samples": 525,
+  "returncode": 0,
+  "seconds": 37.78852659999393,
+  "note": "OS peak counters queried during/after process lifetime; threads and children sampled every 50 ms; conhost excluded"
+}

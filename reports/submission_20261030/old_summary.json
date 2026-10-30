@@ -1,0 +1,61 @@
+{
+  "variant": "old",
+  "fixed_hardware": {
+    "L1": 1572864,
+    "UB": 131072,
+    "bandwidth": 60,
+    "delay": 1000
+  },
+  "evaluator": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\前辈代码_cpp\\build\\review_20261030_msvc\\bin\\Release\\parity_runner.exe",
+  "evaluator_sha256": "8abbc48c5a5e423ad883a60f14b26ee3174b8122947277343470c1aded837e9c",
+  "executable_sha256": "75a34deec9aeb530374fc02622e79498f4bf659d20ab5b0e44d7d9a6d84304eb",
+  "source_sha256": {
+    "CMakeLists.txt": "cef2c34ae61ddf86a185472a90b41a1d18a3d5f97de0b3c33aaf0b2756923f61",
+    "src\\solver.cpp": "5db0817e3ac338607bdd241a7b41e040323e3b53f4fd5de5b0643e343f3cb537",
+    "src\\submission_cli.hpp": "62e393618df54edcc12618d7a29f1c9dd24738d2f4784efaf6c5c88d9ca233ea"
+  },
+  "input_sha256": {
+    "case_00": "db61a358898911fb0c9735d2fc7a9be62291fdb4e11be1845f63fed4fb322a67",
+    "case_01": "bf713b3bdc295d3f4a06b0d0501b50dcc03756f1de3b82b132c5d422b55bf360",
+    "case_02": "5ef88c64984767372761df8c3ee73e3465bdf273dd73b1b12bf649f1a51021c1",
+    "case_03": "20058f2e21108e9f016d089cc0b69b26952c2fe6b3eb4b1d02d5500e3cb29132",
+    "case_04": "5b98f3404b88cb0b7289a5c8a44e48c3069430ad579cf1beb36ec378288963d8",
+    "case_05": "df8a9721eddf5a282057b30013e0c3ea2e41cd59e71e8af4ab975ef13b79063f",
+    "case_06": "210db10f359b054da289d631a1ed9e9777dbc3bbe8d83e1516ceebaa9699990a",
+    "case_07": "d3ac5eef4d85d9ad30e062fda58582e96f1709aeb06a85885703fe4d7d74ed95",
+    "case_08": "959d81d4381865134115524192b7e7ddd2c3bd9b8162b37882bd3cfafa8b770c",
+    "case_09": "5316b82560740d4723ef17c3a6c6038cf384684f2076aeae526a01a9b8196b96"
+  },
+  "baseline_source": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\前辈代码_cpp\\output\\review_20261030_msvc\\baselines",
+  "baseline_is_official": false,
+  "score_definition": "mean_N mean_case(T1/TN), failed runs = 0; local Scene A baseline",
+  "per_core": {
+    "2": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.4318159880183052
+    },
+    "3": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.7853822012808005
+    },
+    "4": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.9427776449184428
+    },
+    "5": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.7472024823964654
+    }
+  },
+  "num_valid": 40,
+  "num_runs": 40,
+  "num_byte_identical": 40,
+  "score": 1.7267945791535035,
+  "max_solve_seconds": 2.275001300033182,
+  "inputs_unchanged": true,
+  "wall_seconds": 342.1752372998744
+}

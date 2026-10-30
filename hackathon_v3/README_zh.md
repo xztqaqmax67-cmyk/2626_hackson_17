@@ -1,5 +1,7 @@
 # Hackathon v3：可攜式工作目錄
 
+**提交規範 v3.0 的獨立工程在 [submission/](submission/README.md)。** 本頁以下為保留的研究版；`solver.cpp`、`score.py`、`local_eval/` 不是新版提交入口。修改及 2～5 核重測見 [提交驗證報告](../SUBMISSION_REVIEW_20261030.md)。
+
 先讀儲存庫根目錄的 [HANDOFF_zh.md](../HANDOFF_zh.md)。本目錄包含目前 C++ 求解器、
 自製評分器、24 項測試、原版對照腳本及已完成的報告。
 求解器與 `local_eval/` 的演算法檔案和已驗證版本相同；本次整理只調整執行腳本、資料位置與說明。

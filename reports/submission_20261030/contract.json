@@ -1,0 +1,562 @@
+{
+  "old": {
+    "passed": 34,
+    "total": 34,
+    "tests": [
+      {
+        "test": "version",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "npu_sched old-v3 scene-b-20261030.1\n",
+        "stderr": ""
+      },
+      {
+        "test": "missing_input",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "usage: npu_sched graph.json -n N -o plan.json\n"
+      },
+      {
+        "test": "reject_--config",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "unknown option: --config\n"
+      },
+      {
+        "test": "reject_--time-limit",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "unknown option: --time-limit\n"
+      },
+      {
+        "test": "reject_--unknown",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "unknown option: --unknown\n"
+      },
+      {
+        "test": "invalid_core_0",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_1",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_6",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_4junk",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_4.0",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_-2",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "invalid value for -n\n"
+      },
+      {
+        "test": "missing_core",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "missing value for -n\n"
+      },
+      {
+        "test": "missing_output",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "missing value for --output\n"
+      },
+      {
+        "test": "empty_output",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "invalid value for --output\n"
+      },
+      {
+        "test": "duplicate_input",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "expected exactly one input graph\n"
+      },
+      {
+        "test": "duplicate_core",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "missing_file",
+        "expected": 3,
+        "actual": 3,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cannot open input graph\n"
+      },
+      {
+        "test": "bad_json",
+        "expected": 3,
+        "actual": 3,
+        "passed": true,
+        "stdout": "",
+        "stderr": "JSON at byte 2: expected string\n"
+      },
+      {
+        "test": "protect_input",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "output must not overwrite the input graph\n"
+      },
+      {
+        "test": "output_directory_is_file",
+        "expected": 4,
+        "actual": 4,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cannot create output directory: Cannot create a file when that file already exists.\n"
+      },
+      {
+        "test": "output_is_directory",
+        "expected": 4,
+        "actual": 4,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cannot create output file\n"
+      },
+      {
+        "test": "default_cores_and_output",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_2",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_2",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_3",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_3",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_4",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_4",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_5",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_5",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "config_before",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "ignore_conflicting_config",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "renamed_input",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "pipe_fix_and_copy_minus_one",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "minimal_scene_b_makespan": 6,
+    "minimal_added_copy_bytes": 0
+  },
+  "new": {
+    "passed": 34,
+    "total": 34,
+    "tests": [
+      {
+        "test": "version",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "npu_sched modular scene-b-20261030.1\n",
+        "stderr": ""
+      },
+      {
+        "test": "missing_input",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "usage: npu_sched graph.json -n N -o plan.json\n"
+      },
+      {
+        "test": "reject_--config",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "unknown option: --config\n"
+      },
+      {
+        "test": "reject_--time-limit",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "unknown option: --time-limit\n"
+      },
+      {
+        "test": "reject_--unknown",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "unknown option: --unknown\n"
+      },
+      {
+        "test": "invalid_core_0",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_1",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_6",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_4junk",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_4.0",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "invalid_core_-2",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "invalid value for -n\n"
+      },
+      {
+        "test": "missing_core",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "missing value for -n\n"
+      },
+      {
+        "test": "missing_output",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "missing value for --output\n"
+      },
+      {
+        "test": "empty_output",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "invalid value for --output\n"
+      },
+      {
+        "test": "duplicate_input",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "expected exactly one input graph\n"
+      },
+      {
+        "test": "duplicate_core",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cores must be an integer from 2 through 5, specified once\n"
+      },
+      {
+        "test": "missing_file",
+        "expected": 3,
+        "actual": 3,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cannot open input graph\n"
+      },
+      {
+        "test": "bad_json",
+        "expected": 3,
+        "actual": 3,
+        "passed": true,
+        "stdout": "",
+        "stderr": "[json.exception.parse_error.101] parse error at line 1, column 2: syntax error while parsing object key - invalid literal; last read: '{b'; expected string literal\n"
+      },
+      {
+        "test": "protect_input",
+        "expected": 2,
+        "actual": 2,
+        "passed": true,
+        "stdout": "",
+        "stderr": "output must not overwrite the input graph\n"
+      },
+      {
+        "test": "output_directory_is_file",
+        "expected": 4,
+        "actual": 4,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cannot create output directory: Cannot create a file when that file already exists.\n"
+      },
+      {
+        "test": "output_is_directory",
+        "expected": 4,
+        "actual": 4,
+        "passed": true,
+        "stdout": "",
+        "stderr": "cannot create output file\n"
+      },
+      {
+        "test": "default_cores_and_output",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_2",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_2",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_3",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_3",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_4",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_4",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "equals_syntax_5",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "different_cwd_5",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "config_before",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "ignore_conflicting_config",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "renamed_input",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "test": "pipe_fix_and_copy_minus_one",
+        "expected": 0,
+        "actual": 0,
+        "passed": true,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "minimal_scene_b_makespan": 6,
+    "minimal_added_copy_bytes": 0
+  }
+}

@@ -1,5 +1,7 @@
 # 前辈代码的 C++ 版本（Hackathon 场景 B）
 
+**提交規範 v3.0 的獨立工程在 [submission/](submission/README.md)。** 本頁其餘內容說明保留的研究版，含評分器與舊搜尋入口，請勿整個目錄提交。修改及實測見 [提交驗證報告](../SUBMISSION_REVIEW_20261030.md)。
+
 原目录内的 **25 个 Python 文件**均已对应移植，包括 `official_code` 中的问题 1、2、3 评估器。保留 `problem2/official_code/` 层次和原模块名称，函数声明放在 `.hpp`，实现放在同名 `.cpp`；包入口 `__init__.py` 对应 `__init__.hpp`。原 Python 源码和题目数据没有修改。
 
 算法使用原生 **C++17**，以标准 CMake 工程支持 **Windows / Linux**，运行时不调用 Python。关键步骤、数据结构和易混淆的执行规则有中文注释。`tests/` 中的 Python 只负责调用原版进行对照，不是运行依赖。

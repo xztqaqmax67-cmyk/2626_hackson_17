@@ -1,0 +1,26 @@
+[
+  {
+    "variant": "old",
+    "case": "case_08",
+    "cores": 2,
+    "gcc_version": "MinGW-w64 GCC 15.1.0, Windows",
+    "deterministic": true,
+    "plan_sha256": "374ae0799e0efea598696936a26d83873327614a2740f0f441ff20c17a9347ef",
+    "equal_to_msvc_plan": true,
+    "seconds": 0.8914524000138044,
+    "repeat_seconds": 0.7989274000283331,
+    "makespan": 14852622.0
+  },
+  {
+    "variant": "new",
+    "case": "case_09",
+    "cores": 4,
+    "gcc_version": "MinGW-w64 GCC 15.1.0, Windows",
+    "deterministic": true,
+    "plan_sha256": "ea6af1f955c1ced896573f8d3654bd39eb42ad7c393844ef887b05bdfdf046e5",
+    "equal_to_msvc_plan": true,
+    "seconds": 3.3665883999783546,
+    "repeat_seconds": 3.522766300011426,
+    "makespan": 7874794.0
+  }
+]

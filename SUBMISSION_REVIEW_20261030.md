@@ -1,0 +1,87 @@
+# 提交規範 v3.0 修改與重測紀錄（2026-10-30）
+
+已建立兩套獨立的 C++17 提交工程；原研究碼與評分器留在上層供比較。**提交時只打包其中一套 `submission/`，外層資料夾及 ZIP 使用實際隊伍編號。**
+
+| 工程 | 用途 | 說明 |
+| --- | --- | --- |
+| [hackathon_v3/submission](hackathon_v3/submission/README.md) | 舊算法提交版 | 管道多初解、分層、記憶體重排、局部遷移 |
+| [前辈代码_cpp/submission](前辈代码_cpp/submission/README.md) | 模組化新算法提交版 | 保留 core/pipeline/structure，移除研究版評分與程序管理 |
+| `hackathon_v3/solver.cpp`、`前辈代码_cpp/problem2/` | 保留研究版 | 舊介面仍存在，不能整包提交 |
+
+## 修改內容
+
+- 兩版統一入口 `npu_sched graph.json -n N -o plan.json`，支援 2～5 核、長選項空格／等號格式、預設檔名、自動建立輸出目錄、UTF-8 與空格路徑，按規範分類退出碼。
+- 固定 L1=1572864、UB=131072 bytes、DDR=60 bytes/cycle、同步=1000 cycles；提交版不讀 `config.txt`，不能用參數或環境覆蓋。舊版估價的同步起點已改為 COPY_OUT 完成。
+- 單執行緒、自主執行，不建立子程序、不使用網路或 stdin，不帶評分器、測試資料或預存答案。輸出只含兩個規定欄位，stdout 不輸出評分。
+- 搜尋依固定工作量停止，平手以固定順序處理，避免依牆鐘時間決定方案。
+- 兩版都將同一 Tensor 的寫入者放在同核，並篩除預估需要在最後一次寫入之前換出該 Tensor 的候選。前者避免本地寫回與跨核載入順序衝突，後者避免換出等待未完成寫入、未完成寫入又等記憶體的死鎖。
+- 舊版增加完整單核心拓撲／DFS 備選；新版減少候選評分時不必要的 JSON 序列化。
+- 新版僅攜帶 nlohmann/json 3.11.3 完整單頭檔及 MIT 授權；舊版無第三方依賴。兩套 CMake 不含下載或 `find_package`。
+
+## 舊版重新評測結果
+
+資料為 `hackathon_data/case_00.json`～`case_09.json`，各跑 2、3、4、5 核。**40/40 組通過 Scene B，40/40 組連續兩次輸出完全一致。**最慢一次方案生成 **2.275 秒**，全部低於 90 秒。
+
+| 核心數 | 通過 | 平均加速比 T1/TN | 平均額外搬運量／原始搬運量 |
+| --- | --- | --- | --- |
+| 2 | 10/10 | 1.431816 | 7.055653 |
+| 3 | 10/10 | 1.785382 | 8.816076 |
+| 4 | 10/10 | 1.942778 | 9.583193 |
+| 5 | 10/10 | 1.747202 | 10.812035 |
+
+四種核心數再平均：**1.726795**。這是新規範的平均加速比口徑，不是舊題 100 分制，也不是主辦方成績。
+
+| 用例 | 2 核 | 3 核 | 4 核 | 5 核 |
+| --- | --- | --- | --- | --- |
+| case_00 | 1.676789 | 2.271419 | 3.025186 | 2.947606 |
+| case_01 | 1.002792 | 1.002792 | 1.000000 | 1.000000 |
+| case_02 | 1.000000 | 1.000000 | 1.000000 | 1.000000 |
+| case_03 | 1.429793 | 1.955084 | 1.787095 | 2.074314 |
+| case_04 | 1.691659 | 2.255913 | 3.026963 | 2.481476 |
+| case_05 | 1.534709 | 2.368957 | 2.350346 | 2.146477 |
+| case_06 | 2.427239 | 3.564703 | 4.169621 | 2.950794 |
+| case_07 | 1.433948 | 1.241242 | 1.035917 | 0.949344 |
+| case_08 | 1.060018 | 1.236081 | 1.157619 | 1.101644 |
+| case_09 | 1.061213 | 0.957631 | 0.875030 | 0.820371 |
+
+評分在外部程序執行，使用原數模 Scene B 評分器的 C++ 移植。L1/UB/DDR/同步使用上述新常數；保留資料備註確認的 `PIPE_FIX`，支援 COPY 的 -1 佔位值。輸入資料和原 Python 評分器未修改。
+
+T1 是此前同圖、同硬體參數的本地 Scene A 單核結果；重用前核對了輸入 SHA-256 與參數，保留每個基準檔案的 SHA-256。主辦方內部單核基準尚未取得，因此不能宣稱正式得分。若基準改變，比例也會改變。
+
+原 Python 獨立抽查 `case_00 / 4 核` 和原先會死鎖的 `case_08 / 2 核`，整份評估 JSON 與 C++ 移植結果一致；僅在記憶體內補充 PIPE_FIX 及 COPY cycles 佔位值，沒有改寫評分器檔案。
+
+## 新版驗證
+
+新版完整測試仍在執行；此段完成後由同一工具更新。
+
+## 工程、介面與資源檢查
+
+- VS2022 / MSVC 19.44 Release：兩版編譯成功，產物位置皆為 `build/bin/npu_sched.exe`。
+- Windows MinGW-w64 GCC 15.1：兩版編譯成功；代表用例兩次一致、與 MSVC 方案逐位元組相同，並通過 Scene B。新版使用獨立 ASCII 路徑源碼副本驗證，因本機 `mingw32-make` 無法解析中文工程路徑；MSVC 原中文工程路徑可用，兩版 GCC 執行檔也可讀寫中文與空格路徑。
+- 兩版各 34 項 CLI／檔案測試通過：非法核心數、未知選項、缺值、缺檔、非法 JSON、不可寫目錄、預設路徑、不同 cwd、輸入改名、不讀衝突設定檔等。
+- 文件附錄最小範例在兩版、2～5 核均為 makespan 6、額外搬運 0；另驗證 PIPE_FIX 與 COPY -1。
+- `case_05 / 5 核` 資源抽測：舊版工作集峰值約 83.4 MiB，新版約 135.7 MiB；兩者最高觀察到 4 個 OS 程序執行緒，未觀察到子程序。算法本身沒有建立額外執行緒；取樣不能替代所有隱藏資料的資源界限證明。
+- **尚未完成真實 Linux GCC 9.4／11 驗收**：本機沒有可用 WSL/Linux。Windows GCC 測試不等同 Linux 測試。程式使用 C++17 標準庫，Windows API 已用 `_WIN32` 隔離，但正式提交前仍應在指定 Linux 環境執行建置及測試。
+- 固定工作量與本機 90 秒內通過不構成任意大小輸入的時間保證；內部記憶體檢查是保守風險篩選，未知圖仍以外部正式評分器驗收為準。
+
+## 檔案與重跑
+
+精簡證據已存入 [reports/submission_20261030](reports/submission_20261030/old_summary.json)，其中有逐例 CSV/JSON、兩版摘要、CLI 結果、GCC、Python 對照與資源量測。完整方案、評分時間線及 stdout/stderr 在本機 `output/submission_review_20261030/old_final/` 與 `new_final/`，這些大型可再生產物受 `.gitignore` 排除。
+
+從倉庫根目錄重跑（先按研究版 README 建立外部 `parity_runner`、`singlecore_evaluate`，另按各提交 README 建立 `npu_sched`）：
+
+```powershell
+python tools/benchmark_submissions.py --variant old --output output/old_fresh_run
+python tools/benchmark_submissions.py --variant new --output output/new_fresh_run
+```
+
+可用 `--solver`、`--evaluator` 指定執行檔，`--cases`、`--cores` 指定子集。新電腦沒有舊基準記錄時，腳本會由外部單核評分器計算並快取。測試工具可以使用設定檔與子程序；它們不在提交工程內。
+
+打包時替換成真實隊伍編號，兩個版本放在不同輸出目錄：
+
+```powershell
+python tools/package_submission.py --variant old --team-id T0123 --output-dir output/packages/old
+python tools/package_submission.py --variant new --team-id T0123 --output-dir output/packages/new
+```
+
+每個 ZIP 只有隊伍編號根目錄、CMake、README、算法源碼及必要第三方源碼；另外產生包外 SHA-256 清單。T0123 僅為文件範例，尚未代填實際隊伍編號。本次未提交 Git commit，也未推送 GitHub。
