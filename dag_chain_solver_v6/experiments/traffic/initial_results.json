@@ -1,0 +1,673 @@
+{
+  "experiment": "warm_start_fixed_candidates",
+  "not_end_to_end_search": true,
+  "family": "lifetime",
+  "limit_per_family": 24,
+  "max_new_official_per_case": 3,
+  "driver_sha256": "1e94412c9a6fd94d08ece9b3157505e6ae2d7d3294d5cf9ea1b359aee576bbe5",
+  "script_sha256": "c40937b14b21ff007128bd64c36a2a1b8cd89659e44f189be0bb73e766963095",
+  "caveat": "Starts from saved 0.6.2 plans. Preprocessing and candidate evaluation costs are recorded separately. Shortlisted official results screen directions and do not replace a fresh end-to-end benchmark.",
+  "completed": true,
+  "rows": [
+    {
+      "case": "case_03",
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "starting_plan_sha256": "b1ca20170cc4278cb17c63c3f21f7c9ef82ee662b606a56685259614e9b44cb4",
+      "official": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.014609,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "b1ca20170cc4278cb17c63c3f21f7c9ef82ee662b606a56685259614e9b44cb4",
+          "status": "ok",
+          "cycles": 3649153,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 39845888,
+            "scheduled_copy_bytes": 218497024,
+            "added_copy_bytes": 178651136,
+            "partition_added_copy_bytes": 25165824,
+            "spill_added_copy_bytes": 153485312
+          },
+          "official_seconds": 1.3827788999988115,
+          "result_sha256": "225cd542c37df363cb0ab6f8a1420fbd895b0989b80c522766c3c41bd1d9341e"
+        },
+        {
+          "id": 1,
+          "label": "lifetime_254_core0_early_last_use_5767",
+          "valid": true,
+          "evaluation_seconds": 0.014642,
+          "plan": "candidate_1.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "fc6c853ab031f5382271c0e035c999e4d5709a949550556c2acd1350d52b7e4f",
+          "status": "ok",
+          "cycles": 3649153,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 39845888,
+            "scheduled_copy_bytes": 218497024,
+            "added_copy_bytes": 178651136,
+            "partition_added_copy_bytes": 25165824,
+            "spill_added_copy_bytes": 153485312
+          },
+          "official_seconds": 1.4043802000014693,
+          "result_sha256": "93469a64d3670edf0dc75bb7db3357cfc9e5327507478f7daffb978ad0bf8c54"
+        },
+        {
+          "id": 2,
+          "label": "lifetime_254_core0_outside_before_46",
+          "valid": true,
+          "evaluation_seconds": 0.014628,
+          "plan": "candidate_2.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "a5e4206d89f34dacdbe418e4e4cbd292a782c14f4982586d8f69b7fc9f6e13f5",
+          "status": "ok",
+          "cycles": 3649153,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 39845888,
+            "scheduled_copy_bytes": 218497024,
+            "added_copy_bytes": 178651136,
+            "partition_added_copy_bytes": 25165824,
+            "spill_added_copy_bytes": 153485312
+          },
+          "official_seconds": 1.3962451000043075,
+          "result_sha256": "757be602778e55ff01558e8e0222a50d0da8461f64910642a9466578d882d5db"
+        },
+        {
+          "id": 3,
+          "label": "lifetime_254_core1_early_last_use_5815",
+          "valid": true,
+          "evaluation_seconds": 0.015626,
+          "plan": "candidate_3.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "434c27e1f320b12289df787530e60b8c3d289cb15b5196d914e5020bae1ba588",
+          "status": "ok",
+          "cycles": 3649153,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 39845888,
+            "scheduled_copy_bytes": 218497024,
+            "added_copy_bytes": 178651136,
+            "partition_added_copy_bytes": 25165824,
+            "spill_added_copy_bytes": 153485312
+          },
+          "official_seconds": 1.3889079000000493,
+          "result_sha256": "bbce0215a5f140860bbf5e9a3ed781574f3bd53b30f23d7b4d6088e34f206b34"
+        }
+      ],
+      "screened": true,
+      "screen_process_seconds": 0.7624237999989418,
+      "screening": {
+        "experiment": "warm_start_fixed_candidates",
+        "not_end_to_end_search": true,
+        "family": "lifetime",
+        "cores": 5,
+        "limit_per_family": 24,
+        "proposed": 14,
+        "duplicates": 0,
+        "preprocessing_seconds": 0.070736,
+        "construction_seconds": 0.001445,
+        "evaluation_seconds": 0.21907,
+        "serialization_seconds": 0.043365,
+        "process_seconds": 0.336966
+      },
+      "shortlist": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.014609,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "b1ca20170cc4278cb17c63c3f21f7c9ef82ee662b606a56685259614e9b44cb4"
+        },
+        {
+          "id": 1,
+          "label": "lifetime_254_core0_early_last_use_5767",
+          "valid": true,
+          "evaluation_seconds": 0.014642,
+          "plan": "candidate_1.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "fc6c853ab031f5382271c0e035c999e4d5709a949550556c2acd1350d52b7e4f"
+        },
+        {
+          "id": 2,
+          "label": "lifetime_254_core0_outside_before_46",
+          "valid": true,
+          "evaluation_seconds": 0.014628,
+          "plan": "candidate_2.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "a5e4206d89f34dacdbe418e4e4cbd292a782c14f4982586d8f69b7fc9f6e13f5"
+        },
+        {
+          "id": 3,
+          "label": "lifetime_254_core1_early_last_use_5815",
+          "valid": true,
+          "evaluation_seconds": 0.015626,
+          "plan": "candidate_3.json",
+          "estimated_cycles": 3649541,
+          "route_bytes": 65011712,
+          "spill_bytes": 153485312,
+          "copy_bytes": 218497024,
+          "plan_sha256": "434c27e1f320b12289df787530e60b8c3d289cb15b5196d914e5020bae1ba588"
+        }
+      ],
+      "screen_sha256": "bb4cf8bc504c7e36ed14d8e6c34f28daa2370f3d08663d860ff7c0b2b3f4c167",
+      "evaluated": true
+    },
+    {
+      "case": "case_05",
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "starting_plan_sha256": "f08c8789b4f39c8da2dc4090bb76f71f43c7ef7b8cdc7929b54520b51113f28a",
+      "official": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.047617,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 9068073.79432889,
+          "route_bytes": 159186944,
+          "spill_bytes": 383680512,
+          "copy_bytes": 542867456,
+          "plan_sha256": "f08c8789b4f39c8da2dc4090bb76f71f43c7ef7b8cdc7929b54520b51113f28a",
+          "status": "ok",
+          "cycles": 9083106,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 81788928,
+            "scheduled_copy_bytes": 542867456,
+            "added_copy_bytes": 461078528,
+            "partition_added_copy_bytes": 77398016,
+            "spill_added_copy_bytes": 383680512
+          },
+          "official_seconds": 5.187452799997118,
+          "result_sha256": "7c458a604f61c231857572fc00475a07f29e6436432eb6079135e2169cba8c90"
+        },
+        {
+          "id": 1,
+          "label": "lifetime_60_core1_early_last_use_1509",
+          "valid": true,
+          "evaluation_seconds": 0.049086,
+          "plan": "candidate_1.json",
+          "estimated_cycles": 9070051.72776862,
+          "route_bytes": 159186944,
+          "spill_bytes": 383811584,
+          "copy_bytes": 542998528,
+          "plan_sha256": "aadb2ae303d56cb4248faf733192143efde5acfdb5e6303ebe2ef03aa1240ed4",
+          "status": "ok",
+          "cycles": 9084787,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 81788928,
+            "scheduled_copy_bytes": 542998528,
+            "added_copy_bytes": 461209600,
+            "partition_added_copy_bytes": 77398016,
+            "spill_added_copy_bytes": 383811584
+          },
+          "official_seconds": 5.384009599998535,
+          "result_sha256": "c730b9e33e6733919512f58cc250b849659c2196899b6ff4980bb3418d99073e"
+        }
+      ],
+      "screened": true,
+      "screen_process_seconds": 0.5246125999983633,
+      "screening": {
+        "experiment": "warm_start_fixed_candidates",
+        "not_end_to_end_search": true,
+        "family": "lifetime",
+        "cores": 5,
+        "limit_per_family": 24,
+        "proposed": 1,
+        "duplicates": 0,
+        "preprocessing_seconds": 0.207846,
+        "construction_seconds": 0.002238,
+        "evaluation_seconds": 0.096703,
+        "serialization_seconds": 0.017682,
+        "process_seconds": 0.325121
+      },
+      "shortlist": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.047617,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 9068073.79432889,
+          "route_bytes": 159186944,
+          "spill_bytes": 383680512,
+          "copy_bytes": 542867456,
+          "plan_sha256": "f08c8789b4f39c8da2dc4090bb76f71f43c7ef7b8cdc7929b54520b51113f28a"
+        },
+        {
+          "id": 1,
+          "label": "lifetime_60_core1_early_last_use_1509",
+          "valid": true,
+          "evaluation_seconds": 0.049086,
+          "plan": "candidate_1.json",
+          "estimated_cycles": 9070051.72776862,
+          "route_bytes": 159186944,
+          "spill_bytes": 383811584,
+          "copy_bytes": 542998528,
+          "plan_sha256": "aadb2ae303d56cb4248faf733192143efde5acfdb5e6303ebe2ef03aa1240ed4"
+        }
+      ],
+      "screen_sha256": "6277a746b10d2fcd10593c936368676cf2229e77449bdb89838c6d18401bc331",
+      "evaluated": true
+    },
+    {
+      "case": "case_08",
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "starting_plan_sha256": "a378d1838633bc27d37810b2ce62498d89518615fc6a8ae10d1ff9e61da35c07",
+      "official": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.035094,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 7126425.83988186,
+          "route_bytes": 211058976,
+          "spill_bytes": 149422976,
+          "copy_bytes": 360481952,
+          "plan_sha256": "a378d1838633bc27d37810b2ce62498d89518615fc6a8ae10d1ff9e61da35c07",
+          "status": "ok",
+          "cycles": 7004268,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 37961696,
+            "scheduled_copy_bytes": 360486944,
+            "added_copy_bytes": 322525248,
+            "partition_added_copy_bytes": 173097280,
+            "spill_added_copy_bytes": 149427968
+          },
+          "official_seconds": 3.6874465000000782,
+          "result_sha256": "ed01c379409125fac9f06db1d0593340199afe8bb8db3373176b2c1eb8a7f68d"
+        },
+        {
+          "id": 4,
+          "label": "lifetime_2970_core3_early_last_use_12377",
+          "valid": true,
+          "evaluation_seconds": 0.0337,
+          "plan": "candidate_4.json",
+          "estimated_cycles": 7121318.20752105,
+          "route_bytes": 211058976,
+          "spill_bytes": 149527424,
+          "copy_bytes": 360586400,
+          "plan_sha256": "82214cd115e667306a9bf7fbdc63ffe2cee29f2191b718c60a9c87871d5806fb",
+          "status": "ok",
+          "cycles": 7007920,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 37961696,
+            "scheduled_copy_bytes": 360591392,
+            "added_copy_bytes": 322629696,
+            "partition_added_copy_bytes": 173097280,
+            "spill_added_copy_bytes": 149532416
+          },
+          "official_seconds": 3.680504200005089,
+          "result_sha256": "db1b0b53877e04c66c04fb711dccf33bf7469b2e4d8c3a1ecfed750f226537b5"
+        },
+        {
+          "id": 3,
+          "label": "lifetime_10831_core3_late_first_use_8280",
+          "valid": true,
+          "evaluation_seconds": 0.033542,
+          "plan": "candidate_3.json",
+          "estimated_cycles": 7125770.81524939,
+          "route_bytes": 211058976,
+          "spill_bytes": 149422976,
+          "copy_bytes": 360481952,
+          "plan_sha256": "70d2cef2991d72188fe9f1dbb839dfe9e336fdb99554eed76352e02dab5f3744",
+          "status": "ok",
+          "cycles": 7006815,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 37961696,
+            "scheduled_copy_bytes": 360486944,
+            "added_copy_bytes": 322525248,
+            "partition_added_copy_bytes": 173097280,
+            "spill_added_copy_bytes": 149427968
+          },
+          "official_seconds": 3.713430799994967,
+          "result_sha256": "b9d89c32507866555478471b3a8cab200679b27d37786984e9ed84f7dabc4052"
+        }
+      ],
+      "screened": true,
+      "screen_process_seconds": 0.8746186999997008,
+      "screening": {
+        "experiment": "warm_start_fixed_candidates",
+        "not_end_to_end_search": true,
+        "family": "lifetime",
+        "cores": 5,
+        "limit_per_family": 24,
+        "proposed": 7,
+        "duplicates": 0,
+        "preprocessing_seconds": 0.150382,
+        "construction_seconds": 0.003122,
+        "evaluation_seconds": 0.272347,
+        "serialization_seconds": 0.047255,
+        "process_seconds": 0.475481
+      },
+      "shortlist": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.035094,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 7126425.83988186,
+          "route_bytes": 211058976,
+          "spill_bytes": 149422976,
+          "copy_bytes": 360481952,
+          "plan_sha256": "a378d1838633bc27d37810b2ce62498d89518615fc6a8ae10d1ff9e61da35c07"
+        },
+        {
+          "id": 4,
+          "label": "lifetime_2970_core3_early_last_use_12377",
+          "valid": true,
+          "evaluation_seconds": 0.0337,
+          "plan": "candidate_4.json",
+          "estimated_cycles": 7121318.20752105,
+          "route_bytes": 211058976,
+          "spill_bytes": 149527424,
+          "copy_bytes": 360586400,
+          "plan_sha256": "82214cd115e667306a9bf7fbdc63ffe2cee29f2191b718c60a9c87871d5806fb"
+        },
+        {
+          "id": 3,
+          "label": "lifetime_10831_core3_late_first_use_8280",
+          "valid": true,
+          "evaluation_seconds": 0.033542,
+          "plan": "candidate_3.json",
+          "estimated_cycles": 7125770.81524939,
+          "route_bytes": 211058976,
+          "spill_bytes": 149422976,
+          "copy_bytes": 360481952,
+          "plan_sha256": "70d2cef2991d72188fe9f1dbb839dfe9e336fdb99554eed76352e02dab5f3744"
+        }
+      ],
+      "screen_sha256": "584ea8a95088caae3793dbc66040f5d12229a62b737b463fcbe5ee73fa044ab5",
+      "evaluated": true
+    },
+    {
+      "case": "case_07",
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "starting_plan_sha256": "9348b3a77864ce51a7d172624691327963197ea8ca19950769d35dc19953a7ae",
+      "official": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.035059,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 2484440.55883406,
+          "route_bytes": 95143136,
+          "spill_bytes": 27625792,
+          "copy_bytes": 122768928,
+          "plan_sha256": "9348b3a77864ce51a7d172624691327963197ea8ca19950769d35dc19953a7ae",
+          "status": "ok",
+          "cycles": 2496548,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 23533536,
+            "scheduled_copy_bytes": 122768928,
+            "added_copy_bytes": 99235392,
+            "partition_added_copy_bytes": 71609600,
+            "spill_added_copy_bytes": 27625792
+          },
+          "official_seconds": 3.815621800000372,
+          "result_sha256": "dc80e80c944bf55fcef80e1e01cc497d835cc7142eb7144e2c1c3db2fd985b21"
+        },
+        {
+          "id": 12,
+          "label": "lifetime_753_core0_early_last_use_10770",
+          "valid": true,
+          "evaluation_seconds": 0.034451,
+          "plan": "candidate_12.json",
+          "estimated_cycles": 2484304.55883406,
+          "route_bytes": 95143136,
+          "spill_bytes": 27625792,
+          "copy_bytes": 122768928,
+          "plan_sha256": "c222cc32cce283d7dcc9897a976345d9a57629c3cee2e49572d402ec3ca879df",
+          "status": "ok",
+          "cycles": 2496548,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 23533536,
+            "scheduled_copy_bytes": 122768928,
+            "added_copy_bytes": 99235392,
+            "partition_added_copy_bytes": 71609600,
+            "spill_added_copy_bytes": 27625792
+          },
+          "official_seconds": 3.822829799995816,
+          "result_sha256": "341c49d793aaa4ffff4ca25511feb7062ed25302cd14b5e1c7badcf42ceab0b4"
+        },
+        {
+          "id": 14,
+          "label": "lifetime_752_core0_early_last_use_10769",
+          "valid": true,
+          "evaluation_seconds": 0.033416,
+          "plan": "candidate_14.json",
+          "estimated_cycles": 2484304.55883406,
+          "route_bytes": 95143136,
+          "spill_bytes": 27625792,
+          "copy_bytes": 122768928,
+          "plan_sha256": "680fc2a6e28ae33b0178d9242c1520f35e5f10badbb5ae37728d270ad14f0c0e",
+          "status": "ok",
+          "cycles": 2496548,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 23533536,
+            "scheduled_copy_bytes": 122768928,
+            "added_copy_bytes": 99235392,
+            "partition_added_copy_bytes": 71609600,
+            "spill_added_copy_bytes": 27625792
+          },
+          "official_seconds": 3.8712960999982897,
+          "result_sha256": "b7332b8385955ac23c4cc4656f16361b3cc7d46acf65a22aacc1d4b2d35d0227"
+        }
+      ],
+      "screened": true,
+      "screen_process_seconds": 1.6304215999989538,
+      "screening": {
+        "experiment": "warm_start_fixed_candidates",
+        "not_end_to_end_search": true,
+        "family": "lifetime",
+        "cores": 5,
+        "limit_per_family": 24,
+        "proposed": 15,
+        "duplicates": 0,
+        "preprocessing_seconds": 0.171515,
+        "construction_seconds": 0.004703,
+        "evaluation_seconds": 0.548427,
+        "serialization_seconds": 0.112694,
+        "process_seconds": 0.842751
+      },
+      "shortlist": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.035059,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 2484440.55883406,
+          "route_bytes": 95143136,
+          "spill_bytes": 27625792,
+          "copy_bytes": 122768928,
+          "plan_sha256": "9348b3a77864ce51a7d172624691327963197ea8ca19950769d35dc19953a7ae"
+        },
+        {
+          "id": 12,
+          "label": "lifetime_753_core0_early_last_use_10770",
+          "valid": true,
+          "evaluation_seconds": 0.034451,
+          "plan": "candidate_12.json",
+          "estimated_cycles": 2484304.55883406,
+          "route_bytes": 95143136,
+          "spill_bytes": 27625792,
+          "copy_bytes": 122768928,
+          "plan_sha256": "c222cc32cce283d7dcc9897a976345d9a57629c3cee2e49572d402ec3ca879df"
+        },
+        {
+          "id": 14,
+          "label": "lifetime_752_core0_early_last_use_10769",
+          "valid": true,
+          "evaluation_seconds": 0.033416,
+          "plan": "candidate_14.json",
+          "estimated_cycles": 2484304.55883406,
+          "route_bytes": 95143136,
+          "spill_bytes": 27625792,
+          "copy_bytes": 122768928,
+          "plan_sha256": "680fc2a6e28ae33b0178d9242c1520f35e5f10badbb5ae37728d270ad14f0c0e"
+        }
+      ],
+      "screen_sha256": "b9885fa9fc56ca4194be53c2620fdbbbae1544b27641e3c2bf7d15674b1a4c47",
+      "evaluated": true
+    },
+    {
+      "case": "case_09",
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "starting_plan_sha256": "57183381d0463a15416e92fb1ad23072581c0070f5a60b05d948a722b4f881c3",
+      "official": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.032757,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 3861614.9946619,
+          "route_bytes": 93258944,
+          "spill_bytes": 71343168,
+          "copy_bytes": 164602112,
+          "plan_sha256": "57183381d0463a15416e92fb1ad23072581c0070f5a60b05d948a722b4f881c3",
+          "status": "ok",
+          "cycles": 3782168,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 10180992,
+            "scheduled_copy_bytes": 164607744,
+            "added_copy_bytes": 154426752,
+            "partition_added_copy_bytes": 83077952,
+            "spill_added_copy_bytes": 71348800
+          },
+          "official_seconds": 4.23450060000323,
+          "result_sha256": "5a192692a539f19e987192f39c7798c9edac9688c3b3ee29439c057ae285d4c4"
+        },
+        {
+          "id": 2,
+          "label": "lifetime_7877_core2_late_first_use_11928",
+          "valid": true,
+          "evaluation_seconds": 0.031672,
+          "plan": "candidate_2.json",
+          "estimated_cycles": 3861614.9946619,
+          "route_bytes": 93258944,
+          "spill_bytes": 71343168,
+          "copy_bytes": 164602112,
+          "plan_sha256": "56841fb5b4a4dfa848a4f7c3b6ec6aa2ee3cee3d2954c8f101b14eec88f61541",
+          "status": "ok",
+          "cycles": 3782168,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 10180992,
+            "scheduled_copy_bytes": 164607744,
+            "added_copy_bytes": 154426752,
+            "partition_added_copy_bytes": 83077952,
+            "spill_added_copy_bytes": 71348800
+          },
+          "official_seconds": 5.024442000001727,
+          "result_sha256": "12b7f6e8bfa586ead3bc2a966dba048acde07cc5d00902eaf38223c46a632f62"
+        },
+        {
+          "id": 1,
+          "label": "lifetime_7880_core2_late_first_use_8445",
+          "valid": true,
+          "evaluation_seconds": 0.031717,
+          "plan": "candidate_1.json",
+          "estimated_cycles": 3868037.65931999,
+          "route_bytes": 93258944,
+          "spill_bytes": 71306048,
+          "copy_bytes": 164564992,
+          "plan_sha256": "e5203830e7d3194e00d0a3ca75db53f630332fd42e6b11c0f41602a65a621b6d",
+          "status": "ok",
+          "cycles": 3781308,
+          "data_movement_bytes": {
+            "original_graph_copy_bytes": 10180992,
+            "scheduled_copy_bytes": 164570624,
+            "added_copy_bytes": 154389632,
+            "partition_added_copy_bytes": 83077952,
+            "spill_added_copy_bytes": 71311680
+          },
+          "official_seconds": 4.4566694000022835,
+          "result_sha256": "ca9b67a0b58fadb6eecc01537c0da05c821b508f332b658f0a70861515d574e6"
+        }
+      ],
+      "screened": true,
+      "screen_process_seconds": 0.8881534000029205,
+      "screening": {
+        "experiment": "warm_start_fixed_candidates",
+        "not_end_to_end_search": true,
+        "family": "lifetime",
+        "cores": 5,
+        "limit_per_family": 24,
+        "proposed": 7,
+        "duplicates": 0,
+        "preprocessing_seconds": 0.168664,
+        "construction_seconds": 0.002248,
+        "evaluation_seconds": 0.254684,
+        "serialization_seconds": 0.043898,
+        "process_seconds": 0.471876
+      },
+      "shortlist": [
+        {
+          "id": 0,
+          "label": "baseline",
+          "valid": true,
+          "evaluation_seconds": 0.032757,
+          "plan": "candidate_0.json",
+          "estimated_cycles": 3861614.9946619,
+          "route_bytes": 93258944,
+          "spill_bytes": 71343168,
+          "copy_bytes": 164602112,
+          "plan_sha256": "57183381d0463a15416e92fb1ad23072581c0070f5a60b05d948a722b4f881c3"
+        },
+        {
+          "id": 2,
+          "label": "lifetime_7877_core2_late_first_use_11928",
+          "valid": true,
+          "evaluation_seconds": 0.031672,
+          "plan": "candidate_2.json",
+          "estimated_cycles": 3861614.9946619,
+          "route_bytes": 93258944,
+          "spill_bytes": 71343168,
+          "copy_bytes": 164602112,
+          "plan_sha256": "56841fb5b4a4dfa848a4f7c3b6ec6aa2ee3cee3d2954c8f101b14eec88f61541"
+        },
+        {
+          "id": 1,
+          "label": "lifetime_7880_core2_late_first_use_8445",
+          "valid": true,
+          "evaluation_seconds": 0.031717,
+          "plan": "candidate_1.json",
+          "estimated_cycles": 3868037.65931999,
+          "route_bytes": 93258944,
+          "spill_bytes": 71306048,
+          "copy_bytes": 164564992,
+          "plan_sha256": "e5203830e7d3194e00d0a3ca75db53f630332fd42e6b11c0f41602a65a621b6d"
+        }
+      ],
+      "screen_sha256": "8291920b410df97b7e1cde8e0d0795d3945042517f00b469f469189826457991",
+      "evaluated": true
+    }
+  ]
+}

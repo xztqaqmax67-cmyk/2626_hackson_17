@@ -20,7 +20,7 @@ def run(args,code):
     r=subprocess.run([str(exe),*map(str,args)],cwd=root,encoding="utf-8",errors="replace",capture_output=True,timeout=30)
     assert r.returncode==code,(args,r.returncode,r.stdout,r.stderr)
     return r
-assert "0.6.2" in run(["--version"],0).stdout
+assert "0.6.3" in run(["--version"],0).stdout
 target=root/"nested"/"方案.json"
 run([source,"--cores=2","--output="+str(target)],0)
 first=target.read_bytes();run([source,"-n","2","-o",target],0)

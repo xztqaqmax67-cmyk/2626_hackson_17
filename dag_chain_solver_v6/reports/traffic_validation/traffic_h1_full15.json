@@ -1,0 +1,222 @@
+{
+  "mode": "full",
+  "requested_seconds": 15.0,
+  "cores": 5,
+  "meaning": "Resume excludes frozen-seed preparation; use full mode for end-to-end evidence.",
+  "executable_sha256": "008cc566d5068e1500bbe377cea8003b449129cec83ad771277db24d3d0c73b6",
+  "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+  "official_source_sha256": {
+    "contest_io.py": "3deb2d3179f7b02063edc55beb236f525fa8fed5884ce1ca5b1fe89156c63a52",
+    "evaluation_validation.py": "99ef09a446b2d9752a83584629c5a158118ae3d7026bbb4723a648d5bc74126f",
+    "multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "schedule_step2.py": "b80256b9b9e1a2d3ec2a42cf4938123da76ed959bab24fc8dadb8aac32f457d1",
+    "schedule_step3.py": "424fea21c6cec1c170fe5b0e4e08c5bb48f24ccb08b5fb38a836a2cb528d7466",
+    "singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "stub_multicore_cut_and_schedule.py": "9ae9ae4e8875e348e4e2e8f97b78e709bf88e6d0cbcc0bcd888707d34dfcd3ae"
+  },
+  "rows": [
+    {
+      "case": "case_07",
+      "policy": 0,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "19ac3aab97f2770b8398503fc7ec6b4ab572ebba444325f2d1d51a9477739325",
+      "wall_seconds": 14.989358800004993,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.861276,
+        "search_seconds": 14.854145,
+        "seed_seconds": 7.204345,
+        "attempted": 890,
+        "unique": 293,
+        "refined": 69,
+        "internal_cycles": 2649417.10869901,
+        "internal_bytes": 125552416,
+        "label": "timed_lane0_family1_7"
+      },
+      "status": "ok",
+      "plan": "case_07\\0\\plan.json",
+      "cycles": 2635012,
+      "copy_bytes": 125552416,
+      "movement": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 125552416,
+        "added_copy_bytes": 102018880,
+        "partition_added_copy_bytes": 71609600,
+        "spill_added_copy_bytes": 30409280
+      },
+      "result_sha256": "aef3511599b48a5847991d5880de063dbdfa23f37714df04e519e0f96f5faab9"
+    },
+    {
+      "case": "case_07",
+      "policy": 1,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "5063cd014f93d5ac5c78b512dd85eed19bb17ab1e5793f36ebbe4ed067b6a36b",
+      "wall_seconds": 15.050018099995214,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.870745,
+        "search_seconds": 14.854092,
+        "seed_seconds": 8.171781,
+        "attempted": 583,
+        "unique": 227,
+        "refined": 54,
+        "internal_cycles": 2476195.93828108,
+        "internal_bytes": 124496096,
+        "label": "timed_lane0_family0_5"
+      },
+      "status": "ok",
+      "plan": "case_07\\1\\plan.json",
+      "cycles": 2464855,
+      "copy_bytes": 124496096,
+      "movement": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 124496096,
+        "added_copy_bytes": 100962560,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 29422592
+      },
+      "result_sha256": "3bb97fb900a260c481c045f042ed6ec2bb8385abebf02117a11ef0f75a612feb"
+    },
+    {
+      "case": "case_08",
+      "policy": 1,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "f79b522909aa1d83a0180a282d82b98b3d774ba12fce7c78dc933e7b7b4162a0",
+      "wall_seconds": 15.023933900003613,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.867678,
+        "search_seconds": 14.852382,
+        "seed_seconds": 10.340579,
+        "attempted": 415,
+        "unique": 168,
+        "refined": 33,
+        "internal_cycles": 6808361.49213939,
+        "internal_bytes": 362888032,
+        "label": "timed_lane0_family0_5"
+      },
+      "status": "ok",
+      "plan": "case_08\\1\\plan.json",
+      "cycles": 6695501,
+      "copy_bytes": 362905440,
+      "movement": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 362905440,
+        "added_copy_bytes": 324943744,
+        "partition_added_copy_bytes": 184229824,
+        "spill_added_copy_bytes": 140713920
+      },
+      "result_sha256": "02af41ecf1626f2558716b86aa648d1ce0d4dc8b229077773187517f043408fa"
+    },
+    {
+      "case": "case_08",
+      "policy": 0,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+      "wall_seconds": 14.986057599999185,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.862501,
+        "search_seconds": 14.854572,
+        "seed_seconds": 10.329584,
+        "attempted": 507,
+        "unique": 195,
+        "refined": 45,
+        "internal_cycles": 7126425.83988186,
+        "internal_bytes": 360481952,
+        "label": "region_bands4_dfs_writer_repair"
+      },
+      "status": "ok",
+      "plan": "case_08\\0\\plan.json",
+      "reused_identical_plan_evaluation": true,
+      "cycles": 7004268,
+      "copy_bytes": 360486944,
+      "movement": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 360486944,
+        "added_copy_bytes": 322525248,
+        "partition_added_copy_bytes": 173097280,
+        "spill_added_copy_bytes": 149427968
+      },
+      "result_sha256": "4181550602b18e72e2d32da60405dac7138aa2ffef82372ebd25a6012497b430"
+    },
+    {
+      "case": "case_09",
+      "policy": 0,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "d204634f317806b4c29c5945957973def8eeddc4e1c511edc829872853a3578c",
+      "wall_seconds": 14.991835500004527,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.861494,
+        "search_seconds": 14.853534,
+        "seed_seconds": 7.795644,
+        "attempted": 927,
+        "unique": 350,
+        "refined": 81,
+        "internal_cycles": 3861614.9946619,
+        "internal_bytes": 164602112,
+        "label": "timed_lane0_family2_5"
+      },
+      "status": "ok",
+      "plan": "case_09\\0\\plan.json",
+      "cycles": 3782168,
+      "copy_bytes": 164607744,
+      "movement": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 164607744,
+        "added_copy_bytes": 154426752,
+        "partition_added_copy_bytes": 83077952,
+        "spill_added_copy_bytes": 71348800
+      },
+      "result_sha256": "9789e441952d468d7ca5049ac6d57c380e6368036810cc12d0e75a6609dde986"
+    },
+    {
+      "case": "case_09",
+      "policy": 1,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "34a0eae14d3b306ccac9d1a1969533aa6413de1b86a54d960bb4502a467c3438",
+      "wall_seconds": 14.986623000004329,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.860761,
+        "search_seconds": 14.853356,
+        "seed_seconds": 7.283323,
+        "attempted": 828,
+        "unique": 270,
+        "refined": 63,
+        "internal_cycles": 3873338.67876059,
+        "internal_bytes": 166587840,
+        "label": "chain_7_dfs"
+      },
+      "status": "ok",
+      "plan": "case_09\\1\\plan.json",
+      "cycles": 3777501,
+      "copy_bytes": 166593984,
+      "movement": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 166593984,
+        "added_copy_bytes": 156412992,
+        "partition_added_copy_bytes": 82633536,
+        "spill_added_copy_bytes": 73779456
+      },
+      "result_sha256": "5e8d815da33ecee531fed3da1b71d653b216551b24b3f8426cc0ad12d898a50b"
+    }
+  ],
+  "completed": true
+}

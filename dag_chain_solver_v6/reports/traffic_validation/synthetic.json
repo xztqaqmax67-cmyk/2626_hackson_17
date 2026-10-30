@@ -1,0 +1,694 @@
+{
+  "version": "0.6.3",
+  "public_benchmark_inputs_used": false,
+  "purpose": "General structural and rule regression checks; finite tests are not a universal proof.",
+  "fixture_count": 16,
+  "requested_cores": [
+    5
+  ],
+  "solver_executable_sha256": "c1f69656f3ece3967cc742a7bbd08c2a7f8c33ebdb18f7a867ab233b3de7e561",
+  "official_source_sha256": {
+    "code/contest_io.py": "3deb2d3179f7b02063edc55beb236f525fa8fed5884ce1ca5b1fe89156c63a52",
+    "code/evaluation_validation.py": "99ef09a446b2d9752a83584629c5a158118ae3d7026bbb4723a648d5bc74126f",
+    "code/multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "code/multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "code/multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "code/schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "code/schedule_step2.py": "b80256b9b9e1a2d3ec2a42cf4938123da76ed959bab24fc8dadb8aac32f457d1",
+    "code/schedule_step3.py": "424fea21c6cec1c170fe5b0e4e08c5bb48f24ccb08b5fb38a836a2cb528d7466",
+    "code/singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "code/stub_multicore_cut_and_schedule.py": "9ae9ae4e8875e348e4e2e8f97b78e709bf88e6d0cbcc0bcd888707d34dfcd3ae",
+    "data/config.txt": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7"
+  },
+  "variant_pairs": [
+    [
+      "fork_join",
+      "fork_join_relabelled"
+    ],
+    [
+      "writers_across_phases",
+      "writers_relabelled"
+    ]
+  ],
+  "rows": [
+    {
+      "fixture": "fork_join",
+      "cores": 5,
+      "input_sha256": "91f8389cbdf9923992b21dbdab61f713d45dd6b46e42c7628299489efec89bb0",
+      "status": "ok",
+      "generation_seconds": 0.09396070000366308,
+      "structure_passed": true,
+      "plan_sha256": "1d6f2bb3c171e419dbb7eb66331385fe7604ee21008140d163bbfa5e47dc60c0",
+      "evaluation_seconds": 0.10270110000419663,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "81a6b830aec4c7ffdf156e131b7221b857c10dd030866c16e724fb31bd76d9be"
+    },
+    {
+      "fixture": "unequal_branches",
+      "cores": 5,
+      "input_sha256": "924ad25efcf7d6283b18aa0a996899dcbbb19e2a4ebfc892f82acfea857165c5",
+      "status": "ok",
+      "generation_seconds": 0.07723970000370173,
+      "structure_passed": true,
+      "plan_sha256": "1d6f2bb3c171e419dbb7eb66331385fe7604ee21008140d163bbfa5e47dc60c0",
+      "evaluation_seconds": 0.10642619999998715,
+      "cycles": 55197,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "cba21348c13a2356d3fefe5c0a58746a1fa5b5bf20a0ef79b516f228d707cc0b"
+    },
+    {
+      "fixture": "skip_edges",
+      "cores": 5,
+      "input_sha256": "5ee928315597a3b3feddfcce930cecb2ca09d077e9e987ebeccfdfe160bb078f",
+      "status": "ok",
+      "generation_seconds": 0.14098760000342736,
+      "structure_passed": true,
+      "plan_sha256": "cb2420609246266703535027e72dd6b81bc34359eddd3061208c7efa88d464db",
+      "evaluation_seconds": 0.11520169999857899,
+      "cycles": 4025,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "1": {
+          "L1": 0,
+          "UB": 20480
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "dc79517cee672052bc72c2bcdcd0380f7ee68de5c18259239a6f5396695ea6ab"
+    },
+    {
+      "fixture": "shared_external_input",
+      "cores": 5,
+      "input_sha256": "df38532bde3fccf17a5ad13c8a93771da41cf046c1e3cbef5d28d07028b793a3",
+      "status": "ok",
+      "generation_seconds": 0.058245000000169966,
+      "structure_passed": true,
+      "plan_sha256": "156a2381b9e2ffc56c5289beb3ebff1bef7b790fe8847b42dbe539fc32f45250",
+      "evaluation_seconds": 0.12011989999882644,
+      "cycles": 13205,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 14336,
+        "added_copy_bytes": 9216,
+        "partition_added_copy_bytes": 9216,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "d527ec4af24438638cf0a3b7fff55c36e5b0b502fa9b9327e7264bcbae3d9148"
+    },
+    {
+      "fixture": "writers_across_phases",
+      "cores": 5,
+      "input_sha256": "4c02ea43113289aaa7618575af276395c913355e66828036c74b3f810b3e57de",
+      "status": "ok",
+      "generation_seconds": 0.04414549999637529,
+      "structure_passed": true,
+      "plan_sha256": "9761009953a41c121d3cdff5df2b7b2f51218cb2a80ec8690777506f97fb0c92",
+      "evaluation_seconds": 0.10738169999967795,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "3959e477a642ffc56e9196e6ac61b1d63e55a59a9d5c338df978daab15a42ebc"
+    },
+    {
+      "fixture": "zero_cycles_mixed_pipes",
+      "cores": 5,
+      "input_sha256": "e45956b5ace8f158662bd99e528563e4dbed323377f06d0ab8fc29b54404d6cf",
+      "status": "ok",
+      "generation_seconds": 0.06510110000090208,
+      "structure_passed": true,
+      "plan_sha256": "9a9caa9eda2e7da341c6f58a6524fb50958fdfad6c28f84545ca6af9f139148b",
+      "evaluation_seconds": 0.10259049999876879,
+      "cycles": 4091,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 16384
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "df9cec076a301b6bb6189f8dc4ea192b7181a3e21b0e23ccaa3ce8df75ff011d"
+    },
+    {
+      "fixture": "ub_soft_threshold",
+      "cores": 5,
+      "input_sha256": "7b74bb974b500947d07ae5b290ea5a0763376edfa5e89da9c1c0e76dfe3c22ad",
+      "status": "ok",
+      "generation_seconds": 0.03620039999805158,
+      "structure_passed": true,
+      "plan_sha256": "2b58a5d2b8dc458c634840c2d8cdff1a48a0e8eed0a376855df379e9e60ee2d0",
+      "evaluation_seconds": 0.10584650000237161,
+      "cycles": 3418,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 61024,
+        "scheduled_copy_bytes": 61024,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 120000
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a53dc6f0b7abd29af0b4c5f9ce67edbfb8bdd15bfe9b745eb92f770aad643090"
+    },
+    {
+      "fixture": "partial_writer_pressure",
+      "cores": 5,
+      "input_sha256": "aef82d3a0fc0344fc8e9f4733c4b40153d6779b82f571faea702b5c981d86b44",
+      "status": "ok",
+      "generation_seconds": 0.04358439999487018,
+      "structure_passed": true,
+      "plan_sha256": "3dd28121004d4a1cfad84486b7a1654eb20173d7f64c73e8e895b5dfb837d286",
+      "evaluation_seconds": 0.11616800000047078,
+      "cycles": 268,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 4096,
+        "scheduled_copy_bytes": 4096,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 83072
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "c1a52c37a9474cd0442b77ef93aaad6df6c522a362de05ec026f28b844a9408b"
+    },
+    {
+      "fixture": "random_00",
+      "cores": 5,
+      "input_sha256": "4fc6775c7325e45b11c94b9e656399b95ee6b302419aa5732c62532d117f9c1e",
+      "status": "ok",
+      "generation_seconds": 0.35985749999963446,
+      "structure_passed": true,
+      "plan_sha256": "88d6609370de1093dd4b254e0c26fa94c39e907214917ca5641953ae138ea593",
+      "evaluation_seconds": 0.11310529999900609,
+      "cycles": 82094,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 22528,
+        "scheduled_copy_bytes": 40960,
+        "added_copy_bytes": 18432,
+        "partition_added_copy_bytes": 18432,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 46080
+        },
+        "1": {
+          "L1": 0,
+          "UB": 9216
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "d6cc3f60ee962267b0bb90328aac45b65cb7a4d0eab181117514d8943f9b7f3f"
+    },
+    {
+      "fixture": "random_01",
+      "cores": 5,
+      "input_sha256": "a7b4d814672c43f548774a1d825699236c05c3f612629173bbe7ac5fa172666d",
+      "status": "ok",
+      "generation_seconds": 0.35954510000010487,
+      "structure_passed": true,
+      "plan_sha256": "401809a6fb78761507ccc3ed04726f828e9cfa151af1a4ea488650dfa6499769",
+      "evaluation_seconds": 0.10884700000315206,
+      "cycles": 64477,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 25600,
+        "scheduled_copy_bytes": 55296,
+        "added_copy_bytes": 29696,
+        "partition_added_copy_bytes": 29696,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 23552
+        },
+        "1": {
+          "L1": 0,
+          "UB": 14336
+        },
+        "2": {
+          "L1": 0,
+          "UB": 14336
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "085f5d99ba82cea33b7db14061f564ff41d539c2dd0f6f8df06c74c540d5ae54"
+    },
+    {
+      "fixture": "random_02",
+      "cores": 5,
+      "input_sha256": "a5ba197a7e49441b6a92aa4edf6a8474a8cb952d484a5b3926571743ac9e9039",
+      "status": "ok",
+      "generation_seconds": 0.3621438999980455,
+      "structure_passed": true,
+      "plan_sha256": "85aefd3f3efd2a9ead7d5508fee0c9609a3b122f837672936ed14e726701b296",
+      "evaluation_seconds": 0.11019519999535987,
+      "cycles": 68605,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 27648,
+        "scheduled_copy_bytes": 79872,
+        "added_copy_bytes": 52224,
+        "partition_added_copy_bytes": 52224,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 30720
+        },
+        "1": {
+          "L1": 0,
+          "UB": 43008
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "f85073a44aae55242e3bbe0c8d0967396b6ebe18166395f8f7ddf7c89ff81ae2"
+    },
+    {
+      "fixture": "random_03",
+      "cores": 5,
+      "input_sha256": "3c16a659bd785f7619fe04b569f1d93eb72771491d19a6c13b62a28426e796bb",
+      "status": "ok",
+      "generation_seconds": 0.36097769999469165,
+      "structure_passed": true,
+      "plan_sha256": "4c356595ff508e42ce4d3263e1e7b66d697902bde9e9ef13320e0ac0dc913800",
+      "evaluation_seconds": 0.11609909999970114,
+      "cycles": 62339,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 29696,
+        "scheduled_copy_bytes": 108544,
+        "added_copy_bytes": 78848,
+        "partition_added_copy_bytes": 78848,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 32768
+        },
+        "1": {
+          "L1": 0,
+          "UB": 14336
+        },
+        "2": {
+          "L1": 0,
+          "UB": 41984
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "d52139e9e65edb905a0c1d96d544c8e99ce45821777fb928e1eb0abe886333a3"
+    },
+    {
+      "fixture": "random_04",
+      "cores": 5,
+      "input_sha256": "a118c66a5c75a42242425a28582cd2d3d25554438dc0004d7d250793586fb71f",
+      "status": "ok",
+      "generation_seconds": 0.3732233000046108,
+      "structure_passed": true,
+      "plan_sha256": "a2b6409089890ad8901329a2e88d98ecb0c1a2b1b65cb19a04f6f629f8b0fae6",
+      "evaluation_seconds": 0.11448299999756273,
+      "cycles": 75884,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 53248,
+        "scheduled_copy_bytes": 70656,
+        "added_copy_bytes": 17408,
+        "partition_added_copy_bytes": 17408,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 43008
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 17408
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "4218a45413e2ae4e10576f272b77a29fec4bd5e5cafbabce449a3bf4507cdd8b"
+    },
+    {
+      "fixture": "random_05",
+      "cores": 5,
+      "input_sha256": "11b67b6af1432aab9b06ff5de89ca1bb6ef71362bfe14eac64693cb0e9e14c4a",
+      "status": "ok",
+      "generation_seconds": 0.3620327000026009,
+      "structure_passed": true,
+      "plan_sha256": "50c29d2f6be60e6f9b5704e3e29f417c7e9fb3e7b203937d1c19513740350018",
+      "evaluation_seconds": 0.11093959999561775,
+      "cycles": 53416,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 63488,
+        "scheduled_copy_bytes": 112640,
+        "added_copy_bytes": 49152,
+        "partition_added_copy_bytes": 49152,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 17408
+        },
+        "1": {
+          "L1": 0,
+          "UB": 41984
+        },
+        "2": {
+          "L1": 0,
+          "UB": 52224
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "e54f10b3421c0adf53b3fb5bcd60499b14c1deb19ec6fed9cf2977318a03cbe3"
+    },
+    {
+      "fixture": "fork_join_relabelled",
+      "cores": 5,
+      "input_sha256": "1b5fb1c2e0c434d7c890b8f6939e84f0c12627efa3fb61df17195020df660fd3",
+      "status": "ok",
+      "generation_seconds": 0.08859269999811659,
+      "structure_passed": true,
+      "plan_sha256": "9dbc593d3902b6e0f22440e7f619dfd83f57a285e4615e7734c548717c774050",
+      "evaluation_seconds": 0.12601500000164378,
+      "cycles": 5587,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 21504,
+        "added_copy_bytes": 16384,
+        "partition_added_copy_bytes": 16384,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 12288
+        },
+        "1": {
+          "L1": 0,
+          "UB": 8192
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "9ceef08f3937c3a297426299b12d3e6a1caf64b3431235176f8b3b86caece172"
+    },
+    {
+      "fixture": "writers_relabelled",
+      "cores": 5,
+      "input_sha256": "5babac6c64f495cb1d055cb5b482d4beb5241ca77b2896fd903eb6e86338f31e",
+      "status": "ok",
+      "generation_seconds": 0.04431089999707183,
+      "structure_passed": true,
+      "plan_sha256": "a1427d0897d246da3ca27ee9073be31fac5ad6074b204feacee3750d29b23e10",
+      "evaluation_seconds": 0.12006639999890467,
+      "cycles": 2987,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5120,
+        "scheduled_copy_bytes": 5120,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 0,
+          "UB": 40960
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "2db3b103429dde7afd55eda5fe02b76ae593d73b86512c9a56420f68b44bfda2"
+    }
+  ],
+  "completed": true,
+  "passed": 16,
+  "failed": 0
+}

@@ -1,6 +1,7 @@
 # Hackathon 多核排程實驗
 
-- **DAG v6.2：[源码与构建](dag_chain_solver_v6/README.md)、[吸收前辈算法的实测对比](dag_chain_solver_v6/reports/SENIOR_COMPARISON_zh.md)**。五核同15秒，平均加速比提高1.43%，总cycles降低0.81%，搬运量增加0.94%。
+- **DAG v6.3候选：[源码与构建](dag_chain_solver_v6/README.md)、[搬运取舍与3秒筛查](dag_chain_solver_v6/reports/TRAFFIC_EXPERIMENTS_zh.md)**。三个代表点完整15秒合计cycles下降3.60%，搬运增加0.51%；尚未证明整体降搬运，未做全十点新评估。
+- **v6.2历史：[吸收前辈算法的十点实测对比](dag_chain_solver_v6/reports/SENIOR_COMPARISON_zh.md)**。五核同15秒，平均加速比提高1.43%，总cycles降低0.81%，搬运量增加0.94%。
 - **当前维护工程：[前辈代码_cpp/](前辈代码_cpp/README.md)**，在原文件内适配 `npu_sched`，保留完整算法和所有模块。
 - `17/`、`17.zip` 是旧精简草稿，已停止沿用，按用户要求暂不删除；最终提交包等待用户确认后再整理。
 - **新電腦／GPT 接手：先讀 [HANDOFF_zh.md](HANDOFF_zh.md)。**

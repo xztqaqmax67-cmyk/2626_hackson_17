@@ -118,6 +118,20 @@ int main() {
         require(zero_stats.attempted == 0 && zero_stats.refined == 0,
                 "zero budget must not start the expanded search");
 
+        dag_chain::TimedSearchStats resumed_stats;
+        const auto resumed_zero = dag_chain::continue_from_seed_for_budget(
+            g, cores, Clock::now(), 0, base, {}, &resumed_stats);
+        require(solution_json(g, resumed_zero.solution, cores) == solution_json(g, base.solution, cores) &&
+                    resumed_stats.base_seconds == 0 && resumed_stats.attempted == 0,
+                "zero-budget continuation must keep the frozen seed without regenerating it");
+        bool rejected = false;
+        auto incomplete = base;
+        incomplete.refined.valid = false;
+        try {
+            dag_chain::continue_from_seed_for_budget(g, cores, Clock::now(), 0.1, incomplete, {});
+        } catch (const runtime_error &) { rejected = true; }
+        require(rejected, "continuation must reject an incomplete estimate");
+
         dag_chain::TimedSearchStats expired_stats;
         const auto expired = dag_chain::solve_for_budget(
             g, cores, Clock::now() - chrono::seconds(1), 0.1, &expired_stats);

@@ -1,0 +1,92 @@
+{
+  "mode": "full",
+  "requested_seconds": 15.0,
+  "cores": 5,
+  "meaning": "Resume excludes frozen-seed preparation; use full mode for end-to-end evidence.",
+  "executable_sha256": "0a43f73534f99cb9d5ac83d9e66b66316b76d50e50dfe0c0dfdb7604bc236481",
+  "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+  "official_source_sha256": {
+    "contest_io.py": "3deb2d3179f7b02063edc55beb236f525fa8fed5884ce1ca5b1fe89156c63a52",
+    "evaluation_validation.py": "99ef09a446b2d9752a83584629c5a158118ae3d7026bbb4723a648d5bc74126f",
+    "multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "schedule_step2.py": "b80256b9b9e1a2d3ec2a42cf4938123da76ed959bab24fc8dadb8aac32f457d1",
+    "schedule_step3.py": "424fea21c6cec1c170fe5b0e4e08c5bb48f24ccb08b5fb38a836a2cb528d7466",
+    "singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "stub_multicore_cut_and_schedule.py": "9ae9ae4e8875e348e4e2e8f97b78e709bf88e6d0cbcc0bcd888707d34dfcd3ae"
+  },
+  "rows": [
+    {
+      "case": "case_07",
+      "policy": 0,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "1b4ed8c8f463316b2c28ec56a19838c59529518830dfbf31d0b53d797f82f791",
+      "wall_seconds": 14.884772599994903,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.870716,
+        "search_seconds": 14.857038,
+        "seed_seconds": 9.060458,
+        "attempted": 584,
+        "unique": 202,
+        "refined": 45,
+        "internal_cycles": 2719622.75982625,
+        "internal_bytes": 121826144,
+        "label": "memory_order_dfs_retained_migration_1_1"
+      },
+      "status": "ok",
+      "plan": "case_07\\0\\plan.json",
+      "official_evaluation_seconds": 5.596317800001998,
+      "cycles": 2708965,
+      "copy_bytes": 121826144,
+      "movement": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 121826144,
+        "added_copy_bytes": 98292608,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 26752640
+      },
+      "result_sha256": "a3fd650297985356154ddf48c270ff6291a6cf6d88546a2d9a66fb5d68eec5b7"
+    },
+    {
+      "case": "case_07",
+      "policy": 1,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "5063cd014f93d5ac5c78b512dd85eed19bb17ab1e5793f36ebbe4ed067b6a36b",
+      "wall_seconds": 14.889458099998592,
+      "stats": {
+        "mode": "full",
+        "budget_seconds": 15,
+        "preparation_seconds": 0,
+        "total_seconds": 14.871551,
+        "search_seconds": 14.858835,
+        "seed_seconds": 9.919199,
+        "attempted": 409,
+        "unique": 156,
+        "refined": 35,
+        "internal_cycles": 2476195.93828108,
+        "internal_bytes": 124496096,
+        "label": "timed_lane0_family0_5"
+      },
+      "status": "ok",
+      "plan": "case_07\\1\\plan.json",
+      "reused_identical_plan_evaluation": true,
+      "cycles": 2464855,
+      "copy_bytes": 124496096,
+      "movement": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 124496096,
+        "added_copy_bytes": 100962560,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 29422592
+      },
+      "result_sha256": "e0e607eb2d939a80a1894b0bdd571d4c0bd9d3ea0763720b2439d863d10462b4"
+    }
+  ],
+  "completed": true,
+  "build_manifest_sha256": "c98a76bead46a367afac2742bd7756f5f6813f7595f83613bd3ffc4e8042f481"
+}

@@ -3,6 +3,7 @@
 #include "search_limits.hpp"
 #include "solution_key.hpp"
 #include "tensor_neighborhood.hpp"
+#include "memory_grid.hpp"
 
 namespace dag_chain {
 namespace {
@@ -49,7 +50,8 @@ struct Neighborhoods {
     array<uint64_t, family_count> counts{};
 };
 
-Neighborhoods neighborhoods(const Graph &g, int cores, Deadline &deadline) {
+Neighborhoods neighborhoods(const Graph &g, int cores, Deadline &deadline,
+                            const TimedSearchOptions &options) {
     Neighborhoods result;
     vector<vector<int>> writers(g.size());
     for (int v : g.topo) {
@@ -90,7 +92,7 @@ Neighborhoods neighborhoods(const Graph &g, int cores, Deadline &deadline) {
     });
     const uint64_t m = result.writers.size(), k = uint64_t(cores);
     result.consumer_moves = make_unique<TensorNeighborhoods>(g, &deadline);
-    result.counts = {160, product({m,k,4}), product({m,m,4}),
+    result.counts = {memory_grid::count(options.useful_memory_orders_first), product({m,k,4}), product({m,m,4}),
                      product({uint64_t(result.tensors.size()),k,4}),
                      product({uint64_t(result.chains.size()),k,4}), 576,
                      product({uint64_t(g.size()),2}), product({m,m,k,k,4}),
@@ -157,19 +159,15 @@ Solution rotated_order(const Graph &g, const Solution &base, uint64_t index,
 
 bool proposal(const Graph &g, int cores, const Neighborhoods &space,
               const Solution &base, size_t family, uint64_t index, int lane,
-              Deadline &deadline, Solution &out) {
+              Deadline &deadline, Solution &out, const TimedSearchOptions &search_options) {
     deadline.check();
     const Config cfg;
     static const array<string,4> modes{{"critical","dfs","breadth","id"}};
-    static const array<double,8> memory{{0,0.125,0.25,0.5,1,2,4,8}};
     static const array<int,5> windows{{1,4,8,16,32}};
     const size_t m = space.writers.size();
     uint64_t style = index % 4;
     if (family == 0) {
-        SeedOptions options;
-        options.mode = modes[index % 4];
-        options.memory = memory[(index / 4) % 8];
-        options.window = windows[(index / 32) % 5];
+        const SeedOptions options = memory_grid::options(index, search_options.useful_memory_orders_first);
         out = operation_plan(g, cores, cfg, options, &base.core, &deadline);
     } else if (family == 5) {
         static const array<double,6> weights{{0,0.125,0.25,0.5,1,2}};
@@ -250,7 +248,8 @@ struct Lane {
 };
 
 Lane search_lane(const Graph &g, int cores, int lane, int cursor_start, int cursor_stride, const Result &seed,
-                 const Neighborhoods &space, Clock::time_point started, double limit) {
+                 const Neighborhoods &space, Clock::time_point started, double limit,
+                 const TimedSearchOptions &options) {
     Lane result;
     result.best = seed;
     Deadline deadline;
@@ -302,7 +301,7 @@ Lane search_lane(const Graph &g, int cores, int lane, int cursor_start, int curs
                     numeric_limits<uint64_t>::max() - parent->cursor[family]);
                 ++attempted_in_round; ++result.stats.attempted;
                 Solution candidate;
-                if (!proposal(g, cores, space, parent->result.solution, family, index, lane, deadline, candidate))
+                if (!proposal(g, cores, space, parent->result.solution, family, index, lane, deadline, candidate, options))
                     continue;
                 auto key = signature(candidate, cores);
                 if (!seen.insert(key).second) continue;
@@ -350,23 +349,26 @@ Lane search_lane(const Graph &g, int cores, int lane, int cursor_start, int curs
 }
 } // namespace
 
-Result solve_for_budget(const Graph &g, int cores, Clock::time_point started,
-                        double seconds, TimedSearchStats *statistics) {
+Result continue_from_seed_for_budget(const Graph &g, int cores, Clock::time_point started,
+                        double seconds, const Result &seed, vector<Result> seed_portfolio,
+                        TimedSearchStats *statistics, TimedSearchOptions options) {
     if (!isfinite(seconds) || seconds < 0) throw runtime_error("invalid internal time budget");
     TimedSearchStats stats;
     auto elapsed = [&]() { return chrono::duration<double>(Clock::now() - started).count(); };
-    // 此階段不被預算打斷，以保留原 v5 可用方案；超大圖的種子可能已超出預算。
-    const auto base_started = Clock::now();
-    vector<Result> seed_portfolio;
-    Result seed = solve(g, cores, false, 3, &seed_portfolio);
-    stats.base_seconds = chrono::duration<double>(Clock::now() - base_started).count();
+    if (cores < 2 || cores > 5 || !seed.refined.valid)
+        throw runtime_error("invalid continuation seed");
+    validate(g, seed.solution, cores);
+    for (const auto &candidate : seed_portfolio) {
+        if (!candidate.refined.valid) throw runtime_error("incomplete continuation seed");
+        validate(g, candidate.solution, cores);
+    }
     const double limit = max(0.0, seconds - search_limits::timed_reserve_seconds);
     Result best = seed;
     if (limit > 0 && elapsed() < limit && g.size() > 0) {
         Deadline deadline;
         deadline.start = started; deadline.limit = limit; deadline.enabled = true;
         try {
-            const auto space = neighborhoods(g, cores, deadline);
+            const auto space = neighborhoods(g, cores, deadline, options);
             const int workers = search_limits::timed_workers;
             // Reuse completed core-budget winners as independent routes, as in
             // the predecessor solver's portfolio search. Lane 0 keeps the old
@@ -397,7 +399,7 @@ Result solve_for_budget(const Graph &g, int cores, Clock::time_point started,
             detail::run_independent_jobs(workers, [&](int index) {
                 lanes[size_t(index)] = search_lane(g, cores, index,
                     cursor_start[size_t(index)], cursor_stride[size_t(index)],
-                    *lane_seeds[size_t(index)], space, started, limit);
+                    *lane_seeds[size_t(index)], space, started, limit, options);
             });
             for (int i = 0; i < workers; ++i) {
                 const auto &lane = lanes[size_t(i)];
@@ -426,5 +428,19 @@ Result solve_for_budget(const Graph &g, int cores, Clock::time_point started,
     stats.elapsed_seconds = elapsed();
     if (statistics) *statistics = stats;
     return best;
+}
+Result solve_for_budget(const Graph &g, int cores, Clock::time_point started,
+                        double seconds, TimedSearchStats *statistics, TimedSearchOptions options) {
+    if (!isfinite(seconds) || seconds < 0) throw runtime_error("invalid internal time budget");
+    const auto base_started = Clock::now();
+    vector<Result> portfolio;
+    Result seed = solve(g, cores, false, 3, &portfolio);
+    const double base_seconds = chrono::duration<double>(Clock::now() - base_started).count();
+    TimedSearchStats stats;
+    auto result = continue_from_seed_for_budget(g, cores, started, seconds, seed,
+                                                move(portfolio), &stats, options);
+    stats.base_seconds = base_seconds;
+    if (statistics) *statistics = stats;
+    return result;
 }
 } // namespace dag_chain

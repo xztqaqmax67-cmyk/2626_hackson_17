@@ -1,0 +1,33 @@
+{
+  "compiler": "MinGW GCC 13.2.0",
+  "build": "direct g++, CMake registration inspected but not executed",
+  "cpp_tests": 11,
+  "cli_contracts": "passed",
+  "graph_contracts": 26,
+  "synthetic_official_five_core": 16,
+  "probe_contract_invocations": 20,
+  "archived_cache_checks": 9,
+  "solver_executable_sha256": "2034f6787c63ee344d2779cafccd3380c14f76f26c6175f04fc0270a564b6862",
+  "probe_executable_sha256": "0a43f73534f99cb9d5ac83d9e66b66316b76d50e50dfe0c0dfdb7604bc236481",
+  "source_sha256": {
+    "src\\anytime.cpp": "88e09732fc97f7eae6f635492c4232a6267e3af0c7b758abe0ff31fccebbcc85",
+    "src\\anytime.hpp": "bbc288247a1ae7a029597cdedff0332938d79ad59f7591ad53e9028bb763690a",
+    "src\\chain.cpp": "cf147f4d3b9a3152909cb1ff1321c696945d65a07848671b606607ed45b9d71a",
+    "src\\chain.hpp": "394839060699bf8430e6be17678913b7b7f759b2bdb594e2e4fa9ba373a96455",
+    "src\\main.cpp": "e5457bf41be08fca94e68f04f4fb5411b776fa425b571d3457daa19c42f2ec87",
+    "src\\memory_grid.hpp": "70425714da5330e58320db9b5f9bac0aea181be7dd7ab4bcf870f595b06a7739",
+    "src\\model.hpp": "a0b5103128f3009843ac61f05d7ec2b33c6f3e10dd7e107f7824748e1af2cd40",
+    "src\\parallel_jobs.hpp": "1979c8058a9be1b9a2fd10885793d700c457ee8001db31b69c84aa9cb54d5dca",
+    "src\\refine.cpp": "986ab62fe40ace4954855ad087b8b9917c6fa653b22f1b56666f66d0ad218eb2",
+    "src\\refine.hpp": "f192089fd7574648c3c522969847beaba0bd25d7c6378654622ca09da15b00d1",
+    "src\\regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src\\regions.hpp": "270f832fc81bf4f9c1ebce1b36003eb6176886c6acd8856b6fc7ac25fb6f6607",
+    "src\\search_limits.hpp": "51cd58b052e8c27ba105895d58c25709b1ac3b73c19e0b062e9953dc4dc3e3b6",
+    "src\\slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src\\slack.hpp": "459079a93206b50e914dee3fecd81ac72f9c994c4919deb77eca342bc077bfc1",
+    "src\\solution_key.hpp": "fe69a888ede989546602a31f7eca85cb228af0c514e45b0f005c5e6860f10679",
+    "src\\tensor_neighborhood.cpp": "ba7cee3bc9b2022452c096bae249bb5477ea5045f74a3a151ffb074d743a4a09",
+    "src\\tensor_neighborhood.hpp": "bdbddf848fcb38aaf7933001e606f3c34c144782f4385536f9d7bf0704e6b914"
+  },
+  "note": "Final header API comment added after binary build, no executable change."
+}
