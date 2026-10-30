@@ -32,7 +32,8 @@ def main():
     baseline = json.loads((root/'reports/v5_results_baseline.json').read_text(encoding='utf-8'))
     old = {r['case']:r for r in baseline['rows'] if r['cores']==5}
     config = reference/'data/config.txt'
-    current = dict(version='0.6.1',core_limit=5,requested_budget_seconds=15.0,
+    version = subprocess.check_output([str(solver), '--version'], text=True).strip().split()[-1]
+    current = dict(version=version,core_limit=5,requested_budget_seconds=15.0,
                    solver_executable_sha256=sha(solver),config_sha256=sha(config),
                    source_sha256={q.relative_to(root).as_posix():sha(q) for q in sorted((root/'src').glob('*')) if q.is_file()},
                    official_source_sha256={q.relative_to(reference).as_posix():sha(q) for q in sorted((reference/'code').glob('*.py'))},

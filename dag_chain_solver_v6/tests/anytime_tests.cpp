@@ -85,6 +85,23 @@ int main() {
         const auto base = dag_chain::solve(g, cores);
         require(base.refined.valid, "the deterministic seed must be a completed feasible estimate");
         validate(g, base.solution, cores);
+        vector<dag_chain::Result> portfolio;
+        const auto collected = dag_chain::solve(g, cores, false, 3, &portfolio);
+        require(solution_json(g, collected.solution, cores) == solution_json(g, base.solution, cores),
+                "collecting continuation seeds changed the deterministic winner");
+        require(portfolio.size() == size_t(cores - 1),
+                "the feasible fixture must retain every core-budget winner");
+        for (size_t i = 0; i < portfolio.size(); ++i) {
+            const auto &candidate = portfolio[i];
+            require(candidate.generated_for_cores == int(i) + 2 && candidate.refined.valid,
+                    "portfolio lost its ascending budget order or completed estimate");
+            validate(g, candidate.solution, cores);
+            require(merit(base) <= merit(candidate), "portfolio collection lost the best seed");
+            const auto replay = dag_chain::refine_estimate(g, candidate.solution, cores);
+            require(replay.valid && replay.cycles == candidate.refined.cycles &&
+                        replay.route == candidate.refined.route && replay.spill == candidate.refined.spill,
+                    "a lower-budget seed changed merit when continued with all available cores");
+        }
         expires([&] { dag_chain::refine_estimate(g, base.solution, cores, &deadline); },
                 "refinement must not return a partial result after cancellation");
         const auto normal = dag_chain::refine_estimate(g, base.solution, cores, nullptr);

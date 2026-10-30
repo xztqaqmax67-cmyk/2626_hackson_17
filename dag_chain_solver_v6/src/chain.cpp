@@ -719,7 +719,8 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
     return result;
 }
 
-Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions) {
+Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions,
+             vector<Result> *seed_portfolio) {
     if (k < 2 || k > 5)
         throw runtime_error("core count must be 2..5");
     if (extensions & ~3U)
@@ -729,8 +730,12 @@ Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions) {
     for (bool recover : {false, true})
         for (double weight : {0.0, 0.25})
             covers.push_back(make_paths(g, analysis, weight, recover));
-    if (baseline_only)
-        return solve_at_core_count(g, k, true, covers, 0);
+    if (seed_portfolio) seed_portfolio->clear();
+    if (baseline_only) {
+        auto result = solve_at_core_count(g, k, true, covers, 0);
+        if (seed_portfolio) seed_portfolio->push_back(result);
+        return result;
+    }
     // N is the available number of cores, not a requirement to occupy them all.
     // Search independent core budgets concurrently, without changing candidates
     // or their within-portfolio order. Graph is read-only and every worker owns
@@ -762,14 +767,18 @@ Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions) {
         throw NoCandidate();
     // Apply the same event-time criterion to every core budget. Smaller
     // portfolios are not judged by an incompatible pessimistic timing gate.
-    Result best = move(portfolios.back());
     auto final_key = [](const Result &r) {
         return detail::solution_key(r.refined.cycles, r.refined.route + r.refined.spill,
                                     r.generated_for_cores, r.solution);
     };
+    size_t best_index = portfolios.size() - 1;
     for (int i = int(portfolios.size()) - 2; i >= 0; --i)
-        if (final_key(portfolios[i]) < final_key(best))
-            best = move(portfolios[i]);
+        if (final_key(portfolios[i]) < final_key(portfolios[best_index]))
+            best_index = size_t(i);
+    // Copy only the returned winner when continuation needs the entire pool.
+    // Ordinary callers still move it, as before; no search work is repeated.
+    Result best = seed_portfolio ? portfolios[best_index] : move(portfolios[best_index]);
+    if (seed_portfolio) *seed_portfolio = move(portfolios);
     best.candidates = evaluated;
     best.repair_attempts = repairs;
     best.refined_candidates = refined;

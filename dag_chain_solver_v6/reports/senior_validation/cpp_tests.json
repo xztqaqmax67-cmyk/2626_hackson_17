@@ -1,0 +1,58 @@
+{
+  "tests": [
+    {
+      "test": "anytime_tests",
+      "returncode": 0,
+      "output": "anytime deadline, completed incumbent, useful search, writer/dependency preservation passed\n"
+    },
+    {
+      "test": "chain_tests",
+      "returncode": 0,
+      "output": "chain invariants, segmentation, dependency preservation, determinism and transfer estimates: passed\n"
+    },
+    {
+      "test": "comparison_tests",
+      "returncode": 0,
+      "output": "comparison keys preserve scalar/vector tie-breaks and stable order without vector copies\n"
+    },
+    {
+      "test": "memory_cache_tests",
+      "returncode": 0,
+      "output": "cached Tensor uses preserve legacy prices, states and traversal order\n"
+    },
+    {
+      "test": "parallel_jobs_tests",
+      "returncode": 0,
+      "output": "parallel jobs: indexed results, caller participation, deterministic errors, joining and launch fallback passed\n"
+    },
+    {
+      "test": "refine_tests",
+      "returncode": 0,
+      "output": "shared DDR, sync, cycles, partial writes, memory reuse and join propagation: passed\n"
+    },
+    {
+      "test": "rules_contract_tests",
+      "returncode": 0,
+      "output": "rules contract validation checks passed; no evaluator invoked\n"
+    },
+    {
+      "test": "rules_memory_tests",
+      "returncode": 0,
+      "output": "new rules: soft/hard limits, allocation peak, partial writes and dirty backing passed\n"
+    },
+    {
+      "test": "tensor_neighborhood_tests",
+      "returncode": 0,
+      "output": "tensor neighborhood invariants passed\n"
+    },
+    {
+      "test": "v5_structure_tests",
+      "returncode": 0,
+      "output": "v5 phase/core-budget/dependency/writer/slack/determinism invariants passed\n"
+    }
+  ],
+  "passed": 10,
+  "compiler": "MinGW GCC 13.2",
+  "optimization": "-O2",
+  "language": "C++17"
+}

@@ -179,7 +179,8 @@ def main():
     sources['data/config.txt'] = sha(config)
     manifest = json.loads((root/'reports/rules_manifest.json').read_text(encoding='utf-8'))
     assert all(manifest['files'][name] == value for name, value in sources.items()), 'official files changed'
-    report = dict(version='0.6.1', public_benchmark_inputs_used=False,
+    version = subprocess.check_output([str(solver), '--version'], text=True).strip().split()[-1]
+    report = dict(version=version, public_benchmark_inputs_used=False,
                   purpose='General structural and rule regression checks; finite tests are not a universal proof.',
                   fixture_count=len(graphs), requested_cores=args.cores,
                   solver_executable_sha256=sha(solver), official_source_sha256=sources,
