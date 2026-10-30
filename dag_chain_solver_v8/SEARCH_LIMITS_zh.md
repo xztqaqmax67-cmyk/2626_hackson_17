@@ -1,65 +1,60 @@
-# v8 搜尋上限與回饋配額
+# v8 0.8.1 搜尋上限
 
-所有常用配額在 `src/search_limits.hpp`。修改既有常數後必須重新編譯，正式 CLI 沒有 `--time-limit` 等額外調參選項。
+修改 `src/search_limits.hpp` 後重新編譯。正式 CLI 不增加調參旗標。以下都是搜尋參數，不是題目規則；禁止調整硬體容量、軟閾值、DDR 帶寬或同步延遲來改善分數。
 
 ## 預設流程
 
-`enable_timed_search=false`：先完整執行 v7 固定搜尋，再執行 v8 的溢出事件回饋。固定配額不代表固定秒數；不同圖的生成耗時不同。
+`enable_timed_search=false`：完整 v7 固定搜尋 → v8 多起點／移核／有界重排回饋。`feedback_enabled=false` 可關閉最後回饋，前段勝者不變。固定工作量不保證任意圖在固定秒數內完成。
 
-`feedback_enabled=true`：預設開啟新回饋；設為 false 可關閉回饋並直接輸出前段搜尋結果。保留其他預設值時，這就是 v7 的搜尋流程。
+## 回饋上限
 
-## v8 回饋配額
-
-| 參數 | 預設 | 調整影響 |
+| 參數 | 預設 | 意義 |
 |---|---:|---|
-| feedback_rounds | 2 | 最多接受重排的輪數；每輪重新取得溢出事件 |
-| feedback_records | 8 | 每輪按搬運成本篩選的事件數 |
-| feedback_candidates_per_round | 12 | 每輪完整 Step 2 重播候選數 |
-| feedback_refine_candidates | 4 | 每輪 cycles 細化候選數 |
-| feedback_closure_nodes | 64 | 為合法前移／後移補入的前驅或後繼閉包上限 |
-| feedback_max_distance | 256 | 全域拓撲序中的最大移動距離，不是核內序號差 |
+| feedback_replay_budget | 48 | 所有起點、移核、深度合計的候選 Step 2 重播上限；不含入口 trace |
+| feedback_refine_budget | 12 | 所有階段合計的完整估時上限 |
+| feedback_rounds | 2 | 重排搜尋深度；允許中性第一步 |
+| feedback_beam | 3 | 保留的搜尋狀態數，至少 1 |
+| feedback_replays_per_depth | 20 | 每個深度另設的重播上限 |
+| feedback_refine_candidates | 4 | 起點階段及每個深度的估時上限 |
+| feedback_candidates_per_round | 12 | 每個狀態的重排候選上限，不是全部搜尋總量 |
+| feedback_record_scan | 64 | 每次候選生成最多掃描的多樣化事件數 |
+| feedback_records | 8 | 每次最多使用能產生新合法候選的事件數 |
+| feedback_trigger_region | 64 | 觸發位置多樣化的核內區域寬度 |
+| feedback_closure_nodes | 64 | 合法前移／後移需要移動的完整閉包上限 |
+| feedback_max_distance | 256 | 每個移動節點在其核心跨越的步數；不計其他核心無關操作 |
+| feedback_seed_limit | 3 | 前段保留的近優起點數（含可能與入口重複的最優方案） |
+| feedback_seed_cycle_ratio | 1.05 | 額外起點的估計 cycles 至多是最優的 1.05 倍，至少 1 |
+| feedback_mapping_candidates | 4 | 原始溢出熱點的移核候選上限 |
+| feedback_mapping_records | 16 | 移核候選採用的不同核心／Tensor 熱點上限 |
+| feedback_mapping_nodes | 32 | 單個移核候選的完整 writer 群組節點上限 |
 
-例如可將 records 從 8 改為 16、candidates_per_round 從 12 改為 24、refine_candidates 從 4 改為 8，探索更多事件；這只是修改方法，未套用也未驗證效果。只提高候選總配額，不一定能找到更多合法變換。增加任一配額都可能增加生成時間。
+要增加完整回饋工作量，先調 `feedback_replay_budget`、`feedback_refine_budget`，再同步考慮每深度配額與 beam／深度；只增加總額度而其餘上限較小，可能不會多做工作。要提高覆蓋而不增加重播數，可先調掃描事件、區域分散或距離。這些調整不保證分數提升。
 
-目前高成本事件在合法性篩選前選出，可能包含同一 Tensor 的重複事件；距離限制也可能排除長生命期的調整。這些是搜尋覆蓋範圍限制，不是官方規則。不得為改善分數而修改容量、軟閾值、DDR 帶寬或同步延遲。
+例如把總重播從 48 增至 72、每深度從 20 增至 30，會容納更多候選；把總細化從 12 增至 18、每階段從 4 增至 6，會多評估時間。這僅是調整方法，並非目前預設或已驗證的最佳值。
 
-## 前段 v7 搜尋配額
+候選多樣化和完整依賴閉包也有 CPU 成本。新增 stderr `feedback_stats` 可確認實際耗用與淘汰原因，避免只憑設定值推測執行時間。中性狀態不代表可直接輸出；最終仍以入口方案的總搬運與估計 cycles 為上界。
 
-`seed_*`、`slack_*`、`spill_*` 保留 v7 原值。最常調整的是：
+## 前段搜尋與可選限時模式
 
-- `seed_local_rounds=3`、`seed_local_move_limit=6`：局部搜尋回合與每回合移動數。
-- `seed_reorder_bases=3`：重新排序的起始方案數。
-- `spill_move_evaluations=8`、`spill_move_keep=2`、`spill_max_candidates=6`：v7 通用壓力候選的預篩、移核保留與總數。若將 keep 增到 4，可同步把總數增到 8，容納原 4 種排序。
-- `seed_variants_small/medium/large=10/6/2`，變體表目前最多 10 種；`spill_reorder_variants=4` 最多 4 種，不能僅增大數字來創造不存在的策略。
-- `seed_pool_limit=24` 是剪枝觸發數，需連同保留配額 `seed_keep_time=10`、`seed_keep_traffic=6`、`seed_keep_other=4` 一起看。四個取向的聯集配額為 10+6+2×4=24，原方案補回後仍可能更多。
-
-`medium_graph_work=80000`、`large_graph_work=200000` 控制前段的部分搜尋量；新回饋仍按上述固定事件配額進行。其他策略表與 regions 內部界限保留在對應程式中。
-
-## 可選限時模式
+`seed_*`、`slack_*`、`spill_*` 保留原搜尋上限。常調參數包括 `seed_local_rounds=3`、`seed_local_move_limit=6`、`seed_reorder_bases=3` 和 v7 的 `spill_move_evaluations=8`／`spill_move_keep=2`／`spill_max_candidates=6`。變體數不得超過程式中的策略表長度。
 
 ```cpp
 inline constexpr bool enable_timed_search = true;
 inline constexpr double total_seconds = 30.0;
 ```
 
-只改秒數而不開啟開關不會生效。限時預算從讀圖前開始，先完成前段固定搜尋，再使用剩餘時間追加；各 worker 共用截止點。`timed_workers` 僅控制追加階段，範圍 1～4；beam、coarse、refine、seen 配額是每個 worker 各自的配額。
+只改秒數但不開開關不生效。限時預算從讀圖前開始，先保留完整固定搜尋結果，再利用剩餘時間追加；worker 共用截止點。`timed_workers` 1～4 控制搜尋執行緒；`-n` 控制模擬 NPU 核數；`--parallel` 是編譯工作數。
 
-**v8 的事件回饋在這之後執行，另計固定工作量。** 設 30 秒不代表整個程式硬限制為 30 秒；前段固定搜尋本身也不被截止中斷。`npu_sched_quick` 的前段限時預算是 quick_test_seconds，不能用它代表正式版。
+回饋另計固定工作量，所以 30 秒不是整個程式的硬截止。可選限時模式目前沒有收集額外近優起點，但仍有移核及兩步重排。`npu_sched_quick` 是開發測試工具，不代表正式版時間。
 
-## 建置、診斷與評分
-
-從 v8 目錄執行：
+## 編譯與測試
 
 ```powershell
 cmake -S . -B build_msvc -G "Visual Studio 17 2022" -A x64 -DCHAIN_BUILD_TESTS=ON
 cmake --build build_msvc --config Release --parallel 4
 ctest --test-dir build_msvc -C Release --output-on-failure
 ./build_msvc/bin/npu_sched.exe input.json -n 5 -o plan.json
-./build_msvc/bin/spill_diagnostics.exe input.json plan.json spill_trace.json
+python scripts/run_v8_official.py --out runs/official_upgrade
 ```
 
-`--parallel 4` 是編譯工作數，`-n 5` 是模擬 NPU 核數上限，均不是搜尋執行緒參數。源碼壓縮包沒有 tests，應使用預設 `CHAIN_BUILD_TESTS=OFF` 建置；開發測試需完整目錄。
-
-`run_v8_official.py` 只接受固定模式。調參實驗請用新目錄，例如 `--out runs/tuning_trial`，避免與既有 SHA256 記錄混用。測試工具的 90 秒生成 watchdog 是測試超時，並非搜尋上限。限時模式需要單獨生成方案並呼叫官方評分器，或另行準備能正確記錄預算的 harness。
-
-`check_official_spill.py` 核對 C++ 與官方 Step 2 的完整記錄；預設使用本地 v7 歷史方案和合成圖。`check_final_spill.py` 核對預設目錄中的 v8 最終方案，對與先前完全相同且雜湊一致的方案沿用已完成證據。`summarize_v8.py` 讀取預設 `runs/official_all/`，需要本地 v7 原始結果，並寫回標準報告；新參數實驗應在獨立副本整理，保留本次預設設定的結果。
+源碼 ZIP 未含 tests，使用預設 `CHAIN_BUILD_TESTS=OFF`。正式40組工具只接受預設固定模式，90秒 watchdog 是測試超時，不是演算法截止。調參用新的 `--out` 目錄，避免與已保存來源 hash 混用；標準新版摘要工具讀取 `runs/official_upgrade/`，其他實驗需要另行整理。

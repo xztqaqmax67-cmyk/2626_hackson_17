@@ -108,7 +108,7 @@ int run(const vector<string> &args) {
         return 2;
     }
     if (opt.version) {
-        cout << "dag-chain-solver 0.8.0\n";
+        cout << "dag-chain-solver 0.8.1\n";
         return 0;
     }
     unique_ptr<Graph> graph;
@@ -123,6 +123,7 @@ int run(const vector<string> &args) {
 #ifdef CHAIN_BASELINE
         result = dag_chain::solve(*graph, opt.cores, true);
 #else
+        vector<Solution> feedback_seeds;
 #ifdef CHAIN_QUICK_TEST
         const double generation_budget = dag_chain::search_limits::quick_test_seconds;
 #else
@@ -131,12 +132,17 @@ int run(const vector<string> &args) {
         if constexpr (dag_chain::search_limits::enable_timed_search)
             result = dag_chain::solve_for_budget(*graph, opt.cores, generation_started, generation_budget);
         else
-            result = dag_chain::solve(*graph, opt.cores);
+            result = dag_chain::solve(*graph, opt.cores, false, 7, &feedback_seeds);
 #endif
 #ifndef CHAIN_BASELINE
-        // 固定配額的官方 Step 2 事件回饋：先找溢出，再重排；原方案始終保留。
-        if constexpr (dag_chain::search_limits::feedback_enabled)
-            result = dag_chain::improve_spill_order(*graph, opt.cores, std::move(result));
+        // 所有種子共用有界回饋配額；精確 Step 2 搬運與估計 cycles 都保護原方案。
+        if constexpr (dag_chain::search_limits::feedback_enabled) {
+            dag_chain::FeedbackStats statistics;
+            result = dag_chain::improve_spill_order(*graph, opt.cores, std::move(result),
+                                                   &statistics, &feedback_seeds);
+            // 診斷只送 stderr，正式方案 JSON 與 CLI 契約不變。
+            cerr << "feedback_stats " << dag_chain::feedback_stats_json(statistics) << '\n';
+        }
 #endif
         validate(*graph, result.solution, opt.cores);
     } catch (const exception &e) {

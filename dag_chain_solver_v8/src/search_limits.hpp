@@ -65,15 +65,28 @@ inline constexpr std::size_t spill_move_keep = 2; // 進入共享 DDR 細化的�
 inline constexpr std::size_t spill_max_candidates = 6; // 排序及分配候選合計上限。
 inline constexpr std::size_t spill_reorder_variants = 4; // 可設 0..4；權重表見 spill.cpp。
 // v8：完整初始搜尋之後，用官方 Step 2 相同邏輯記錄溢出並改核內順序。
-// 此階段是固定額外配額，不會改核心分配；設 false 可還原 v7 搜尋。
+// 此階段共用固定額外配額，包含多起點、少量分配及核內重排；false 關閉回饋。
 // 若啟用限時追加搜尋，total_seconds 控制前段；此回饋階段另計固定工作量。
 inline constexpr bool feedback_enabled = true;
-inline constexpr std::size_t feedback_rounds = 2;
-inline constexpr std::size_t feedback_records = 8; // 每輪優先處理的高搬運成本溢出記錄。
-inline constexpr std::size_t feedback_candidates_per_round = 12; // 每輪完整 Step 2 重播上限。
+inline constexpr std::size_t feedback_rounds = 2; // beam 深度，允許第一步不減少搬運。
+inline constexpr std::size_t feedback_records = 8; // 每次最多採用有不同合法候選的記錄數。
+inline constexpr std::size_t feedback_record_scan = 64; // 無效記錄繼續遞補，但掃描有界。
+inline constexpr std::size_t feedback_trigger_region = 64; // 多樣化的核內觸發位置分組寬度。
+inline constexpr std::size_t feedback_candidates_per_round = 12; // 每個狀態最多產生的候選。
 inline constexpr std::size_t feedback_closure_nodes = 64; // 為合法前移補入的前驅閉包上限。
-inline constexpr std::size_t feedback_max_distance = 256; // 全域拓撲序中的移動距離上限。
-inline constexpr std::size_t feedback_refine_candidates = 4; // 每輪 cycles 細化上限。
+inline constexpr std::size_t feedback_max_distance = 256; // 各被移動節點在其核心跨越的步數。
+inline constexpr std::size_t feedback_refine_candidates = 4; // 起點階段及各深度細化上限。
+inline constexpr std::size_t feedback_beam = 3;
+inline constexpr std::size_t feedback_replay_budget = 48; // 所有起點/分配/兩步搜尋共用；不含初始 trace。
+inline constexpr std::size_t feedback_refine_budget = 12; // 所有階段共用的完整估時次數。
+inline constexpr std::size_t feedback_replays_per_depth = 20;
+inline constexpr std::size_t feedback_seed_limit = 3;
+inline constexpr double feedback_seed_cycle_ratio = 1.05;
+inline constexpr std::size_t feedback_mapping_candidates = 4;
+inline constexpr std::size_t feedback_mapping_records = 16;
+inline constexpr std::size_t feedback_mapping_nodes = 32;
+static_assert(feedback_beam >= 1, "feedback beam must retain at least one state");
+static_assert(feedback_seed_cycle_ratio >= 1.0, "seed cycle ratio must include the winner");
 
 static_assert(spill_ready_window > 0 && spill_reorder_variants <= 4,
               "spill ready window must be positive; at most four policies");

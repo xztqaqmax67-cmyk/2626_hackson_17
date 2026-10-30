@@ -29,5 +29,8 @@ struct Result {
 // 0 retains v4; bit 1 adds regions, bit 2 slack, bit 4 bounded spill proposals.
 // 3 reproduces the v5 fixed search; 7 enables the v7 extensions.
 Result solve(const Graph &graph, int cores, bool baseline_only = false,
-             unsigned extensions = 7);
+             unsigned extensions = 7, vector<Solution> *feedback_seeds = nullptr);
+// When requested, feedback_seeds receives a bounded deterministic portfolio of
+// already-refined, near-best solutions. Collecting it does not change the winner
+// or add proxy/refinement evaluations to the original fixed search.
 } // namespace dag_chain

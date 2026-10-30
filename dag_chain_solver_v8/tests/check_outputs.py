@@ -79,8 +79,14 @@ def generate(exe, graph, cores, target, observe=False):
         stdout, stderr = process.communicate(timeout=10)
     assert process.returncode == 0, stderr.decode("utf-8", errors="replace")
     assert not stdout.strip(), "submission generator must not print scores"
-    return dict(seconds=time.perf_counter()-start, observed_peak_working_set_bytes=peak,
-                sampled_max_process_threads=threads)
+    timing = dict(seconds=time.perf_counter()-start, observed_peak_working_set_bytes=peak,
+                  sampled_max_process_threads=threads)
+    diagnostics = [line[len('feedback_stats '):] for line in stderr.decode('utf-8', errors='replace').splitlines()
+                   if line.startswith('feedback_stats ')]
+    assert len(diagnostics) <= 1, 'duplicate feedback statistics'
+    if diagnostics:
+        timing['feedback_stats'] = json.loads(diagnostics[0])
+    return timing
 
 
 def main():

@@ -34,7 +34,7 @@ def main():
     from check_rules_outputs import check_plan
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--solver', type=Path, default=root / 'build_msvc/bin/npu_sched.exe')
-    parser.add_argument('--out', type=Path, default=root / 'runs/official_all')
+    parser.add_argument('--out', type=Path, default=root / 'runs/official_upgrade')
     parser.add_argument('--stage', choices=['all', 'generate', 'evaluate'], default='all')
     args = parser.parse_args()
     out = args.out.resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -42,7 +42,7 @@ def main():
     limits = (root / 'src/search_limits.hpp').read_text(encoding='utf-8')
     assert re.search(r'inline\s+constexpr\s+bool\s+enable_timed_search\s*=\s*false\s*;', limits), 'This report requires default fixed-work search'
     version = subprocess.run([str(solver), '--version'], capture_output=True, check=True, timeout=10)
-    assert version.stdout.decode('utf-8').strip() == 'dag-chain-solver 0.8.0'
+    assert version.stdout.decode('utf-8').strip() == 'dag-chain-solver 0.8.1'
     reference = root / 'references/hackathon_20261030'
     manifest = read(root / 'reports/rules_manifest.json')
     for name, digest in manifest['files'].items():
@@ -51,7 +51,7 @@ def main():
     old = {(r['case'], r['cores']): r for r in baseline['rows'] if r['cores'] in (2, 3, 4, 5)}
     config = reference / 'data/config.txt'
     sources = sorted((root / 'src').glob('*')) + [root / 'CMakeLists.txt']
-    metadata = dict(version='0.8.0', core_limits=[2, 3, 4, 5], search_mode='fixed_work',
+    metadata = dict(version='0.8.1', core_limits=[2, 3, 4, 5], search_mode='fixed_work',
                     requested_budget_seconds=None, solver_path=str(solver),
                     solver_executable_sha256=sha(solver), config_sha256=sha(config),
                     source_sha256={q.relative_to(root).as_posix(): sha(q) for q in sources if q.is_file()},

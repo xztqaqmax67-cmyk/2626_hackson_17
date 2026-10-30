@@ -65,7 +65,7 @@ def main():
     args.out.mkdir(parents=True, exist_ok=True)
     graphs = sorted(args.data.glob('case_*.json'))
     assert graphs, 'no input graphs'
-    report = dict(version='0.8.0', scoring_performed=False,
+    report = dict(version='0.8.1', scoring_performed=False,
                   check='generation, structure, writer affinity, dependency order and byte determinism',
                   solver_executable_sha256=sha256(args.solver), rows=[])
     saved = args.out/'report.json'

@@ -122,6 +122,83 @@ auto merit(const Entry &e) {
     // This is an internal heuristic, never an official score.
     return detail::solution_key(e.metrics.score, e.metrics.route + e.metrics.spill, e.solution);
 }
+struct RefinedSeed {
+    Solution solution;
+    double cycles = INF, traffic = INF;
+    vector<int> partition, streams;
+};
+auto seed_key(const RefinedSeed &s) {
+    return detail::solution_key(s.cycles, s.traffic, s.solution);
+}
+// Normalize core labels: merely renaming identical cores is not diversity.
+RefinedSeed seed_entry(const Solution &s, const RefinedEstimate &refined) {
+    RefinedSeed item{s, refined.cycles, refined.route + refined.spill, {}, {}};
+    map<int, int> labels;
+    for (int c : s.core) {
+        if (!labels.count(c)) labels.emplace(c, int(labels.size()));
+        item.partition.push_back(labels.at(c));
+    }
+    vector<vector<int>> streams(labels.size());
+    for (int v : s.order) streams[item.partition[v]].push_back(v);
+    for (const auto &stream : streams) {
+        item.streams.insert(item.streams.end(), stream.begin(), stream.end());
+        item.streams.push_back(-1);
+    }
+    return item;
+}
+// Fastest, then least traffic, then partition-diverse candidates. All lie within
+// the same configured cycle band; every cost came from an actual refine call.
+void trim_seeds(vector<RefinedSeed> &seeds, size_t limit) {
+    if (!limit) { seeds.clear(); return; }
+    stable_sort(seeds.begin(), seeds.end(), [](const RefinedSeed &a, const RefinedSeed &b) {
+        return seed_key(a) < seed_key(b);
+    });
+    if (seeds.empty()) return;
+    const double ceiling = seeds.front().cycles * search_limits::feedback_seed_cycle_ratio;
+    vector<RefinedSeed> eligible;
+    for (auto &s : seeds) {
+        if (s.cycles > ceiling) continue;
+        bool duplicate = false;
+        for (const auto &e : eligible)
+            if (e.streams == s.streams) { duplicate = true; break; }
+        if (!duplicate) eligible.push_back(move(s));
+    }
+    seeds.clear();
+    while (!eligible.empty() && seeds.size() < limit) {
+        size_t best = 0;
+        if (seeds.size() == 1) {
+            for (size_t i = 1; i < eligible.size(); ++i)
+                if (tie(eligible[i].traffic, eligible[i].cycles, eligible[i].streams) <
+                    tie(eligible[best].traffic, eligible[best].cycles, eligible[best].streams)) best = i;
+        } else if (seeds.size() >= 2) {
+            auto distance = [&](const RefinedSeed &candidate) {
+                size_t closest = numeric_limits<size_t>::max();
+                for (const auto &chosen : seeds) {
+                    size_t mismatch = 0;
+                    for (size_t v = 0; v < candidate.partition.size(); ++v)
+                        mismatch += candidate.partition[v] != chosen.partition[v];
+                    closest = min(closest, mismatch);
+                }
+                return closest;
+            };
+            size_t farthest = distance(eligible.front());
+            for (size_t i = 1; i < eligible.size(); ++i) {
+                const size_t d = distance(eligible[i]);
+                if (d > farthest || (d == farthest && seed_key(eligible[i]) < seed_key(eligible[best]))) {
+                    best = i; farthest = d;
+                }
+            }
+        }
+        seeds.push_back(move(eligible[best]));
+        eligible.erase(eligible.begin() + best);
+    }
+}
+void remember_seed(vector<RefinedSeed> *seeds, const Solution &s, const RefinedEstimate &refined) {
+    if (!seeds || !search_limits::feedback_seed_limit) return;
+    seeds->push_back(seed_entry(s, refined));
+    // Bounded worker-local cache; no shared state or additional evaluations.
+    trim_seeds(*seeds, 3 * search_limits::feedback_seed_limit);
+}
 } // namespace
 
 namespace {
@@ -319,7 +396,8 @@ Solution repair_writer_order(const Graph &g, const Solution &s,
 }
 
 static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
-                                  const vector<Decomposition> &path_covers, unsigned extensions) {
+                                  const vector<Decomposition> &path_covers, unsigned extensions,
+                                  vector<RefinedSeed> *feedback_seeds = nullptr) {
     if (k < 2 || k > 5)
         throw runtime_error("core count must be 2..5");
     const Config cfg;
@@ -653,6 +731,7 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
         ++result.refined_candidates;
         if (!refined.valid)
             continue;
+        remember_seed(feedback_seeds, entry.solution, refined);
         auto key = detail::solution_key(refined.cycles, refined.route + refined.spill, entry.solution);
         auto best = detail::solution_key(result.refined.cycles,
                                          result.refined.route + result.refined.spill, result.solution);
@@ -674,6 +753,7 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
         ++result.refined_candidates;
         if (!refined.valid)
             return;
+        remember_seed(feedback_seeds, candidate, refined);
         auto key = detail::solution_key(refined.cycles, refined.route + refined.spill, candidate);
         auto incumbent = detail::solution_key(result.refined.cycles,
                                               result.refined.route + result.refined.spill, result.solution);
@@ -728,26 +808,33 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
     return result;
 }
 
-Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions) {
+Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions,
+             vector<Solution> *feedback_seeds) {
     if (k < 2 || k > 5)
         throw runtime_error("core count must be 2..5");
     if (extensions & ~7U)
         throw runtime_error("unknown internal extension flags");
+    if (feedback_seeds) feedback_seeds->clear();
     Analysis analysis(g);
     vector<Decomposition> covers;
     for (bool recover : {false, true})
         for (double weight : {0.0, 0.25})
             covers.push_back(make_paths(g, analysis, weight, recover));
-    if (baseline_only)
-        return solve_at_core_count(g, k, true, covers, 0);
+    if (baseline_only) {
+        auto result = solve_at_core_count(g, k, true, covers, 0);
+        if (feedback_seeds && search_limits::feedback_seed_limit) feedback_seeds->push_back(result.solution);
+        return result;
+    }
     // N is the available number of cores, not a requirement to occupy them all.
     // Search independent core budgets concurrently, without changing candidates
     // or their within-portfolio order. Graph is read-only and every worker owns
     // its search state and indexed result slot. No shared pool/seen or nesting.
     array<optional<Result>, 4> completed;
+    array<vector<RefinedSeed>, 4> worker_seeds;
     detail::run_independent_jobs(k - 1, [&](int index) {
         try {
-            completed[index].emplace(solve_at_core_count(g, index + 2, false, covers, extensions));
+            completed[index].emplace(solve_at_core_count(g, index + 2, false, covers, extensions,
+                                    feedback_seeds ? &worker_seeds[index] : nullptr));
         } catch (const NoCandidate &) {
             // Preserve v2: another core budget can still be feasible.
         }
@@ -787,6 +874,19 @@ Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions) {
     best.slack_proposals = slack;
     best.spill_proposals = spill;
     validate(g, best.solution, k);
+    if (feedback_seeds && search_limits::feedback_seed_limit) {
+        vector<RefinedSeed> finalists;
+        for (auto &worker : worker_seeds)
+            for (auto &seed : worker) finalists.push_back(move(seed));
+        // Explicitly retain the legacy winner even if a worker's bounded cache
+        // preferred an equivalent core-label permutation during deduplication.
+        finalists.push_back(seed_entry(best.solution, best.refined));
+        trim_seeds(finalists, search_limits::feedback_seed_limit);
+        for (auto &seed : finalists) {
+            validate(g, seed.solution, k);
+            feedback_seeds->push_back(move(seed.solution));
+        }
+    }
     return best;
 }
 } // namespace dag_chain

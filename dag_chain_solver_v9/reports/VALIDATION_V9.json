@@ -1,0 +1,340 @@
+{
+  "version": "0.9.0",
+  "verified_utc": "2026-10-30T17:44:26.098512+00:00",
+  "source_sha256": {
+    "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "src/chain.cpp": "91f412cea250cd25315fff7a8099b10a53e7869385e7212a013cb446431a13a1",
+    "src/chain.hpp": "b0d5dcfa877f1ebae3735c29d8ff8fb93711cff862056d316f312de4d93656df",
+    "src/communication.cpp": "d042023990caa242a4c92ad15d20d74c036db6828ba94109d70e4b3dc7bd7e48",
+    "src/communication.hpp": "6b3e0be9b33112c1c99034763d6a96cc99af38a307c06673049f8f4e0cb42de6",
+    "src/main.cpp": "6cef7a25bec9d1a6416e6ff8b6c1c9c6f9c9fdfe92d3638a2e2477bdfec0bf81",
+    "src/model.hpp": "7aa37a784c97c7bf0924bd150b28489f16a2caf2fde40fc3791273b9b64482c0",
+    "src/official_spill.cpp": "c9f730a343c336be5320d725bbe2ce0f19b449c533b790d7be243b39559d130c",
+    "src/official_spill.hpp": "d951f255c0348a8b5bed56534a857b945b3358f6fc697a2db4f51e44260377aa",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "013d181d90b79f3910e653fb3a496aff6a73376fa8a3ed0c0ae46f46333ff761",
+    "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+    "src/spill.cpp": "39a08c53f3b88d8fbbbc9b0dce48bf89ce46019725176983ae979b74923f10fe",
+    "src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a",
+    "src/spill_feedback.cpp": "e0be12e28cd29cc4d441d20143700a1c4da1e2986ebbb61e3fe1555e3464974c",
+    "src/spill_feedback.hpp": "dd6e0fa34e4e4cd20be68a32aede6ff551439e14921f3332c6d63e12fe8781b3",
+    "src/spill_mapping.cpp": "9ca8299a04ede4c3d29e642d12db370fac742638a0ac98f79e6e358a3fedfd38",
+    "src/spill_mapping.hpp": "77e8311c325ac558e4a4e42563f0d955daa4ab34a2ecbd3e835642c88ad39716",
+    "CMakeLists.txt": "6addf3314029cbe882a8d10ad63900fdb89752d9bec77669ed0131d5c88b6e80"
+  },
+  "solver_executable_sha256": "8318c9ef743096bee4082b07611142fef7b2a442346796716108aff6ff2f8ad1",
+  "scope": "Scene B singleton Step1/Step2 exact parity; C++ Step3 cycles remain approximate, all final public and synthetic plans checked by unmodified official scorer.",
+  "cpp_tests": {
+    "msvc": {
+      "passed": 13,
+      "tests": [
+        "chain_invariants",
+        "parallel_jobs",
+        "rules_memory",
+        "rules_contract",
+        "shared_ddr_refinement",
+        "v5_structure",
+        "anytime_deadline",
+        "solution_comparison",
+        "memory_cache_equivalence",
+        "spill_optimization",
+        "official_spill_feedback",
+        "feedback_portfolio",
+        "communication_grouping"
+      ],
+      "log": {
+        "path": "build_msvc/Testing/Temporary/LastTest.log",
+        "sha256": "781df7682e4e597d293fabb11169c2d154a307837c67c0e03406ed3cbb660837"
+      },
+      "executable_sha256": {
+        "build_msvc/bin/chain_tests.exe": "b2368036dbd5bab9c84638f8e8f541e35f563c2ff653a7061537d4ff0ca30ee2",
+        "build_msvc/bin/parallel_jobs_tests.exe": "14c148e40c6568f750d1b65aea0086d14405eb0eec779a7a1291849702d876f7",
+        "build_msvc/bin/rules_memory_tests.exe": "d9c5565b65fc769ac2a5324e2917e8567bd6d2b122bfb74768379f2b070516b1",
+        "build_msvc/bin/rules_contract_tests.exe": "a9a6732c3fa13578fe4cfc132f8a54d441a446c83c76cd82f2e2fad12c446e27",
+        "build_msvc/bin/refine_tests.exe": "07b6478a050cd3d2e8363cc99a12f25952e83e79a24cc6e27e7f3c8e81f570a7",
+        "build_msvc/bin/v5_structure_tests.exe": "bf9084e69186606ba5132058a8658b09e17a816e01387f02ee5b697f71614b2a",
+        "build_msvc/bin/anytime_tests.exe": "c826468bf79d1dc3014a95b7d1cab803f5951ba2952bfadadda3f1ad7c472eb5",
+        "build_msvc/bin/comparison_tests.exe": "8278b4caa5f23b8af3dfc68b6f783552a400dbb9aa249541695897cfb7ba65dd",
+        "build_msvc/bin/memory_cache_tests.exe": "06a43da50c50181a9dd76c6d4afca7a105d5bfe89daf21e59c72477c6debe950",
+        "build_msvc/bin/spill_tests.exe": "a94bd8decf489e5d670c2236ebb424dc5bc0d985b502d0ec848e5bd7906af0e9",
+        "build_msvc/bin/feedback_tests.exe": "4fa2e10d87418b2d554d3f48214375f9ff87423c59a3fa0bcb6e17c629686739",
+        "build_msvc/bin/portfolio_tests.exe": "8b354be10e5852dcd61e8b5ee70de4314ea8154a982534867a4587adb12259a1",
+        "build_msvc/bin/communication_tests.exe": "62948845acf0d0177df8c4957515761a814a77e33172c9ac780459ab13c3452a"
+      }
+    },
+    "mingw": {
+      "passed": 13,
+      "tests": [
+        "chain_invariants",
+        "parallel_jobs",
+        "rules_memory",
+        "rules_contract",
+        "shared_ddr_refinement",
+        "v5_structure",
+        "anytime_deadline",
+        "solution_comparison",
+        "memory_cache_equivalence",
+        "spill_optimization",
+        "official_spill_feedback",
+        "feedback_portfolio",
+        "communication_grouping"
+      ],
+      "log": {
+        "path": "build_mingw/Testing/Temporary/LastTest.log",
+        "sha256": "7ee3baed0756ea9e592318c6eda039e2ac85920613c4d69c46e789eb8c01a455"
+      },
+      "executable_sha256": {
+        "build_mingw/bin/chain_tests.exe": "cafeede197318d2d50ac7cf4ec32fc86d475ec41d28fec038f722e1d180ff760",
+        "build_mingw/bin/parallel_jobs_tests.exe": "f260decfc21db43c559cacefbcd4f7eb1274abffd0b1e375b322b0c7f779ee7c",
+        "build_mingw/bin/rules_memory_tests.exe": "9162aba85fcf16af6d7e41b126a5b831297d7fea08bdae694cc08bf7df634a64",
+        "build_mingw/bin/rules_contract_tests.exe": "33e4023f68431feab542aef360de095e3bfe918b4f5613297339570010fbcb17",
+        "build_mingw/bin/refine_tests.exe": "bae9fe028ac2c715ac806aeaf3adee200210ebda056a52995ee5640c1dda1161",
+        "build_mingw/bin/v5_structure_tests.exe": "381eb0f26018864b258bd4dfe483fe4b40ddc190c03d5f9764d1f3189d70adc2",
+        "build_mingw/bin/anytime_tests.exe": "339c7c24cbc8390b38e5bb2494480fe06c493d81005d9c6078e158951d9fca74",
+        "build_mingw/bin/comparison_tests.exe": "7d9167077959ad830ce7510c6aa7a30a32e11efa244a61cc9fa88d2fc4a6dd0b",
+        "build_mingw/bin/memory_cache_tests.exe": "72551eb0697c25795ae0ec3ca59108ac9000b6611ea8cdfe47ed08ab983ffca4",
+        "build_mingw/bin/spill_tests.exe": "7cb8de3743eee81c795ed72d0eb004dc5ec9df8097117272c7e4036e153ed945",
+        "build_mingw/bin/feedback_tests.exe": "4bdeaeaa165c7e459fdbccc87dc57b8a04074143f5dc07793953de16195309dc",
+        "build_mingw/bin/portfolio_tests.exe": "5b35cc77b9b3aaf9e3e661db9bd15d2a1433f4203f22c6b0139d1aae5bc4297d",
+        "build_mingw/bin/communication_tests.exe": "ae96dbd7ba8d41e4baaa0f35f53e8cae4eab30fe191fbcaaff67dbd4bbda1810"
+      }
+    }
+  },
+  "cli_generic_checks": [
+    {
+      "name": "cli",
+      "exit_code": 0,
+      "seconds": 0.3463353000115603,
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\tests\\contracts.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\runs\\validation\\cli"
+      ]
+    },
+    {
+      "name": "rules",
+      "exit_code": 0,
+      "seconds": 0.5104189000558108,
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\tests\\rules_contracts.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\runs\\validation\\rules"
+      ]
+    },
+    {
+      "name": "synthetic",
+      "exit_code": 0,
+      "seconds": 13.00077909999527,
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\tests\\run_v5_synthetic.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v9\\runs\\synthetic"
+      ]
+    }
+  ],
+  "graph_contract_checks": 26,
+  "synthetic_official": {
+    "passed": 64,
+    "repeat_identity_passed": 64,
+    "report": {
+      "path": "runs/synthetic/report.json",
+      "sha256": "6b12075b858fc89037cca0a3c4090d9ca72a544404f20cd4150994ae51734c71"
+    }
+  },
+  "spill_parity": {
+    "exact_checks": 120,
+    "public": 40,
+    "synthetic": 64,
+    "adversarial": 16,
+    "reused_old_binary_checks": 0,
+    "report": {
+      "path": "runs/spill_differential/report.json",
+      "sha256": "7c7956785458e9da736282e77f9199594718afb7cebb462767d995b7175f72ad"
+    }
+  },
+  "official_public": {
+    "passed": 40,
+    "comparison": {
+      "count": 40,
+      "mean_speedup": 1.936587545062465,
+      "old_mean_speedup": 1.9352860770933464,
+      "generation_mean_seconds": 6.209837962518213,
+      "old_generation_mean_seconds": 5.336010335001629,
+      "changed_plans": 1,
+      "changed_core_assignments": 1,
+      "communication_selected_cases": 1,
+      "mean_speedup_change_percent": 0.06724938418785076,
+      "cycles": 142295310,
+      "old_cycles": 142401612,
+      "cycles_change_percent": -0.07464943585048234,
+      "cycles_improved": 1,
+      "cycles_equal": 39,
+      "cycles_regressed": 0,
+      "copy_bytes": 7114684224,
+      "old_copy_bytes": 7131725440,
+      "copy_bytes_change_percent": -0.23894941193922659,
+      "copy_bytes_improved": 1,
+      "copy_bytes_equal": 39,
+      "copy_bytes_regressed": 0,
+      "spill_bytes": 4215163840,
+      "old_spill_bytes": 4210222208,
+      "spill_bytes_change_percent": 0.11737223728025548,
+      "spill_bytes_improved": 0,
+      "spill_bytes_equal": 39,
+      "spill_bytes_regressed": 1,
+      "partition_bytes": 1678796416,
+      "old_partition_bytes": 1700779264,
+      "partition_bytes_change_percent": -1.2925162286080205,
+      "partition_bytes_improved": 1,
+      "partition_bytes_equal": 39,
+      "partition_bytes_regressed": 0
+    },
+    "report": {
+      "path": "reports/RESULTS_V9.json",
+      "sha256": "388e59a89e281d28b0f02891a2f6dc31a7dc1feb802daebeba11430d574fcc48"
+    }
+  },
+  "diagnostics": {
+    "feedback_stats": {
+      "cases": 40,
+      "numeric_leaf_sums": {
+        "before_spill_bytes": 4213448192,
+        "after_spill_bytes": 4210222208,
+        "before_route_bytes": 2921470464,
+        "after_route_bytes": 2921503232,
+        "before_cycles": 144058806.51360554,
+        "after_cycles": 143986195.48413754,
+        "rounds": 60,
+        "records_examined": 1036,
+        "records_productive": 880,
+        "generated_candidates": 1274,
+        "traced_candidates": 1081,
+        "refined_candidates": 182,
+        "accepted_stages": 22,
+        "seeds_traced": 78,
+        "mapping_generated": 116,
+        "neutral_retained": 33,
+        "best_neutral_steps": 3,
+        "rejected_anchor": 431,
+        "rejected_dependency": 204,
+        "rejected_distance": 2040,
+        "rejected_closure": 72,
+        "rejected_duplicate": 456,
+        "rejected_trace": 0,
+        "rejected_traffic": 748,
+        "rejected_refine": 0,
+        "rejected_cycles": 131,
+        "initial_trace_valid": 40,
+        "strategy_attempts.0": 1036,
+        "strategy_attempts.1": 1036,
+        "strategy_attempts.2": 1036,
+        "strategy_attempts.3": 1036,
+        "strategy_attempts.4": 1036,
+        "strategy_generated.0": 398,
+        "strategy_generated.1": 88,
+        "strategy_generated.2": 375,
+        "strategy_generated.3": 69,
+        "strategy_generated.4": 344
+      },
+      "stop_reasons": {
+        "no_eligible_reorder": 20,
+        "depth_limit": 20
+      },
+      "note": "Diagnostic counters have different units; sums are not a performance score."
+    },
+    "communication_stats": {
+      "cases": 40,
+      "numeric_leaf_sums": {
+        "generated": 400,
+        "unique_candidates": 400,
+        "refined_candidates": 220,
+        "traced_candidates": 260,
+        "rejected_refine": 0,
+        "rejected_trace": 0,
+        "rejected_traffic": 243,
+        "rejected_cycles": 15,
+        "oversized_traffic_explored": 209,
+        "feedback_runs": 40,
+        "selected_groups": 1305,
+        "selected_max_group_nodes": 41,
+        "baseline_trace_valid": 40,
+        "selected_new": 1,
+        "before_cycles": 143986195.48413754,
+        "after_cycles": 143828611.6459367,
+        "before_route_bytes": 2921503232,
+        "before_spill_bytes": 4210222208,
+        "after_route_bytes": 2899520384,
+        "after_spill_bytes": 4215163840,
+        "feedback.before_spill_bytes": 5479386688,
+        "feedback.after_spill_bytes": 5472381696,
+        "feedback.before_route_bytes": 2617290368,
+        "feedback.after_route_bytes": 2618019456,
+        "feedback.before_cycles": 163739168.44102934,
+        "feedback.after_cycles": 163358210.0487438,
+        "feedback.rounds": 65,
+        "feedback.records_examined": 1170,
+        "feedback.records_productive": 800,
+        "feedback.generated_candidates": 1200,
+        "feedback.traced_candidates": 972,
+        "feedback.refined_candidates": 174,
+        "feedback.accepted_stages": 38,
+        "feedback.seeds_traced": 0,
+        "feedback.mapping_generated": 128,
+        "feedback.neutral_retained": 22,
+        "feedback.best_neutral_steps": 4,
+        "feedback.rejected_anchor": 683,
+        "feedback.rejected_dependency": 201,
+        "feedback.rejected_distance": 2791,
+        "feedback.rejected_closure": 203,
+        "feedback.rejected_duplicate": 314,
+        "feedback.rejected_trace": 0,
+        "feedback.rejected_traffic": 701,
+        "feedback.rejected_refine": 0,
+        "feedback.rejected_cycles": 42,
+        "feedback.initial_trace_valid": 40,
+        "feedback.strategy_attempts.0": 1170,
+        "feedback.strategy_attempts.1": 1170,
+        "feedback.strategy_attempts.2": 1170,
+        "feedback.strategy_attempts.3": 1170,
+        "feedback.strategy_attempts.4": 1170,
+        "feedback.strategy_generated.0": 441,
+        "feedback.strategy_generated.1": 58,
+        "feedback.strategy_generated.2": 427,
+        "feedback.strategy_generated.3": 82,
+        "feedback.strategy_generated.4": 192
+      },
+      "stop_reasons": {},
+      "note": "Diagnostic counters have different units; sums are not a performance score."
+    }
+  },
+  "preservation": {
+    "v7_unchanged_files": 99,
+    "official_unchanged_files": 24,
+    "v8_unchanged_files": 96,
+    "v8_manifest": {
+      "path": "reports/v8_preservation_manifest.json",
+      "sha256": "d1c04a213b981cab643dc319f13c17cf06746a37dec687927761004031abf85c"
+    },
+    "original_run": {
+      "path": "../dag_chain_solver_v8/runs/official_upgrade/summary.json",
+      "sha256": "448c8ceb492d52c071b0057f13409897ee7680f964ffe6ea52a2af3958d73299"
+    }
+  },
+  "platform_note": "Windows MSVC and MinGW tested; native Linux and older GCC not tested."
+}

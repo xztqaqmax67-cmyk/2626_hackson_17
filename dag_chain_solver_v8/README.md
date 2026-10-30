@@ -1,19 +1,28 @@
-# DAG Chain Solver v8（0.8.0）
+# DAG Chain Solver v8（0.8.1）
 
-本版從 v7 複製，增加「先預演官方換出規則，再依溢出事件重排」的固定配額後處理。保留 v7 初始方案，核心分配不變，只調整核內的合法順序。v7 與更早版本保留原樣。
+本版在 v8 目錄直接升級溢出回饋搜尋。修改前 0.8.0 的源碼、測試、說明、報告及主執行檔已保存至 `backups/v8_0_8_0_before_feedback_upgrade_20261031/snapshot.zip`，原始評測仍在 `runs/official_all/`。v7 與更早版本保留原樣。
 
-## 流程
+## 演算法流程
 
-1. 執行既有 v7 搜尋，得到完整可用方案。
-2. C++ 重建官方 Scene B 的核內圖、邊界 COPY 及 Step 1 排序，執行與官方 Step 2 對齊的換出判定。
-3. 記錄每次溢出的核心、Tensor、觸發位置、前後使用位置、是否需要寫回與重載字節數。
-4. 按實際溢出記錄產生重排候選：將可合法提前的使用者／必要前驅前移，或延後導致壓力的任務。
-5. 對候選重新執行 Step 2。只有溢出搬運嚴格減少、分核搬運不變，且舊細化模型預測 cycles 不增加的候選，才可取代原方案。
-6. 接受候選後重新取得溢出記錄，最多進行固定輪數，最後輸出原有調度 JSON。
+1. 完整執行既有 v7 固定搜尋，保留原最佳方案，額外收集最多 3 個已細化評估、預估 cycles 不超過最優 1.05 倍的不同方案。核心標籤置換不算不同分配。
+2. C++ 重建官方 Scene B 核內圖、邊界 COPY、Step 1 排序及 Step 2 換出事件，得到精確搬運量與 Tensor 前後使用位置。
+3. 從原方案的溢出熱點產生最多 4 個移核候選。移動完整 writer 群組，保留拓撲順序；新增跨核搬運必須納入總量檢查。
+4. 各狀態按核心、Tensor、觸發區域分散選取記錄；無法形成新合法候選時繼續遞補，最多掃描 64 筆、使用 8 筆有用記錄。
+5. 交錯產生五種動作：提前下一使用者、提前剩餘使用者、延後壓力觸發者至下一／最後使用者之後，以及延後實際生產者。移動距離按核內步數計算，依然保留完整 DAG 前驅／後繼閉包。
+6. 用寬度 3、深度 2 的有界 beam 搜尋，允許搬運量不變的中間步。每個候選重新預演，不能沿用舊 victim 記錄；按各核心實際序列去重。
+7. 預篩交替考慮預估時間與精確總搬運量的非支配候選；細化後以 cycles 優先、總搬運量次之選優，最後驗證並輸出原有格式的方案 JSON。
 
-「相同邏輯」的範圍是核內圖生成、Step 1／子圖優先序及 Step 2 的溢出判定與記錄。並未宣稱完整官方 Step 3 cycles 模擬已全部移植；`refine.cpp` 仍是既有 cycles 估價器。因此 cycles 的內部非退步檢查不等於官方分數保證，最終使用未修改的官方評分器驗證。
+所有起點、移核與兩步搜尋共用最多 48 次候選 Step 2 重播、12 次完整細化估時；初始方案的第一次 trace 另計。每個深度另有限額，不會將全部配額乘上起點數。
 
-正式執行檔只執行 C++，不呼叫 Python、不讀官方答案或歷史結果。這裡的預演是計算模擬，不會真的搬動 Tensor 資料；預演耗時屬於本電腦產生方案的時間。
+## 接受條件與規則範圍
+
+最終方案的**精確總 COPY bytes 及估計 cycles 均不得高於回饋入口的原方案**，至少一項嚴格改善才替換。固定分配的重排另要求分核搬運相同、溢出不高於父狀態。不同分配比較總 COPY，不能只靠降低溢出掩蓋新增跨核搬運；溢出分類本身仍可能增加。
+
+入口方案是本次前段搜尋的勝者，不是磁碟上的歷史 v8 0.8.0 結果；正式執行檔不讀歷史答案。修改前後的實際改善、持平、退步都保留在官方比較報告。
+
+C++ 與官方對齊的範圍是本求解器單節點子圖表示的 Scene B 圖生成、Step 1 與 Step 2。**完整官方 Step 3 尚未移植，`refine.cpp` 的 cycles 仍是近似值。** 內部估時不退步不代表官方 cycles 保證；完整官方評分器用於開發驗證。本版不修改容量、90% 軟閾值、DDR 60 bytes/cycle 或 1000 cycles 同步延遲，不刪除原始依賴，也不依據用例名稱或既有答案選擇策略。
+
+正式執行檔只使用 C++。預演是 CPU 模擬，沒有實際搬動 Tensor 資料；這部分耗時屬於本電腦生成方案的時間。
 
 ## 建置與執行
 
@@ -23,57 +32,43 @@ cmake --build build --config Release --parallel 4
 build/bin/npu_sched input.json -n 5 -o output/plan.json
 ```
 
-Windows 執行檔加 `.exe`。核心上限 2～5，預設 4；允許空核。正式 CLI 與輸出格式不變。`--version` 顯示 `dag-chain-solver 0.8.0`。
+Windows 執行檔加 `.exe`。核心上限 2～5、預設 4、允許空核；`--version` 顯示 `dag-chain-solver 0.8.1`。正式 CLI 與方案格式不變。診斷資訊以一行 `feedback_stats {JSON}` 寫至 stderr，不混入方案或 stdout。
 
-## 可調上限
+## 搜尋配額與診斷
 
-集中於 `src/search_limits.hpp`，修改後重新編譯：
+所有可調搜尋上限集中於 `src/search_limits.hpp`，修改後重新編譯。詳見 [SEARCH_LIMITS_zh.md](SEARCH_LIMITS_zh.md)。固定配額不等於固定秒數；預設不啟用 15 秒限時延伸。開啟限時模式時，回饋階段仍另計固定工作量，額外多起點收集僅在預設固定模式啟用。
 
-| 參數 | 預設 | 意義 |
-|---|---:|---|
-| enable_timed_search | false | 前段仍使用 v7 固定搜尋量 |
-| feedback_enabled | true | 開啟新溢出回饋；false 可直接使用 v7 搜尋結果 |
-| feedback_rounds | 2 | 最多重排輪數 |
-| feedback_records | 8 | 每輪優先處理的溢出記錄 |
-| feedback_candidates_per_round | 12 | 每輪完整 Step 2 重播的候選配額 |
-| feedback_refine_candidates | 4 | 每輪 cycles 細化配額 |
-| feedback_closure_nodes | 64 | 合法前移所需前驅閉包的節點上限 |
-| feedback_max_distance | 256 | 全域拓撲序中局部調整的距離上限 |
+`feedback_stats` 記錄掃描／有用事件數、各策略嘗試與生成數、實際重播與細化次數、中性狀態保留數、最終勝者經過的中性步數及拒絕原因。拒絕原因包括錨點無效、依賴、距離、閉包大小、重複、trace 失敗、搬運超限、估時無效及估計 cycles 變差。`neutral_retained` 計算 beam 選取時總搬運等於入口的狀態次數，包含初始為入口騰位而移除者；`best_neutral_steps` 才是最終勝者路徑的中性步數。`accepted_stages` 也包含起點評估階段。不同計數的單位不同，不能相加當作唯一候選總數。
 
-其他 seed、slack、spill 配額沿用 v7。若啟用可選限時搜尋，`total_seconds` 管前段搜尋，新回饋階段另用固定配額，總生成時間可能更長。詳細設定與編譯方式見 [搜尋上限說明](SEARCH_LIMITS_zh.md)。
-
-## 開發與驗證
+## 開發驗證
 
 ```sh
 cmake -S . -B build -DCHAIN_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release --parallel 4
 ctest --test-dir build -C Release --output-on-failure
-python scripts/run_v8_official.py --solver build/bin/npu_sched
+python scripts/run_v8_official.py --solver build/bin/npu_sched --out runs/official_upgrade
+python scripts/summarize_v8_upgrade.py
 ```
 
-差分測試逐筆核對 C++ 與官方 Python 的核內序列、換出 Tensor、前後使用位置與實際換出／重載字節數。Python 只用於開發時核對，正式程式沒有該依賴。公開用例不是唯一驗證來源；另使用包含平手、不同 ID／輸入順序、多 writer 和 backing 重用的合成圖。
+完整目錄包含測試；精簡源碼包未包含 tests，使用預設 `CHAIN_BUILD_TESTS=OFF`。公開資料以外，合成測試涵蓋完整 DAG 合法性、無效事件遞補、跨核心距離、延後生產者、真正兩步中性搜尋、多 writer 整組移核、確定性及配額。差分核對 C++ 與官方 Python 每筆換出事件、COPY ID、backing 版本、核內序列和搬運字節數。
 
-`references/` 保留原版評分器與附件，禁止修改其規則；上傳 GitHub 時沿用 `.gitignore`。`scripts/package.py` 產生精簡源碼包，不含用例、評分器、二進位或開發測試。
+`references/` 是未修改的原版評分器與附件。`scripts/package.py` 生成源碼 ZIP；`.gitignore` 排除評測資料、建置、備份和壓縮包。舊版 `summarize_v8.py`／`check_final_spill.py` 是 0.8.0 的歷史工具，不用於新版資料；新版使用帶 upgrade 名稱的報告工具和新輸出目錄。
 
-## 查看每一筆溢出
-
-開發建置會產生 `spill_diagnostics`。以下從 v8 目錄執行，Windows 使用 `.exe`：
+## 查看溢出事件
 
 ```powershell
 ./build_msvc/bin/spill_diagnostics.exe input.json plan.json trace.json
 ./build_msvc/bin/spill_diagnostics.exe input.json plan.json adjusted_trace.json --improve adjusted_plan.json
 ```
 
-第一行只預演已有方案，第二行另外嘗試事件回饋重排。JSON 包含 `cores[].sequence` 與 `records[]`：每筆記錄有核心、Tensor ID、觸發／上次／下次使用位置、COPY ID，以及 `spill_out_copies_data`。實際溢出字節數為 `size * (1 + spill_out_copies_data)`；有有效且乾淨 DDR 副本時只需重載。`cores[].peak` 是 Step 2 換出後的邏輯駐留峰值，不是 Step 3 的並行執行峰值。
+診斷工具接受本求解器的完整單節點子圖方案，沿用同 Tensor writer 同核條件。JSON `records[]` 包含核心、Tensor、前次／觸發／下次使用位置、COPY ID 和有效 DDR backing；每筆溢出 bytes = `size * (1 + spill_out_copies_data)`。`cores[].peak` 是 Step 2 換出後的邏輯峰值，不是 Step 3 並行執行峰值。外部方案會重建全域拓撲序，因此診斷重排不必與正式產生器隱含的全域序列完全相同。
 
-診斷工具接受本求解器產生的單節點子圖方案，並沿用同 Tensor writer 同核條件；它不是可讀任意子圖分區格式的通用官方評分器替代品。原運算 owner 欄位為 C++ Graph 的密集索引，`trigger_op`／`prev_use_op`／`next_use_op` 才是實際操作 ID。生成 ID 或字節數超出 C++ 有號 64 位範圍時，預演會明確回報失敗，回饋階段保留初始方案。
+## 本次結果
 
-## 本次實測
+MSVC與MinGW各12/12 C++測試通過；CLI、26組輸入契約、64組合成圖官方評分及重複輸出一致均通過。使用新版二進位重新執行120組逐筆差分全部一致，其中包含40個最終正式方案；未沿用舊版二進位的核對結果。
 
-MSVC 19.44 與 GCC/MinGW 15.1 各通過 11 組 C++ 測試；CLI、26 組圖輸入契約、64 組合成圖官方評分及重複輸出一致性也通過。120 組初始逐筆差分全部一致；新增 6 個重排方案再逐筆核對一致，另 34 個最終方案與已驗證方案的輸入／方案／程式雜湊完全相同。
+本次40組官方評分均通過。相對0.8.0，平均加速比1.933303×→1.935286×（+0.10256%）；cycles合計減少43,478（−0.03052%），8組改善、24組持平、8組退步。總COPY減少642,816bytes（−0.00901%），溢出減少675,584bytes（−0.01604%）。平均生成時間4.215→5.336秒；前後為不同時間的單次量測，非排除環境波動的CPU實驗。收益仍小，額外搜尋有時間成本。
 
-全部 40 組公開官方評分通過。相對 v7：核心分配與分核搬運均不變；溢出 6 組下降、34 組持平，合計減少 2,550,400 bytes（0.06053%）；cycles 5 組下降、35 組持平，合計減少 0.02562%。平均加速比 1.933066× → 1.933303×，本輪效果仍小。
+測試與比較記錄於 [完整 40 組結果](reports/RESULTS_V8_UPGRADE_zh.md)、[機器可讀結果](reports/RESULTS_V8_UPGRADE.json) 及 [驗證紀錄](reports/VALIDATION_V8_UPGRADE.json)。歷史 0.8.0 報告仍為 `reports/RESULTS_V8_zh.md`，不代表新版數值。
 
-[完整 40 組結果](reports/RESULTS_V8_zh.md) · [溢出記錄解讀示例](reports/SPILL_TRACE_EXAMPLE_zh.md) · [驗證紀錄](reports/VALIDATION_V8.json)
-
-目前回饋策略有小配額、全域移動距離與必須立即減少溢出的限制。這版建立可核對的事件回饋流程，沒有宣稱已充分搜尋全部拓撲順序。未驗證原生 Linux 或更舊 GCC。
+[回饋搜尋診斷解讀](reports/SEARCH_DIAGNOSTICS_V8_UPGRADE_zh.md)。報告、測試與原始trace存放在完整開發目錄；精簡源碼ZIP只包含建置所需源碼及三份說明。

@@ -1,0 +1,261 @@
+{
+  "version": "0.8.1",
+  "verified_utc": "2026-10-30T16:47:29.805318+00:00",
+  "source_sha256": {
+    "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "src/chain.cpp": "2106aca7a8a30d11b4a24a99f46169583e19c78e1dca9e936d30954880a05f79",
+    "src/chain.hpp": "cc0fe754bbf8ba7b242a96aec54755f2a8a0d464580493e384340d174dbe7745",
+    "src/main.cpp": "a4f11027116e80138d16b46efbb43bd805f56d51e9693dfa721dce4bf49c5fa5",
+    "src/model.hpp": "15d4aa7d110e301320fcb2b7f876ac974125e1de2c564fefa4234fe36931105d",
+    "src/official_spill.cpp": "c9f730a343c336be5320d725bbe2ce0f19b449c533b790d7be243b39559d130c",
+    "src/official_spill.hpp": "d951f255c0348a8b5bed56534a857b945b3358f6fc697a2db4f51e44260377aa",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "dbdad624e9e9d04b19df5d5bb9f3e77b2bc8aefe4802c32ca5bf7a7b3291a6d8",
+    "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+    "src/spill.cpp": "39a08c53f3b88d8fbbbc9b0dce48bf89ce46019725176983ae979b74923f10fe",
+    "src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a",
+    "src/spill_feedback.cpp": "e0be12e28cd29cc4d441d20143700a1c4da1e2986ebbb61e3fe1555e3464974c",
+    "src/spill_feedback.hpp": "dd6e0fa34e4e4cd20be68a32aede6ff551439e14921f3332c6d63e12fe8781b3",
+    "src/spill_mapping.cpp": "c4279594523dd1e6df27da23333ed8aae86624b1865b78a4c980d6a1dd6bb27a",
+    "src/spill_mapping.hpp": "77e8311c325ac558e4a4e42563f0d955daa4ab34a2ecbd3e835642c88ad39716",
+    "CMakeLists.txt": "2a6ba50e0b8cbd4a7b090d8726c4be319753db06dd655ac3dad2b0e4e9bc4c91"
+  },
+  "solver_executable_sha256": "f2731d12c0e77541deb440c982c9eb01829298f0ec8ef1e08f9ba83818878bb4",
+  "scope": "Scene B singleton Step1/Step2 exact parity; C++ Step3 cycles remain approximate, all final public and synthetic plans checked by unmodified official scorer.",
+  "cpp_tests": {
+    "msvc": {
+      "passed": 12,
+      "tests": [
+        "chain_invariants",
+        "parallel_jobs",
+        "rules_memory",
+        "rules_contract",
+        "shared_ddr_refinement",
+        "v5_structure",
+        "anytime_deadline",
+        "solution_comparison",
+        "memory_cache_equivalence",
+        "spill_optimization",
+        "official_spill_feedback",
+        "feedback_portfolio"
+      ],
+      "log": {
+        "path": "build_msvc/Testing/Temporary/LastTest.log",
+        "sha256": "50174a805826ca03884b0c349fe563bbe45956077f752a18cf6fff9bbe0240f5"
+      },
+      "executable_sha256": {
+        "build_msvc/bin/chain_tests.exe": "6c92c42639ae682c8a737025d3fc1b70d11142592478d6a224fca116e743c4ab",
+        "build_msvc/bin/parallel_jobs_tests.exe": "d132e0998d6c2458b3e287bbd23f8eb3a4876904a83f8c4479755cc2445df753",
+        "build_msvc/bin/rules_memory_tests.exe": "7f06738807ea699cc72056cee6e303db028e7e890542d4d101160d335dd61e24",
+        "build_msvc/bin/rules_contract_tests.exe": "ce45b0ffc3d14891de210b404012b9467d65a279500d0fd84f486633ce9e89c8",
+        "build_msvc/bin/refine_tests.exe": "7a2578050a40b11fe7b3a4b32246758fd89b567b1104deaeb98010644c9c2e50",
+        "build_msvc/bin/v5_structure_tests.exe": "102b950ba627e2245baa4872ef538a9c929e5558db575113cb1d754609a369f4",
+        "build_msvc/bin/anytime_tests.exe": "687fea40780762de7869226a9cda6bf44cdb2d9ca22dc5196ceda1c2fff488b5",
+        "build_msvc/bin/comparison_tests.exe": "aca7cfc1dcfd15a74bec4050366ec3a00220f899c79620d4c67e55aec21b519e",
+        "build_msvc/bin/memory_cache_tests.exe": "be9749d09fe5afda017396dd7f8c569ac243d62143b041803f1d895ba3137f6a",
+        "build_msvc/bin/spill_tests.exe": "2c59a5a217dacebe264ec801beb4c3a6f52f5eee5ca1422bfe7db68211bf228f",
+        "build_msvc/bin/feedback_tests.exe": "c808e9263b4140806f92c5f8beb280cc763b6c38c29a4865bd78b6623b68c232",
+        "build_msvc/bin/portfolio_tests.exe": "0efec967ea3a1d22e1afda51ef937af2bf3db79ce32558ca01f0a968f5039d1a"
+      }
+    },
+    "mingw": {
+      "passed": 12,
+      "tests": [
+        "chain_invariants",
+        "parallel_jobs",
+        "rules_memory",
+        "rules_contract",
+        "shared_ddr_refinement",
+        "v5_structure",
+        "anytime_deadline",
+        "solution_comparison",
+        "memory_cache_equivalence",
+        "spill_optimization",
+        "official_spill_feedback",
+        "feedback_portfolio"
+      ],
+      "log": {
+        "path": "build_mingw/Testing/Temporary/LastTest.log",
+        "sha256": "18de362bb68b89c09d84dd6f28f9ceaf5430079b35498a142733b18fcd331cc1"
+      },
+      "executable_sha256": {
+        "build_mingw/bin/chain_tests.exe": "c70dea65bbe9e82dd2ac1d0754f0eba05bb2469a669f92b2b1076730e005ee08",
+        "build_mingw/bin/parallel_jobs_tests.exe": "9e76e82519bf095b899baad863ae33af961f9f23aeeb33a36a492fb2be304982",
+        "build_mingw/bin/rules_memory_tests.exe": "e8c8153258bb66602c1f2cc8ab6baad7367a8ac6f4534958475680c52d7d78de",
+        "build_mingw/bin/rules_contract_tests.exe": "95ac799b2c0897d3aed50668f2b2f682c4f743c9b5882aa9e09072ff44ac51fa",
+        "build_mingw/bin/refine_tests.exe": "53afd2c81b53f3f935ae2501414b35c205c3ac242abfe93132ca19bf67dc6a22",
+        "build_mingw/bin/v5_structure_tests.exe": "d2c56d070b93af174949240495c963859c254550ab3f93277c1d57ec34fd8d41",
+        "build_mingw/bin/anytime_tests.exe": "6968f323d634148c8759499fc15490965db728b7dae1ddde3ac6a6bac529bba6",
+        "build_mingw/bin/comparison_tests.exe": "0caccd71edc7e473907c717485a9e546a36e57168b2a4f9fb23687e75d404367",
+        "build_mingw/bin/memory_cache_tests.exe": "d646fa2c27b0fbabd047eb0c0786fbdc3fc86c50e741c4ce20bb358b2f452d8b",
+        "build_mingw/bin/spill_tests.exe": "9041a2f0f534c6f48932210d09aa60e5ccb2a4db04502e8f4bc9caa37e11a596",
+        "build_mingw/bin/feedback_tests.exe": "de872129183be90e10028712a3a7ec9776c064613005c8051d52600600199216",
+        "build_mingw/bin/portfolio_tests.exe": "ef77506c86d3ce3df873675c70aab44e56743d3790afee34477c867ff4e24e04"
+      }
+    }
+  },
+  "cli_generic_checks": [
+    {
+      "name": "cli",
+      "exit_code": 0,
+      "seconds": 0.4833472999744117,
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\tests\\contracts.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\runs\\validation_upgrade\\cli"
+      ]
+    },
+    {
+      "name": "rules",
+      "exit_code": 0,
+      "seconds": 0.7091916999779642,
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\tests\\rules_contracts.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\runs\\validation_upgrade\\rules"
+      ]
+    },
+    {
+      "name": "synthetic",
+      "exit_code": 0,
+      "seconds": 14.778868000023067,
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\tests\\run_v5_synthetic.py",
+        "--solver",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\build_msvc\\bin\\npu_sched.exe",
+        "--out",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v8\\runs\\synthetic_upgrade"
+      ]
+    }
+  ],
+  "graph_contract_checks": 26,
+  "synthetic_official": {
+    "passed": 64,
+    "repeat_identity_passed": 64,
+    "report": {
+      "path": "runs/synthetic_upgrade/report.json",
+      "sha256": "4a78a27c5166810ae3c00394ce2e7d90e5e2be92a822a055aac479bf5a9efeec"
+    }
+  },
+  "spill_parity": {
+    "exact_checks": 120,
+    "public": 40,
+    "synthetic": 64,
+    "adversarial": 16,
+    "reused_old_binary_checks": 0,
+    "report": {
+      "path": "runs/spill_differential_upgrade/report.json",
+      "sha256": "9050c1bffcaa14d61d45276ddc43e9c138dbf79d9a3a08906cecf8b40e48020b"
+    }
+  },
+  "official_public": {
+    "passed": 40,
+    "comparison": {
+      "count": 40,
+      "mean_speedup": 1.9352860770933464,
+      "old_mean_speedup": 1.9333032828541161,
+      "generation_mean_seconds": 5.336010335001629,
+      "old_generation_mean_seconds": 4.215337647474371,
+      "changed_plans": 17,
+      "changed_core_assignments": 6,
+      "mean_speedup_change_percent": 0.10255991684362531,
+      "cycles": 142401612,
+      "old_cycles": 142445090,
+      "cycles_change_percent": -0.030522638583052597,
+      "cycles_improved": 8,
+      "cycles_equal": 24,
+      "cycles_regressed": 8,
+      "copy_bytes": 7131725440,
+      "old_copy_bytes": 7132368256,
+      "copy_bytes_change_percent": -0.009012658585871858,
+      "copy_bytes_improved": 11,
+      "copy_bytes_equal": 25,
+      "copy_bytes_regressed": 4,
+      "spill_bytes": 4210222208,
+      "old_spill_bytes": 4210897792,
+      "spill_bytes_change_percent": -0.016043704534540737,
+      "spill_bytes_improved": 12,
+      "spill_bytes_equal": 24,
+      "spill_bytes_regressed": 4,
+      "partition_bytes": 1700779264,
+      "old_partition_bytes": 1700746496,
+      "partition_bytes_change_percent": 0.001926683375619298,
+      "partition_bytes_improved": 4,
+      "partition_bytes_equal": 35,
+      "partition_bytes_regressed": 1
+    },
+    "report": {
+      "path": "reports/RESULTS_V8_UPGRADE.json",
+      "sha256": "a05956ba196f5143fb10b1ac825d3b9d59bb041e4096e378940cab3b7a9e1320"
+    }
+  },
+  "feedback_diagnostics": {
+    "cases": 40,
+    "numeric_leaf_sums": {
+      "before_spill_bytes": 4213448192,
+      "after_spill_bytes": 4210222208,
+      "before_route_bytes": 2921470464,
+      "after_route_bytes": 2921503232,
+      "before_cycles": 144058806.51360554,
+      "after_cycles": 143986195.48413754,
+      "rounds": 60,
+      "records_examined": 1036,
+      "records_productive": 880,
+      "generated_candidates": 1274,
+      "traced_candidates": 1081,
+      "refined_candidates": 182,
+      "accepted_stages": 22,
+      "seeds_traced": 78,
+      "mapping_generated": 116,
+      "neutral_retained": 33,
+      "best_neutral_steps": 3,
+      "rejected_anchor": 431,
+      "rejected_dependency": 204,
+      "rejected_distance": 2040,
+      "rejected_closure": 72,
+      "rejected_duplicate": 456,
+      "rejected_trace": 0,
+      "rejected_traffic": 748,
+      "rejected_refine": 0,
+      "rejected_cycles": 131,
+      "initial_trace_valid": 40
+    },
+    "stop_reasons": {
+      "no_eligible_reorder": 20,
+      "depth_limit": 20
+    },
+    "note": "Numeric leaf sums are diagnostic aggregates, not performance scores; per-case values are retained in official summary."
+  },
+  "preservation": {
+    "v7_unchanged_files": 99,
+    "official_unchanged_files": 24,
+    "original_v8_files": 85,
+    "snapshot": {
+      "path": "backups/v8_0_8_0_before_feedback_upgrade_20261031/snapshot.zip",
+      "sha256": "f5aaa0150dfdacadfe3f6e47e7f8035ff1b48d7b2b3d658a43ed8a1da80f5f50"
+    },
+    "original_run": {
+      "path": "runs/official_all/summary.json",
+      "sha256": "8a62a2d8516af65a894ea5a688cfa82df06996245fef05e57520cdb947a91097"
+    },
+    "original_report": {
+      "path": "reports/RESULTS_V8.json",
+      "sha256": "32e11950520ea6a451aab14bcc60f4cf45a96ae58d7d0408cce02b3b4e0ef8d9"
+    }
+  },
+  "platform_note": "Windows MSVC and MinGW tested; native Linux and older GCC not tested."
+}

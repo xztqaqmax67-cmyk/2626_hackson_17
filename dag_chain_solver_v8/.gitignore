@@ -3,4 +3,5 @@
 /dist/
 /references/
 /snapshots/
+/backups/
 __pycache__/

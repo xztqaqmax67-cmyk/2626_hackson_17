@@ -58,7 +58,9 @@ int main(int argc, char **argv) {
             incumbent.estimate = evaluate_proxy(g, k, Config{}, s, 0.03, nullptr);
             incumbent.refined = dag_chain::refine_estimate(g, s, k);
             incumbent.generated_for_cores = k;
-            auto improved = dag_chain::improve_spill_order(g, k, move(incumbent));
+            dag_chain::FeedbackStats statistics;
+            auto improved = dag_chain::improve_spill_order(g, k, move(incumbent), &statistics);
+            cerr << "feedback_stats " << dag_chain::feedback_stats_json(statistics) << '\n';
             s = move(improved.solution);
             const auto target = fs::u8path(argv[5]);
             if (!target.parent_path().empty()) fs::create_directories(target.parent_path());
