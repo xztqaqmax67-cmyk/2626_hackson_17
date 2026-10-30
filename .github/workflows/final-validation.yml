@@ -57,8 +57,11 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           python overnight/final_ci_tools/contracts.py --solver ci-unpacked/17/build/bin/npu_sched.exe --out ci-output/cli
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python overnight/final_ci_tools/cli_regressions.py --solver ci-unpacked/17/build/bin/npu_sched.exe --out ci-output/cli-regressions
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python overnight/final_ci_tools/rules_contracts.py --solver ci-unpacked/17/build/bin/npu_sched.exe --out ci-output/rules
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Retain package identity and test evidence
         if: always()
         uses: actions/upload-artifact@v4
