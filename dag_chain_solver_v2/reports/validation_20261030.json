@@ -1,0 +1,55 @@
+{
+  "version": "0.2.0",
+  "date": "2026-10-30",
+  "public_configurations": 40,
+  "public_valid": 40,
+  "public_repeat_identical": 40,
+  "msvc": {
+    "compiler": "19.44.35209.0",
+    "unit_tests": "passed",
+    "cli_tests": "passed",
+    "executable_sha256": "12e5971e9a993561d640436ed06f0eb1f96d7170381e26ad1b91ed11a8ef0a3c"
+  },
+  "mingw": {
+    "compiler": "GCC 15.1.0",
+    "unit_tests": "passed",
+    "cli_tests": "passed",
+    "matched_msvc_plans": 40,
+    "executable_sha256": "2d0ffee304f72f3824a01d58c7585eae94f361bf64ced688a167028b239953c5",
+    "observed_max_peak_working_set_bytes": 88190976
+  },
+  "random_dags": {
+    "graphs": 20,
+    "configurations": 40,
+    "valid": 40,
+    "repeat_identical": 40
+  },
+  "python_reference": [
+    {
+      "case": "case_07",
+      "cores": 4,
+      "makespan": 3493762,
+      "matched": true
+    },
+    {
+      "case": "case_08",
+      "cores": 5,
+      "makespan": 7922514,
+      "matched": true
+    }
+  ],
+  "package": {
+    "file": "dist/dag_chain_solver_v2.zip",
+    "bytes": 24754,
+    "files": [
+      "dag_chain_solver_v2/CMakeLists.txt",
+      "dag_chain_solver_v2/README.md",
+      "dag_chain_solver_v2/src/chain.cpp",
+      "dag_chain_solver_v2/src/chain.hpp",
+      "dag_chain_solver_v2/src/main.cpp",
+      "dag_chain_solver_v2/src/model.hpp"
+    ],
+    "sha256": "608819c186a0d6d0f3e144c3c7aa798adb544945e319426fbe8c5b01cd45a961"
+  },
+  "linux": "not_tested"
+}
