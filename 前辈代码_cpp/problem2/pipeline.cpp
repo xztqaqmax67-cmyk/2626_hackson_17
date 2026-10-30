@@ -13,7 +13,7 @@ class Placement {
     const GraphInfo &g;
     const Settings &settings;
 
-  public:
+public:
     PipeLoads available, fixed;
     std::map<Id, double> finish;
     std::map<Id, Id> core;

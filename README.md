@@ -1,5 +1,7 @@
 # Hackathon 多核排程實驗
 
+- **当前维护工程：[前辈代码_cpp/](前辈代码_cpp/README.md)**，在原文件内适配 `npu_sched`，保留完整算法和所有模块。
+- `17/`、`17.zip` 是旧精简草稿，已停止沿用，按用户要求暂不删除；最终提交包等待用户确认后再整理。
 - **新電腦／GPT 接手：先讀 [HANDOFF_zh.md](HANDOFF_zh.md)。**
 - 最新 C++ 求解器、本地評分器與測試：[hackathon_v3/](hackathon_v3/README_zh.md)。
 - 新測試資料：`hackathon_data/case_00.json` 至 `case_09.json`。

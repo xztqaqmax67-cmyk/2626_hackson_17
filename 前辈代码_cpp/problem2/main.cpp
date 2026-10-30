@@ -1,5 +1,6 @@
 // 对应 main.py。
 // 命令行入口：校验参数，启动受时限约束的搜索进程，再导出最优检查点。
+// npu_sched 使用同文件内的正式入口：直接调用原搜索，参数固定，只输出方案。
 #include "search.hpp"
 #include "batch.hpp"
 #include "official.hpp"
@@ -12,6 +13,78 @@
 #include "official_code/stub_multicore_cut_and_schedule.hpp"
 #include <csignal>
 namespace problem2 {
+#ifdef NPU_SCHED_ENTRY
+int submission_main(int argc, char **argv) {
+    const double started = monotonic();
+    int failure_code = 2;
+    // 每条搜索线程有自己的截止时间；生成器会在交接时同步该值。
+    // 正式入口不创建子进程，搜索本身仍按原有的限时规则收尾。
+    struct RestoreDeadline {
+        double previous = execution_deadline;
+        ~RestoreDeadline() {
+            execution_deadline = previous;
+        }
+    } restore;
+    try {
+        const auto args =
+            parse_submission_arguments(std::vector<std::string>(argv + 1, argv + argc));
+        if (args.version) {
+            std::cout << "npu_sched 1.0.0 (team 17, full-search C++17)\n";
+            return 0;
+        }
+        if (args.help) {
+            std::cout << "Usage: npu_sched <graph.json> [-n 2..5] [-o plan.json]\n"
+                         "       --cores=N and --output=PATH are also supported.\n";
+            return 0;
+        }
+        failure_code = 3;
+        execution_deadline = started + 85.0;
+        if (!fs::is_regular_file(args.input)) {
+            throw std::invalid_argument("输入计算图不是可读取的文件");
+        }
+        const GraphInfo graph(read_json_strict(args.input));
+
+        // 沿用原 problem2 默认的 compact 搜索配置和 25 秒预算，不删减候选类型。
+        // 输入处理已消耗的时间计入 90 秒总上限，并为输出保留至少 5 秒余量。
+        failure_code = 1;
+        SearchOptions options;
+        options.compact = true;
+        options.export_results = false;
+        options.time_limit = std::min(DEFAULT_CASE_TIME_LIMIT, started + 85.0 - monotonic());
+        if (options.time_limit <= 0) {
+            std::cerr << "输入处理后剩余时间不足，未生成方案\n";
+            return 5;
+        }
+        const auto plan = solve_in_memory(graph, args.cores, options);
+        if (plan.is_null()) {
+            std::cerr << "时限内未找到通过完整评估的方案\n";
+            return 5;
+        }
+        execution_deadline = started + 85.0;
+        // 仍使用原有结构校验，不以简化估价代替官方规则的本地移植。
+        validate_task_order(derive_multicore_plan(graph.graph, plan));
+        failure_code = 4;
+        atomic_write(args.output, plan);
+        return 0;
+    } catch (const SubmissionUsageError &error) {
+        std::cerr << safe_message(error.what()) << '\n';
+        return 2;
+    } catch (const TimeoutError &error) {
+        std::cerr << safe_message(error.what()) << '\n';
+        return 5;
+    } catch (const NoFeasiblePlanError &error) {
+        std::cerr << safe_message(error.what()) << '\n';
+        return 5;
+    } catch (const std::bad_alloc &) {
+        std::cerr << "内存分配失败\n";
+        return 1;
+    } catch (const std::exception &error) {
+        std::cerr << safe_message(error.what()) << '\n';
+        return failure_code;
+    }
+}
+#else
+// 原开发入口完整保留，显式构建 problem2 时仍可使用批量、继承与调试功能。
 namespace {
 volatile std::sig_atomic_t interrupted = 0;
 void interrupt_handler(int) {
@@ -403,6 +476,7 @@ int submission_main(int argc, char **argv) {
         return 1;
     }
 }
+#endif
 } // namespace problem2
 #ifdef _WIN32
 int wmain(int argc, wchar_t **argv) {

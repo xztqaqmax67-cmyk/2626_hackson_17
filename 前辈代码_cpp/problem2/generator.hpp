@@ -12,11 +12,11 @@ namespace problem2 {
 // 销毁时取消并 join，确保生产者退出后才释放捕获的外部变量。
 // 仅允许单个调用者顺序调用 next()；同时传递搜索用的线程局部截止时间。
 template <class T> class Generator {
-  public:
+public:
     using Yield = std::function<void(T)>;
     using Producer = std::function<void(const Yield &)>;
 
-  private:
+private:
     struct Cancelled {};
     struct State {
         std::mutex mutex;
@@ -78,7 +78,7 @@ template <class T> class Generator {
         state_->worker.join();
     }
 
-  public:
+public:
     explicit Generator(Producer producer) : state_(std::make_unique<State>(std::move(producer))) {}
     Generator(Generator &&) noexcept = default;
     Generator &operator=(Generator &&other) noexcept {

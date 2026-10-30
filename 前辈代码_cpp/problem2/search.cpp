@@ -532,8 +532,17 @@ std::vector<Candidate> neighborhoods(const GraphInfo &g, const Plan &p, const Js
 }
 // 搜索只接纳通过完整官方评估的方案。草图估计负责排序，不能写入最终评分。
 // 截止或达到评估次数上限时，保留此前原子写入的最好检查点。
-Json solve(const fs::path &graph_path, Id cores, const fs::path &config_path,
-           const fs::path &output, const SearchOptions &options) {
+// 两个入口共用下面的算法实现，差别仅在输入与结果持久化方式。
+// memory_plan 非空时使用调用方已经解析的图及固定参数，结果直接交回调用方。
+static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &config_path,
+                       const fs::path &output, const SearchOptions &options,
+                       const GraphInfo *provided_graph = nullptr,
+                       const Settings *provided_settings = nullptr, Json *memory_plan = nullptr) {
+    const bool memory_only = memory_plan != nullptr;
+    if (memory_only && (!options.warm_start.empty() || !options.inherited_checkpoint.empty() ||
+                        !options.resume_checkpoint.empty())) {
+        throw std::invalid_argument("内存入口不接受外部检查点或预生成方案");
+    }
     struct EvaluationLimit : std::exception {};
     double started = monotonic(), time_limit = options.time_limit,
            grace = cores == 1 ? 0 : options.feasibility_grace;
@@ -544,7 +553,9 @@ Json solve(const fs::path &graph_path, Id cores, const fs::path &config_path,
     double soft_deadline = started + time_limit, deadline = soft_deadline + grace,
            last_saved = -std::numeric_limits<double>::infinity();
     execution_deadline = deadline;
-    fs::create_directories(output);
+    if (!memory_only) {
+        fs::create_directories(output);
+    }
     Json stats = object();
     for (const char *name : {"full_evaluations",
                              "invalid_evaluations",
@@ -642,15 +653,23 @@ Json solve(const fs::path &graph_path, Id cores, const fs::path &config_path,
                 record["routes"].push_back(route->stats);
             }
         }
-        atomic_write(output / "metrics.json", record);
+        if (!memory_only) {
+            atomic_write(output / "metrics.json", record);
+        }
         timing("record_seconds", monotonic() - began);
     };
     std::exception_ptr failure;
     try {
         save_record();
-        GraphInfo graph = GraphInfo::from_path(graph_path);
-        auto settings = official::load_settings(config_path);
-        auto instance = instance_fingerprint(graph_path, config_path);
+        std::optional<GraphInfo> loaded_graph;
+        if (!provided_graph) {
+            loaded_graph.emplace(GraphInfo::from_path(graph_path));
+        }
+        const GraphInfo &graph = provided_graph ? *provided_graph : *loaded_graph;
+        const auto settings =
+            provided_settings ? *provided_settings : official::load_settings(config_path);
+        // 内存入口不继承检查点，因而也无需读取输入或配置文件来计算指纹。
+        const auto instance = memory_only ? Json() : instance_fingerprint(graph_path, config_path);
         record["problem_instance"] = instance;
         // 统一处理去重、校验、正式评估与保优，所有搜索路线共享该入口。
         auto evaluate = [&](const Plan &candidate, const std::string &source,
@@ -714,7 +733,9 @@ Json solve(const fs::path &graph_path, Id cores, const fs::path &config_path,
                         {"problem_instance", instance},
                         {"inherited_validation", record.value("inherited_validation", Json())}};
                     double checkpoint_started = monotonic();
-                    atomic_write(output / "best_checkpoint.json", checkpoint);
+                    if (!memory_only) {
+                        atomic_write(output / "best_checkpoint.json", checkpoint);
+                    }
                     timing("checkpoint_seconds", monotonic() - checkpoint_started);
                     bool first = !best_plan;
                     best_key = score;
@@ -746,10 +767,12 @@ Json solve(const fs::path &graph_path, Id cores, const fs::path &config_path,
             }
             record["history"].push_back(entry);
             save_record(improved != 0);
-            std::cout << source << ": "
-                      << (entry.contains("makespan") ? entry.at("makespan").dump()
-                                                     : field_string(entry, "status"))
-                      << "; best=" << best_key.first << std::endl;
+            if (!memory_only) {
+                std::cout << source << ": "
+                          << (entry.contains("makespan") ? entry.at("makespan").dump()
+                                                         : field_string(entry, "status"))
+                          << "; best=" << best_key.first << std::endl;
+            }
             if (best_plan && monotonic() >= soft_deadline) {
                 throw TimeoutError("search deadline reached");
             }
@@ -938,7 +961,7 @@ Json solve(const fs::path &graph_path, Id cores, const fs::path &config_path,
                 }
             }
             if (!best_plan) {
-                throw std::runtime_error("no officially executable seed found");
+                throw NoFeasiblePlanError("no officially executable seed found");
             }
             auto better = [](const SearchRow &a, const SearchRow &b) { return a.score < b.score; };
             std::vector<SearchRow> native;
@@ -1355,9 +1378,24 @@ Json solve(const fs::path &graph_path, Id cores, const fs::path &config_path,
     if (failure) {
         std::rethrow_exception(failure);
     }
-    if (options.export_results) {
+    if (memory_only && best_plan) {
+        *memory_plan = best_plan->to_dict();
+    }
+    if (!memory_only && options.export_results) {
         recover(output, path_utf8(graph_path.stem()), cores);
     }
     return record;
+}
+// 原开发接口原样保留，包括配置读取、检查点继承、日志和评分导出。
+Json solve(const fs::path &graph, Id cores, const fs::path &config, const fs::path &output,
+           const SearchOptions &options) {
+    return solve_impl(graph, cores, config, output, options);
+}
+
+Json solve_in_memory(const GraphInfo &graph, Id cores, const SearchOptions &options) {
+    const auto settings = submission_settings();
+    Json plan;
+    solve_impl({}, cores, {}, {}, options, &graph, &settings, &plan);
+    return plan;
 }
 } // namespace problem2

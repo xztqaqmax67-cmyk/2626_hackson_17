@@ -95,6 +95,10 @@ inline double monotonic() {
 struct TimeoutError : std::runtime_error {
     using std::runtime_error::runtime_error;
 };
+// 区分“搜索没有找到可执行方案”和程序内部故障，正式接口分别返回 5 与 1。
+struct NoFeasiblePlanError : std::runtime_error {
+    using std::runtime_error::runtime_error;
+};
 inline void check_deadline(double deadline = 0) {
     if (deadline > 0 && monotonic() >= deadline) {
         throw TimeoutError("problem2 construction reached its deadline");
@@ -110,6 +114,11 @@ struct Settings {
     double bandwidth = 0;
     double cross_core_copy_delay = 0;
 };
+// npu_sched 的硬件参数固定在程序内；开发入口仍保留原配置接口，便于对照。
+// 正式入口不接受参数覆盖，也不会读取 config.txt 或环境变量。
+inline Settings submission_settings() {
+    return {{{"L1", 1572864}, {"UB", 131072}}, 60.0, 1000.0};
+}
 struct GraphViews {
     std::map<Id, Ids> inputs, outputs;
     Adjacency preds, succs, producers, consumers;

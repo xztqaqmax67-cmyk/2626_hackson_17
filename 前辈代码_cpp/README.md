@@ -1,5 +1,47 @@
 # 前辈代码的 C++ 版本（Hackathon 场景 B）
 
+## 当前原地改造方式
+
+本目录是当前继续维护的完整移植工程。按用户最新要求，在原文件内适配接口，**保留全部算法、模块和文件**。`17/` 与 `17.zip` 是之前的精简草稿，暂时保留，不作为本次成果；最终目录整理、文件剔除及打包，等待用户最后明确要求后再做。
+
+默认构建 `npu_sched`，直接调用原 `search.cpp` 的同一套完整搜索：结构种子、流水线候选、精英池、多路线、切块合并、交换迁移、生命周期修复、空闲核激活和完整评分均保留。没有使用精简版的内部估价替换原算法。
+
+正式入口使用固定参数，只输出两字段方案。原 `problem2` 开发入口仍支持配置读取、检查点继承、批量运行和评分导出。两者共用 `solve_impl`；正式入口由内存传入图和参数、返回最好方案，不读写中间文件、不打印评分、不创建子进程。
+
+Linux（GCC 9.4/11，CMake 3.16+），在本目录执行：
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
+./build/bin/npu_sched "/path with spaces/graph.json" -n 4 -o "out/plan.json"
+```
+
+Windows（VS2019 16.8+ / VS2022），在本目录执行：
+
+```powershell
+cmake -S . -B build -A x64
+cmake --build build --config Release -j
+.\build\bin\npu_sched.exe "C:\path with spaces\graph.json" --cores=4 --output="out\plan.json"
+```
+
+多配置生成器也直接输出 `build/bin/npu_sched.exe`。换编译器时使用新的构建目录；旧缓存曾开启测试的，可显式传入 `-DBUILD_TESTING=OFF`。
+
+`npu_sched` 的核数范围为 2..5、默认 4，支持 `--version`、`--help`、两种参数写法。省略输出路径时写到图同目录的 `<case>_multicore_res.json`。不接受配置、检查点或评分导出参数。退出码：0 成功、1 内部错误、2 参数错误、3 输入错误、4 输出错误、5 无合法方案。
+
+仍保留默认 25 秒限时搜索及 compact 探索宽度。生成器最多使用 6 条休眠路线线程加 1 条主线程，compact 最多 4 条路线，路线交替运行。按用户要求保留限时搜索，因此不保证重复输出完全相同；90 秒、16 GB 及指定 GCC/MSVC 环境的完整验收仍待核验。
+
+**留待最后调整：** 源码、第三方库仍在原 `problem2/` 目录下；评估器移植、配置、测试和开发工具全部保留。本目录尚未完成最终打包，不能直接宣称满足“不得包含官方评估器副本”等条款。
+
+自有 C++ 代码统一为四空格缩进，Tab 显示宽度 4，禁止实际 Tab 字符；`.clang-format` 与 `.editorconfig` 一起约束后续编辑。公共结构、搜索路线和接口边界补充中文注释，第三方文件保留上游格式。
+
+本轮检查：保留原工程全部 74 个已跟踪文件；49 个未涉及接口适配的算法文件，忽略空白与注释后代码一致。搜索的邻域、种子、路线、修复和选择逻辑均未裁剪；步骤 2、3 原文未改。新旧入口在 1、6、24 次固定评估预算下输出相同方案。正式入口的参数、退出码、中文/空格路径及无配置运行检查通过。完整工程通过 Windows MinGW 编译和 Linux 交叉编译；未重跑整批性能测试，未在 MSVC 或原生 Linux GCC 环境验收。
+
+以下是原模块说明和开发工具用法。运行原工具前，显式构建目标：
+
+```powershell
+cmake --build build --config Release --target problem2 multicore_cut_evaluate_problem_2
+```
+
 原目录内的 **25 个 Python 文件**均已对应移植，包括 `official_code` 中的问题 1、2、3 评估器。保留 `problem2/official_code/` 层次和原模块名称，函数声明放在 `.hpp`，实现放在同名 `.cpp`；包入口 `__init__.py` 对应 `__init__.hpp`。原 Python 源码和题目数据没有修改。
 
 算法使用原生 **C++17**，以标准 CMake 工程支持 **Windows / Linux**，运行时不调用 Python。关键步骤、数据结构和易混淆的执行规则有中文注释。`tests/` 中的 Python 只负责调用原版进行对照，不是运行依赖。
@@ -58,7 +100,7 @@
 
 ## 重新编译
 
-需要支持 C++17 的编译器、CMake 3.20+ 和构建工具。工程固定使用 C++17，关闭语言扩展；GCC / Clang 还启用 `-pedantic-errors`，避免意外依赖更新标准。第三方头文件已放在 `problem2/third_party/`，正常编译不需要联网、Python 或额外库安装。
+需要支持 C++17 的编译器、CMake 3.16+ 和构建工具。工程固定使用 C++17，关闭语言扩展；GCC / Clang 还启用 `-pedantic-errors`，避免意外依赖更新标准。第三方头文件已放在 `problem2/third_party/`，正常编译不需要联网、Python 或额外库安装。
 
 以下命令均在本目录执行。Windows 使用 MinGW-w64 与 Ninja：
 
@@ -81,15 +123,15 @@ Windows 也可使用安装了 C++ 桌面开发工具的 Visual Studio：
 
 ```powershell
 cmake -S . -B build/msvc -A x64
-cmake --build build/msvc --config Release --parallel 4
-.\build\msvc\bin\Release\problem2.exe --help
+cmake --build build/msvc --config Release --parallel 4 --target problem2
+.\build\msvc\bin\problem2.exe --help
 ```
 
-MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。标准库线程由 CMake 的 `Threads::Threads` 处理，不依赖 C++20 协程或第三方协程库。`cmake/zig-linux.cmake` 是可选的 Windows → Linux x86-64 交叉编译工具链；正常在 Linux 上构建无需使用它。
+MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。标准库线程由编译器运行库和系统 pthread 提供，不依赖 C++20 协程或第三方协程库。`cmake/zig-linux.cmake` 是可选的 Windows → Linux x86-64 交叉编译工具链；正常在 Linux 上构建无需使用它。
 
 **验证范围：** Windows x64 使用 GCC 16.1.0 实际编译、运行回归测试；Linux x86-64 使用 Zig 0.13.0 自带的 Clang / libc++ 交叉编译。当前电脑没有 Linux 发行版，Linux 运行验证和 MSVC 编译验证尚未执行。
 
-生成的六个正式入口位于 `build/bin/`：
+原有六个开发入口在显式构建后位于 `build/bin/`（默认只构建 `npu_sched`）：
 
 | 程序 | 用途 |
 |---|---|
@@ -180,7 +222,9 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 保留同级原版目录时可重跑：
 
 ```powershell
-ctest --test-dir build --output-on-failure
+cmake -S . -B build -DBUILD_TESTING=ON -DPROBLEM2_TEST_PYTHON=python解释器完整路径
+cmake --build build --config Release -j 4
+ctest --test-dir build -C Release --output-on-failure
 python tests/check_hackathon.py
 python tests/compare_original.py
 ```
