@@ -1,0 +1,648 @@
+{
+  "case": "case_08",
+  "cores": 4,
+  "purpose": "Explain saved trace output; case IDs do not participate in search.",
+  "before_trace": "runs\\spill_differential\\public_case_08_n4\\cpp_trace.json",
+  "after_trace": "runs\\spill_differential_final\\case_08_n4\\cpp_trace.json",
+  "before_trace_sha256": "8f0b3e17740b44836f1c41a5108187fd20ba4110e9b90530841c14ff59684b48",
+  "after_trace_sha256": "bc1d01dbad7d80f48a376005ba562b70864ed354d6e222ef1beb0792a16da282",
+  "before_spill_bytes": 175679232,
+  "after_spill_bytes": 175003200,
+  "tensor_changes": [
+    {
+      "core": 0,
+      "tensor_id": 64560,
+      "before": {
+        "bytes": 278528,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 278528
+    },
+    {
+      "core": 0,
+      "tensor_id": 62706,
+      "before": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 63774,
+      "before": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 64870,
+      "before": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 64871,
+      "before": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 65925,
+      "before": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 57028,
+      "before": {
+        "bytes": 104448,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 104448
+    },
+    {
+      "core": 0,
+      "tensor_id": 57638,
+      "before": {
+        "bytes": 104448,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 104448
+    },
+    {
+      "core": 0,
+      "tensor_id": 58243,
+      "before": {
+        "bytes": 104448,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 104448
+    },
+    {
+      "core": 0,
+      "tensor_id": 58247,
+      "before": {
+        "bytes": 104448,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 104448
+    },
+    {
+      "core": 0,
+      "tensor_id": 58935,
+      "before": {
+        "bytes": 104448,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 104448
+    },
+    {
+      "core": 0,
+      "tensor_id": 68299,
+      "before": {
+        "bytes": 276480,
+        "events": 10
+      },
+      "after": {
+        "bytes": 221184,
+        "events": 8
+      },
+      "saved_bytes": 55296
+    },
+    {
+      "core": 0,
+      "tensor_id": 58242,
+      "before": {
+        "bytes": 156672,
+        "events": 2
+      },
+      "after": {
+        "bytes": 104448,
+        "events": 1
+      },
+      "saved_bytes": 52224
+    },
+    {
+      "core": 0,
+      "tensor_id": 58248,
+      "before": {
+        "bytes": 52224,
+        "events": 1
+      },
+      "after": {
+        "bytes": 0,
+        "events": 0
+      },
+      "saved_bytes": 52224
+    },
+    {
+      "core": 0,
+      "tensor_id": 68297,
+      "before": {
+        "bytes": 165888,
+        "events": 6
+      },
+      "after": {
+        "bytes": 138240,
+        "events": 5
+      },
+      "saved_bytes": 27648
+    },
+    {
+      "core": 0,
+      "tensor_id": 60018,
+      "before": {
+        "bytes": 12288,
+        "events": 12
+      },
+      "after": {
+        "bytes": 9216,
+        "events": 9
+      },
+      "saved_bytes": 3072
+    },
+    {
+      "core": 0,
+      "tensor_id": 61086,
+      "before": {
+        "bytes": 11264,
+        "events": 11
+      },
+      "after": {
+        "bytes": 8192,
+        "events": 8
+      },
+      "saved_bytes": 3072
+    },
+    {
+      "core": 0,
+      "tensor_id": 60628,
+      "before": {
+        "bytes": 6144,
+        "events": 6
+      },
+      "after": {
+        "bytes": 4096,
+        "events": 4
+      },
+      "saved_bytes": 2048
+    },
+    {
+      "core": 0,
+      "tensor_id": 61696,
+      "before": {
+        "bytes": 6144,
+        "events": 6
+      },
+      "after": {
+        "bytes": 4096,
+        "events": 4
+      },
+      "saved_bytes": 2048
+    },
+    {
+      "core": 0,
+      "tensor_id": 62154,
+      "before": {
+        "bytes": 9216,
+        "events": 9
+      },
+      "after": {
+        "bytes": 7168,
+        "events": 7
+      },
+      "saved_bytes": 2048
+    },
+    {
+      "core": 0,
+      "tensor_id": 62764,
+      "before": {
+        "bytes": 5120,
+        "events": 5
+      },
+      "after": {
+        "bytes": 3072,
+        "events": 3
+      },
+      "saved_bytes": 2048
+    },
+    {
+      "core": 0,
+      "tensor_id": 63222,
+      "before": {
+        "bytes": 9216,
+        "events": 9
+      },
+      "after": {
+        "bytes": 7168,
+        "events": 7
+      },
+      "saved_bytes": 2048
+    },
+    {
+      "core": 0,
+      "tensor_id": 63832,
+      "before": {
+        "bytes": 5120,
+        "events": 5
+      },
+      "after": {
+        "bytes": 3072,
+        "events": 3
+      },
+      "saved_bytes": 2048
+    },
+    {
+      "core": 0,
+      "tensor_id": 68300,
+      "before": {
+        "bytes": 3840,
+        "events": 10
+      },
+      "after": {
+        "bytes": 3072,
+        "events": 8
+      },
+      "saved_bytes": 768
+    },
+    {
+      "core": 0,
+      "tensor_id": 61694,
+      "before": {
+        "bytes": 1536,
+        "events": 6
+      },
+      "after": {
+        "bytes": 1024,
+        "events": 4
+      },
+      "saved_bytes": 512
+    },
+    {
+      "core": 0,
+      "tensor_id": 62762,
+      "before": {
+        "bytes": 1280,
+        "events": 5
+      },
+      "after": {
+        "bytes": 768,
+        "events": 3
+      },
+      "saved_bytes": 512
+    },
+    {
+      "core": 0,
+      "tensor_id": 63830,
+      "before": {
+        "bytes": 1280,
+        "events": 5
+      },
+      "after": {
+        "bytes": 768,
+        "events": 3
+      },
+      "saved_bytes": 512
+    },
+    {
+      "core": 0,
+      "tensor_id": 60020,
+      "before": {
+        "bytes": 1536,
+        "events": 12
+      },
+      "after": {
+        "bytes": 1152,
+        "events": 9
+      },
+      "saved_bytes": 384
+    },
+    {
+      "core": 0,
+      "tensor_id": 61088,
+      "before": {
+        "bytes": 1408,
+        "events": 11
+      },
+      "after": {
+        "bytes": 1024,
+        "events": 8
+      },
+      "saved_bytes": 384
+    },
+    {
+      "core": 0,
+      "tensor_id": 68246,
+      "before": {
+        "bytes": 1920,
+        "events": 10
+      },
+      "after": {
+        "bytes": 1536,
+        "events": 8
+      },
+      "saved_bytes": 384
+    },
+    {
+      "core": 0,
+      "tensor_id": 60626,
+      "before": {
+        "bytes": 1536,
+        "events": 6
+      },
+      "after": {
+        "bytes": 1280,
+        "events": 5
+      },
+      "saved_bytes": 256
+    },
+    {
+      "core": 0,
+      "tensor_id": 62156,
+      "before": {
+        "bytes": 1152,
+        "events": 9
+      },
+      "after": {
+        "bytes": 896,
+        "events": 7
+      },
+      "saved_bytes": 256
+    },
+    {
+      "core": 0,
+      "tensor_id": 63224,
+      "before": {
+        "bytes": 1152,
+        "events": 9
+      },
+      "after": {
+        "bytes": 896,
+        "events": 7
+      },
+      "saved_bytes": 256
+    },
+    {
+      "core": 0,
+      "tensor_id": 68247,
+      "before": {
+        "bytes": 1152,
+        "events": 6
+      },
+      "after": {
+        "bytes": 960,
+        "events": 5
+      },
+      "saved_bytes": 192
+    },
+    {
+      "core": 0,
+      "tensor_id": 68248,
+      "before": {
+        "bytes": 1152,
+        "events": 6
+      },
+      "after": {
+        "bytes": 1344,
+        "events": 7
+      },
+      "saved_bytes": -192
+    },
+    {
+      "core": 0,
+      "tensor_id": 68254,
+      "before": {
+        "bytes": 1344,
+        "events": 7
+      },
+      "after": {
+        "bytes": 1536,
+        "events": 8
+      },
+      "saved_bytes": -192
+    },
+    {
+      "core": 0,
+      "tensor_id": 68253,
+      "before": {
+        "bytes": 2304,
+        "events": 6
+      },
+      "after": {
+        "bytes": 2688,
+        "events": 7
+      },
+      "saved_bytes": -384
+    },
+    {
+      "core": 0,
+      "tensor_id": 68296,
+      "before": {
+        "bytes": 2688,
+        "events": 7
+      },
+      "after": {
+        "bytes": 3072,
+        "events": 8
+      },
+      "saved_bytes": -384
+    },
+    {
+      "core": 0,
+      "tensor_id": 68252,
+      "before": {
+        "bytes": 165888,
+        "events": 6
+      },
+      "after": {
+        "bytes": 193536,
+        "events": 7
+      },
+      "saved_bytes": -27648
+    },
+    {
+      "core": 0,
+      "tensor_id": 68295,
+      "before": {
+        "bytes": 193536,
+        "events": 7
+      },
+      "after": {
+        "bytes": 221184,
+        "events": 8
+      },
+      "saved_bytes": -27648
+    },
+    {
+      "core": 0,
+      "tensor_id": 42133,
+      "before": {
+        "bytes": 0,
+        "events": 0
+      },
+      "after": {
+        "bytes": 69632,
+        "events": 1
+      },
+      "saved_bytes": -69632
+    },
+    {
+      "core": 0,
+      "tensor_id": 40837,
+      "before": {
+        "bytes": 208896,
+        "events": 1
+      },
+      "after": {
+        "bytes": 313344,
+        "events": 2
+      },
+      "saved_bytes": -104448
+    },
+    {
+      "core": 0,
+      "tensor_id": 51494,
+      "before": {
+        "bytes": 208896,
+        "events": 1
+      },
+      "after": {
+        "bytes": 313344,
+        "events": 2
+      },
+      "saved_bytes": -104448
+    },
+    {
+      "core": 0,
+      "tensor_id": 64865,
+      "before": {
+        "bytes": 0,
+        "events": 0
+      },
+      "after": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "saved_bytes": -139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 64866,
+      "before": {
+        "bytes": 0,
+        "events": 0
+      },
+      "after": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "saved_bytes": -139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 65923,
+      "before": {
+        "bytes": 0,
+        "events": 0
+      },
+      "after": {
+        "bytes": 139264,
+        "events": 1
+      },
+      "saved_bytes": -139264
+    },
+    {
+      "core": 0,
+      "tensor_id": 64562,
+      "before": {
+        "bytes": 0,
+        "events": 0
+      },
+      "after": {
+        "bytes": 278528,
+        "events": 1
+      },
+      "saved_bytes": -278528
+    }
+  ],
+  "example_original_spill_record": {
+    "core": 0,
+    "tensor_index": 9840,
+    "tensor_id": 64560,
+    "size": 139264,
+    "memory": 0,
+    "trigger_step": 1807,
+    "prev_use_step": 1737,
+    "next_use_step": 1890,
+    "trigger_owner": 11141,
+    "prev_owner": 12214,
+    "next_owner": 12217,
+    "trigger_op": 30379,
+    "prev_use_op": 33920,
+    "next_use_op": 33932,
+    "spill_out_copies_data": true,
+    "spill_out_id": 79084,
+    "spill_in_id": 79085,
+    "backing_tid": 79086,
+    "from_tid": 64560,
+    "to_tid": 79087,
+    "version": 1,
+    "backing_source": "new_spill_out"
+  }
+}

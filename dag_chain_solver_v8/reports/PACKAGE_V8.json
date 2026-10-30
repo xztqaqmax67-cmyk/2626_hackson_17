@@ -1,0 +1,33 @@
+{
+  "path": "dist/dag_chain_solver_v8.zip",
+  "sha256": "abfe4209efaf6fd1889fb454573c1964aaf003ecf1f746b6c38475456a8c5b07",
+  "files": {
+    "CMakeLists.txt": "030a0b0665885ab1060a1f2e3c58082b01a917c6f287d70d60a22adf61a891ae",
+    "README.md": "d0f0f9c5a8c817f3a0543a3da04bdd7b6900343c61ae6f8f464c5b53652bf812",
+    "SEARCH_LIMITS_zh.md": "df3440504a4b246b1eced82ebb16ed1d150fd07094c9b0c8fec52e097e2b6cf8",
+    "CHANGES_v8_zh.md": "0987b7a073cf4cc04ea1ad5cc8ad020efb794391bd4e79a352c8dad769293d9c",
+    "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "src/chain.cpp": "f54262ba9613105979f49b9e1fdb53e39b8f2e800f45938fa877e010bac3f77a",
+    "src/chain.hpp": "d3e9bc519559489b38ecc9e0d55fb0e8529646316ce99e63f42d821194b1bcea",
+    "src/main.cpp": "97d9b1901abae341453254ed205cfdd9f342d8254d5d3f7db82304f9b307e5bf",
+    "src/model.hpp": "15d4aa7d110e301320fcb2b7f876ac974125e1de2c564fefa4234fe36931105d",
+    "src/official_spill.cpp": "c9f730a343c336be5320d725bbe2ce0f19b449c533b790d7be243b39559d130c",
+    "src/official_spill.hpp": "d951f255c0348a8b5bed56534a857b945b3358f6fc697a2db4f51e44260377aa",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "2429d29b6a84a635f1bdf2c376596636a77e58ceb668a9bb5b77ae4bb41a35f5",
+    "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+    "src/spill.cpp": "39a08c53f3b88d8fbbbc9b0dce48bf89ce46019725176983ae979b74923f10fe",
+    "src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a",
+    "src/spill_feedback.cpp": "ae727bc5a3d1d67340df2941eb89c9eb50c94874b24f3d9f6bfb06b4d3e85f66",
+    "src/spill_feedback.hpp": "982b2ec522aed6589481f0e10eb397e33cd65e5b7337361ac591bd995d10d370"
+  },
+  "file_count": 25,
+  "source_only": true
+}
