@@ -1,0 +1,2046 @@
+{
+  "version": "0.3.1",
+  "date": "2026-10-30",
+  "scoring_performed": true,
+  "official_simulation_run": true,
+  "valid": 40,
+  "invalid": 0,
+  "baseline": "supplied unmodified singlecore_evaluate.py",
+  "final_organizer_score_claimed": false,
+  "speedup_formula": "singlecore_makespan / problem2_makespan",
+  "average_formula": "arithmetic mean over 10 cases and N=2..5 (40 equally weighted ratios)",
+  "mean_speedup": 1.7751195381204927,
+  "by_cores": {
+    "2": {
+      "cases": 10,
+      "valid": 10,
+      "arithmetic_mean_speedup": 1.457914939390478,
+      "mean_added_copy_ratio": 6.459897039825641
+    },
+    "3": {
+      "cases": 10,
+      "valid": 10,
+      "arithmetic_mean_speedup": 1.717344357332813,
+      "mean_added_copy_ratio": 5.183852143375757
+    },
+    "4": {
+      "cases": 10,
+      "valid": 10,
+      "arithmetic_mean_speedup": 1.9495217667177733,
+      "mean_added_copy_ratio": 4.878142913448727
+    },
+    "5": {
+      "cases": 10,
+      "valid": 10,
+      "arithmetic_mean_speedup": 1.9756970890409065,
+      "mean_added_copy_ratio": 4.814299279607813
+    }
+  },
+  "mean_added_copy_ratio": 5.334047844064484,
+  "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+  "evaluator_source_sha256": {
+    "code/contest_io.py": "3deb2d3179f7b02063edc55beb236f525fa8fed5884ce1ca5b1fe89156c63a52",
+    "code/evaluation_validation.py": "99ef09a446b2d9752a83584629c5a158118ae3d7026bbb4723a648d5bc74126f",
+    "code/multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "code/multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "code/multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "code/schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "code/schedule_step2.py": "b80256b9b9e1a2d3ec2a42cf4938123da76ed959bab24fc8dadb8aac32f457d1",
+    "code/schedule_step3.py": "424fea21c6cec1c170fe5b0e4e08c5bb48f24ccb08b5fb38a836a2cb528d7466",
+    "code/singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "code/stub_multicore_cut_and_schedule.py": "9ae9ae4e8875e348e4e2e8f97b78e709bf88e6d0cbcc0bcd888707d34dfcd3ae"
+  },
+  "generator_executable_sha256": "9bd9946a2ad2d7677034f4b9d9ad49152e0f3dbadbad3c13ac5e7882ef945379",
+  "supplied_archive_sha256": "f8671388c3839f7bd9263da22d38a90da9c8e799fdb11b678195cfd01513127e",
+  "solver_source_sha256": {
+    "src/chain.cpp": "54a1dabb9444bf69ea9ef25075b4075693b37c25186abbf279f24a8da3531809",
+    "src/chain.hpp": "8fcd7ba4c80aa21f3169a1157326cb3cdbfe5df90c14ff9f63fc90a2d7afb415",
+    "src/main.cpp": "673df6856e75a7b81b1ce1a51845126190cb51d2629209439a5c705d2d7f4a6e",
+    "src/model.hpp": "90c4020df23d3f28161787a4d34207a6940fc7183f2f6194e8f5a837a455e761",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399"
+  },
+  "baseline_rows": [
+    {
+      "case": "case_00",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_00.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\log.txt"
+      ],
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 3541355,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 111673344,
+        "added_copy_bytes": 88080384,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 88080384
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "09153f03f8180809d6f83da7c397a50509ef5279979c355b88984bf4e07ea092",
+      "evaluation_seconds": 6.541127800010145
+    },
+    {
+      "case": "case_01",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_01.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\log.txt"
+      ],
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 327680,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a8c18baa588e8ed51c9406c137d9ddf3d2e9b1fca80de503906dea6affc4cac7",
+      "evaluation_seconds": 0.2514768000692129
+    },
+    {
+      "case": "case_02",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_02.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\log.txt"
+      ],
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1343488,
+          "UB": 0
+        }
+      },
+      "result_sha256": "251c21b59ca6ba516f77cecdc123a28dae719a142b4360c4c71881f08bf27fe2",
+      "evaluation_seconds": 0.25672730011865497
+    },
+    {
+      "case": "case_03",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_03.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\log.txt"
+      ],
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 6295267,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 228065280,
+        "added_copy_bytes": 188219392,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 188219392
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1441792,
+          "UB": 0
+        }
+      },
+      "result_sha256": "6132010cb50ddcfee90e0764a3129a75bb21d0b6f9c3ecd9df6fb5743c022dbf",
+      "evaluation_seconds": 23.935664699878544
+    },
+    {
+      "case": "case_04",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_04.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\log.txt"
+      ],
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 7080299,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 223346688,
+        "added_copy_bytes": 180879360,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 180879360
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "59f7ad6b7c200baa4d17ed47b080f6c892a9c4fc92e072408d713abbb717edd2",
+      "evaluation_seconds": 26.06895920005627
+    },
+    {
+      "case": "case_05",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_05.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\log.txt"
+      ],
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 18876779,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 632291328,
+        "added_copy_bytes": 550502400,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 550502400
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "dfc0d3a0c6d528d40468d1c2ac0cc005c5e1915235f1c3173afe20068fca4dff",
+      "evaluation_seconds": 241.55839609983377
+    },
+    {
+      "case": "case_06",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_06.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\log.txt"
+      ],
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 3540935,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 90963968,
+        "added_copy_bytes": 60293120,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 60293120
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "e5a7f05c549a2cc2cf2c445212e5b30b7ebc40b5c1e99ec4b226c0b7f9c02e8c",
+      "evaluation_seconds": 5.533064899966121
+    },
+    {
+      "case": "case_07",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_07.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\log.txt"
+      ],
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 6340434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 162914080,
+        "added_copy_bytes": 139380544,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 139380544
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1461824,
+          "UB": 78592
+        }
+      },
+      "result_sha256": "73f00c9ed7de734b7829b8cae66ea5cb2295ba51777b197723b5d776e60f526a",
+      "evaluation_seconds": 157.4572838000022
+    },
+    {
+      "case": "case_08",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_08.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\log.txt"
+      ],
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 15419076,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 353176416,
+        "added_copy_bytes": 315214720,
+        "partition_added_copy_bytes": -7276544,
+        "spill_added_copy_bytes": 322491264
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1545728,
+          "UB": 70016
+        }
+      },
+      "result_sha256": "2db1bb96331679385c54f91b01d7ad05b5b42d76fd7fa661cf6fce6bd2d56fb7",
+      "evaluation_seconds": 122.628979699919
+    },
+    {
+      "case": "case_09",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_09.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\log.txt"
+      ],
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 6794313,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 187056128,
+        "added_copy_bytes": 176875136,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 176875136
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1481088,
+          "UB": 18560
+        }
+      },
+      "result_sha256": "7ee1119adac5b862f37dbc2cd7e839cad4b3bef700788a849a5995a8f086b46a",
+      "evaluation_seconds": 100.24810319999233
+    }
+  ],
+  "rows": [
+    {
+      "case": "case_00",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.1222833001520485,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "d0d5248a7e4984839a4c5386f8ae2e1357cdee7123bcb33cd29043ed5b349b76",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_00_n2",
+      "makespan": 2135628,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 100663296,
+        "added_copy_bytes": 77070336,
+        "partition_added_copy_bytes": 9437184,
+        "spill_added_copy_bytes": 67633152
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "e9c1165d72151b6ebd0b682a3f75f6c52de38b22126898e562fe684ea709c177",
+      "singlecore_makespan": 3541355,
+      "speedup": 1.6582265263426028,
+      "added_copy_ratio": 3.2666666666666666
+    },
+    {
+      "case": "case_00",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.209935799939558,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "0b0ec2b8021387047955ee88d84cac0a904d17e628794e7af875fc1474bfd56e",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_00_n3",
+      "makespan": 1561866,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 88702976,
+        "added_copy_bytes": 65110016,
+        "partition_added_copy_bytes": 19660800,
+        "spill_added_copy_bytes": 45449216
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "628ca615d255d0ec00b9d4ad23ded886f138a6ffaff2d994b9ce609a0d7ff0e1",
+      "singlecore_makespan": 3541355,
+      "speedup": 2.267387215036373,
+      "added_copy_ratio": 2.7597222222222224
+    },
+    {
+      "case": "case_00",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.0738222999498248,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "c1fa837522899749feff9ec7ebcd7ebc023f2bcd63579f564862d13b42ed831b",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_00_n4",
+      "makespan": 1338399,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 77922304,
+        "added_copy_bytes": 54329344,
+        "partition_added_copy_bytes": 29491200,
+        "spill_added_copy_bytes": 24838144
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "7084ba7be76539de34fe15669a2e1e5afe3536ec960dbba6cb04e6b006df3c1b",
+      "singlecore_makespan": 3541355,
+      "speedup": 2.6459635728956763,
+      "added_copy_ratio": 2.3027777777777776
+    },
+    {
+      "case": "case_00",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.2016416999977082,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "b88daea714876e6c79d92aaf6a2da0d1bf65ab4545fb37de5cc248bfa3c8a088",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_00_n5",
+      "makespan": 1338399,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 77922304,
+        "added_copy_bytes": 54329344,
+        "partition_added_copy_bytes": 29491200,
+        "spill_added_copy_bytes": 24838144
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "4c5fdfbbfb16f6397e2f8a9ae2c683eb643d5dc0a61b506bfbfc11f8011b289b",
+      "singlecore_makespan": 3541355,
+      "speedup": 2.6459635728956763,
+      "added_copy_ratio": 2.3027777777777776
+    },
+    {
+      "case": "case_01",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.21609240001998842,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "45e3f99667b7176c0893d64eee34a0d6d9937b4f23e3e91601c36d32d1180173",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_01_n2",
+      "makespan": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 327680,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "9aeb9a06102ef6df1cb5e263d35de22714c9f9a24e020caef1d236ed34d6078b",
+      "singlecore_makespan": 85856,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_01",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.22251689992845058,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "91374ece04f59d94741496f7362a1e9f1835dfff5c1dc7763ac7772a6471127b",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_01_n3",
+      "makespan": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 327680,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "0ad1d348087f1f779886628f49c55a50c909155c4c58f7fb30e5bc25e506201a",
+      "singlecore_makespan": 85856,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_01",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.18295720010064542,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "239fcf115fc73dbc21e29a0b2abe0c695b55d10dd07e91223721e4ba3c7885a0",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_01_n4",
+      "makespan": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 327680,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "40b3a6e5c0da6ede0ff174597e084b96b5011d220620ea19c6c689f17b4b10d5",
+      "singlecore_makespan": 85856,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_01",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.21123460005037487,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "06d58e32ccb0c8abe8a3bb8b10fb3889cc345115c86db1cf83e55021efe9e203",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_01_n5",
+      "makespan": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 327680,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "406661d502bdea5a667082a69ec73109b5b5e7c06658269151161287562f8c97",
+      "singlecore_makespan": 85856,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_02",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.24797590007074177,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "8eb552cf9d74c8e55482cd80d138443cf85e85d2e730eac0eaa47cb751bdfea8",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_02_n2",
+      "makespan": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1343488,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "c1fbfa2f4f6047af095c295bf33e2f803b70aae7bb9c18e888599223d0806f3d",
+      "singlecore_makespan": 167400,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_02",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.250684899976477,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "e88704078393b0a211438a905fca54262fa0c8c4f4b620ac15a0f5e8ffed691f",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_02_n3",
+      "makespan": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1343488,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "6a07f5471ec5a09e82444d26d0b3b5a3abf94cf0b55ae71f4559a93151358ad7",
+      "singlecore_makespan": 167400,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_02",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.22528969985432923,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "79a20404efee1e04f97f8dbd144d4b83a17db848d811f2bfbb0b1c93780b5bd3",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_02_n4",
+      "makespan": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1343488,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "0979ed669b30e01a226f78ec749c2d00b670d7fa5f4aca89e595508de54edeaf",
+      "singlecore_makespan": 167400,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_02",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 0.2752702001016587,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "ef50c3a0b8ad923eb22ed9a6a1e8d1aa570db2e376b55bbc447bbef448cd50ac",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_02_n5",
+      "makespan": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1343488,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "ef9155d2c749eb4f2d02a4a8d860cc2a903782cc21c86807857d77403b4e4fa2",
+      "singlecore_makespan": 167400,
+      "speedup": 1.0,
+      "added_copy_ratio": 0.0
+    },
+    {
+      "case": "case_03",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.601172700058669,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "4b54ed5154291fcfb78f7426e8e16f7aad534c7f3f951dde68fa202c9ad48354",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_03_n2",
+      "makespan": 3726030,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 220135424,
+        "added_copy_bytes": 180289536,
+        "partition_added_copy_bytes": 22020096,
+        "spill_added_copy_bytes": 158269440
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "fd4ff07514372ea4c27caef88f52969770192a222f95c9d578c3e370c5e4a6af",
+      "singlecore_makespan": 6295267,
+      "speedup": 1.6895373896613821,
+      "added_copy_ratio": 4.524671052631579
+    },
+    {
+      "case": "case_03",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.69098319998011,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "7f7cfb1ece2a6538b3304c2a166b10f38db7099a773407f7c7fcb7c288b06396",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_03_n3",
+      "makespan": 3839875,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 227278848,
+        "added_copy_bytes": 187432960,
+        "partition_added_copy_bytes": 34603008,
+        "spill_added_copy_bytes": 152829952
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1507328,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1507328,
+          "UB": 0
+        }
+      },
+      "result_sha256": "1103afaa1a23b31605cd77ea2177507bc56d085d0d4b787794f46b5c79fe3896",
+      "singlecore_makespan": 6295267,
+      "speedup": 1.6394458152934666,
+      "added_copy_ratio": 4.703947368421052
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.540444300044328,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "ed9ecf130703eeea8e6753b67ed54342a71111cf3ce49e01bb926fb94c6b1dd0",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_03_n4",
+      "makespan": 3762494,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 224886784,
+        "added_copy_bytes": 185040896,
+        "partition_added_copy_bytes": 44040192,
+        "spill_added_copy_bytes": 141000704
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "bfbc824f797f9ccb41a6c92e27b8106a67fc064feac417de6831f7682081adb3",
+      "singlecore_makespan": 6295267,
+      "speedup": 1.6731633326192679,
+      "added_copy_ratio": 4.643914473684211
+    },
+    {
+      "case": "case_03",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.463066899916157,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "fbd7beeee740ba61c34211fbdb7f203f13305f78273c61179caa6c5c9632280a",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_03_n5",
+      "makespan": 3740451,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 223969280,
+        "added_copy_bytes": 184123392,
+        "partition_added_copy_bytes": 33554432,
+        "spill_added_copy_bytes": 150568960
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "4": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "ddfe4fbd708bc6d182eac0ec4491bed0ced6947f9afef5516f700f80019801a1",
+      "singlecore_makespan": 6295267,
+      "speedup": 1.683023517752271,
+      "added_copy_ratio": 4.620888157894737
+    },
+    {
+      "case": "case_04",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.6886835999321193,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "639c1c2d5816bf4c3d800e55758869cf5f2f2c23f7880e0782868350d41102ab",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_04_n2",
+      "makespan": 4344846,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 200802304,
+        "added_copy_bytes": 158334976,
+        "partition_added_copy_bytes": 18874368,
+        "spill_added_copy_bytes": 139460608
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "90e766c7b360a32f1f1e4d47b0bbfedd75597bd744323639c32dae33d62a8606",
+      "singlecore_makespan": 7080299,
+      "speedup": 1.6295857206446442,
+      "added_copy_ratio": 3.728395061728395
+    },
+    {
+      "case": "case_04",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.418019099859521,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "eea753d5f2be3e630220c8951318674fadf3c6c962d1774b5b9d020fc7896236",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_04_n3",
+      "makespan": 3704135,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 176947200,
+        "added_copy_bytes": 134479872,
+        "partition_added_copy_bytes": 38535168,
+        "spill_added_copy_bytes": 95944704
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "3b567de49f34d480f59e296cba42c443366842c1b7aeed8a0c3322507498b4ec",
+      "singlecore_makespan": 7080299,
+      "speedup": 1.9114581406995155,
+      "added_copy_ratio": 3.1666666666666665
+    },
+    {
+      "case": "case_04",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.554832700174302,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "3c2f5dca6cfb695ee83a8baf21c6441500920d40295b5d0d3d82ee459cedbd66",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_04_n4",
+      "makespan": 2620662,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 153419776,
+        "added_copy_bytes": 110952448,
+        "partition_added_copy_bytes": 57802752,
+        "spill_added_copy_bytes": 53149696
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "0b4b03c3838f148ab3a0327354cb8e6902830a03c60e76cc08f3264a9db497e0",
+      "singlecore_makespan": 7080299,
+      "speedup": 2.7017215497458276,
+      "added_copy_ratio": 2.6126543209876543
+    },
+    {
+      "case": "case_04",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 2.511819100007415,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "8a0b2c48f4a60ef4d69b3ed927d7f3c9250e50777eb7549d7c78b865f774590d",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_04_n5",
+      "makespan": 2620662,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 153419776,
+        "added_copy_bytes": 110952448,
+        "partition_added_copy_bytes": 57802752,
+        "spill_added_copy_bytes": 53149696
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "fe51c0ca65a13144de75563e36c59e8e5efb79b920080811f3fa95211ce052f6",
+      "singlecore_makespan": 7080299,
+      "speedup": 2.7017215497458276,
+      "added_copy_ratio": 2.6126543209876543
+    },
+    {
+      "case": "case_05",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 9.83109170012176,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "40cab8d3f856f9bad59f42a6bbd6de3bbc381088b38984155568ed1028d68bd4",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_05_n2",
+      "makespan": 11177944,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 610271232,
+        "added_copy_bytes": 528482304,
+        "partition_added_copy_bytes": 18874368,
+        "spill_added_copy_bytes": 509607936
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "8a589b88ab5e3ce57c54c136f15ca3993ea0bee4f75cf2b8a8429eb4a75b7e33",
+      "singlecore_makespan": 18876779,
+      "speedup": 1.6887523322714804,
+      "added_copy_ratio": 6.461538461538462
+    },
+    {
+      "case": "case_05",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 9.422090000007302,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "55094b6dd99e1c63ecaede916e1e4f4622aabc33fcbf5b5864ea8c1ea9c88d58",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_05_n3",
+      "makespan": 10759824,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 639041536,
+        "added_copy_bytes": 557252608,
+        "partition_added_copy_bytes": 25559040,
+        "spill_added_copy_bytes": 531693568
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "26b6d4b51cd3dd18be6981e2528b9daa35ad68d47b5af3f5f38aadcbf3c0faec",
+      "singlecore_makespan": 18876779,
+      "speedup": 1.7543761868223866,
+      "added_copy_ratio": 6.813301282051282
+    },
+    {
+      "case": "case_05",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 9.119142699986696,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "45b39b08ac41937fa0e8658090e50e7f44c005a19870360d2371e03892b2bc4f",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_05_n4",
+      "makespan": 9519460,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 566296576,
+        "added_copy_bytes": 484507648,
+        "partition_added_copy_bytes": 58195968,
+        "spill_added_copy_bytes": 426311680
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1441792,
+          "UB": 0
+        }
+      },
+      "result_sha256": "3f7e7368c6228079f913fd4ade439a341a724f79492a24fb30c2af2410e7c84f",
+      "singlecore_makespan": 18876779,
+      "speedup": 1.9829674162189872,
+      "added_copy_ratio": 5.923878205128205
+    },
+    {
+      "case": "case_05",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 9.107773899799213,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "0a9920d5906b94a0134b9e50aefd04fa35a0575d23aa90690d059f24c46d73c1",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_05_n5",
+      "makespan": 10266156,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 613646336,
+        "added_copy_bytes": 531857408,
+        "partition_added_copy_bytes": 52297728,
+        "spill_added_copy_bytes": 479559680
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "4": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "176e30c9d667e459278bd9fbbee2daf0b5daa65677c0fdeef55ae2d3f1af5181",
+      "singlecore_makespan": 18876779,
+      "speedup": 1.8387387645385478,
+      "added_copy_ratio": 6.502804487179487
+    },
+    {
+      "case": "case_06",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.0114317000843585,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "4daa71233bc86811ade1e041a348e01a14a05e0dacc675a8018e9d46f5f84d3e",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_06_n2",
+      "makespan": 1823078,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 49152000,
+        "added_copy_bytes": 18481152,
+        "partition_added_copy_bytes": 9437184,
+        "spill_added_copy_bytes": 9043968
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "e63e4c66684464040f068a4605b1bb0298aa1882399c6dc0efc6cef00ebd5902",
+      "singlecore_makespan": 3540935,
+      "speedup": 1.9422838737563615,
+      "added_copy_ratio": 0.6025641025641025
+    },
+    {
+      "case": "case_06",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.097738099982962,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "cd541576609463baf84e709a246ea09be9ad2b1b5ea6c31e9c85b417085c0df0",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_06_n3",
+      "makespan": 1223797,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 49938432,
+        "added_copy_bytes": 19267584,
+        "partition_added_copy_bytes": 19267584,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1114112,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1114112,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1114112,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a84279b6eeb9c78f3e352a2c20f0cbe66edd73c705db0c176f137960316e7ebc",
+      "singlecore_makespan": 3540935,
+      "speedup": 2.893400621181454,
+      "added_copy_ratio": 0.6282051282051282
+    },
+    {
+      "case": "case_06",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.1009592998307198,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "42c9a060ee1fdbe1266c0166c58c2c5e768b218da7296525395e0468112ef9fd",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_06_n4",
+      "makespan": 1118499,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 59572224,
+        "added_copy_bytes": 28901376,
+        "partition_added_copy_bytes": 28901376,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1114112,
+          "UB": 0
+        },
+        "2": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "3": {
+          "L1": 917504,
+          "UB": 0
+        }
+      },
+      "result_sha256": "4cabf56ffc8a254675d9713ee131e947db76fc5eafa4aa4d412275193475dcac",
+      "singlecore_makespan": 3540935,
+      "speedup": 3.165791833519744,
+      "added_copy_ratio": 0.9423076923076923
+    },
+    {
+      "case": "case_06",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 1.240819500060752,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "533d2d715689df98ba199299a7aa1370462fe6f8b49b6c656cf4c4d6177e0e45",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_06_n5",
+      "makespan": 1118499,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 59572224,
+        "added_copy_bytes": 28901376,
+        "partition_added_copy_bytes": 28901376,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1114112,
+          "UB": 0
+        },
+        "2": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "3": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "result_sha256": "9fc75956927eb550de8eea0df5bd8bf6eedec836e3093218012b519d7c613fad",
+      "singlecore_makespan": 3540935,
+      "speedup": 3.165791833519744,
+      "added_copy_ratio": 0.9423076923076923
+    },
+    {
+      "case": "case_07",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 9.1007395000197,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "a2b9efac383dcf04a055543e511832a84a485959d720d05d0fde07cbfe7289e1",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_07_n2",
+      "makespan": 4578065,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 247832288,
+        "added_copy_bytes": 224298752,
+        "partition_added_copy_bytes": 149999680,
+        "spill_added_copy_bytes": 74299072
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1517120,
+          "UB": 43776
+        },
+        "1": {
+          "L1": 1504960,
+          "UB": 43776
+        }
+      },
+      "result_sha256": "f6115627749991f8deed7e4f7fd26d35985db8aba981044ef63eb6b9e878f067",
+      "singlecore_makespan": 6340434,
+      "speedup": 1.38495936602036,
+      "added_copy_ratio": 9.531026361699322
+    },
+    {
+      "case": "case_07",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 7.003511900082231,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "9ce8c01e8be1c9750498f9c27fec2933b21ad765cd1347d707dee1fae0fd08be",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_07_n3",
+      "makespan": 4156833,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 126430752,
+        "added_copy_bytes": 102897216,
+        "partition_added_copy_bytes": 45284480,
+        "spill_added_copy_bytes": 57612736
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1513792,
+          "UB": 104704
+        },
+        "1": {
+          "L1": 1472832,
+          "UB": 52480
+        },
+        "2": {
+          "L1": 1512128,
+          "UB": 69888
+        }
+      },
+      "result_sha256": "e43ede546fa0f05793ab8ed85511fd3ba707cdb8c780263207de79d337d18d42",
+      "singlecore_makespan": 6340434,
+      "speedup": 1.5253039994630528,
+      "added_copy_ratio": 4.372365291811652
+    },
+    {
+      "case": "case_07",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 6.758301800116897,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "c9f91a2c9cab1d719ce823a42e2d4993db1e5103f743f73d2cea9a9bc60cabb5",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_07_n4",
+      "makespan": 3495795,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 120042016,
+        "added_copy_bytes": 96508480,
+        "partition_added_copy_bytes": 65436864,
+        "spill_added_copy_bytes": 31071616
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1497024,
+          "UB": 87296
+        },
+        "1": {
+          "L1": 1477696,
+          "UB": 43776
+        },
+        "2": {
+          "L1": 1478976,
+          "UB": 61184
+        },
+        "3": {
+          "L1": 1484736,
+          "UB": 35072
+        }
+      },
+      "result_sha256": "b775828d3b18d856b39dfa2cea185e83bad068d3e6cbed252bf6197515e48b2b",
+      "singlecore_makespan": 6340434,
+      "speedup": 1.8137316404423027,
+      "added_copy_ratio": 4.100891595721102
+    },
+    {
+      "case": "case_07",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 6.7710097001399845,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "1f9ec2a751cdb625d66fde9d736c06e9832d1e41094406368ad58229f71b3fc1",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_07_n5",
+      "makespan": 3123018,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 128511264,
+        "added_copy_bytes": 104977728,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 33437760
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1479872,
+          "UB": 35072
+        },
+        "1": {
+          "L1": 1479488,
+          "UB": 35072
+        },
+        "2": {
+          "L1": 1450368,
+          "UB": 52480
+        },
+        "3": {
+          "L1": 1487680,
+          "UB": 43776
+        },
+        "4": {
+          "L1": 1519808,
+          "UB": 52480
+        }
+      },
+      "result_sha256": "f0d645d1817e784211aa499d3c1f5b19f055d484aae07a3f4e5c9622b62db331",
+      "singlecore_makespan": 6340434,
+      "speedup": 2.030226530874942,
+      "added_copy_ratio": 4.460771555961671
+    },
+    {
+      "case": "case_08",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 8.82594420015812,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "a42b7be8a5acacbb0f559fe8b01765aa2575227536789c4ea2649f949bd1f6e4",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_08_n2",
+      "makespan": 12494683,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 620931872,
+        "added_copy_bytes": 582970176,
+        "partition_added_copy_bytes": 337373952,
+        "spill_added_copy_bytes": 245596224
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1572416,
+          "UB": 130944
+        },
+        "1": {
+          "L1": 1563328,
+          "UB": 130944
+        }
+      },
+      "result_sha256": "0ea65cc8d4dbd9748bffce2a0dab21af87c3894cbc9da2de06cedd753bc086f2",
+      "singlecore_makespan": 15419076,
+      "speedup": 1.2340509959316295,
+      "added_copy_ratio": 15.356800075528765
+    },
+    {
+      "case": "case_08",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 7.001704100053757,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "7ee887f58f26770e54ac2000c9e7ce3bafa26781a7ef6044b40bf92c7557e992",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_08_n3",
+      "makespan": 8582890,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 362407648,
+        "added_copy_bytes": 324445952,
+        "partition_added_copy_bytes": 141535488,
+        "spill_added_copy_bytes": 182910464
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1543040,
+          "UB": 130944
+        },
+        "1": {
+          "L1": 1545344,
+          "UB": 130688
+        },
+        "2": {
+          "L1": 1569856,
+          "UB": 104832
+        }
+      },
+      "result_sha256": "c4dfd5818ccb154b0ab72cb7bbcc618f39babbf348e51894582497fbaeff232a",
+      "singlecore_makespan": 15419076,
+      "speedup": 1.7964899934637402,
+      "added_copy_ratio": 8.546666408160478
+    },
+    {
+      "case": "case_08",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 6.829605599865317,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "b03ed8f17a80d51f1163a22a18e51d72a1fb595ebafc4e22fc59a7b87fa37510",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_08_n4",
+      "makespan": 8354748,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 395332960,
+        "added_copy_bytes": 357371264,
+        "partition_added_copy_bytes": 181389312,
+        "spill_added_copy_bytes": 175981952
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1552448,
+          "UB": 130688
+        },
+        "1": {
+          "L1": 1556160,
+          "UB": 128768
+        },
+        "2": {
+          "L1": 1527104,
+          "UB": 113408
+        },
+        "3": {
+          "L1": 1555392,
+          "UB": 130944
+        }
+      },
+      "result_sha256": "a90ae03c462cdd294103f16ad9ba906a7284a93aa0b320a53d8d072cbdf4eaa4",
+      "singlecore_makespan": 15419076,
+      "speedup": 1.8455465084045624,
+      "added_copy_ratio": 9.41399625559406
+    },
+    {
+      "case": "case_08",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 6.8585030001122504,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "6b2abd77be1fc21152a5d7696810f5e2e8be6f74bd6b2b323ba0fae1d1bbacfc",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_08_n5",
+      "makespan": 7955869,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 398027488,
+        "added_copy_bytes": 360065792,
+        "partition_added_copy_bytes": 215296256,
+        "spill_added_copy_bytes": 144769536
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1521344,
+          "UB": 128512
+        },
+        "1": {
+          "L1": 1548672,
+          "UB": 104832
+        },
+        "2": {
+          "L1": 1534976,
+          "UB": 128448
+        },
+        "3": {
+          "L1": 1542784,
+          "UB": 104832
+        },
+        "4": {
+          "L1": 1526848,
+          "UB": 113536
+        }
+      },
+      "result_sha256": "168860a93dc70226e8b4f2799051f6f7647eb3d08d638fa2f98ed6942f6d8989",
+      "singlecore_makespan": 15419076,
+      "speedup": 1.9380756520752165,
+      "added_copy_ratio": 9.484976435194044
+    },
+    {
+      "case": "case_09",
+      "cores": 2,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 8.703014000086114,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "cb735a3db66f6862fdc2e88381edc5c563f157fcb76cbcdcc65f1ff39d68e6e0",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_09_n2",
+      "makespan": 5026297,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 225277952,
+        "added_copy_bytes": 215096960,
+        "partition_added_copy_bytes": 76890496,
+        "spill_added_copy_bytes": 138206464
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1572864,
+          "UB": 45056
+        },
+        "1": {
+          "L1": 1523200,
+          "UB": 18560
+        }
+      },
+      "result_sha256": "9fec32b783e78297c9fe6664b0c049f9bddeb92b92565b117fc661d314150972",
+      "singlecore_makespan": 6794313,
+      "speedup": 1.3517531892763202,
+      "added_copy_ratio": 21.127308615899118
+    },
+    {
+      "case": "case_09",
+      "cores": 3,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 8.069119499996305,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "d1eba9d1b7fe609a64ab45b2468cf11b961d7bc5af3546f8d3b13e65337bdce1",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_09_n3",
+      "makespan": 4903582,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 222430720,
+        "added_copy_bytes": 212249728,
+        "partition_added_copy_bytes": 100211264,
+        "spill_added_copy_bytes": 112038464
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1572736,
+          "UB": 45056
+        },
+        "1": {
+          "L1": 1559296,
+          "UB": 18560
+        },
+        "2": {
+          "L1": 1562176,
+          "UB": 18560
+        }
+      },
+      "result_sha256": "0c527aefcd5034f920995c6d4fa4c9930356e3b9c7dc5cb0c4d58a324693ea47",
+      "singlecore_makespan": 6794313,
+      "speedup": 1.3855816013681428,
+      "added_copy_ratio": 20.84764706621909
+    },
+    {
+      "case": "case_09",
+      "cores": 4,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 7.139151900075376,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "f246b2f57e4238d9edb7d2157ca2aca4fb55c7bc0b9b6ccd1bdfe28f699d2e58",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_09_n4",
+      "makespan": 4077407,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 202001152,
+        "added_copy_bytes": 191820160,
+        "partition_added_copy_bytes": 118306688,
+        "spill_added_copy_bytes": 73513472
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1565120,
+          "UB": 26624
+        },
+        "1": {
+          "L1": 1571072,
+          "UB": 36992
+        },
+        "2": {
+          "L1": 1571136,
+          "UB": 27776
+        },
+        "3": {
+          "L1": 1572352,
+          "UB": 18560
+        }
+      },
+      "result_sha256": "220df17da6c28fb8fa1c2c2457e69f9d4d8d7a9a481a13cf3b189cf04b8e1a05",
+      "singlecore_makespan": 6794313,
+      "speedup": 1.6663318133313647,
+      "added_copy_ratio": 18.841008813286564
+    },
+    {
+      "case": "case_09",
+      "cores": 5,
+      "status": "ok",
+      "exit_code": 0,
+      "evaluation_seconds": 6.767320899991319,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "787adb45e303342d2162cff7f7c9d3574afe695483c383afd652f8b122f4296e",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+      "artifacts": "case_09_n5",
+      "makespan": 3874871,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 185455040,
+        "added_copy_bytes": 175274048,
+        "partition_added_copy_bytes": 116176128,
+        "spill_added_copy_bytes": 59097920
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1568768,
+          "UB": 36992
+        },
+        "1": {
+          "L1": 1564288,
+          "UB": 26624
+        },
+        "2": {
+          "L1": 1517056,
+          "UB": 18560
+        },
+        "3": {
+          "L1": 1526080,
+          "UB": 18560
+        },
+        "4": {
+          "L1": 1569280,
+          "UB": 18560
+        }
+      },
+      "result_sha256": "05d020d27276af3dfc14741e6dad29c5cacd7c6ca5b208cf49827e38684d3ea4",
+      "singlecore_makespan": 6794313,
+      "speedup": 1.7534294690068393,
+      "added_copy_ratio": 17.215812368775065
+    }
+  ]
+}

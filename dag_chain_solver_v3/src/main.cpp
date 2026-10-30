@@ -103,7 +103,7 @@ int run(const vector<string> &args) {
         return 2;
     }
     if (opt.version) {
-        cout << "dag-chain-solver 0.3.0\n";
+        cout << "dag-chain-solver 0.3.1\n";
         return 0;
     }
     unique_ptr<Graph> graph;

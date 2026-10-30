@@ -332,6 +332,12 @@ inline int pipe_id(const string &s) {
 struct Config {
     array<i64, 2> capacity{{1572864, 131072}};
     double bandwidth = 60, delay = 1000;
+    static constexpr int spill_trigger_percent = 90;
+    i64 spill_limit(int memory) const {
+        // Integer floor, without overflowing the intermediate multiplication.
+        return capacity[memory] / 100 * spill_trigger_percent +
+               capacity[memory] % 100 * spill_trigger_percent / 100;
+    }
 };
 struct Op {
     i64 id = 0, cycles = 0;
@@ -434,11 +440,14 @@ struct Graph {
         }
         vector<vector<int>> rp(tensors.size()), rc(tensors.size()), adj(raw.size());
         vector<tuple<int, int, i64>> rawdirect;
+        set<pair<i64, i64>> edge_pairs;
         for (const auto &j : root.at("edges").array()) {
             i64 a = nonnegative(j.at("source"), "edge source"),
                 b = nonnegative(j.at("target"), "edge target");
             if (!all.count(a) || !all.count(b))
                 throw runtime_error("unknown edge endpoint");
+            if (!edge_pairs.emplace(a, b).second)
+                throw runtime_error("duplicate edge: " + to_string(a) + " -> " + to_string(b));
             bool ao = oid.count(a), bo = oid.count(b);
             if (ao && !bo) {
                 int u = oid.at(a), t = tid.at(b);
@@ -681,6 +690,15 @@ inline void validate(const Graph &g, const Solution &s, int k) {
             if (pos[v] >= pos[w])
                 throw runtime_error("internal non-topological order");
     }
+    for (const auto &tensor : g.tensors) {
+        if (tensor.producers.size() < 2)
+            continue;
+        const int writer_core = s.core[tensor.producers.front()];
+        for (int writer : tensor.producers)
+            if (s.core[writer] != writer_core)
+                throw runtime_error("internal tensor " + to_string(tensor.id) +
+                                    " has writers on multiple cores");
+    }
 }
 inline string solution_json(const Graph &g, const Solution &s, int k) {
     ostringstream o;
@@ -889,8 +907,8 @@ struct MemoryOrder {
                 release[g.tensors[t].pos] += double(g.tensors[t].size);
         double value = 0;
         for (int m = 0; m < 2; ++m) {
-            double cap = double(cfg.capacity[m]);
-            value += add[m] - release[m] + 4 * max(0.0, used[c][m] + add[m] - .90 * cap);
+            double limit = double(cfg.spill_limit(m));
+            value += add[m] - release[m] + 4 * max(0.0, used[c][m] + add[m] - limit);
         }
         return value / cfg.bandwidth;
     }
@@ -1143,8 +1161,12 @@ inline SpillEstimate estimate_spills(const Graph &g, const Config &cfg, const So
         }
         vector<unsigned char> resident(nt), seen(nt), backed(nt);
         vector<int> nextuse(nt, NEVER), protect(nt, -1);
-        using Item = pair<int, int>;
+        // Equal next-use times follow the oldest active allocation, matching
+        // Step 2's stable active-order tie break. A reload gets a fresh stamp.
+        using Item = tuple<int, i64, int>;
         array<priority_queue<Item>, 2> heap;
+        vector<i64> allocation(nt);
+        i64 next_allocation = 0;
         array<double, 2> used{};
         for (int i = 0; i < m; ++i) {
             if (deadline && (i % 512 == 0))
@@ -1152,6 +1174,8 @@ inline SpillEstimate estimate_spills(const Graph &g, const Config &cfg, const So
             const Event &e = ev[i];
             for (auto [t, nxt] : e.uses)
                 protect[t] = i;
+            // Allocate all current operands before any last-use release. The
+            // soft-limit sweep also runs when this op allocates no new tensor.
             for (auto [t, nxt] : e.uses) {
                 (void)nxt;
                 if (resident[t])
@@ -1159,44 +1183,6 @@ inline SpillEstimate estimate_spills(const Graph &g, const Config &cfg, const So
                 const Tensor &x = g.tensors[t];
                 int mem = x.pos;
                 double sz = double(x.size);
-                vector<Item> held;
-                while (used[mem] + sz > double(cfg.capacity[mem]) + 0.01) {
-                    while (!heap[mem].empty()) {
-                        auto [a, b] = heap[mem].top();
-                        if (!resident[b] || nextuse[b] != a) {
-                            heap[mem].pop();
-                            continue;
-                        }
-                        if (protect[b] == i) {
-                            held.push_back(heap[mem].top());
-                            heap[mem].pop();
-                            continue;
-                        }
-                        break;
-                    }
-                    if (heap[mem].empty()) {
-                        ans.infeasible = true;
-                        break;
-                    }
-                    auto [n, b] = heap[mem].top();
-                    heap[mem].pop();
-                    // The reference Step 2 rewires readers on reload. Spilling
-                    // between partial writes can leave COPY_OUT waiting on a
-                    // future writer and introduce a dependency/FIFO cycle.
-                    // Reject this ordering; do not change the external rules.
-                    if (g.tensors[b].producers.size() > 1 && last_writer[b] >= i) {
-                        ans.infeasible = true;
-                        ans.partial_write_victims.push_back(b);
-                    }
-                    resident[b] = 0;
-                    used[mem] -= double(g.tensors[b].size);
-                    if (n != NEVER && !backed[b]) {
-                        ans.bytes += double(g.tensors[b].size);
-                        backed[b] = 1;
-                    }
-                }
-                for (auto xh : held)
-                    heap[mem].push(xh);
                 if (seen[t])
                     ans.bytes += sz;
                 else {
@@ -1207,7 +1193,47 @@ inline SpillEstimate estimate_spills(const Graph &g, const Config &cfg, const So
                     backed[t] = !local;
                 }
                 resident[t] = seen[t] = 1;
+                allocation[t] = next_allocation++;
                 used[mem] += sz;
+            }
+            for (int mem = 0; mem < 2; ++mem) {
+                vector<Item> held;
+                while (used[mem] > double(cfg.spill_limit(mem)) + 0.01) {
+                    while (!heap[mem].empty()) {
+                        auto [next_step, stamp, b] = heap[mem].top();
+                        if (!resident[b] || nextuse[b] != next_step ||
+                            -allocation[b] != stamp || next_step == NEVER) {
+                            heap[mem].pop();
+                            continue;
+                        }
+                        if (protect[b] == i) {
+                            held.push_back(heap[mem].top());
+                            heap[mem].pop();
+                            continue;
+                        }
+                        break;
+                    }
+                    if (heap[mem].empty())
+                        break; // Current operands may exceed the soft limit.
+                    auto [next_step, stamp, b] = heap[mem].top();
+                    (void)next_step;
+                    (void)stamp;
+                    heap[mem].pop();
+                    // Updated Step 2 renames subsequent readers AND writers.
+                    // This is a traffic-optimization hint, not infeasibility.
+                    if (g.tensors[b].producers.size() > 1 && last_writer[b] >= i)
+                        ans.partial_write_victims.push_back(b);
+                    resident[b] = 0;
+                    used[mem] -= double(g.tensors[b].size);
+                    if (!backed[b]) {
+                        ans.bytes += double(g.tensors[b].size);
+                        backed[b] = 1;
+                    }
+                }
+                for (const auto &item : held)
+                    heap[mem].push(item);
+                if (used[mem] > double(cfg.capacity[mem]) + 0.01)
+                    ans.infeasible = true;
                 ans.peak[mem] = max(ans.peak[mem], used[mem]);
             }
             for (int t : g.ops[e.v].outputs)
@@ -1221,7 +1247,7 @@ inline SpillEstimate estimate_spills(const Graph &g, const Config &cfg, const So
                         used[mem] -= double(g.tensors[t].size);
                     }
                 } else
-                    heap[mem].push({nxt, t});
+                    heap[mem].push({nxt, -allocation[t], t});
             }
         }
     }

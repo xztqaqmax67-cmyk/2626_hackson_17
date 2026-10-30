@@ -180,8 +180,8 @@ Decomposition decompose(const Graph &g, int k, double scale, double communicatio
             }
             d.paths.push_back(move(path));
         }
-    // Conservative handling of partial writes: co-locate all writers, even when
-    // that joins different path segments. This is our policy, not an extra rule.
+    // The updated official plan contract requires all writers to share a core,
+    // even when binding them joins different path segments.
     for (int v = 0; v < n; ++v)
         bundles.join(v, g.writer_group[v]);
     map<int, int> index;
@@ -270,12 +270,12 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only) {
     auto offer = [&](Solution s) {
         s.core = g.normalize_writers(move(s.core));
         Metrics m;
-        if (!assess(s, m) || !m.memory_warning || baseline_only ||
-            m.partial_write_victims.empty())
+        if (!assess(s, m) || baseline_only || m.partial_write_victims.empty())
             return;
         const string label = s.label;
-        // Two targeted repair passes, followed by one dependency-DFS fallback.
-        // A repaired candidate must pass exactly the same guard as any other.
+        // Partial-write spilling is supported by the updated Step 2. Keep the
+        // original candidate and try writer clustering only to reduce traffic.
+        // Two targeted passes and one DFS alternative keep the work bounded.
         for (int pass = 0; pass < 2 && !m.partial_write_victims.empty(); ++pass) {
             auto repaired = repair_writer_order(g, s, m.partial_write_victims);
             if (repaired.order == s.order)
@@ -287,7 +287,7 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only) {
                 break;
             s = move(repaired);
             m = move(next);
-            if (!m.memory_warning)
+            if (m.partial_write_victims.empty())
                 break;
         }
         if (s.order != g.dfs_order) {

@@ -1,0 +1,410 @@
+{
+  "started_utc": "2026-10-30T08:17:01.513835+00:00",
+  "baseline": "unmodified supplied singlecore_evaluate.py",
+  "not_a_claim_about_private_organizer_baseline": true,
+  "official_root": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030",
+  "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+  "evaluator_source_sha256": {
+    "code/contest_io.py": "3deb2d3179f7b02063edc55beb236f525fa8fed5884ce1ca5b1fe89156c63a52",
+    "code/evaluation_validation.py": "99ef09a446b2d9752a83584629c5a158118ae3d7026bbb4723a648d5bc74126f",
+    "code/multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "code/multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "code/multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "code/schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "code/schedule_step2.py": "b80256b9b9e1a2d3ec2a42cf4938123da76ed959bab24fc8dadb8aac32f457d1",
+    "code/schedule_step3.py": "424fea21c6cec1c170fe5b0e4e08c5bb48f24ccb08b5fb38a836a2cb528d7466",
+    "code/singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "code/stub_multicore_cut_and_schedule.py": "9ae9ae4e8875e348e4e2e8f97b78e709bf88e6d0cbcc0bcd888707d34dfcd3ae"
+  },
+  "python_executable": "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+  "workers": 2,
+  "evaluator_timeout_seconds": 600.0,
+  "rows": [
+    {
+      "case": "case_00",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_00.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\log.txt"
+      ],
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_00\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 3541355,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 111673344,
+        "added_copy_bytes": 88080384,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 88080384
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "09153f03f8180809d6f83da7c397a50509ef5279979c355b88984bf4e07ea092",
+      "evaluation_seconds": 6.541127800010145
+    },
+    {
+      "case": "case_01",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_01.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\log.txt"
+      ],
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_01\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 327680,
+          "UB": 0
+        }
+      },
+      "result_sha256": "a8c18baa588e8ed51c9406c137d9ddf3d2e9b1fca80de503906dea6affc4cac7",
+      "evaluation_seconds": 0.2514768000692129
+    },
+    {
+      "case": "case_02",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_02.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\log.txt"
+      ],
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_02\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1343488,
+          "UB": 0
+        }
+      },
+      "result_sha256": "251c21b59ca6ba516f77cecdc123a28dae719a142b4360c4c71881f08bf27fe2",
+      "evaluation_seconds": 0.25672730011865497
+    },
+    {
+      "case": "case_03",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_03.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\log.txt"
+      ],
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_03\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 6295267,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 228065280,
+        "added_copy_bytes": 188219392,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 188219392
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1441792,
+          "UB": 0
+        }
+      },
+      "result_sha256": "6132010cb50ddcfee90e0764a3129a75bb21d0b6f9c3ecd9df6fb5743c022dbf",
+      "evaluation_seconds": 23.935664699878544
+    },
+    {
+      "case": "case_04",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_04.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\log.txt"
+      ],
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_04\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 7080299,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 223346688,
+        "added_copy_bytes": 180879360,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 180879360
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "59f7ad6b7c200baa4d17ed47b080f6c892a9c4fc92e072408d713abbb717edd2",
+      "evaluation_seconds": 26.06895920005627
+    },
+    {
+      "case": "case_05",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_05.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\log.txt"
+      ],
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_05\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 18876779,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 632291328,
+        "added_copy_bytes": 550502400,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 550502400
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "dfc0d3a0c6d528d40468d1c2ac0cc005c5e1915235f1c3173afe20068fca4dff",
+      "evaluation_seconds": 241.55839609983377
+    },
+    {
+      "case": "case_06",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_06.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\log.txt"
+      ],
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_06\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 3540935,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 90963968,
+        "added_copy_bytes": 60293120,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 60293120
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "result_sha256": "e5a7f05c549a2cc2cf2c445212e5b30b7ebc40b5c1e99ec4b226c0b7f9c02e8c",
+      "evaluation_seconds": 5.533064899966121
+    },
+    {
+      "case": "case_07",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_07.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\log.txt"
+      ],
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_07\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 6340434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 162914080,
+        "added_copy_bytes": 139380544,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 139380544
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1461824,
+          "UB": 78592
+        }
+      },
+      "result_sha256": "73f00c9ed7de734b7829b8cae66ea5cb2295ba51777b197723b5d776e60f526a",
+      "evaluation_seconds": 157.4572838000022
+    },
+    {
+      "case": "case_08",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_08.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\log.txt"
+      ],
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_08\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 15419076,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 353176416,
+        "added_copy_bytes": 315214720,
+        "partition_added_copy_bytes": -7276544,
+        "spill_added_copy_bytes": 322491264
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1545728,
+          "UB": 70016
+        }
+      },
+      "result_sha256": "2db1bb96331679385c54f91b01d7ad05b5b42d76fd7fa661cf6fce6bd2d56fb7",
+      "evaluation_seconds": 122.628979699919
+    },
+    {
+      "case": "case_09",
+      "command": [
+        "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\code\\singlecore_evaluate.py",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\case_09.json",
+        "--config",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\references\\hackathon_20261030\\data\\config.txt",
+        "-o",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\result.json",
+        "--trace-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\trace.json",
+        "--log-output",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\log.txt"
+      ],
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "config_sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7",
+      "evaluator_sha256": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+      "result_path": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v3\\runs\\official_v3_1_20261030\\singlecore\\case_09\\result.json",
+      "status": "ok",
+      "exit_code": 0,
+      "makespan": 6794313,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 187056128,
+        "added_copy_bytes": 176875136,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 176875136
+      },
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1481088,
+          "UB": 18560
+        }
+      },
+      "result_sha256": "7ee1119adac5b862f37dbc2cd7e839cad4b3bef700788a849a5995a8f086b46a",
+      "evaluation_seconds": 100.24810319999233
+    }
+  ],
+  "elapsed_wall_seconds": 366.5072247001808,
+  "completed": true,
+  "successes": 10,
+  "failures": 0,
+  "sum_evaluation_seconds": 684.4797834998462,
+  "official_sources_unchanged": true
+}

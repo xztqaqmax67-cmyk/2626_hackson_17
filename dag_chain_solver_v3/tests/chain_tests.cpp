@@ -85,8 +85,8 @@ int main() {
         Solution ps;
         ps.core = {0, 0, 0, 0, 0};
         ps.order = {0, 1, 2, 3, 4};
-        require(estimate_spills(pg, cfg, ps, 2, nullptr).infeasible,
-                "must reject a spill between partial writes");
+        require(!estimate_spills(pg, cfg, ps, 2, nullptr).infeasible,
+                "updated Step 2 supports spills between partial writes");
         auto unsafe = estimate_spills(pg, cfg, ps, 2, nullptr);
         require(unsafe.partial_write_victims == vector<int>{0},
                 "identify the tensor whose partial writes are interrupted");
@@ -95,6 +95,8 @@ int main() {
         require(repaired.core == ps.core, "repair must preserve core placement");
         require(!estimate_spills(pg, cfg, repaired, 2, nullptr).infeasible,
                 "repair should finish partial writes before unrelated allocations");
+        require(estimate_spills(pg, cfg, repaired, 2, nullptr).partial_write_victims.empty(),
+                "clustering should complete writes before eviction; total traffic may tie");
         require(dag_chain::repair_writer_order(pg, ps, {}).order == ps.order,
                 "no reported hazard should preserve the original topological order");
         // The second writer needs another branch first. Repair must bring its

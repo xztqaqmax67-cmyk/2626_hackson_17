@@ -1,17 +1,23 @@
 # DAG 鏈剖分排程器 v3
 
-版本 **0.3.0**。本版在 v2 的候選搜尋外層加入多執行緒，用來縮短產生排程 JSON 的求解時間；候選種類、估價函數及選擇規則均沿用 v2。原有 `dag_chain_solver_v2` 保留在研究目錄中。
+版本 **0.3.1**。本版保留 v3 的多執行緒候選搜尋，並依新提供的官方題目包修正溢出估價與輸入、輸出契約。原有 `dag_chain_solver_v2` 保留；v0.3.0 已另存快照，便於比較。
 
-**本版尚未評分，等待官方評分器。** 下述開發檢查只驗證程式行為、輸出結構與一致性，不代表排程得分、官方有效性或加速比。多執行緒發生在求解器內，與輸出方案使用幾個 NPU 核心是不同概念。
+**已使用附帶官方評分器完成問題 2／場景 B 的 40 組評估，40/40 通過。** 單核基準、平均加速比及逐例數值見研究目錄中的 `OFFICIAL_EVALUATION_v3_1.md`；這是公開用例測試，不代表隱藏用例或最終排行榜成績。多執行緒發生在求解器內，與輸出方案使用幾個 NPU 核心是不同概念。
 
 ## 演算法流程
 
 1. 讀取圖與 Tensor，建立依賴、拓撲順序和靜態關鍵路徑估計。輸入中的 `COPY_IN`、`COPY_OUT` 不直接分配到輸出子圖，但其資料關係仍參與分析。
-2. 根據前驅完成時間與通訊代價選擇鏈接，形成 DAG 鏈；再依工作量拆分長鏈。同一 Tensor 的多個寫入者採取同核配置策略。
+2. 根據前驅完成時間與通訊代價選擇鏈接，形成 DAG 鏈；再依工作量拆分長鏈。同一 Tensor 的多個計算寫入者必須同核，這是新版官方方案契約。
 3. 將鏈段分配到核心，平衡各 Pipe 負載，並考慮跨核搬運、同步及記憶體壓力。對固定核心配置生成可交錯執行的操作順序，每個原始計算操作對應一個輸出子圖。
-4. 搜尋多組鏈參數、基礎貪心方案與有限次局部遷移，保留單核退路。若部分寫入的 Tensor 可能被換出，嘗試調整寫入者及其前置操作的順序。
-5. 以沿用 v2 的內部估價比較候選：Pipe 時間草圖、正常搬運量、最晚下次使用原則下的溢出搬運估計，以及跨核等待。這些是搜尋啟發式，並非官方事件模擬或正式分數。
+4. 搜尋多組鏈參數、基礎貪心方案與有限次局部遷移，保留單核退路。若部分寫入的 Tensor 可能被換出，額外嘗試調整寫入者及其前置操作的順序以減少搬運；原候選仍保留，不再僅因此現象直接拒絕。
+5. 以內部估價比較候選：Pipe 時間草圖、正常搬運量、最晚下次使用原則下的溢出搬運估計，以及跨核等待。v0.3.1 更新溢出模型，這些仍是搜尋啟發式，並非官方事件模擬或正式分數。
 6. 合併各有效核心數的最佳候選，執行內部結構檢查，輸出 `node_to_subgraph` 與 `core_schedules`。較少核心的方案須通過 v2 原有的保守比較條件。
+
+溢出估價使用 `soft = floor(hard × 90%)`。每個操作先配置全部輸入、輸出並保護其使用中的 Tensor，再挑選可換出的資料；若沒有合法 victim，只要實際需求不超過硬容量，允許暫時超過軟門檻。Tensor 再次被寫入會使 DDR 備份失效，後續需要時重新寫回。這版也新增重複邊拒絕，以及最終方案的多寫者同核檢查。
+
+固定硬體參數為 L1 `1572864` bytes、UB `131072` bytes、DDR `60` bytes/cycle、跨核 COPY 等待 `1000` cycles，依據新包 `config.txt` 與既有 C++ 提交要求。新包部分說明文件仍殘留 L1 `524288`、等待 `500` 的舊值，此處不採用。求解器不讀取配置檔，也不擴充至題目 1 或題目 3 的 Cache 模型。
+
+目前未移植官方 Step3 的虛擬位元組額度 WAR/WAW 依賴，以及合併 Pipe FIFO、跨核 COPY 後的精確全域等待環檢查；內部估價與結構檢查無法替代官方完整驗證。
 
 ## v3 的平行化方式
 
@@ -44,7 +50,7 @@ cmake --build build --config Release -j
 .\build\bin\npu_sched.exe graph.json -n 4 -o plan.json
 ```
 
-固定介面為 `npu_sched <graph.json> -n <2..5> -o <plan.json>`。核心數預設為 4；省略輸出路徑時，在輸入檔旁產生 `<輸入檔名>_multicore_res.json`。可用 `--help` 查看參數，`--version` 查看版本。正常執行只產生排程 JSON，不列印評分。
+固定介面為 `npu_sched <graph.json> -n <2..5> -o <plan.json>`。核心數預設為 4；省略輸出路徑時，在輸入檔旁產生 `<輸入檔名>_multicore_res.json`。`--version` 顯示版本；不提供 `--help` 或 `--config`。正常執行只產生排程 JSON，不列印評分。
 
 ## 原始碼結構
 
@@ -65,12 +71,21 @@ cmake -S . -B build-dev -DCMAKE_BUILD_TYPE=Release -DCHAIN_BUILD_TESTS=ON
 cmake --build build-dev --config Release -j
 ctest --test-dir build-dev -C Release --output-on-failure
 python tests/contracts.py --solver build-dev/bin/npu_sched --out runs/contracts_v3
-python tests/check_outputs.py --reference /path/to/v2/npu_sched --solver build-dev/bin/npu_sched --data /path/to/graphs --out runs/output_checks_v3 --cores 2 3 4 5
+python tests/rules_contracts.py --solver build-dev/bin/npu_sched --out runs/rules_contracts_v3_1
+python tests/check_rules_outputs.py --solver build-dev/bin/npu_sched --data /path/to/graphs --out runs/output_checks_v3_1
 ```
 
-Windows 使用對應的 `.exe` 路徑；MSVC 初次設定時可加 `-A x64`。`contracts.py` 檢查 CLI、輸出與錯誤處理；`check_outputs.py` 重新產生 v2、v3 排程，檢查 JSON 結構、與 v2 逐位元組相同，以及重複執行的一致性。它們均不呼叫評分器。檢查腳本記錄的產生時間是求解器執行時間，不是方案的 NPU 執行時間或正式加速比。
+Windows 使用對應的 `.exe` 路徑；MSVC 初次設定時可加 `-A x64`。`contracts.py` 檢查 CLI、輸出與錯誤處理；`rules_contracts.py` 補上 Pipe、共享 ID、重複鍵／邊、含 COPY 的原圖環等契約案例。`check_rules_outputs.py` 產生方案並檢查輸出與重複執行一致性，可加 `--previous-output-dir /path/to/previous_outputs` 記錄與舊結果的差異，**不要求新版與舊版逐位元組相同**。上述檢查均不執行評分；產生 JSON 的耗時也不等於方案的 NPU 執行時間。
 
-編譯與檢查結果另記錄於研究目錄中的 `NON_SCORING_CHECKS.md`；`CHANGES_v3.md` 提供修改說明。這兩份補充文件不是編譯或執行的必要依賴。
+研究目錄中的 `RULES_UPDATE_v3_1.md` 說明本次規則對齊；本版編譯及檢查結果記錄於 `NON_SCORING_CHECKS_v3_1.md`。`CHANGES_v3.md`、`NON_SCORING_CHECKS.md` 及 `reports/validation_20261030.json` 僅代表 v0.3.0 的歷史狀態，`tests/check_outputs.py` 的舊版逐位元組比較亦僅適用於當時的多執行緒改造。這些補充文件與開發工具不是編譯或執行提交包的必要依賴。
+
+## 官方評估（研究目錄限定）
+
+使用者提供的完整題目包在 `references/hackathon_20261030/`；評估時保持其中程式、資料和配置不變。
+`scripts/run_official_problem2.py` 評估已記錄並核對雜湊的 40 組 v0.3.1 方案，
+`scripts/run_official_singlecore.py` 執行同包的單核基準，`scripts/summarize_official.py` 彙總已完成的結果。
+詳細結果與原始產物位置見 `OFFICIAL_EVALUATION_v3_1.md`。
+此前的 `NON_SCORING_CHECKS_v3_1.md` 與 `RULES_UPDATE_v3_1.md` 保留改版階段尚未評分時的紀錄。
 
 ## 原始碼提交包
 
@@ -80,4 +95,4 @@ Windows 使用對應的 `.exe` 路徑；MSVC 初次設定時可加 `-A x64`。`c
 python scripts/package.py --team dag_chain_solver_v3
 ```
 
-產生 `dist/dag_chain_solver_v3.zip`，僅包含 `CMakeLists.txt`、本 README 與 `src/`。不包含資料、評分器、結果、測試腳本或建置產物。解壓後可直接依上述建置方式編譯；提交包採預設設定，無需開啟 `CHAIN_BUILD_TESTS`。
+產生 `dist/dag_chain_solver_v3.zip`，僅包含 `CMakeLists.txt`、本 README 與 `src/`。不包含 `references/`、附帶評分器、資料、結果、測試腳本或建置產物。解壓後可直接依上述建置方式編譯；提交包採預設設定，無需開啟 `CHAIN_BUILD_TESTS`。
