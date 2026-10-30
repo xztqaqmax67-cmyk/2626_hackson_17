@@ -13,6 +13,14 @@ Ids assignment_key(const GraphInfo &g, const Plan &p) {
     }
     return result;
 }
+const std::string &SearchRow::signature() const {
+    if (!signature_cache) signature_cache = plan.fingerprint();
+    return *signature_cache;
+}
+const Ids &SearchRow::assignment(const GraphInfo &graph) const {
+    if (!assignment_cache) assignment_cache = assignment_key(graph, plan);
+    return *assignment_cache;
+}
 std::string seed_family(const std::string &label) {
     for (std::string prefix :
          {"structure_separator", "structure_stage", "structure_atoms", "structure_dfs", "pipe_",
@@ -37,11 +45,11 @@ std::vector<SearchRow> diverse_rows(const GraphInfo &g, std::vector<SearchRow> r
     std::set<std::string> used;
     for (bool distinct : {true, false}) {
         for (const auto &row : rows) {
-            auto key = row.plan.fingerprint();
+            auto key = row.signature();
             if (used.count(key)) {
                 continue;
             }
-            auto mapping = assignment_key(g, row.plan);
+            auto mapping = row.assignment(g);
             if (distinct && maps.count(mapping)) {
                 continue;
             }
@@ -64,14 +72,14 @@ std::vector<SearchRow> polishing_seeds(const GraphInfo &g, const std::vector<Sea
     std::set<std::string> used, families;
     std::set<Ids> maps;
     auto add = [&](const SearchRow &row) {
-        auto key = row.plan.fingerprint();
+        auto key = row.signature();
         if (used.count(key) || Id(chosen.size()) >= limit) {
             return;
         }
         chosen.push_back(row);
         used.insert(key);
         families.insert(seed_family(row.label));
-        maps.insert(assignment_key(g, row.plan));
+        maps.insert(row.assignment(g));
     };
     for (const auto &row : ordered) {
         if (row.label.rfind("structure_", 0) == 0 || row.label.rfind("pipe_", 0) == 0 ||
@@ -86,7 +94,7 @@ std::vector<SearchRow> polishing_seeds(const GraphInfo &g, const std::vector<Sea
         }
     }
     for (const auto &row : ordered) {
-        if (!maps.count(assignment_key(g, row.plan))) {
+        if (!maps.count(row.assignment(g))) {
             add(row);
         }
     }
@@ -121,7 +129,7 @@ Route::Route(const GraphInfo &g, std::string route_name, const std::vector<Searc
     }
 }
 int Route::offer(const SearchRow &row) {
-    auto key = row.plan.fingerprint();
+    auto key = row.signature();
     evaluated.insert(key);
     int improvement = 0;
     if (row.score < best.score) {
@@ -132,7 +140,7 @@ int Route::offer(const SearchRow &row) {
     }
     bool replaced = false;
     for (auto &existing : pool) {
-        if (existing.plan.fingerprint() == key) {
+        if (existing.signature() == key) {
             existing = row;
             replaced = true;
             break;
@@ -157,7 +165,7 @@ std::optional<SearchRow> Route::next_center() {
     std::stable_sort(ordered.begin(), ordered.end(),
                      [](const SearchRow &a, const SearchRow &b) { return a.score < b.score; });
     for (const auto &row : ordered) {
-        if (!visited.insert(row.plan.fingerprint()).second) {
+        if (!visited.insert(row.signature()).second) {
             continue;
         }
         if (row.score > best.score) {

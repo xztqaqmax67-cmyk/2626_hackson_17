@@ -394,24 +394,24 @@ Plan allocation_plan(const GraphInfo &g, const std::map<Id, Id> &assignment, Id 
 }
 } // namespace
 // 按原版顺序组合结构划分策略；重复方案由指纹去重。
-NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
-                                double deadline) {
+void visit_structure_seeds(const GraphInfo &g, Id cores, const Settings &settings,
+                           double deadline, const SeedVisitor &visit) {
     if (cores < 1) {
         throw std::invalid_argument("ncores must be positive");
     }
     check_deadline(deadline);
-    NamedPlans result;
     std::set<std::string> seen;
     auto add = [&](std::string label, Plan p) {
         if (seen.insert(p.fingerprint()).second) {
-            result.emplace_back(label, p);
+            return visit(std::move(label), std::move(p));
         }
+        return true;
     };
     if (g.ids.empty()) {
         Plan p;
         p.ncores = cores;
         add("structure_empty", p);
-        return result;
+        return;
     }
     double total = 0, maximum = 0;
     for (const auto &part : g.atoms) {
@@ -428,9 +428,9 @@ NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &se
         for (double coefficient : {0., .5}) {
             auto assignment = pack(g, parts, stages, cores, settings, coefficient, deadline);
             for (bool merged : {true, false}) {
-                add(std::string("structure_atoms_c") + (coefficient == 0 ? "0" : "0.5") + "_" +
+                if (!add(std::string("structure_atoms_c") + (coefficient == 0 ? "0" : "0.5") + "_" +
                         (merged ? "merged" : "branches"),
-                    emit_plan(g, parts, stages, assignment, cores, merged, deadline));
+                    emit_plan(g, parts, stages, assignment, cores, merged, deadline))) return;
             }
         }
     }
@@ -444,8 +444,8 @@ NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &se
             if (assignment) {
                 for (const auto &mode : threshold == 4 ? std::vector<std::string>{"id", "locality"}
                                                        : std::vector<std::string>{"id"}) {
-                    add("structure_separator" + key(threshold) + "_" + mode,
-                        allocation_plan(g, *assignment, cores, mode));
+                    if (!add("structure_separator" + key(threshold) + "_" + mode,
+                        allocation_plan(g, *assignment, cores, mode))) return;
                 }
             }
         }
@@ -459,16 +459,16 @@ NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &se
             for (bool merged : (width == 4 || width == 8) && !reverse
                                    ? std::vector<bool>{true, false}
                                    : std::vector<bool>{true}) {
-                add("structure_stage" + key(width) + "_" + (reverse ? "reverse" : "forward") + "_" +
+                if (!add("structure_stage" + key(width) + "_" + (reverse ? "reverse" : "forward") + "_" +
                         (merged ? "merged" : "branches"),
-                    emit_plan(g, parts, stages, assignment, cores, merged, deadline));
+                    emit_plan(g, parts, stages, assignment, cores, merged, deadline))) return;
             }
         }
         if (Id(g.atoms.size()) >= cores) {
             auto [parts, stages] = stage_branches(g);
-            add("structure_atoms_fallback",
+            if (!add("structure_atoms_fallback",
                 emit_plan(g, parts, stages, pack(g, parts, stages, cores, settings, 0, deadline),
-                          cores, true, deadline));
+                          cores, true, deadline))) return;
         }
         check_deadline(deadline);
         auto order = reverse_dfs_order(g);
@@ -490,10 +490,18 @@ NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &se
         }
         Ids stages(parts.size());
         std::iota(stages.begin(), stages.end(), 0);
-        add("structure_dfs_4k",
+        if (!add("structure_dfs_4k",
             emit_plan(g, parts, stages, pack(g, parts, stages, cores, settings, .1, deadline),
-                      cores, false, deadline));
+                      cores, false, deadline))) return;
     }
+}
+NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
+                                double deadline) {
+    NamedPlans result;
+    visit_structure_seeds(g, cores, settings, deadline, [&](std::string label, Plan p) {
+        result.emplace_back(std::move(label), std::move(p));
+        return true;
+    });
     return result;
 }
 } // namespace problem2

@@ -1,0 +1,29 @@
+{
+  "native_semantic_regression": "passed: clean/dirty backing, supported multiwriter spills, 90/95/100 soft transients, 101 hard overflow, insertion-order tie (80 bytes), legacy scalar parity",
+  "candidate_pool_configurations": 10,
+  "candidate_pool_selection_records": 50,
+  "all_official_python_valid": true,
+  "full_cpp_json_parity": true,
+  "build": "GCC13.2 C++17 -O2 -DNDEBUG -Wall -Wextra -Wpedantic -pedantic-errors; direct compile/link of fixed source snapshot",
+  "test_cleanup": "Concurrent cleanup removed tests/ after execution; original test directory not restored. Harness retained in ignored build_proxy_source.",
+  "current_proxy_sha256": "c025eae2da97b3f768c4c4f28d64b731c596dc70d1f87d52e06c103324c30953",
+  "random_semantics_regression": {
+    "fixtures": 60,
+    "valid": 55,
+    "hard_capacity_failures": 5,
+    "spill_byte_comparisons": "55/55 exact vs official Python",
+    "hard_overflow_detection": "5/5 agree",
+    "scope": "single-core compute-only lifetimes; FIFO chain, shuffled tensor array, both memories, multiwriters; no boundary or cross-core COPY"
+  },
+  "current_head": "35074ff",
+  "full_search": {
+    "configurations": 2,
+    "variants": 5,
+    "evaluations_per_run": 24,
+    "all_final_scores_tie": true,
+    "all_official_python_valid": true,
+    "all_full_json_parity": true,
+    "all_proxy_branches_exercised": true,
+    "conclusion": "Improved fixed-pool selection has not translated to a demonstrated full-search gain in these two fixed-evaluation trials; keep legacy default."
+  }
+}

@@ -8,7 +8,7 @@
 
 namespace problem2 {
 // C++17 可暂停生成器：休眠线程保存普通函数的局部变量和调用栈。
-// next() 唤醒生产者，yield(value) 交回控制权；二者交替执行，不并发搜索。
+// next() 与本路线的 yield(value) 交替执行；路线内部的独立工作可交给计算池。
 // 销毁时取消并 join，确保生产者退出后才释放捕获的外部变量。
 // 仅允许单个调用者顺序调用 next()；同时传递搜索用的线程局部截止时间。
 template <class T> class Generator {

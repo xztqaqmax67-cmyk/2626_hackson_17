@@ -1,3 +1,4 @@
+#include "proxy.hpp"
 // 对应 search.py。
 // 场景 B 的完整搜索流程：构造首解、生成种子、多路线搜索、评估与保存。
 #include "search.hpp"
@@ -8,6 +9,7 @@
 #include "generator.hpp"
 #include "inheritance.hpp"
 #include "official.hpp"
+#include "parallel.hpp"
 #include "pipeline.hpp"
 #include "portfolio.hpp"
 #include "structure.hpp"
@@ -578,6 +580,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                              "candidate_pages",
                              "construction_seconds",
                              "screening_seconds",
+                             "proxy_calls",
                              "expansion_seconds",
                              "evaluation_seconds",
                              "generation_seconds",
@@ -600,6 +603,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                    {"solver_version", "scene-b-v5-case-budget"},
                    {"time_limit", time_limit},
                    {"ablation", options.ablation},
+                   {"screening_model", "new90"},
                    {"feasibility_grace_seconds", grace},
                    {"search_profile", options.compact ? "compact" : "full"},
                    {"warm_start", options.warm_start.empty()
@@ -608,11 +612,12 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                    {"stats", stats},
                    {"history", array()}};
     std::optional<Plan> best_plan;
-    Json best_result, last_result;
+    std::shared_ptr<const Json> last_result;
     Objective best_key = {std::numeric_limits<double>::infinity(), std::numeric_limits<Id>::max()};
-    std::map<std::string, std::string> evaluated;
-    std::map<std::string, Json> profile_cache, result_cache;
-    std::map<std::string, std::pair<double, Id>> proxy_cache;
+    std::unordered_map<std::string, std::string> evaluated;
+    std::unordered_map<std::string, std::shared_ptr<const Json>> profile_cache;
+    std::unordered_map<std::string, std::shared_ptr<const Json>> result_cache;
+    std::unordered_map<std::string, std::pair<double, Id>> proxy_cache;
     std::deque<std::string> result_order, profile_order;
     std::vector<double> durations;
     Route *current_route = nullptr;
@@ -675,32 +680,92 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
         // 内存入口不继承检查点，因而也无需读取输入或配置文件来计算指纹。
         const auto instance = memory_only ? Json() : instance_fingerprint(graph_path, config_path);
         record["problem_instance"] = instance;
+        struct ScoredPlan {
+            std::string signature;
+            std::shared_ptr<const Json> result;
+            std::exception_ptr error;
+            double seconds = 0;
+        };
+        // 工作线程只计算评分；缓存、最好解、路线状态和文件写入仍由协调端更新。
+        auto score_batch = [&](const std::vector<const Plan *> &plans) {
+            std::vector<ScoredPlan> scores;
+            // 固定评估次数模式不做可能用不上的预评，保留严格次数上限。
+            if (plans.size() < 2 || options.max_evaluations ||
+                deadline - monotonic() < 2 * std::max(.05, recent(3, .05))) return scores;
+            check(true);
+            scores.resize(plans.size());
+            std::vector<std::size_t> jobs;
+            std::unordered_map<std::string, std::size_t> unique;
+            std::vector<std::pair<std::size_t, std::size_t>> aliases;
+            for (std::size_t i = 0; i < plans.size(); ++i) {
+                try {
+                    plans[i]->validate(graph);
+                    auto &slot = scores[i];
+                    slot.signature = plans[i]->fingerprint();
+                    auto cached = result_cache.find(slot.signature);
+                    if (cached != result_cache.end()) {
+                        slot.result = cached->second;
+                        continue;
+                    }
+                    auto previous = evaluated.find(slot.signature);
+                    if (previous != evaluated.end() && previous->second != "ok") continue;
+                    auto inserted = unique.emplace(slot.signature, i);
+                    if (inserted.second) jobs.push_back(i);
+                    else aliases.emplace_back(i, inserted.first->second);
+                } catch (...) {
+                    scores[i].error = std::current_exception();
+                }
+            }
+            const double began = monotonic();
+            parallel_for(jobs.size(), [&](std::size_t index) {
+                const auto i = jobs[index];
+                auto &slot = scores[i];
+                const double t = monotonic();
+                try {
+                    slot.result = std::make_shared<const Json>(
+                        official::evaluate(graph.graph, plans[i]->to_dict(), settings));
+                } catch (...) {
+                    slot.error = std::current_exception();
+                }
+                slot.seconds = monotonic() - t;
+            });
+            timing("evaluation_seconds", monotonic() - began);
+            stats["prefetched_evaluations"] = stats.value("prefetched_evaluations", Id(0)) + Id(jobs.size());
+            stats["parallel_evaluation_batches"] = stats.value("parallel_evaluation_batches", Id(0)) + 1;
+            for (auto [target, source] : aliases) scores[target] = scores[source];
+            return scores;
+        };
         // 统一处理去重、校验、正式评估与保优，所有搜索路线共享该入口。
         auto evaluate = [&](const Plan &candidate, const std::string &source,
-                            std::optional<Objective> expected = std::nullopt) {
+                             std::optional<Objective> expected = std::nullopt,
+                             const ScoredPlan *prepared = nullptr) {
             check();
             double validation = monotonic();
-            candidate.validate(graph);
-            auto signature = candidate.fingerprint();
+            if (prepared && prepared->error) std::rethrow_exception(prepared->error);
+            if (!prepared) candidate.validate(graph);
+            auto signature = prepared ? prepared->signature : candidate.fingerprint();
             timing("validation_seconds", monotonic() - validation);
             if (evaluated.count(signature) &&
                 (result_cache.count(signature) || evaluated.at(signature) != "ok")) {
                 increment("duplicates");
-                last_result = result_cache.count(signature) ? result_cache.at(signature) : Json();
+                last_result = result_cache.count(signature) ? result_cache.at(signature) : nullptr;
                 return 0;
             }
             double began = monotonic();
             increment("full_evaluations");
-            auto result = official::evaluate(graph.graph, candidate.to_dict(), settings);
-            last_result = result;
-            double elapsed = monotonic() - began;
+            auto result_ptr = prepared && prepared->result ? prepared->result :
+                std::make_shared<const Json>(
+                    official::evaluate(graph.graph, candidate.to_dict(), settings));
+            const Json &result = *result_ptr;
+            last_result = result_ptr;
+            double elapsed = prepared && prepared->result ? prepared->seconds : monotonic() - began;
             durations.push_back(elapsed);
-            timing("evaluation_seconds", elapsed);
+            if (!prepared || !prepared->result) timing("evaluation_seconds", elapsed);
             evaluated[signature] = field_string(result, "status");
             if (!result_cache.count(signature)) {
                 result_order.push_back(signature);
             }
-            result_cache[signature] = result;
+            result_cache[signature] = result_ptr;
             while (result_order.size() > std::size_t(options.compact ? 12 : 64)) {
                 result_cache.erase(result_order.front());
                 result_order.pop_front();
@@ -728,23 +793,22 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 entry["added_copy_bytes"] = score.second;
                 if (score < best_key) {
                     improved = score.first < best_key.first ? 2 : 1;
-                    Json checkpoint = {
-                        {"plan", candidate.to_dict()},
-                        {"official_result", result.at("official_result")},
-                        {"makespan", result.at("makespan")},
-                        {"source", source},
-                        {"elapsed_seconds", monotonic() - started},
-                        {"problem_instance", instance},
-                        {"inherited_validation", record.value("inherited_validation", Json())}};
                     double checkpoint_started = monotonic();
                     if (!memory_only) {
+                        Json checkpoint = {
+                            {"plan", candidate.to_dict()},
+                            {"official_result", result.at("official_result")},
+                            {"makespan", result.at("makespan")},
+                            {"source", source},
+                            {"elapsed_seconds", monotonic() - started},
+                            {"problem_instance", instance},
+                            {"inherited_validation", record.value("inherited_validation", Json())}};
                         atomic_write(output / "best_checkpoint.json", checkpoint);
                     }
                     timing("checkpoint_seconds", monotonic() - checkpoint_started);
                     bool first = !best_plan;
                     best_key = score;
                     best_plan = candidate;
-                    best_result = result;
                     if (first) {
                         record["first_solution_seconds"] = monotonic() - started;
                         record["feasibility_extension_used"] = monotonic() > soft_deadline;
@@ -790,26 +854,21 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
             }
             double began = monotonic();
             increment("expansions");
-            auto profile =
-                official::build_profile(graph.graph, candidate.to_dict(), settings, result);
+            auto profile = std::make_shared<const Json>(
+                official::build_profile(graph.graph, candidate.to_dict(), settings, result));
             timing("expansion_seconds", monotonic() - began);
             profile_cache[signature] = profile;
             profile_order.push_back(signature);
-            if (profile.value("status", std::string("ok")) != "ok") {
+            if (profile->value("status", std::string("ok")) != "ok") {
                 increment("invalid_expansions");
             }
             return profile;
         };
+        const ScreeningProxy screening(graph);
         auto cheap = [&](const Plan &candidate) {
-            auto signature = candidate.fingerprint();
-            if (proxy_cache.count(signature)) {
-                return proxy_cache.at(signature);
-            }
-            double estimate = replay_sketch(graph, candidate, settings);
-            Id route = route_bytes(graph, candidate);
-            auto score = std::make_pair(std::max(estimate, route / settings.bandwidth), route);
-            proxy_cache[signature] = score;
-            return score;
+            const auto metrics = screening.evaluate(candidate, settings);
+            return std::make_pair(metrics.score(settings.bandwidth),
+                                  Id(metrics.route + metrics.spill));
         };
         Plan fallback{{{0, graph.id_order}}, {{0, 0}}, {0}, 1, cores};
         std::optional<Plan> inherited;
@@ -866,8 +925,8 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
         {
             auto row_for = [&](const Plan &plan,
                                const std::string &label) -> std::optional<SearchRow> {
-                if (last_result.is_object() && last_result.at("status") == "ok") {
-                    return SearchRow{objective(last_result), plan, last_result, label};
+                if (last_result && last_result->is_object() && last_result->at("status") == "ok") {
+                    return SearchRow{objective(*last_result), plan, last_result, label};
                 }
                 return {};
             };
@@ -878,64 +937,119 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                     seed_rows.push_back(*row);
                 }
             }
-            // 生成器保存每条种子来源的推进位置，按轮次交替尝试不同构造策略。
-            auto legacy = [&]() -> Generator<std::pair<std::string, Plan>> {
-                return Generator<std::pair<std::string, Plan>>([&](const auto &yield) {
-                    for (double weight : {0., 1.}) {
-                        auto plan = construct(graph, cores, weight, settings);
-                        yield(std::make_pair(
-                            std::string("native_lambda_") + (weight == 0 ? "0" : "1"), plan));
-                    }
-                });
-            };
-            auto structure_source = [&]() -> Generator<std::pair<std::string, Plan>> {
-                return Generator<std::pair<std::string, Plan>>([&](const auto &yield) {
-                    for (auto row : structure_seed_plans(graph, cores, settings, deadline)) {
-                        yield(row);
-                    }
-                });
-            };
-            auto pipeline_source = [&]() -> Generator<std::pair<std::string, Plan>> {
-                return Generator<std::pair<std::string, Plan>>([&](const auto &yield) {
-                    for (auto row : pipeline_seed_plans(graph, cores, settings, deadline)) {
-                        yield(row);
-                    }
-                });
-            };
-            auto chain_source = [&]() -> Generator<std::pair<std::string, Plan>> {
-                return Generator<std::pair<std::string, Plan>>([&](const auto &yield) {
-                    const double construction_deadline =
-                        std::min(deadline, monotonic() + std::max(1., time_limit * .1));
-                    try {
-                        for (auto row : chain_seed_plans(graph, cores, settings, construction_deadline, 2)) {
-                            yield(row);
+            const bool short_budget = options.compact && time_limit <= 30.;
+            bool focus_local = false;
+            // 先改变已有可行分核的粒度；90 秒正式预算同样受益于这个廉价起点。
+            if (options.compact && best_plan) {
+                const Plan anchor = *best_plan;
+                const Objective anchor_score = best_key;
+                Id heavy = -1;
+                double heaviest = -1;
+                for (Id b : anchor.order) {
+                    if (anchor.blocks.at(b).size() < 128) continue;
+                    double work = 0;
+                    for (Id op : anchor.blocks.at(b)) work += graph.weight.at(op);
+                    if (work > heaviest) { heaviest = work; heavy = b; }
+                }
+                auto add_early = [&](const Plan &plan, const std::string &label) {
+                    check(true);
+                    increment("seed_candidates");
+                    evaluate(plan, label);
+                    if (auto row = row_for(plan, label)) seed_rows.push_back(*row);
+                };
+                if (heavy >= 0) {
+                    if (auto divided = split_block(graph, anchor, heavy))
+                        add_early(*divided, "native_early_heavy_split");
+                    Plan granular;
+                    granular.ncores = cores;
+                    granular.next_block_id = anchor.next_block_id;
+                    for (Id b : anchor.order) {
+                        const auto &nodes = anchor.blocks.at(b);
+                        const std::size_t parts = nodes.size() >= 128 ? 4 : 1;
+                        for (std::size_t i = 0; i < parts; ++i) {
+                            Id id = i == 0 ? b : granular.next_block_id++;
+                            granular.blocks[id] = Ids(nodes.begin() + nodes.size() * i / parts,
+                                                     nodes.begin() + nodes.size() * (i + 1) / parts);
+                            granular.core_of[id] = anchor.core_of.at(b);
+                            granular.order.push_back(id);
                         }
-                    } catch (const TimeoutError &) {
-                        // 此来源的局部预算用完后继续原搜索；全局预算由外层统一检查。
                     }
-                });
-            };
-            auto activation_source = [&]() -> Generator<std::pair<std::string, Plan>> {
-                return Generator<std::pair<std::string, Plan>>([&](const auto &yield) {
-                    for (auto row : activation_plans(graph, *inherited, settings, deadline, 6)) {
-                        yield(row);
-                    }
-                });
-            };
-            std::vector<Generator<std::pair<std::string, Plan>>> sources;
-            if (options.ablation != "construction-only") {
-                sources.push_back(structure_source());
-                sources.push_back(pipeline_source());
+                    granular.validate(graph);
+                    add_early(granular, "native_early_granularity4");
+                    // 短预算才收缩分核探索；正式预算继续保留来源多样性和链初解。
+                    focus_local = short_budget && best_key.first < anchor_score.first * .98;
+                }
             }
-            sources.push_back(legacy());
+            // 每来源只构造本轮能使用的前缀，仍由现有固定计算池执行。
+            auto collect_seeds = [&](const auto &visitor) {
+                NamedPlans plans;
+                const double local_deadline = options.compact
+                    ? std::min(deadline, monotonic() + std::max(1., time_limit * .2)) : deadline;
+                try {
+                    visitor(graph, cores, settings, local_deadline,
+                        [&](std::string label, Plan plan) {
+                            plans.emplace_back(std::move(label), std::move(plan));
+                            return !options.compact || plans.size() < 2;
+                        });
+                } catch (const TimeoutError &) {
+                    // 局部额度耗尽时保留此前已完成的种子；全局时限由接收端检查。
+                }
+                return plans;
+            };
+            // 种子来源直接在计算池内构造，不再额外创建保存调用栈的休眠线程。
+            auto legacy = [&]() -> NamedPlans {
+                NamedPlans plans;
+                for (double weight : {0., 1.}) {
+                    plans.emplace_back(std::string("native_lambda_") + (weight == 0 ? "0" : "1"),
+                                       construct(graph, cores, weight, settings));
+                }
+                return plans;
+            };
+            auto structure_source = [&]() {
+                return collect_seeds(visit_structure_seeds);
+            };
+            auto pipeline_source = [&]() {
+                return collect_seeds(visit_pipeline_seeds);
+            };
+            auto chain_source = [&]() -> NamedPlans {
+                const double construction_deadline =
+                    std::min(deadline, monotonic() + std::max(1., time_limit * .1));
+                try {
+                    return chain_seed_plans(graph, cores, settings, construction_deadline, 2);
+                } catch (const TimeoutError &) {
+                    return {}; // 此来源的局部额度耗尽；其他来源仍可使用。
+                }
+            };
+            auto activation_source = [&]() {
+                return activation_plans(graph, *inherited, settings, deadline, 6);
+            };
+            std::vector<std::function<NamedPlans()>> builders;
+            if (options.ablation != "construction-only" && !focus_local) {
+                builders.emplace_back(structure_source);
+                builders.emplace_back(pipeline_source);
+            }
+            if (!short_budget) builders.emplace_back(legacy);
             const bool with_chain = options.ablation != "construction-only" &&
                                     options.ablation != "no-chain";
             if (with_chain) {
-                sources.push_back(chain_source());
+                builders.emplace_back(chain_source);
             }
             if (inherited && options.ablation != "construction-only") {
-                sources.push_back(activation_source());
+                builders.emplace_back(activation_source);
             }
+            std::vector<NamedPlans> sources(builders.size());
+            std::vector<std::exception_ptr> source_errors(builders.size());
+            std::vector<std::size_t> source_positions(builders.size(), 0);
+            check(true);
+            const double construction_started = monotonic();
+            parallel_for(builders.size(), [&](std::size_t i) {
+                try {
+                    sources[i] = builders[i]();
+                } catch (...) {
+                    source_errors[i] = std::current_exception();
+                }
+            });
+            timing("construction_seconds", monotonic() - construction_started);
             std::vector<std::size_t> active_sources(sources.size());
             std::iota(active_sources.begin(), active_sources.end(), 0);
             double seed_cutoff = started + std::min(time_limit * .25, 180.);
@@ -945,23 +1059,51 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
             if (with_chain) {
                 seed_limit += 2;
             }
+            if (short_budget) seed_limit = with_chain ? 4 : 2;
             while (!active_sources.empty() && seed_count < seed_limit) {
                 std::vector<std::size_t> active;
-                for (auto index : active_sources) {
-                    check(true);
-                    double began = monotonic();
-                    auto row = sources[index].next();
-                    if (!row) {
-                        continue;
+                struct SeedStep {
+                    std::optional<std::pair<std::string, Plan>> row;
+                    std::exception_ptr error;
+                };
+                std::vector<SeedStep> steps(active_sources.size());
+                check(true);
+                for (std::size_t i = 0; i < steps.size(); ++i) {
+                    const auto index = active_sources[i];
+                    steps[i].error = source_errors[index];
+                    auto &position = source_positions[index];
+                    if (position < sources[index].size())
+                        steps[i].row = std::move(sources[index][position++]);
+                }
+                std::vector<const Plan *> seed_plans;
+                std::vector<std::size_t> score_positions(steps.size(), steps.size());
+                for (std::size_t i = 0; i < steps.size(); ++i) {
+                    if (steps[i].error) break;
+                    if (steps[i].row && Id(seed_plans.size()) < seed_limit - seed_count) {
+                        if (best_plan && pipe_bound(graph, steps[i].row->second) > best_key.first)
+                            continue;
+                        score_positions[i] = seed_plans.size();
+                        seed_plans.push_back(&steps[i].row->second);
                     }
-                    timing("construction_seconds", monotonic() - began);
+                }
+                // 每轮最多五个来源；输入次序与线程完成先后无关。
+                auto seed_scores = score_batch(seed_plans);
+                for (std::size_t i = 0; i < steps.size(); ++i) {
+                    if (steps[i].error) std::rethrow_exception(steps[i].error);
+                    auto &row = steps[i].row;
+                    if (!row) continue;
+                    const auto index = active_sources[i];
+                    check(true);
                     active.push_back(index);
                     ++seed_count;
                     increment("seed_candidates");
-                    evaluate(row->second, row->first);
-                    auto seed = row_for(row->second, row->first);
-                    if (seed) {
-                        seed_rows.push_back(*seed);
+                    if (!best_plan || pipe_bound(graph, row->second) <= best_key.first) {
+                        evaluate(row->second, row->first, std::nullopt,
+                                 seed_scores.empty() ? nullptr : &seed_scores.at(score_positions[i]));
+                        auto seed = row_for(row->second, row->first);
+                        if (seed) seed_rows.push_back(*seed);
+                    } else {
+                        increment("safe_pruned");
                     }
                     if (seed_count >= seed_limit ||
                         (seed_count >= 4 && monotonic() >= seed_cutoff)) {
@@ -971,7 +1113,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 }
                 active_sources = active;
             }
-            // 种子阶段结束即释放休眠线程和候选列表。
+            // 种子阶段结束即释放尚未使用的候选。
             sources.clear();
             if (!options.warm_start.empty()) {
                 auto plan = Plan::from_dict(graph, read_json_strict(options.warm_start));
@@ -1005,6 +1147,22 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                       : *std::min_element(native.begin(), native.end(), better);
             std::vector<SearchRow> polished, reference_variants;
             double polish_cutoff = started + std::min(time_limit * .45, 360.);
+            std::vector<NamedPlans> reordered_seeds(representatives.size());
+            std::vector<std::exception_ptr> reorder_errors(representatives.size());
+            if (options.ablation != "construction-only" && options.ablation != "no-repair" &&
+                monotonic() < polish_cutoff) {
+                const double began = monotonic();
+                parallel_for(representatives.size(), [&](std::size_t i) {
+                    try {
+                        const auto &row = representatives[i];
+                        reordered_seeds[i] = reorder_plans(graph, row.plan, settings, *row.result,
+                                                           options.compact ? 1 : 3);
+                    } catch (...) {
+                        reorder_errors[i] = std::current_exception();
+                    }
+                });
+                timing("seed_reorder_seconds", monotonic() - began);
+            }
             for (std::size_t i = 0; i < representatives.size(); ++i) {
                 if (i && monotonic() >= polish_cutoff) {
                     polished.insert(polished.end(), representatives.begin() + i,
@@ -1014,13 +1172,19 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 const auto &row = representatives[i];
                 std::vector<SearchRow> variants = {row};
                 if (options.ablation != "construction-only" && options.ablation != "no-repair") {
+                    if (reorder_errors[i]) std::rethrow_exception(reorder_errors[i]);
                     double began = monotonic();
-                    for (auto [label, candidate] : reorder_plans(
-                             graph, row.plan, settings, row.result, options.compact ? 1 : 3)) {
+                    std::vector<const Plan *> plans;
+                    for (const auto &entry : reordered_seeds[i]) plans.push_back(&entry.second);
+                    auto scores = score_batch(plans);
+                    std::size_t position = 0;
+                    for (const auto &[label, candidate] : reordered_seeds[i]) {
                         check(true);
                         increment("seed_reorders");
                         auto name = row.label + "_" + label;
-                        evaluate(candidate, name);
+                        evaluate(candidate, name, std::nullopt,
+                                 scores.empty() ? nullptr : &scores[position]);
+                        ++position;
                         auto candidate_row = row_for(candidate, name);
                         if (candidate_row) {
                             variants.push_back(*candidate_row);
@@ -1029,7 +1193,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                     timing("seed_reorder_seconds", monotonic() - began);
                 }
                 polished.push_back(*std::min_element(variants.begin(), variants.end(), better));
-                if (row.plan.fingerprint() == reference_seed.plan.fingerprint()) {
+                if (row.signature() == reference_seed.signature()) {
                     reference_variants = variants;
                 }
             }
@@ -1058,8 +1222,9 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
             record["portfolio_policy"] =
                 "protected native route; independent local objectives; time-weighted fair service";
             auto assess = [&](Route &route, const Plan &candidate,
-                              const std::string &label) -> std::pair<int, Json> {
-                evaluate(candidate, label);
+                              const std::string &label,
+                              const ScoredPlan *prepared = nullptr) -> std::pair<int, Json> {
+                evaluate(candidate, label, std::nullopt, prepared);
                 auto row = row_for(candidate, label);
                 if (!row) {
                     return {0, Json()};
@@ -1068,7 +1233,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 if (improvement) {
                     increment("local_improvements");
                 }
-                return {improvement, row->result};
+                return {improvement, *row->result};
             };
             auto joint = [&](Route &route, const Plan &plan, const Json &result,
                              const std::string &label) -> std::pair<int, Json> {
@@ -1108,9 +1273,9 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 };
                 try {
                     auto profile = expand(plan, result);
-                    if (profile.value("status", std::string("ok")) == "ok") {
+                    if (profile->value("status", std::string("ok")) == "ok") {
                         double t = monotonic();
-                        auto candidate = repair_order(graph, plan, settings, profile, {}, 2);
+                        auto candidate = repair_order(graph, plan, settings, *profile, {}, 2);
                         timing("repair_seconds", monotonic() - t);
                         if (candidate) {
                             outcome = assess(route, *candidate, label);
@@ -1136,7 +1301,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                             return;
                         }
                         Plan center = row->plan;
-                        Json center_result = row->result;
+                        Json center_result = *row->result;
                         if (route.visited.size() > 1) {
                             increment("elite_restarts");
                         }
@@ -1195,9 +1360,11 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                     profile_cache.erase(profile_order.front());
                                     profile_order.pop_front();
                                 }
-                                auto profile = expand(center, center_result);
+                                // 只有生命周期邻域读取完整 profile，其他族共享空对象。
+                                static const auto empty_profile = std::make_shared<const Json>(object());
+                                auto profile = family == 0 ? expand(center, center_result) : empty_profile;
                                 if (family == 0 && sweep == 0 &&
-                                    (!profile.value("lifetime_hotspots", array()).empty() ||
+                                    (!profile->value("lifetime_hotspots", array()).empty() ||
                                      center_result.value("spill_bytes", Id(0)))) {
                                     auto local =
                                         repair(route, center, center_result, "lifetime_repair");
@@ -1209,14 +1376,18 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                 }
                                 double began = monotonic();
                                 auto raw = neighborhoods(
-                                    graph, center, profile, center_result.at("official_result"),
+                                    graph, center, *profile, center_result.at("official_result"),
                                     family, settings, options.ablation == "no-group",
                                     family == 0 || options.ablation == "no-repair");
                                 timing("generation_seconds", monotonic() - began);
                                 began = monotonic();
                                 std::vector<std::pair<std::pair<double, Id>, Candidate>> ranked;
                                 std::set<std::string> seen;
-                                for (const auto &candidate : raw) {
+                                std::vector<std::string> signatures;
+                                std::vector<std::size_t> needs_score;
+                                ranked.reserve(raw.size());
+                                signatures.reserve(raw.size());
+                                for (auto &candidate : raw) {
                                     check();
                                     increment("generated");
                                     auto signature = candidate.plan.fingerprint();
@@ -1238,17 +1409,28 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                         increment("safe_pruned");
                                         continue;
                                     }
-                                    ranked.push_back({cheap(candidate.plan), candidate});
+                                    auto cached = proxy_cache.find(signature);
+                                    if (cached == proxy_cache.end()) needs_score.push_back(ranked.size());
+                                    ranked.emplace_back(cached == proxy_cache.end() ?
+                                        std::pair<double, Id>{} : cached->second, std::move(candidate));
+                                    signatures.push_back(std::move(signature));
                                 }
+                                parallel_for(needs_score.size(), [&](std::size_t i) {
+                                    auto &entry = ranked[needs_score[i]];
+                                    entry.first = cheap(entry.second.plan);
+                                });
+                                for (auto index : needs_score)
+                                    proxy_cache.emplace(std::move(signatures[index]), ranked[index].first);
+                                increment("proxy_calls", Id(needs_score.size()));
                                 timing("screening_seconds", monotonic() - began);
                                 std::stable_sort(
                                     ranked.begin(), ranked.end(), [](const auto &a, const auto &b) {
-                                        return std::make_pair(a.first, a.second.label) <
-                                               std::make_pair(b.first, b.second.label);
+                                        return std::tie(a.first, a.second.label) <
+                                               std::tie(b.first, b.second.label);
                                     });
-                                std::vector<std::pair<std::string, std::vector<Candidate>>> pools;
-                                for (const auto &ranked_candidate : ranked) {
-                                    const auto &candidate = ranked_candidate.second;
+                                std::vector<std::pair<std::string, std::vector<std::size_t>>> pools;
+                                for (std::size_t index = 0; index < ranked.size(); ++index) {
+                                    const auto &candidate = ranked[index].second;
                                     auto i = std::find_if(pools.begin(), pools.end(),
                                                           [&](const auto &pool) {
                                                               return pool.first == candidate.kind;
@@ -1257,14 +1439,16 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                         pools.push_back({candidate.kind, {}});
                                         i = pools.end() - 1;
                                     }
-                                    i->second.push_back(candidate);
+                                    i->second.push_back(index);
                                 }
-                                std::vector<Candidate> ordered;
+                                // ranked 在本轮结束前稳定存活，排序/分族只移动索引。
+                                std::vector<const Candidate *> ordered;
+                                ordered.reserve(ranked.size());
                                 for (std::size_t i = 0;; ++i) {
                                     bool changed = false;
                                     for (const auto &[kind, pool] : pools) {
                                         if (i < pool.size()) {
-                                            ordered.push_back(pool[i]);
+                                            ordered.push_back(&ranked[pool[i]].second);
                                             changed = true;
                                         }
                                     }
@@ -1280,13 +1464,20 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                     quota = std::min<Id>(18, quota * 2);
                                 }
                                 std::optional<std::pair<Plan, Json>> secondary;
+                                std::vector<ScoredPlan> page_scores;
                                 for (Id i = 0; i < std::min<Id>(quota, Id(ordered.size())); ++i) {
                                     check(true);
                                     if (i % 3 == 0) {
                                         increment("candidate_pages");
+                                        std::vector<const Plan *> page;
+                                        const Id end = std::min({i + 3, quota, Id(ordered.size())});
+                                        for (Id j = i; j < end; ++j) page.push_back(&ordered[j]->plan);
+                                        page_scores = score_batch(page);
                                     }
-                                    const auto &candidate = ordered[i];
-                                    auto assessed = assess(route, candidate.plan, candidate.label);
+                                    const auto &candidate = *ordered[i];
+                                    auto assessed = assess(route, candidate.plan, candidate.label,
+                                        page_scores.empty() ? nullptr : &page_scores[std::size_t(i % 3)]);
+                                    if (!page_scores.empty()) page_scores[std::size_t(i % 3)] = {};
                                     int improvement = assessed.first;
                                     Json result = std::move(assessed.second);
                                     yield(0);
@@ -1310,7 +1501,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                             break;
                                         }
                                         if (local.first == 1) {
-                                            secondary = {{route.best.plan, route.best.result}};
+                                            secondary = {{route.best.plan, *route.best.result}};
                                         }
                                     }
                                     bool should =
@@ -1326,7 +1517,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                             break;
                                         }
                                         if (local.first == 1) {
-                                            secondary = {{route.best.plan, route.best.result}};
+                                            secondary = {{route.best.plan, *route.best.result}};
                                         }
                                     }
                                 }

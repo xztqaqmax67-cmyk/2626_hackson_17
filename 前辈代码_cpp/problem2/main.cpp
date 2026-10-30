@@ -16,7 +16,11 @@ namespace problem2 {
 #ifdef NPU_SCHED_ENTRY
 int submission_main(int argc, char **argv) {
     // 以《提交要求文档》4.3 为准：单次运行 90 秒，包含读图、搜索、校验和写出。
+#ifdef NPU_LOCAL_RUN
+    constexpr double submission_time_limit = 30.0;
+#else
     constexpr double submission_time_limit = 90.0;
+#endif
     constexpr double finalization_reserve = 5.0;
     const double started = monotonic();
     const double finish_deadline = started + submission_time_limit;
@@ -34,7 +38,11 @@ int submission_main(int argc, char **argv) {
         const auto args =
             parse_submission_arguments(std::vector<std::string>(argv + 1, argv + argc));
         if (args.version) {
-            std::cout << "npu_sched 1.0.0 (team 17, full-search C++17)\n";
+#ifdef NPU_LOCAL_RUN
+            std::cout << "npu_sched_local 1.1.0 (local only, 30 seconds, parallel C++17)\n";
+#else
+            std::cout << "npu_sched 1.1.0 (team 17, 90 seconds, parallel C++17)\n";
+#endif
             return 0;
         }
         if (args.help) {
@@ -152,7 +160,7 @@ int submission_main(int argc, char **argv) {
                 std::cout
                     << "Usage: problem2 GRAPH_OR_DIRECTORY -n CORES [--config FILE] [-o FILE | "
                        "--output-dir DIR]\n  --time-limit / --budget SECONDS   1 < seconds "
-                       "<= 1200; single graph default 25\n  --total-time-limit SECONDS          "
+                       "<= 1200; single graph default 30\n  --total-time-limit SECONDS          "
                        "batch only; default/max 300\n  "
                        "--feasibility-grace SECONDS       0..120; default 0; batch requires 0\n  "
                        "--search-profile compact|full\n  --export-evaluation\n  --work-dir "

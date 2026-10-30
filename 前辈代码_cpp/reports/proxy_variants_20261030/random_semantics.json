@@ -1,0 +1,305 @@
+{
+  "scope": "60 generated single-core compute-only lifetimes; explicit FIFO chain, mixed memories, shuffled IDs, multiwriters. No boundary COPY or cross-core lifetimes.",
+  "rows": [
+    {
+      "seed": 0,
+      "valid": true,
+      "spill_bytes": 212
+    },
+    {
+      "seed": 1,
+      "valid": false,
+      "error": "[STEP2 ERROR] no spill victim: step=24 op=24 type=UB alloc_resid=110 trigger=90 capacity=100 current_tids=[104, 106, 108, 114, 121, 122] active(tid,size,next_use)=[(104, 17, 24), (106, 25, 24), (108, 23, None), (114, 23, None), (121, 14, None), (122, 8, 24)]"
+    },
+    {
+      "seed": 2,
+      "valid": true,
+      "spill_bytes": 369
+    },
+    {
+      "seed": 3,
+      "valid": true,
+      "spill_bytes": 514
+    },
+    {
+      "seed": 4,
+      "valid": true,
+      "spill_bytes": 212
+    },
+    {
+      "seed": 5,
+      "valid": true,
+      "spill_bytes": 282
+    },
+    {
+      "seed": 6,
+      "valid": true,
+      "spill_bytes": 306
+    },
+    {
+      "seed": 7,
+      "valid": true,
+      "spill_bytes": 571
+    },
+    {
+      "seed": 8,
+      "valid": true,
+      "spill_bytes": 407
+    },
+    {
+      "seed": 9,
+      "valid": true,
+      "spill_bytes": 154
+    },
+    {
+      "seed": 10,
+      "valid": true,
+      "spill_bytes": 362
+    },
+    {
+      "seed": 11,
+      "valid": true,
+      "spill_bytes": 230
+    },
+    {
+      "seed": 12,
+      "valid": true,
+      "spill_bytes": 369
+    },
+    {
+      "seed": 13,
+      "valid": true,
+      "spill_bytes": 335
+    },
+    {
+      "seed": 14,
+      "valid": true,
+      "spill_bytes": 588
+    },
+    {
+      "seed": 15,
+      "valid": true,
+      "spill_bytes": 184
+    },
+    {
+      "seed": 16,
+      "valid": false,
+      "error": "[STEP2 ERROR] no spill victim: step=25 op=25 type=UB alloc_resid=141 trigger=90 capacity=100 current_tids=[101, 103, 106, 107, 111, 115, 120, 123] active(tid,size,next_use)=[(101, 21, None), (103, 15, 27), (106, 10, 27), (107, 19, None), (111, 12, 25), (115, 24, None), (120, 15, 28), (123, 25, 25)]"
+    },
+    {
+      "seed": 17,
+      "valid": true,
+      "spill_bytes": 258
+    },
+    {
+      "seed": 18,
+      "valid": true,
+      "spill_bytes": 280
+    },
+    {
+      "seed": 19,
+      "valid": true,
+      "spill_bytes": 226
+    },
+    {
+      "seed": 20,
+      "valid": false,
+      "error": "[STEP2 ERROR] no spill victim: step=29 op=29 type=L1 alloc_resid=113 trigger=90 capacity=100 current_tids=[102, 108, 111, 112, 118, 119, 123] active(tid,size,next_use)=[(102, 15, None), (108, 11, None), (111, 13, 29), (112, 17, 29), (118, 10, 29), (119, 25, 29), (123, 22, None)]"
+    },
+    {
+      "seed": 21,
+      "valid": true,
+      "spill_bytes": 466
+    },
+    {
+      "seed": 22,
+      "valid": true,
+      "spill_bytes": 360
+    },
+    {
+      "seed": 23,
+      "valid": false,
+      "error": "[STEP2 ERROR] no spill victim: step=28 op=28 type=UB alloc_resid=103 trigger=90 capacity=100 current_tids=[101, 105, 106, 107, 114, 118] active(tid,size,next_use)=[(101, 10, None), (105, 22, 29), (106, 15, 28), (107, 13, 28), (114, 21, None), (118, 22, 28)]"
+    },
+    {
+      "seed": 24,
+      "valid": true,
+      "spill_bytes": 350
+    },
+    {
+      "seed": 25,
+      "valid": true,
+      "spill_bytes": 180
+    },
+    {
+      "seed": 26,
+      "valid": true,
+      "spill_bytes": 326
+    },
+    {
+      "seed": 27,
+      "valid": true,
+      "spill_bytes": 511
+    },
+    {
+      "seed": 28,
+      "valid": true,
+      "spill_bytes": 350
+    },
+    {
+      "seed": 29,
+      "valid": true,
+      "spill_bytes": 324
+    },
+    {
+      "seed": 30,
+      "valid": true,
+      "spill_bytes": 242
+    },
+    {
+      "seed": 31,
+      "valid": true,
+      "spill_bytes": 220
+    },
+    {
+      "seed": 32,
+      "valid": true,
+      "spill_bytes": 350
+    },
+    {
+      "seed": 33,
+      "valid": true,
+      "spill_bytes": 330
+    },
+    {
+      "seed": 34,
+      "valid": true,
+      "spill_bytes": 552
+    },
+    {
+      "seed": 35,
+      "valid": true,
+      "spill_bytes": 282
+    },
+    {
+      "seed": 36,
+      "valid": true,
+      "spill_bytes": 498
+    },
+    {
+      "seed": 37,
+      "valid": true,
+      "spill_bytes": 126
+    },
+    {
+      "seed": 38,
+      "valid": true,
+      "spill_bytes": 336
+    },
+    {
+      "seed": 39,
+      "valid": true,
+      "spill_bytes": 352
+    },
+    {
+      "seed": 40,
+      "valid": true,
+      "spill_bytes": 416
+    },
+    {
+      "seed": 41,
+      "valid": true,
+      "spill_bytes": 357
+    },
+    {
+      "seed": 42,
+      "valid": true,
+      "spill_bytes": 368
+    },
+    {
+      "seed": 43,
+      "valid": true,
+      "spill_bytes": 262
+    },
+    {
+      "seed": 44,
+      "valid": true,
+      "spill_bytes": 298
+    },
+    {
+      "seed": 45,
+      "valid": true,
+      "spill_bytes": 372
+    },
+    {
+      "seed": 46,
+      "valid": false,
+      "error": "[STEP2 ERROR] no spill victim: step=23 op=23 type=L1 alloc_resid=109 trigger=90 capacity=100 current_tids=[100, 103, 107, 114, 120, 122] active(tid,size,next_use)=[(100, 21, 28), (103, 18, None), (107, 14, 24), (114, 18, 25), (120, 17, 23), (122, 21, 23)]"
+    },
+    {
+      "seed": 47,
+      "valid": true,
+      "spill_bytes": 360
+    },
+    {
+      "seed": 48,
+      "valid": true,
+      "spill_bytes": 307
+    },
+    {
+      "seed": 49,
+      "valid": true,
+      "spill_bytes": 531
+    },
+    {
+      "seed": 50,
+      "valid": true,
+      "spill_bytes": 412
+    },
+    {
+      "seed": 51,
+      "valid": true,
+      "spill_bytes": 288
+    },
+    {
+      "seed": 52,
+      "valid": true,
+      "spill_bytes": 192
+    },
+    {
+      "seed": 53,
+      "valid": true,
+      "spill_bytes": 320
+    },
+    {
+      "seed": 54,
+      "valid": true,
+      "spill_bytes": 366
+    },
+    {
+      "seed": 55,
+      "valid": true,
+      "spill_bytes": 328
+    },
+    {
+      "seed": 56,
+      "valid": true,
+      "spill_bytes": 220
+    },
+    {
+      "seed": 57,
+      "valid": true,
+      "spill_bytes": 166
+    },
+    {
+      "seed": 58,
+      "valid": true,
+      "spill_bytes": 361
+    },
+    {
+      "seed": 59,
+      "valid": true,
+      "spill_bytes": 152
+    }
+  ]
+}

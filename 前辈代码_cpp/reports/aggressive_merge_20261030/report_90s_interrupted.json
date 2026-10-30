@@ -1,0 +1,200 @@
+{
+  "binary_sha256": {
+    "baseline": "3790ecbdc8de04448149b7fbcf623c829717dfe2dd596f619982e31ef5a17e39",
+    "merged": "8918d546c0329df493c8ae48e81988b0ae07092e9492266d968051f209156b39"
+  },
+  "evaluator_sha256": "c06b54e1cab2fd59bf6369ab6ee267b8fbbc74ac85a7e3193818871b55a4f232",
+  "hard_limit_seconds": 90,
+  "search_deadline_seconds": 85,
+  "compiler": "MinGW GCC 16.1.0 Release -O3 C++17",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 32,
+  "physical_cpus": 24,
+  "memory_bytes": 68319563776,
+  "runs": [
+    {
+      "case": "case_00",
+      "cores": 4,
+      "mode": "baseline",
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "wall_seconds": 20.836716300000262,
+      "cpu_seconds": 45.578125,
+      "peak_threads": 7,
+      "peak_rss_bytes": 587841536,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "01f3b11f75ae67b93c05d47ccea2b4a97f045ecc919330857b97dc8e5e710d6e",
+      "cpp_validation": {
+        "wall_seconds": 0.19770409999910044,
+        "cpu_seconds": 0.03125,
+        "peak_threads": 2,
+        "peak_rss_bytes": 13533184,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    },
+    {
+      "case": "case_00",
+      "cores": 4,
+      "mode": "merged",
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "wall_seconds": 31.404732799994235,
+      "cpu_seconds": 65.421875,
+      "peak_threads": 7,
+      "peak_rss_bytes": 605835264,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "85181f736b373d99b73135b40e8857756c7394709c01022abac8e2e0cfb9f46e",
+      "cpp_validation": {
+        "wall_seconds": 0.0852115000016056,
+        "cpu_seconds": 0.0625,
+        "peak_threads": 2,
+        "peak_rss_bytes": 13393920,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    },
+    {
+      "case": "case_01",
+      "cores": 4,
+      "mode": "merged",
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "wall_seconds": 0.16323620000184746,
+      "cpu_seconds": 0.234375,
+      "peak_threads": 5,
+      "peak_rss_bytes": 24051712,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "bf07e2a118fa270546f193fdf29df2925ce365db6eef2a9b60eb3699b5966e57",
+      "cpp_validation": {
+        "wall_seconds": 0.04914640000060899,
+        "cpu_seconds": 0.0,
+        "peak_threads": 0,
+        "peak_rss_bytes": 0,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    },
+    {
+      "case": "case_01",
+      "cores": 4,
+      "mode": "baseline",
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "wall_seconds": 0.13083159999951022,
+      "cpu_seconds": 0.203125,
+      "peak_threads": 5,
+      "peak_rss_bytes": 15003648,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "bf07e2a118fa270546f193fdf29df2925ce365db6eef2a9b60eb3699b5966e57",
+      "cpp_validation": {
+        "wall_seconds": 0.04854209999757586,
+        "cpu_seconds": 0.0,
+        "peak_threads": 0,
+        "peak_rss_bytes": 0,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    },
+    {
+      "case": "case_02",
+      "cores": 4,
+      "mode": "baseline",
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "wall_seconds": 0.2517518000022392,
+      "cpu_seconds": 0.515625,
+      "peak_threads": 5,
+      "peak_rss_bytes": 38203392,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "b53af5ecd254039e64022a447bf62200ca26cbfe9c63ad237e60e3c5aaffcf83",
+      "cpp_validation": {
+        "wall_seconds": 0.04879830000572838,
+        "cpu_seconds": 0.0,
+        "peak_threads": 0,
+        "peak_rss_bytes": 0,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    },
+    {
+      "case": "case_02",
+      "cores": 4,
+      "mode": "merged",
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "wall_seconds": 0.22933370000100695,
+      "cpu_seconds": 0.359375,
+      "peak_threads": 5,
+      "peak_rss_bytes": 24846336,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "b53af5ecd254039e64022a447bf62200ca26cbfe9c63ad237e60e3c5aaffcf83",
+      "cpp_validation": {
+        "wall_seconds": 0.04979619999357965,
+        "cpu_seconds": 0.0,
+        "peak_threads": 0,
+        "peak_rss_bytes": 0,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "mode": "merged",
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "wall_seconds": 84.92338590000145,
+      "cpu_seconds": 168.265625,
+      "peak_threads": 7,
+      "peak_rss_bytes": 1187201024,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "2f219e4b5ceb1a07930ae0bb360d2942d2937fafc214c62b9ad58335a21ee25f",
+      "cpp_validation": {
+        "wall_seconds": 0.15888540000014473,
+        "cpu_seconds": 0.125,
+        "peak_threads": 2,
+        "peak_rss_bytes": 19484672,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "mode": "baseline",
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "wall_seconds": 79.38914059999661,
+      "cpu_seconds": 151.375,
+      "peak_threads": 8,
+      "peak_rss_bytes": 1487024128,
+      "timeout": false,
+      "returncode": 0,
+      "stderr": "",
+      "plan_sha256": "2106612467e6d4f6ee7ae7026117727f781ab8dd02c369da7530deaa881322e0",
+      "cpp_validation": {
+        "wall_seconds": 0.15629990000161342,
+        "cpu_seconds": 0.125,
+        "peak_threads": 2,
+        "peak_rss_bytes": 19189760,
+        "timeout": false,
+        "returncode": 1,
+        "stderr": "[EVALUATION ERROR] unknown section [multicore_scene_a]\n"
+      }
+    }
+  ]
+}
