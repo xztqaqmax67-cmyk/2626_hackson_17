@@ -1,0 +1,4449 @@
+{
+  "identity": {
+    "executable_sha256": "ccee6eb85d3ba2067fff108ec4a6d83fb92f1bc88b26fd61b2697677123e4934",
+    "source_sha256": {
+      "CMakeLists.txt": "63f747c2a5b744d4f7736e62bc0afacd76dd2e1611d578fe2bd42c9f501341c3",
+      "src/anytime.cpp": "a6446c882d4697553d13dbb4ca2d0f5b3ab31284301c52374e69d39337da148f",
+      "src/anytime.hpp": "d34e7b6d6f590ec3f24587bb906a16bbe89dfecd34f237786e9e342443cd526b",
+      "src/chain.cpp": "55e78437030ec3635265b312373d2f2a2bfb42b99e32efb29c9173cd854cd9aa",
+      "src/chain.hpp": "0f8dc0e5420915172446d69603c36192ea028e499ae32a1310e7edc45fd51162",
+      "src/main.cpp": "3076508af5efe6c52a0dae33566f0b41f54b7cc3079f491929698e72fd89e745",
+      "src/memory_grid.hpp": "86ee5adcc34363c9dc91a7c66ec318f5d1b6994845e999994479cb4e3297c322",
+      "src/model.hpp": "37854fc0815124713042c4ae0f7d8d454530650599fa674b9e2ade0bd6d3fceb",
+      "src/official_spill.cpp": "9ccb012c2632c572f7fe469975fdb8db38af984a5b3de4a8ce846e386ee19020",
+      "src/official_spill.hpp": "4abe61a98a91fc619a3151aab01e4d3802f51273c7091c8063fb3fd6540fa916",
+      "src/parallel_jobs.hpp": "4e6548f6136b0fce48c7bd3a64018be765817a33b76b2e2feeaa9e29f45f971c",
+      "src/refine.cpp": "a1f464bd2494603029cd11cc9ecf784eb0577247c41f1bf15ff1f2d71f928f4c",
+      "src/refine.hpp": "904f92bfbaa54c8bb55087499fae78c4bdcc7d6345d42f3a67ef2e6352fbb5eb",
+      "src/regions.cpp": "dd4282abc83e2626851530f4c518a6a1df8c7a28daf075dc0ad3a3f4eaa27f24",
+      "src/regions.hpp": "ae5e411ba19b2c2949380ae064939b937b824d87ce85bcc95d58643e21168c5c",
+      "src/search_limits.hpp": "5cfb7abc3d3eca5372191506659acf552e5ea43b7f75a707f02e840401401bc2",
+      "src/slack.cpp": "2766542e570dd695f15281dc40816fb10598fe8c19fab6aa692d1c906e3d2ec5",
+      "src/slack.hpp": "60ab98bb1e874ad7675d15e7386df3d389015bdf7e361ed1fca5d7976bebb799",
+      "src/solution_key.hpp": "a848da8436070dcc93c1aaecbbf3874267ed5dcb31f3ea33c74e44b4ba1b27b6",
+      "src/spill.cpp": "c8c005d4b9ca54e688bd93ef33f99cee275ef447526c8f08dab7024cf8984692",
+      "src/spill.hpp": "ad2aa1ad90df56b98f87da34d804f95d73d1110c0cc369377834abc0e4b51068",
+      "src/spill_feedback.cpp": "563aecdbdbd62e5305943eb812cc74423c551a36c1477f69ed2f2cdde1e8c6b7",
+      "src/spill_feedback.hpp": "d61fdef2efaff16a7dc8f6917286c5436737f9ba9b0d34975de7821b4b9043cd",
+      "src/tensor_neighborhood.cpp": "fe473dc05657e2ad4a24b71a2ae9008e94667ef3ff050cb8c77eda1421aad600",
+      "src/tensor_neighborhood.hpp": "14b0dcecd1a6bf326ac1823fb1ef4ca5be75d8e7e08ec9df5cdb99167b0aba5f"
+    },
+    "input_sha256": {
+      "case_00": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "case_01": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "case_02": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "case_03": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "case_04": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "case_05": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "case_06": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "case_07": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "case_08": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "case_09": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4"
+    },
+    "official_manifest_sha256": "c87f5f44e27345a97321098c95299bb622cc2d6b98f260120e54e0ca0a2b95e0",
+    "benchmark_sha256": "a5eac9854885edfd96c731cb6fd79b2818462ee51c0757df260463bedfdbafc2",
+    "helper_sha256": {
+      "benchmark_official_search.py": "ed917a4fdb63de290dedba6dd70ded8bd3820b8a1c9a3812a421d58a3e836f3d",
+      "benchmark_search_upgrade.py": "409f54ca1b5d132901611ca8e0a005f0203ccfb14769ed25f10f6105f1d23327"
+    },
+    "historical_v8_sha256": "4f1ce8b07e789e9669923b3f9af812ff39065ba34626b6b536005ebc435697a0",
+    "rules_manifest_sha256": "b39b02e939d91e70767b33c120100c89acec3d7c691d5dfdddaa1f788d4be211",
+    "singlecore_reference_sha256": "2268f6a7e0a007f68b489921adf194e0db22f361b7bff74afe4b8e078d434307",
+    "cases": [
+      "case_00",
+      "case_01",
+      "case_02",
+      "case_03",
+      "case_04",
+      "case_05",
+      "case_06",
+      "case_07",
+      "case_08",
+      "case_09"
+    ],
+    "cores": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "settings": {
+      "bandwidth": 60,
+      "capacity": {
+        "L1": 1572864,
+        "UB": 131072
+      },
+      "delay": 1000
+    },
+    "hard_timeout_seconds": 90,
+    "solver": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+    "project": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\repo\\dag_chain_solver_v8"
+  },
+  "version": "dag-chain-solver 0.8.1",
+  "started_utc": "2026-10-30T15:21:18.485301+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "runs": [
+    {
+      "case": "case_00",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:18.533636+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.969773900000064,
+        "cpu_seconds": 7.1875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 19308544,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.85545460000003,
+        "cpu_seconds": 6.96875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 19795968,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "a3df787f7879648b83f80441fba440c30fc58b41ec161b45a7c1d85cf48f2d1a",
+      "resource_limits_passed": true,
+      "official_seconds": 1.0204344999999648,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 1990403,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 107315200,
+          "added_copy_bytes": 83722240,
+          "partition_added_copy_bytes": 16515072,
+          "spill_added_copy_bytes": 67207168
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "3b2b5ef866d8577391bdf0403f6249a27036ecad22e17d0b6c0890b6432744be",
+      "cycles": 1990403,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 107315200,
+        "added_copy_bytes": 83722240,
+        "partition_added_copy_bytes": 16515072,
+        "spill_added_copy_bytes": 67207168
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3541355,
+      "speedup": 1.7792150634821189,
+      "v8_cycles": 2049582,
+      "v8_cycles_change_percent": -2.8873692294331232,
+      "v8_copy_bytes": 105447424,
+      "finished_utc": "2026-10-30T15:21:27.409414+00:00"
+    },
+    {
+      "case": "case_00",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:27.515992+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.1133003999998436,
+        "cpu_seconds": 7.734375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 23359488,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.029035799999974,
+        "cpu_seconds": 7.28125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 25481216,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "723fc08a2f997135a4253308a45b9d3e65cba5dd19768c21c8ac3055ecfbfc4d",
+      "resource_limits_passed": true,
+      "official_seconds": 0.8884322999999767,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 1389915,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 79003648,
+          "added_copy_bytes": 55410688,
+          "partition_added_copy_bytes": 20054016,
+          "spill_added_copy_bytes": 35356672
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "4585b1cc7962f97fb935c9bbaced812572aef7fcf0f1e4213a8322e7f2b47cef",
+      "cycles": 1389915,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 79003648,
+        "added_copy_bytes": 55410688,
+        "partition_added_copy_bytes": 20054016,
+        "spill_added_copy_bytes": 35356672
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3541355,
+      "speedup": 2.547893216491656,
+      "v8_cycles": 1477872,
+      "v8_cycles_change_percent": -5.9515979733021585,
+      "v8_copy_bytes": 78446592,
+      "finished_utc": "2026-10-30T15:21:34.577781+00:00"
+    },
+    {
+      "case": "case_00",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:34.684713+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.421902100000125,
+        "cpu_seconds": 10.0625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 30134272,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.10073239999997,
+        "cpu_seconds": 9.359375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 28889088,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "ece1c45dd6febce7e1486e8f18329b67c02209e4519f6a4fd9ab58e3375510d6",
+      "resource_limits_passed": true,
+      "official_seconds": 0.8535168000000795,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 1079555,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 62619648,
+          "added_copy_bytes": 39026688,
+          "partition_added_copy_bytes": 29753344,
+          "spill_added_copy_bytes": 9273344
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "de1325b1ee21a4387308fa4704a0873519fb37418e92194e788a248398958479",
+      "cycles": 1079555,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 62619648,
+        "added_copy_bytes": 39026688,
+        "partition_added_copy_bytes": 29753344,
+        "spill_added_copy_bytes": 9273344
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3541355,
+      "speedup": 3.280384047130531,
+      "v8_cycles": 1086901,
+      "v8_cycles_change_percent": -0.6758665232620031,
+      "v8_copy_bytes": 61014016,
+      "finished_utc": "2026-10-30T15:21:42.093694+00:00"
+    },
+    {
+      "case": "case_00",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:42.198772+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.8147842000000765,
+        "cpu_seconds": 9.578125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 37392384,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_00.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.7254932999999255,
+        "cpu_seconds": 9.5625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 38002688,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "8542c48f771dd49b8e4004f5b91c4a28c51091f9cf9c8e5e10de2a1648144c05",
+      "resource_limits_passed": true,
+      "official_seconds": 0.8740070999999716,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 1086901,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 61014016,
+          "added_copy_bytes": 37421056,
+          "partition_added_copy_bytes": 29753344,
+          "spill_added_copy_bytes": 7667712
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_00_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "8f06ee858d1d85658dcf9f9ee53c37907da69b74fc64f213041de1e97bc3dccb",
+      "cycles": 1086901,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 61014016,
+        "added_copy_bytes": 37421056,
+        "partition_added_copy_bytes": 29753344,
+        "spill_added_copy_bytes": 7667712
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3541355,
+      "speedup": 3.258213029521548,
+      "v8_cycles": 1086901,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 61014016,
+      "finished_utc": "2026-10-30T15:21:48.644908+00:00"
+    },
+    {
+      "case": "case_01",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:48.755390+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.11547810000001846,
+        "cpu_seconds": 0.171875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 8699904,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.11037149999992835,
+        "cpu_seconds": 0.109375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 8835072,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "b714dae7ec677b6bec269b993b151ff454d1d30eb377fe16b446a76b00b9f86a",
+      "resource_limits_passed": true,
+      "official_seconds": 0.3108137000001534,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "378b5703c9b4bca06ebf077fc05aa0b5fc4bcea31900bbf8a292e24a1c5094d8",
+      "cycles": 85617,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 85856,
+      "speedup": 1.0027915016877489,
+      "v8_cycles": 85617,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 5111808,
+      "finished_utc": "2026-10-30T15:21:49.315218+00:00"
+    },
+    {
+      "case": "case_01",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:49.421314+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.12414830000011534,
+        "cpu_seconds": 0.234375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9003008,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.12117179999995642,
+        "cpu_seconds": 0.21875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9068544,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "6f4907f2dfee4a7566274a2020f74771ac5846d511cac65557808ef9567ea3c0",
+      "resource_limits_passed": true,
+      "official_seconds": 0.3137326999999459,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "e9d74f0eb5362ca81818cab8f96b032cf9bd788592f3f98c2f4c5cb01d5c8cf2",
+      "cycles": 85617,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 85856,
+      "speedup": 1.0027915016877489,
+      "v8_cycles": 85617,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 5111808,
+      "finished_utc": "2026-10-30T15:21:50.006071+00:00"
+    },
+    {
+      "case": "case_01",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:50.109935+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.1341820000000098,
+        "cpu_seconds": 0.203125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9183232,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.13653080000017326,
+        "cpu_seconds": 0.28125,
+        "peak_threads": 4,
+        "peak_rss_bytes": 9261056,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "f5cac4b2c2a1681ed3df96396cfce4db202aa3c9e01e6b8fee562e62750100d8",
+      "resource_limits_passed": true,
+      "official_seconds": 0.31375130000014906,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "b8cd2a3c8125a1be21f89d79f27691d498d71c7cde318fff709a8a234114a019",
+      "cycles": 85617,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 85856,
+      "speedup": 1.0027915016877489,
+      "v8_cycles": 85617,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 5111808,
+      "finished_utc": "2026-10-30T15:21:50.718149+00:00"
+    },
+    {
+      "case": "case_01",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:50.821795+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.14143089999993208,
+        "cpu_seconds": 0.390625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9609216,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_01.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.153796100000136,
+        "cpu_seconds": 0.40625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9510912,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "9dbc44afe3e528b7bef7b40996b12d3e83362bd740b27a987927f5bd438b1623",
+      "resource_limits_passed": true,
+      "official_seconds": 0.31800749999979416,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_01_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "fc22910637b49251dcb9ece44f7c1e24453730e0b5b2bc5894dea4f78885bfbf",
+      "cycles": 85617,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 85856,
+      "speedup": 1.0027915016877489,
+      "v8_cycles": 85617,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 5111808,
+      "finished_utc": "2026-10-30T15:21:51.459747+00:00"
+    },
+    {
+      "case": "case_02",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:51.569211+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.3829207999999653,
+        "cpu_seconds": 0.765625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9150464,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.36937150000017027,
+        "cpu_seconds": 0.65625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9289728,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "6f6c14466b80558df335a1efce06f4e7066915a90ff2fa584388aec9d07d5fe3",
+      "resource_limits_passed": true,
+      "official_seconds": 0.34830379999993966,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "4f21e9e870104700e4e8427be9de6a6eade350b1947037a6ba9c955770d648b1",
+      "cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 167400,
+      "speedup": 1.0,
+      "v8_cycles": 167400,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 10027008,
+      "finished_utc": "2026-10-30T15:21:52.695767+00:00"
+    },
+    {
+      "case": "case_02",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:52.799316+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.38034410000000207,
+        "cpu_seconds": 0.828125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9834496,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.3847347999999329,
+        "cpu_seconds": 0.75,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9478144,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "aaa0fbe77388e32d1a1fca3fba5eb68bae640ef0a440f2b0cbf6c70cca19c2c6",
+      "resource_limits_passed": true,
+      "official_seconds": 0.3339430999999422,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "a4986ad4572063e7c1c0783a368fddfbe8ec4c80d9dc8585b954f83c83ce4c76",
+      "cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 167400,
+      "speedup": 1.0,
+      "v8_cycles": 167400,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 10027008,
+      "finished_utc": "2026-10-30T15:21:53.924027+00:00"
+    },
+    {
+      "case": "case_02",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:54.029067+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.41246380000006866,
+        "cpu_seconds": 0.96875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 10375168,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.41049820000012005,
+        "cpu_seconds": 0.953125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 10665984,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "5edabb5d8ed57b2311ac7413a638d14d9cefccf74c4bba200edaa1369fd6d777",
+      "resource_limits_passed": true,
+      "official_seconds": 0.33725249999997686,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "48642fe6dad08e4402871a27d27c12c463fd492b29f3854dd031ff086e1c9e31",
+      "cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 167400,
+      "speedup": 1.0,
+      "v8_cycles": 167400,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 10027008,
+      "finished_utc": "2026-10-30T15:21:55.214220+00:00"
+    },
+    {
+      "case": "case_02",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:55.315949+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.4658562999998139,
+        "cpu_seconds": 1.265625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 10665984,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_02.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 0.4421144999998887,
+        "cpu_seconds": 1.140625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 11177984,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "f9b17a064f02a5151e293e715d70866417606a68f37794211f7e734d1027080b",
+      "resource_limits_passed": true,
+      "official_seconds": 0.3417739999999867,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_02_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "0dc80a34ddbb7897cd01a481f24925ffe70c60b8583e2daa410bc0c68e4a460e",
+      "cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 167400,
+      "speedup": 1.0,
+      "v8_cycles": 167400,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 10027008,
+      "finished_utc": "2026-10-30T15:21:56.591656+00:00"
+    },
+    {
+      "case": "case_03",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:21:56.695248+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 6.94613830000003,
+        "cpu_seconds": 11.53125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 31248384,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 6.859071800000038,
+        "cpu_seconds": 11.296875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 27787264,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "538282325e20efb62eeab4c855147e83993bd073205cf79febbde07cd62a6f71",
+      "resource_limits_passed": true,
+      "official_seconds": 1.6889544999999089,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 3718360,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 221085696,
+          "added_copy_bytes": 181239808,
+          "partition_added_copy_bytes": 22020096,
+          "spill_added_copy_bytes": 159219712
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "b4943be17b780a5f9d8dc7b7600b7461adc002b64c639fc5fbaa4f0b3f665ec6",
+      "cycles": 3718360,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 221085696,
+        "added_copy_bytes": 181239808,
+        "partition_added_copy_bytes": 22020096,
+        "spill_added_copy_bytes": 159219712
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6295267,
+      "speedup": 1.6930224615152918,
+      "v8_cycles": 3697846,
+      "v8_cycles_change_percent": 0.5547553900297597,
+      "v8_copy_bytes": 220004352,
+      "finished_utc": "2026-10-30T15:22:12.227253+00:00"
+    },
+    {
+      "case": "case_03",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:22:12.337526+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.314518999999791,
+        "cpu_seconds": 14.4375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 38670336,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.236188600000105,
+        "cpu_seconds": 13.765625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 36511744,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "b8477f853c54fbe700b3eeb4c6668555a216d7db8504207cea8f1490e7e4a2a1",
+      "resource_limits_passed": true,
+      "official_seconds": 1.6616222999998627,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 3609038,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 215580672,
+          "added_copy_bytes": 175734784,
+          "partition_added_copy_bytes": 16777216,
+          "spill_added_copy_bytes": 158957568
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1507328,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "97a73df6f263b431db0e821ce97da9657f9813b5cf99a8643d96425cca4c0d61",
+      "cycles": 3609038,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 215580672,
+        "added_copy_bytes": 175734784,
+        "partition_added_copy_bytes": 16777216,
+        "spill_added_copy_bytes": 158957568
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6295267,
+      "speedup": 1.744306100406812,
+      "v8_cycles": 3616823,
+      "v8_cycles_change_percent": -0.21524415211914283,
+      "v8_copy_bytes": 216367104,
+      "finished_utc": "2026-10-30T15:22:24.585621+00:00"
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:22:24.696859+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.01607029999991,
+        "cpu_seconds": 15.765625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 47841280,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 4.9551684999999,
+        "cpu_seconds": 15.5,
+        "peak_threads": 5,
+        "peak_rss_bytes": 48852992,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "6c9e2a5269c6655b5b82e6cd33c226e6e6ef17313b24b4afa09072a2ee3e2b2e",
+      "resource_limits_passed": true,
+      "official_seconds": 1.6765016000001651,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 3616823,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 216367104,
+          "added_copy_bytes": 176521216,
+          "partition_added_copy_bytes": 16777216,
+          "spill_added_copy_bytes": 159744000
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "4a7173bd9e9e4c355aa447775596892403eff4f3609ab183f280d2c6f4525c9a",
+      "cycles": 3616823,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 216367104,
+        "added_copy_bytes": 176521216,
+        "partition_added_copy_bytes": 16777216,
+        "spill_added_copy_bytes": 159744000
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6295267,
+      "speedup": 1.7405515835306289,
+      "v8_cycles": 3616823,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 216367104,
+      "finished_utc": "2026-10-30T15:22:36.381378+00:00"
+    },
+    {
+      "case": "case_03",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:22:36.487726+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.620911100000058,
+        "cpu_seconds": 20.5,
+        "peak_threads": 5,
+        "peak_rss_bytes": 57962496,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_03.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.786739099999977,
+        "cpu_seconds": 20.5625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 57483264,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "17ec8ce3fc58603c1611de9a1c7d6f5836d09941b4e2ceddfe7e96ebd0faf63e",
+      "resource_limits_passed": true,
+      "official_seconds": 1.6721127999999226,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 3616823,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 216367104,
+          "added_copy_bytes": 176521216,
+          "partition_added_copy_bytes": 16777216,
+          "spill_added_copy_bytes": 159744000
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_03_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "9cd11828945999af7d5bc04ecfdc69836e6e14caa36f721e4ece06cfa23472e8",
+      "cycles": 3616823,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 216367104,
+        "added_copy_bytes": 176521216,
+        "partition_added_copy_bytes": 16777216,
+        "spill_added_copy_bytes": 159744000
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6295267,
+      "speedup": 1.7405515835306289,
+      "v8_cycles": 3616823,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 216367104,
+      "finished_utc": "2026-10-30T15:22:49.604198+00:00"
+    },
+    {
+      "case": "case_04",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:22:49.711247+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 7.446370999999999,
+        "cpu_seconds": 12.5625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 29560832,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 7.8498783,
+        "cpu_seconds": 13.75,
+        "peak_threads": 5,
+        "peak_rss_bytes": 30183424,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "39b8ad3e9dc8c781d4922369f87568822d8cc571efbf5d323156aa9ded883b5d",
+      "resource_limits_passed": true,
+      "official_seconds": 1.7727813000001333,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 3921326,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 200998912,
+          "added_copy_bytes": 158531584,
+          "partition_added_copy_bytes": 18874368,
+          "spill_added_copy_bytes": 139657216
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "4ad7e95c3e9751b77d2f329695443ee9fb4cdda007ec6c4149baed71daaefb0e",
+      "cycles": 3921326,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 200998912,
+        "added_copy_bytes": 158531584,
+        "partition_added_copy_bytes": 18874368,
+        "spill_added_copy_bytes": 139657216
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 7080299,
+      "speedup": 1.8055879567268827,
+      "v8_cycles": 4027815,
+      "v8_cycles_change_percent": -2.64384039485428,
+      "v8_copy_bytes": 212959232,
+      "finished_utc": "2026-10-30T15:23:06.818120+00:00"
+    },
+    {
+      "case": "case_04",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:23:06.924401+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.885731899999882,
+        "cpu_seconds": 15.78125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 39567360,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.903026600000203,
+        "cpu_seconds": 15.96875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 40493056,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "9a4d2110987ab9490106435048ff07c5e1c422c07f1a9a984091de411ae55bb0",
+      "resource_limits_passed": true,
+      "official_seconds": 1.5861833000001297,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 2763708,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 155418624,
+          "added_copy_bytes": 112951296,
+          "partition_added_copy_bytes": 38535168,
+          "spill_added_copy_bytes": 74416128
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "f4dec9a34fba227aa55ec193ef7a25e61381f579b040c5db0e82f58ede7a3226",
+      "cycles": 2763708,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 155418624,
+        "added_copy_bytes": 112951296,
+        "partition_added_copy_bytes": 38535168,
+        "spill_added_copy_bytes": 74416128
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 7080299,
+      "speedup": 2.5618838893255003,
+      "v8_cycles": 3003143,
+      "v8_cycles_change_percent": -7.972813815392743,
+      "v8_copy_bytes": 154435584,
+      "finished_utc": "2026-10-30T15:23:20.337066+00:00"
+    },
+    {
+      "case": "case_04",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:23:20.449139+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 6.010721999999987,
+        "cpu_seconds": 17.546875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 50716672,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 6.01348669999993,
+        "cpu_seconds": 17.5625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 51195904,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "84625edde922effd46a3d8fc29825d0ce751b16bd9e14490cf4461c0cade3e54",
+      "resource_limits_passed": true,
+      "official_seconds": 1.5328446999999414,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 2054594,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 117669888,
+          "added_copy_bytes": 75202560,
+          "partition_added_copy_bytes": 58064896,
+          "spill_added_copy_bytes": 17137664
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "a4212ce5954b241ed907c1a2521950fa32df1303067e76e602ed9b4e8b93924a",
+      "cycles": 2054594,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 117669888,
+        "added_copy_bytes": 75202560,
+        "partition_added_copy_bytes": 58064896,
+        "spill_added_copy_bytes": 17137664
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 7080299,
+      "speedup": 3.446081804969741,
+      "v8_cycles": 2056849,
+      "v8_cycles_change_percent": -0.10963371642740416,
+      "v8_copy_bytes": 116064256,
+      "finished_utc": "2026-10-30T15:23:34.045040+00:00"
+    },
+    {
+      "case": "case_04",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:23:34.153342+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 5.5442765999998755,
+        "cpu_seconds": 19.0625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 66400256,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_04.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 6.053890200000069,
+        "cpu_seconds": 20.875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 67297280,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "4e7501e943240db1b6231320df88e22475a3ae3819be2014b0c5e8c5949cfcbd",
+      "resource_limits_passed": true,
+      "official_seconds": 1.5286415999999008,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 2056849,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 116064256,
+          "added_copy_bytes": 73596928,
+          "partition_added_copy_bytes": 58064896,
+          "spill_added_copy_bytes": 15532032
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_04_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "3b0f542004ec14f30ec0f486b14c745ab598a85d3f6f15c2b93b316b1655bf70",
+      "cycles": 2056849,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 116064256,
+        "added_copy_bytes": 73596928,
+        "partition_added_copy_bytes": 58064896,
+        "spill_added_copy_bytes": 15532032
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 7080299,
+      "speedup": 3.442303737415824,
+      "v8_cycles": 2056849,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 116064256,
+      "finished_utc": "2026-10-30T15:23:47.318734+00:00"
+    },
+    {
+      "case": "case_05",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:23:47.430520+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 23.10601769999994,
+        "cpu_seconds": 39.5,
+        "peak_threads": 5,
+        "peak_rss_bytes": 63963136,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 23.099855599999955,
+        "cpu_seconds": 39.109375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 70078464,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "90216e344a54bebb02e646abba0c2ea0d8582361c8bcebcb87dbacb65cd55388",
+      "resource_limits_passed": true,
+      "official_seconds": 5.941246699999965,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 10741107,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 613318656,
+          "added_copy_bytes": 531529728,
+          "partition_added_copy_bytes": 19660800,
+          "spill_added_copy_bytes": 511868928
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "1507f1676fcba938f93bfc8e54101c6c4efc19b6732d47e87f21e5723418ce6d",
+      "cycles": 10741107,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 613318656,
+        "added_copy_bytes": 531529728,
+        "partition_added_copy_bytes": 19660800,
+        "spill_added_copy_bytes": 511868928
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 18876779,
+      "speedup": 1.7574332887662323,
+      "v8_cycles": 10953860,
+      "v8_cycles_change_percent": -1.9422651010693959,
+      "v8_copy_bytes": 640581632,
+      "finished_utc": "2026-10-30T15:24:39.630718+00:00"
+    },
+    {
+      "case": "case_05",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:24:39.752724+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.926334900000029,
+        "cpu_seconds": 37.21875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 102739968,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.709288499999957,
+        "cpu_seconds": 37.296875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 94924800,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "34766a2ef2479c23af78e1e13dde46e9d0d0194402bae07d01799fb6306a7599",
+      "resource_limits_passed": true,
+      "official_seconds": 5.394617299999936,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 9919758,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 589037568,
+          "added_copy_bytes": 507248640,
+          "partition_added_copy_bytes": 39714816,
+          "spill_added_copy_bytes": 467533824
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "8ac72afe9575e927951d81d435100070b52ab87d86052e706a3ecf6fbec39be8",
+      "cycles": 9919758,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 589037568,
+        "added_copy_bytes": 507248640,
+        "partition_added_copy_bytes": 39714816,
+        "spill_added_copy_bytes": 467533824
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 18876779,
+      "speedup": 1.9029475315829276,
+      "v8_cycles": 10620187,
+      "v8_cycles_change_percent": -6.595260516599188,
+      "v8_copy_bytes": 634421248,
+      "finished_utc": "2026-10-30T15:25:12.834885+00:00"
+    },
+    {
+      "case": "case_05",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:25:12.954020+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 16.31774949999999,
+        "cpu_seconds": 50.453125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 128536576,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 17.1701986999999,
+        "cpu_seconds": 51.5625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 125644800,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "ac52aa89f6f109d8c7dd93f35250cc3e440c2076f5cde45f0569014d82c10083",
+      "resource_limits_passed": true,
+      "official_seconds": 5.495840399999906,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 9405139,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 560889856,
+          "added_copy_bytes": 479100928,
+          "partition_added_copy_bytes": 58195968,
+          "spill_added_copy_bytes": 420904960
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "7937e868abd826efd8f3f49d39046744b1cf60b14332949dffaafa5104b47a24",
+      "cycles": 9405139,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 560889856,
+        "added_copy_bytes": 479100928,
+        "partition_added_copy_bytes": 58195968,
+        "spill_added_copy_bytes": 420904960
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 18876779,
+      "speedup": 2.0070707088964874,
+      "v8_cycles": 9467395,
+      "v8_cycles_change_percent": -0.6575832105874979,
+      "v8_copy_bytes": 563773440,
+      "finished_utc": "2026-10-30T15:25:51.991289+00:00"
+    },
+    {
+      "case": "case_05",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:25:52.117444+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 16.228773199999978,
+        "cpu_seconds": 57.609375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 152313856,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_05.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 15.62143500000002,
+        "cpu_seconds": 57.546875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 156487680,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "06ce44e7bb77e5f0f5853e5de7f5827054093bb52aaf53c55a463809636abe54",
+      "resource_limits_passed": true,
+      "official_seconds": 5.136959900000193,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 9074505,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 542441472,
+          "added_copy_bytes": 460652544,
+          "partition_added_copy_bytes": 77463552,
+          "spill_added_copy_bytes": 383188992
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "4": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 5,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_05_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "26a3f97507fb5dbaf7e3d1d8b465e1791ebdf73e64c4f5f73cda6f518bc92040",
+      "cycles": 9074505,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 542441472,
+        "added_copy_bytes": 460652544,
+        "partition_added_copy_bytes": 77463552,
+        "spill_added_copy_bytes": 383188992
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 18876779,
+      "speedup": 2.080199305637057,
+      "v8_cycles": 9467395,
+      "v8_cycles_change_percent": -4.14992719750259,
+      "v8_copy_bytes": 563773440,
+      "finished_utc": "2026-10-30T15:26:29.156216+00:00"
+    },
+    {
+      "case": "case_06",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:26:29.281439+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.9849315999999817,
+        "cpu_seconds": 6.65625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 18292736,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 3.8357370999999603,
+        "cpu_seconds": 6.640625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 17494016,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "4162f6fefd7e86cd66fba262c45187cc961dac77279712e42b44f5113875b0a5",
+      "resource_limits_passed": true,
+      "official_seconds": 0.7888055999999324,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 1787448,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 55574528,
+          "added_copy_bytes": 24903680,
+          "partition_added_copy_bytes": 9830400,
+          "spill_added_copy_bytes": 15073280
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "60e4df69d1bb4c6dc0fdd67816ceabeeb69b42088e2579ceca7a4f02a9234e7d",
+      "cycles": 1787448,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 55574528,
+        "added_copy_bytes": 24903680,
+        "partition_added_copy_bytes": 9830400,
+        "spill_added_copy_bytes": 15073280
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3540935,
+      "speedup": 1.9810002864418992,
+      "v8_cycles": 1787448,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 63995904,
+      "finished_utc": "2026-10-30T15:26:37.924102+00:00"
+    },
+    {
+      "case": "case_06",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:26:38.029045+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.612618599999905,
+        "cpu_seconds": 6.546875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 22593536,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.6113284999998996,
+        "cpu_seconds": 6.546875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 23068672,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "058a51b647549eef7412765625b9e8ae23c82a1b6a60c5105228fe94db2c85e4",
+      "resource_limits_passed": true,
+      "official_seconds": 0.7809155999998438,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 1215358,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 49938432,
+          "added_copy_bytes": 19267584,
+          "partition_added_copy_bytes": 19267584,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1114112,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1310720,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1114112,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "d852e823d463e0f873b500631c01612bb7c79dc26e4417fcf297de69162b0fec",
+      "cycles": 1215358,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 49938432,
+        "added_copy_bytes": 19267584,
+        "partition_added_copy_bytes": 19267584,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3540935,
+      "speedup": 2.9134913334178076,
+      "v8_cycles": 1217233,
+      "v8_cycles_change_percent": -0.15403788756959136,
+      "v8_copy_bytes": 49938432,
+      "finished_utc": "2026-10-30T15:26:44.067602+00:00"
+    },
+    {
+      "case": "case_06",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:26:44.173916+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.8166009000001395,
+        "cpu_seconds": 8.015625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 28254208,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.8872687999999016,
+        "cpu_seconds": 8.265625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 27852800,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "45885cdb8c5097dc0620d26da770663532c68fe10f495ca8992707266a00d8a6",
+      "resource_limits_passed": true,
+      "official_seconds": 0.7641395000000557,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 993401,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 58982400,
+          "added_copy_bytes": 28311552,
+          "partition_added_copy_bytes": 28311552,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "1": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "2": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1081344,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "d06c34afeb1ca3917c462ae5584bca17242f0ae9bd3b8cf1fa892e781935fd14",
+      "cycles": 993401,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 58982400,
+        "added_copy_bytes": 28311552,
+        "partition_added_copy_bytes": 28311552,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3540935,
+      "speedup": 3.564456850758153,
+      "v8_cycles": 1050010,
+      "v8_cycles_change_percent": -5.391281987790597,
+      "v8_copy_bytes": 59572224,
+      "finished_utc": "2026-10-30T15:26:50.673619+00:00"
+    },
+    {
+      "case": "case_06",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:26:50.775906+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.7513648999999987,
+        "cpu_seconds": 9.9375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 35483648,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_06.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 2.7800889000000097,
+        "cpu_seconds": 9.8125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 35205120,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "6c41e739e91a1a039c94e50c3835a4e6fbdac68f6179bbbf3ef63b3ef25234c5",
+      "resource_limits_passed": true,
+      "official_seconds": 0.7838047999998707,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 1004044,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 59572224,
+          "added_copy_bytes": 28901376,
+          "partition_added_copy_bytes": 28901376,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "1": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1048576,
+            "UB": 0
+          },
+          "3": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_06_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "28626139568e02884d008f63c7fc35e45e868276d148b5df3167d6c431bd34bf",
+      "cycles": 1004044,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 59572224,
+        "added_copy_bytes": 28901376,
+        "partition_added_copy_bytes": 28901376,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 3540935,
+      "speedup": 3.5266731338467237,
+      "v8_cycles": 1050010,
+      "v8_cycles_change_percent": -4.377672593594351,
+      "v8_copy_bytes": 59572224,
+      "finished_utc": "2026-10-30T15:26:57.125238+00:00"
+    },
+    {
+      "case": "case_07",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:26:57.229467+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 15.366763900000024,
+        "cpu_seconds": 28.328125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 56795136,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 15.346874500000013,
+        "cpu_seconds": 28.296875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 57192448,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "9a0b393bb569e7573e5a4b6c44d88839c1dd951798e600508179743b9b30884f",
+      "resource_limits_passed": true,
+      "official_seconds": 4.585406199999852,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 4364184,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 111852000,
+          "added_copy_bytes": 88318464,
+          "partition_added_copy_bytes": 26471040,
+          "spill_added_copy_bytes": 61847424
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1484736,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1480384,
+            "UB": 26368
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "4e5e73148acbd96b703627e63b78a51d4cf6244c02620f9ea5e8369003b7c5cb",
+      "cycles": 4364184,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 111852000,
+        "added_copy_bytes": 88318464,
+        "partition_added_copy_bytes": 26471040,
+        "spill_added_copy_bytes": 61847424
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6340434,
+      "speedup": 1.4528337943588079,
+      "v8_cycles": 4366891,
+      "v8_cycles_change_percent": -0.06198918177714452,
+      "v8_copy_bytes": 121034016,
+      "finished_utc": "2026-10-30T15:27:32.575013+00:00"
+    },
+    {
+      "case": "case_07",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:27:32.697775+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 12.97727739999982,
+        "cpu_seconds": 30.609375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 81383424,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.01891589999991,
+        "cpu_seconds": 31.28125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 83734528,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "c0bb018f27fc6774bb2ef4968656b2673063140f45f9d4a67c1ff1196fcd3bff",
+      "resource_limits_passed": true,
+      "official_seconds": 4.222988500000156,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 3870512,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 129719136,
+          "added_copy_bytes": 106185600,
+          "partition_added_copy_bytes": 61655488,
+          "spill_added_copy_bytes": 44530112
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1517120,
+            "UB": 26240
+          },
+          "1": {
+            "L1": 1525952,
+            "UB": 26368
+          },
+          "2": {
+            "L1": 1485056,
+            "UB": 26368
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "a3382ea224bdb7b6188ee3d7217f36e076c764b06a05208eeeae3fd8493ca723",
+      "cycles": 3870512,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 129719136,
+        "added_copy_bytes": 106185600,
+        "partition_added_copy_bytes": 61655488,
+        "spill_added_copy_bytes": 44530112
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6340434,
+      "speedup": 1.6381383134841074,
+      "v8_cycles": 3868769,
+      "v8_cycles_change_percent": 0.04505309053086659,
+      "v8_copy_bytes": 129187296,
+      "finished_utc": "2026-10-30T15:28:02.965358+00:00"
+    },
+    {
+      "case": "case_07",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:28:03.085118+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.345416699999987,
+        "cpu_seconds": 38.78125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 110100480,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.241993399999956,
+        "cpu_seconds": 39.296875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 108978176,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "ab36194edc06ecafa14607cab06bb92921bf8deacb9d0c9e84e148d2fb7b0a12",
+      "resource_limits_passed": true,
+      "official_seconds": 4.169798299999911,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 3012703,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 124030304,
+          "added_copy_bytes": 100496768,
+          "partition_added_copy_bytes": 67995840,
+          "spill_added_copy_bytes": 32500928
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1477440,
+            "UB": 35072
+          },
+          "1": {
+            "L1": 1426688,
+            "UB": 35072
+          },
+          "2": {
+            "L1": 1550784,
+            "UB": 35072
+          },
+          "3": {
+            "L1": 1545152,
+            "UB": 35072
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "16e2356f29cdd3cc7600a93c4c71a6309c21136a39929f4eb48e7360d484dbab",
+      "cycles": 3012703,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 124030304,
+        "added_copy_bytes": 100496768,
+        "partition_added_copy_bytes": 67995840,
+        "spill_added_copy_bytes": 32500928
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6340434,
+      "speedup": 2.1045665636473294,
+      "v8_cycles": 3012703,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 124030304,
+      "finished_utc": "2026-10-30T15:28:33.891011+00:00"
+    },
+    {
+      "case": "case_07",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:28:34.013341+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.05950370000005,
+        "cpu_seconds": 46.53125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 135675904,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_07.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 12.28897999999981,
+        "cpu_seconds": 44.5625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 137056256,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "f09c40b33739230ded1117bad0c81b7cad6b369a5f3d782e96e1118ba5c7433e",
+      "resource_limits_passed": true,
+      "official_seconds": 3.8803907999999865,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 2436473,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 115625376,
+          "added_copy_bytes": 92091840,
+          "partition_added_copy_bytes": 71539968,
+          "spill_added_copy_bytes": 20551872
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1557632,
+            "UB": 43776
+          },
+          "1": {
+            "L1": 1486080,
+            "UB": 43776
+          },
+          "2": {
+            "L1": 1470336,
+            "UB": 43776
+          },
+          "3": {
+            "L1": 1478080,
+            "UB": 43776
+          },
+          "4": {
+            "L1": 1483200,
+            "UB": 43776
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 5,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_07_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "78f5b543803e762457521318906d548611d68ce0dfdd07a5cdda648f2a0cd3c7",
+      "cycles": 2436473,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 115625376,
+        "added_copy_bytes": 92091840,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 20551872
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6340434,
+      "speedup": 2.6023001280949964,
+      "v8_cycles": 2526128,
+      "v8_cycles_change_percent": -3.5491075669958128,
+      "v8_copy_bytes": 116367264,
+      "finished_utc": "2026-10-30T15:29:03.291810+00:00"
+    },
+    {
+      "case": "case_08",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:29:03.409849+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 18.29426620000004,
+        "cpu_seconds": 30.25,
+        "peak_threads": 5,
+        "peak_rss_bytes": 61014016,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 18.033332599999994,
+        "cpu_seconds": 29.203125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 60272640,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "17ec8b1bd39af8544477f0dee766f1ce187432daf7c6b5f3add0459bd2dd2fdf",
+      "resource_limits_passed": true,
+      "official_seconds": 5.299721399999953,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 10272226,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 323203872,
+          "added_copy_bytes": 285242176,
+          "partition_added_copy_bytes": 61538816,
+          "spill_added_copy_bytes": 223703360
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1545728,
+            "UB": 122240
+          },
+          "1": {
+            "L1": 1572672,
+            "UB": 128512
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "6485e737810a302da5af6fafebe985630299e4fbf122740b5327a900da58f9bf",
+      "cycles": 10272226,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 323203872,
+        "added_copy_bytes": 285242176,
+        "partition_added_copy_bytes": 61538816,
+        "spill_added_copy_bytes": 223703360
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 15419076,
+      "speedup": 1.5010452456945553,
+      "v8_cycles": 10272226,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 323203872,
+      "finished_utc": "2026-10-30T15:29:45.082590+00:00"
+    },
+    {
+      "case": "case_08",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:29:45.201224+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.573196499999995,
+        "cpu_seconds": 34.234375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 95469568,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.408329999999978,
+        "cpu_seconds": 33.796875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 95449088,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "23482e5539427abe0543fac18465207c4f1bae250c05aa834fcbfa81e4fc5d89",
+      "resource_limits_passed": true,
+      "official_seconds": 4.411837099999957,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 8159100,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 377608800,
+          "added_copy_bytes": 339647104,
+          "partition_added_copy_bytes": 141953280,
+          "spill_added_copy_bytes": 197693824
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1557056,
+            "UB": 128512
+          },
+          "1": {
+            "L1": 1545408,
+            "UB": 130816
+          },
+          "2": {
+            "L1": 1557568,
+            "UB": 104832
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "dd30cd2ada52bafa4eca05f3b0868e0dac392e527f0f524c8425f5bb3f627011",
+      "cycles": 8159100,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 377608800,
+        "added_copy_bytes": 339647104,
+        "partition_added_copy_bytes": 141953280,
+        "spill_added_copy_bytes": 197693824
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 15419076,
+      "speedup": 1.889801081001581,
+      "v8_cycles": 8570810,
+      "v8_cycles_change_percent": -4.803629995297998,
+      "v8_copy_bytes": 361395808,
+      "finished_utc": "2026-10-30T15:30:18.642528+00:00"
+    },
+    {
+      "case": "case_08",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:30:18.758354+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.659020199999986,
+        "cpu_seconds": 41.0,
+        "peak_threads": 5,
+        "peak_rss_bytes": 131694592,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.732463800000005,
+        "cpu_seconds": 40.96875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 131649536,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "c1bda4bb0a4e2a7eb58c1b8c695856a431c123d4dcc39112aac284e8ff3c2e56",
+      "resource_limits_passed": true,
+      "official_seconds": 4.240931300000057,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 6745482,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 330453536,
+          "added_copy_bytes": 292491840,
+          "partition_added_copy_bytes": 136039744,
+          "spill_added_copy_bytes": 156452096
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1568640,
+            "UB": 128448
+          },
+          "1": {
+            "L1": 1568960,
+            "UB": 122112
+          },
+          "2": {
+            "L1": 1516992,
+            "UB": 113408
+          },
+          "3": {
+            "L1": 1558848,
+            "UB": 121920
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "d5941d8cf1f33a33b555f5d3ba8a5908aadc87462d5d39859e4d161710a6eb79",
+      "cycles": 6745482,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 330453536,
+        "added_copy_bytes": 292491840,
+        "partition_added_copy_bytes": 136039744,
+        "spill_added_copy_bytes": 156452096
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 15419076,
+      "speedup": 2.285837542817548,
+      "v8_cycles": 7569486,
+      "v8_cycles_change_percent": -10.885864641271548,
+      "v8_copy_bytes": 349004640,
+      "finished_utc": "2026-10-30T15:30:50.437958+00:00"
+    },
+    {
+      "case": "case_08",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:30:50.556152+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.739336300000105,
+        "cpu_seconds": 49.046875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 163905536,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_08.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.254015700000082,
+        "cpu_seconds": 48.203125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 167714816,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "59283e36f6377a8cb02b9bec4bf9c2ab4ed6738d1ae8985cd04b019e1266bfee",
+      "resource_limits_passed": true,
+      "official_seconds": 3.960381499999812,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 6695501,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 362905440,
+          "added_copy_bytes": 324943744,
+          "partition_added_copy_bytes": 184229824,
+          "spill_added_copy_bytes": 140713920
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1550272,
+            "UB": 104832
+          },
+          "1": {
+            "L1": 1550848,
+            "UB": 128448
+          },
+          "2": {
+            "L1": 1548224,
+            "UB": 122048
+          },
+          "3": {
+            "L1": 1551936,
+            "UB": 104832
+          },
+          "4": {
+            "L1": 1518016,
+            "UB": 104832
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 5,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_08_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "91507ce3793d7fe13aa5e4e6b543930532398659bac23cbc95e2697e3e69e48d",
+      "cycles": 6695501,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 362905440,
+        "added_copy_bytes": 324943744,
+        "partition_added_copy_bytes": 184229824,
+        "spill_added_copy_bytes": 140713920
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 15419076,
+      "speedup": 2.302901007706518,
+      "v8_cycles": 7000901,
+      "v8_cycles_change_percent": -4.362295653088077,
+      "v8_copy_bytes": 359968672,
+      "finished_utc": "2026-10-30T15:31:21.557068+00:00"
+    },
+    {
+      "case": "case_09",
+      "cores": 2,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:31:21.675489+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.577719800000068,
+        "cpu_seconds": 27.0625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 55152640,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "2",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n2\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.83770800000002,
+        "cpu_seconds": 28.28125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 52670464,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n2\\attempt_001\\first\\plan.json",
+      "plan_sha256": "d9f215d461c9a7d8a7191201fed72531b2ba9a58b81403184ba320670f012a7e",
+      "resource_limits_passed": true,
+      "official_seconds": 6.089794400000073,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 4952500,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 202673536,
+          "added_copy_bytes": 192492544,
+          "partition_added_copy_bytes": 57850240,
+          "spill_added_copy_bytes": 134642304
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1572224,
+            "UB": 64640
+          },
+          "1": {
+            "L1": 1566976,
+            "UB": 27776
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n2\\attempt_001\\official_result.json",
+      "official_result_sha256": "2db7444843f1d95778903b97150d5e63e0ec4ab601bac84baf1c0cb52b82dbc1",
+      "cycles": 4952500,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 202673536,
+        "added_copy_bytes": 192492544,
+        "partition_added_copy_bytes": 57850240,
+        "spill_added_copy_bytes": 134642304
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6794313,
+      "speedup": 1.371895608278647,
+      "v8_cycles": 5026297,
+      "v8_cycles_change_percent": -1.4682180539669631,
+      "v8_copy_bytes": 225277952,
+      "finished_utc": "2026-10-30T15:31:57.229815+00:00"
+    },
+    {
+      "case": "case_09",
+      "cores": 3,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:31:57.349735+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.321009099999856,
+        "cpu_seconds": 31.53125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 85286912,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "3",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n3\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.579176799999914,
+        "cpu_seconds": 32.421875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 83906560,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n3\\attempt_001\\first\\plan.json",
+      "plan_sha256": "232b08ad660d455d28a8b3a6fcf8cb800847b089b091e71f397b84e377a137eb",
+      "resource_limits_passed": true,
+      "official_seconds": 5.246604700000034,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 4363387,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 183392704,
+          "added_copy_bytes": 173211712,
+          "partition_added_copy_bytes": 74939712,
+          "spill_added_copy_bytes": 98272000
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1571712,
+            "UB": 18560
+          },
+          "1": {
+            "L1": 1532672,
+            "UB": 18560
+          },
+          "2": {
+            "L1": 1567744,
+            "UB": 73856
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n3\\attempt_001\\official_result.json",
+      "official_result_sha256": "f977adc1b8b8057131d13ed17e8013230c27137b4b61bf8da911abbb392aebcd",
+      "cycles": 4363387,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 183392704,
+        "added_copy_bytes": 173211712,
+        "partition_added_copy_bytes": 74939712,
+        "spill_added_copy_bytes": 98272000
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6794313,
+      "speedup": 1.5571190453654467,
+      "v8_cycles": 4508447,
+      "v8_cycles_change_percent": -3.2175159206706883,
+      "v8_copy_bytes": 181534272,
+      "finished_utc": "2026-10-30T15:32:31.545326+00:00"
+    },
+    {
+      "case": "case_09",
+      "cores": 4,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:32:31.666904+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.552915199999916,
+        "cpu_seconds": 42.453125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 120098816,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "4",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n4\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.627219100000048,
+        "cpu_seconds": 42.703125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 122712064,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n4\\attempt_001\\first\\plan.json",
+      "plan_sha256": "40966f1a462c017239ef364bd7936f3ddf752a751c668516096a2efb9a592645",
+      "resource_limits_passed": true,
+      "official_seconds": 4.533243300000095,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 3925098,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 204035328,
+          "added_copy_bytes": 193854336,
+          "partition_added_copy_bytes": 119947136,
+          "spill_added_copy_bytes": 73907200
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1565824,
+            "UB": 36992
+          },
+          "1": {
+            "L1": 1571328,
+            "UB": 83072
+          },
+          "2": {
+            "L1": 1563200,
+            "UB": 36992
+          },
+          "3": {
+            "L1": 1566976,
+            "UB": 27776
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n4\\attempt_001\\official_result.json",
+      "official_result_sha256": "9fdf077818c0efe2ddeb851b2084ce88b51d6c788b18d53466a4d1f5c208a73b",
+      "cycles": 3925098,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 204035328,
+        "added_copy_bytes": 193854336,
+        "partition_added_copy_bytes": 119947136,
+        "spill_added_copy_bytes": 73907200
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6794313,
+      "speedup": 1.7309919395643114,
+      "v8_cycles": 3925098,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 204035328,
+      "finished_utc": "2026-10-30T15:33:05.427203+00:00"
+    },
+    {
+      "case": "case_09",
+      "cores": 5,
+      "attempt": 1,
+      "completed": true,
+      "accepted": true,
+      "started_utc": "2026-10-30T15:33:05.545517+00:00",
+      "first": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 13.430387200000041,
+        "cpu_seconds": 48.453125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 158453760,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "repeat": {
+        "command": [
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\build_v8_1\\bin\\npu_sched.exe",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\前辈代码_cpp\\official_evaluator\\data\\case_09.json",
+          "-n",
+          "5",
+          "-o",
+          "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n5\\attempt_001\\first\\plan.json"
+        ],
+        "cwd": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson",
+        "wall_seconds": 14.260639800000035,
+        "cpu_seconds": 49.671875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 148553728,
+        "returncode": 0,
+        "timeout": false,
+        "wall_limit_exceeded": false,
+        "stderr": ""
+      },
+      "deterministic": true,
+      "plan_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n5\\attempt_001\\first\\plan.json",
+      "plan_sha256": "e842efecf018a3c31e5a29bb942066876876b7ed75dd08370f32620d9a331c6e",
+      "resource_limits_passed": true,
+      "official_seconds": 4.4024476999998114,
+      "official_returncode": 0,
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 3777501,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 166593984,
+          "added_copy_bytes": 156412992,
+          "partition_added_copy_bytes": 82633536,
+          "spill_added_copy_bytes": 73779456
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1571712,
+            "UB": 46208
+          },
+          "1": {
+            "L1": 1476608,
+            "UB": 18560
+          },
+          "2": {
+            "L1": 1569024,
+            "UB": 27776
+          },
+          "3": {
+            "L1": 1546496,
+            "UB": 18560
+          },
+          "4": {
+            "L1": 1487232,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 5,
+        "full_timeline_saved": false
+      },
+      "official_result_path": "C:\\Users\\max67\\OneDrive\\文档\\ChatGPT\\Hackson\\overnight\\runs\\v8_1\\case_09_n5\\attempt_001\\official_result.json",
+      "official_result_sha256": "e085e0a0619a82572cf3408a57e68e7882e7a44f300acf347f7c7cd90793e406",
+      "cycles": 3777501,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 166593984,
+        "added_copy_bytes": 156412992,
+        "partition_added_copy_bytes": 82633536,
+        "spill_added_copy_bytes": 73779456
+      },
+      "structure_passed": true,
+      "singlecore_cycles": 6794313,
+      "speedup": 1.7986263934807694,
+      "v8_cycles": 3777501,
+      "v8_cycles_change_percent": 0.0,
+      "v8_copy_bytes": 166593984,
+      "finished_utc": "2026-10-30T15:33:37.688997+00:00"
+    }
+  ],
+  "notes": "Serial same-command repeated generation; official evaluator outside timed interval. RSS/threads sampled every <=25 ms can underestimate peaks; historical singlecore reference.",
+  "summary": {
+    "expected": 40,
+    "completed": 40,
+    "accepted": 40,
+    "deterministic": 40,
+    "mean_speedup_zero_for_invalid": 1.9755122395910019,
+    "official_cycles_sum": 138631790,
+    "official_copy_bytes_sum": 6991909184,
+    "v8_historical_mean_speedup": 1.9333032828541161,
+    "v8_mean_speedup_change_percent": 2.183255835296216,
+    "v8_improved_groups": 21,
+    "v8_regressed_groups": 2,
+    "v8_equal_groups": 17,
+    "complete": true,
+    "all_accepted": true,
+    "solver_invocations": 80,
+    "timeouts": 0,
+    "max_seconds": 23.10601769999994,
+    "mean_seconds": 7.92180167999999,
+    "sampled_peak_rss_mib": 159.9453125,
+    "sampled_peak_threads": 5,
+    "by_cores": {
+      "2": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 1.5344825206952184,
+        "official_cycles_sum": 42000571,
+        "official_copy_bytes_sum": 1851161216,
+        "v8_historical_mean_speedup": 1.519993093605255,
+        "v8_mean_speedup_change_percent": 0.9532561135258799,
+        "v8_improved_groups": 5,
+        "v8_regressed_groups": 1,
+        "v8_equal_groups": 4
+      },
+      "3": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 1.8758372012763587,
+        "official_cycles_sum": 35543793,
+        "official_copy_bytes_sum": 1794838400,
+        "v8_historical_mean_speedup": 1.812858910165422,
+        "v8_mean_speedup_change_percent": 3.473976422422753,
+        "v8_improved_groups": 7,
+        "v8_regressed_groups": 1,
+        "v8_equal_groups": 2
+      },
+      "4": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 2.216273254300248,
+        "official_cycles_sum": 31085812,
+        "official_copy_bytes_sum": 1690186880,
+        "v8_historical_mean_speedup": 2.1682582196845277,
+        "v8_mean_speedup_change_percent": 2.2144518664712454,
+        "v8_improved_groups": 5,
+        "v8_regressed_groups": 0,
+        "v8_equal_groups": 5
+      },
+      "5": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 2.2754559820921814,
+        "official_cycles_sum": 30001614,
+        "official_copy_bytes_sum": 1655722688,
+        "v8_historical_mean_speedup": 2.2321029079612593,
+        "v8_mean_speedup_change_percent": 1.9422524820112086,
+        "v8_improved_groups": 4,
+        "v8_regressed_groups": 0,
+        "v8_equal_groups": 6
+      }
+    }
+  },
+  "finished_utc": "2026-10-30T15:33:37.806285+00:00"
+}
