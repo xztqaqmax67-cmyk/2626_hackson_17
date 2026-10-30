@@ -65,6 +65,25 @@ std::map<Id, Id> find_copy_in_backings(const Json &graph) {
 }
 Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacity &capacity) {
     auto uses = build_tensor_uses(graph, sequence);
+    // 官方 2026-10 版：90% 是换出软阈值，硬容量仍允许当前指令的瞬态峰值。
+    constexpr Id spill_trigger_percent = 90;
+    Capacity spill_limits;
+    for (auto [pos, size] : capacity) {
+        spill_limits[pos] = size / 100 * spill_trigger_percent +
+                            size % 100 * spill_trigger_percent / 100;
+    }
+    std::map<Id, Id> op_step, synced_step;
+    std::map<Id, Ids> writer_steps;
+    for (std::size_t i = 0; i < sequence.size(); ++i) {
+        op_step[sequence[i]] = Id(i);
+    }
+    const auto original_ops = index_records(graph.at("ops"));
+    for (const auto &e : graph.at("edges")) {
+        Id a = field_id(e, "source"), b = field_id(e, "target");
+        if (op_step.count(a) && !original_ops.count(b)) {
+            writer_steps[b].push_back(op_step.at(a));
+        }
+    }
     auto tensors = index_records(graph.at("tensors"));
     auto backing = find_copy_in_backings(graph);
     std::map<Id, std::string> backing_origin;
@@ -158,9 +177,10 @@ Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacit
         }
         // 必须在输出分配之后、输入释放之前检查容量，才能计入瞬时内存峰值。
         for (auto [pos, limit] : capacity) {
-            while (resident[pos] > limit) {
+            while (resident[pos] > spill_limits.at(pos)) {
                 overflow.push_back(
-                    {{"step", step}, {"type", pos}, {"resid", resident[pos]}, {"capacity", limit}});
+                    {{"step", step}, {"type", pos}, {"resid", resident[pos]}, {"capacity", limit},
+                     {"trigger", spill_limits.at(pos)}});
                 auto &list = active[pos];
                 std::size_t victim = list.size();
                 for (std::size_t i = 0; i < list.size(); ++i) {
@@ -171,6 +191,9 @@ Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacit
                     }
                 }
                 if (victim == list.size()) {
+                    if (resident[pos] <= limit) {
+                        break;
+                    }
                     throw Step2SchedulingError(
                         "[STEP2 ERROR] no spill victim: step=" + std::to_string(step) +
                         " op=" + key(sequence[step]) + " type=" + pos);
@@ -178,7 +201,8 @@ Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacit
                 auto v = list[victim];
                 auto &u = uses[v.tid];
                 Id size = field_id(tensors.at(v.tid), "size");
-                pending.push_back({{"out_after_step", v.used ? u[v.used - 1].first : u[0].first},
+                pending.push_back({{"trigger_step", step},
+                                   {"out_after_step", v.used ? u[v.used - 1].first : u[0].first},
                                    {"in_before_step", *v.next},
                                    {"tid", v.tid},
                                    {"pos", pos},
@@ -203,11 +227,22 @@ Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacit
     std::map<Id, Json> by_tid;
     for (Id tid : lifecycle) {
         incarnation[tid] = tid;
+        if (backing.count(tid)) {
+            synced_step[tid] = uses.at(tid).front().first;
+        }
     }
     Id next_id = max_record_id(graph) + 1;
     for (const auto &sp : pending) {
         Id tid = field_id(sp, "tid"), from = incarnation[tid], size = field_id(sp, "size");
-        bool copies = !backing.count(tid);
+        Id last_sync = synced_step.count(tid) ? synced_step.at(tid) : -1;
+        const auto &writers = writer_steps[tid];
+        bool dirty = std::any_of(writers.begin(), writers.end(), [&](Id step) {
+            return last_sync < step && step <= field_id(sp, "out_after_step");
+        });
+        bool copies = !backing.count(tid) || dirty;
+        if (copies) {
+            synced_step[tid] = field_id(sp, "out_after_step");
+        }
         Json out_id = copies ? Json(next_id++) : Json();
         Id in_id = next_id++;
         std::string source;
@@ -270,7 +305,7 @@ Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacit
         }
         by_tid[tid].push_back(record);
     }
-    std::map<std::pair<Id, Id>, Id> consumer_incarnation;
+    std::map<std::pair<Id, Id>, Id> use_incarnation;
     for (auto &[tid, rows] : by_tid) {
         std::size_t index = 0;
         Id physical = tid;
@@ -278,16 +313,21 @@ Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacit
             while (index < rows.size() && step >= field_id(rows[index], "next_use_step")) {
                 physical = field_id(rows[index++], "to_tid");
             }
-            consumer_incarnation[{tid, op}] = physical;
+            use_incarnation[{tid, op}] = physical;
         }
     }
     Json ext_edges = array();
     for (auto e : graph.at("edges")) {
         Id a = field_id(e, "source"), b = field_id(e, "target");
-        auto it = consumer_incarnation.find({a, b});
-        if (it != consumer_incarnation.end() && it->second != a) {
+        auto it = use_incarnation.find({a, b});
+        auto writer = use_incarnation.find({b, a});
+        if (it != use_incarnation.end() && it->second != a) {
             removed.push_back({a, b});
             e["source"] = it->second;
+        } else if (writer != use_incarnation.end() && writer->second != b) {
+            // 多写者必须写入换入后的版本，不能继续写已释放的旧张量。
+            removed.push_back({a, b});
+            e["target"] = writer->second;
         }
         ext_edges.push_back(e);
     }
@@ -303,9 +343,26 @@ Json step2_spill_insertion(const Json &graph, const Ids &sequence, const Capacit
         extended.push_back(sequence[i]);
     }
     append(extended, after[Id(sequence.size()) - 1]);
+    // 与官方输出契约一致：直接依赖及经张量传递的依赖都必须沿 seq_ext 前进。
+    Json all_ops = graph.at("ops");
+    append_json(all_ops, new_ops);
+    auto extended_views = build_graph_views(all_ops, ext_edges);
+    std::map<Id, std::size_t> position;
+    for (std::size_t i = 0; i < extended.size(); ++i) {
+        position[extended[i]] = i;
+    }
+    for (const auto &[source, targets] : extended_views.succs) {
+        for (Id target : targets) {
+            if (source != target && position.at(source) >= position.at(target)) {
+                throw Step2SchedulingError("[STEP2 ERROR] seq_ext is not topological: producer op=" +
+                                           key(source) + " -> consumer op=" + key(target));
+            }
+        }
+    }
     return {{"seq_ext", extended},         {"spill_records", records}, {"new_edges", new_edges},
             {"removed_edges", removed},    {"ext_edges", ext_edges},   {"new_ops", new_ops},
             {"new_tensors", new_tensors},  {"overflow_log", overflow}, {"capacity", capacity},
+            {"spill_trigger_percent", spill_trigger_percent}, {"spill_limits", spill_limits},
             {"_debug_over_count", array()}};
 }
 Json build_extended_graph(const Json &graph, const Json &result) {

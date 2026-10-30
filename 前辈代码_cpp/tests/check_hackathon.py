@@ -21,9 +21,6 @@ def copy_fixture():
 def main():
     graph = copy_fixture()
     reference = normalized(graph)
-    for op in reference['ops']:
-        if op['cycles'] == -1:
-            op['cycles'] = 1
     plan = generate_multicore_plan(reference, num_cores=3)
     compare('generate', graph, plan, cores=3)
     compare('scene_b', graph, evaluate_scene_b(reference, plan, 60, CAPACITY, 1000), plan=plan, delay=1000)

@@ -1,0 +1,5 @@
+# Preserve the exact archive bytes verified by SOURCE_MANIFEST.json on all platforms.
+* -text
+# Upstream documents include whitespace-only lines; keep the supplied originals intact.
+docs/** -whitespace
+SOURCE_MANIFEST.json text eol=lf

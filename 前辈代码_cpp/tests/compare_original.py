@@ -1,4 +1,4 @@
-"""仅测试使用 Python 原版作对照；C++ 程序本身不依赖 Python。"""
+"""使用用户提供的 hackathon.zip 官方 Python 作对照；C++ 程序本身不依赖 Python。"""
 import importlib
 import argparse
 import json
@@ -7,48 +7,10 @@ from pathlib import Path
 import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / '前辈代码/problem2/official_code'))
-from schedule_step1 import step1_schedule
-from schedule_step2 import step2_spill_insertion, _build_extended_graph
-from schedule_step3 import step3_simulation
-from stub_multicore_cut_and_schedule import generate_multicore_plan
-from multicore_cut_evaluate_problem_2 import evaluate_scene_b
-from evaluation_validation import validate_graph, EvaluationValidationError
+from official_reference import *
+from schedule_step2 import _build_extended_graph
 sys.path.insert(0, str(ROOT / '前辈代码'))
 from problem2 import core, bootstrap, structure, pipeline
-
-# 原题只有四条 Pipe。测试只在内存中补齐提交要求的硬件列表，调度函数原样执行。
-# 不修改原版文件，也不把本地扩展冒充成新比赛官方评估器的确认结果。
-for module in list(sys.modules.values()):
-    pipes = getattr(module, 'PIPES', None)
-    if isinstance(pipes, tuple) and 'PIPE_MTE2' in pipes and 'PIPE_FIX' not in pipes:
-        module.PIPES = (*pipes, 'PIPE_FIX')
-
-BUILD = Path(os.environ.get('PROBLEM2_BUILD', ROOT / '前辈代码_cpp/build'))
-RUNNER = Path(os.environ.get('PROBLEM2_RUNNER', BUILD / 'bin' / ('parity_runner.exe' if sys.platform == 'win32' else 'parity_runner')))
-CAPACITY = {'L1': 1572864, 'UB': 131072}
-
-def normalized(value):
-    return json.loads(json.dumps(value, default=lambda x: sorted(x) if isinstance(x, set) else x))
-
-def difference(a, b, path='$'):
-    if isinstance(a, dict) and isinstance(b, dict):
-        if a.keys() != b.keys():
-            return f'{path}: keys {a.keys() ^ b.keys()}'
-        for key in a:
-            diff = difference(a[key], b[key], f'{path}.{key}')
-            if diff:
-                return diff
-    elif isinstance(a, list) and isinstance(b, list):
-        if len(a) != len(b):
-            return f'{path}: lengths {len(a)} != {len(b)}'
-        for index, (x, y) in enumerate(zip(a, b)):
-            diff = difference(x, y, f'{path}[{index}]')
-            if diff:
-                return diff
-    elif a != b:
-        return f'{path}: {a!r} != {b!r}'
 
 def compare(action, graph, expected, **kwargs):
     request = dict(action=action, graph=graph, capacity=kwargs.pop('capacity', CAPACITY), **kwargs)
@@ -93,13 +55,6 @@ def main():
             compare_rejection('step3', extended)
         else:
             compare('step3', extended, result3)
-        # 题目数据的 COPY cycles=-1 是占位符，原入口拒绝负数。
-        # 在独立内存副本中修正占位符，才能覆盖正式评估路径；不写回数据文件。
-        graph = normalized(graph)
-        for op in graph['ops']:
-            if op['cycles'] < 0:
-                assert op['op'] in ('COPY_IN', 'COPY_OUT')
-                op['cycles'] = 1
         try:
             validate_graph(graph)
         except EvaluationValidationError as error:
