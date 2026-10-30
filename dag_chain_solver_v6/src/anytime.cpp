@@ -1,6 +1,7 @@
 #include "anytime.hpp"
 #include "parallel_jobs.hpp"
 #include "search_limits.hpp"
+#include "solution_key.hpp"
 
 namespace dag_chain {
 namespace {
@@ -36,8 +37,8 @@ uint64_t product(initializer_list<uint64_t> factors) {
 }
 
 auto result_key(const Result &r) {
-    return make_tuple(r.refined.cycles, r.refined.route + r.refined.spill,
-                      r.generated_for_cores, r.solution.core, r.solution.order);
+    return detail::solution_key(r.refined.cycles, r.refined.route + r.refined.spill,
+                                r.generated_for_cores, r.solution);
 }
 
 struct Neighborhoods {
@@ -55,19 +56,27 @@ Neighborhoods neighborhoods(const Graph &g, int cores, const Deadline &deadline)
     }
     for (auto &group : writers)
         if (!group.empty()) result.writers.push_back(move(group));
-    auto work = [&](const vector<int> &group) {
-        double total = 0;
-        for (int v : group) total += g.weight(v);
-        return total;
+    auto sort_by_work = [&](vector<vector<int>> &groups) {
+        // 原比較器每次遍歷群組求和；現在每組只算一次，累加順序及穩定排序不變。
+        vector<pair<double, int>> keys;
+        vector<size_t> order(groups.size());
+        keys.reserve(groups.size());
+        iota(order.begin(), order.end(), size_t(0));
+        for (const auto &group : groups) {
+            double total = 0;
+            for (int v : group) total += g.weight(v);
+            keys.push_back({-total, group.front()});
+        }
+        stable_sort(order.begin(), order.end(), [&](size_t a, size_t b) { return keys[a] < keys[b]; });
+        vector<vector<int>> sorted;
+        sorted.reserve(groups.size());
+        for (size_t index : order) sorted.push_back(move(groups[index]));
+        groups = move(sorted);
     };
-    stable_sort(result.writers.begin(), result.writers.end(), [&](const auto &a, const auto &b) {
-        return make_pair(-work(a), a.front()) < make_pair(-work(b), b.front());
-    });
+    sort_by_work(result.writers);
     deadline.check();
     result.chains = decompose(g, cores, 0.5, 0.25).bundles;
-    stable_sort(result.chains.begin(), result.chains.end(), [&](const auto &a, const auto &b) {
-        return make_pair(-work(a), a.front()) < make_pair(-work(b), b.front());
-    });
+    sort_by_work(result.chains);
     result.tensors.resize(g.tensors.size());
     iota(result.tensors.begin(), result.tensors.end(), 0);
     auto tensor_work = [&](int t) {
@@ -151,14 +160,13 @@ bool proposal(const Graph &g, int cores, const Neighborhoods &space,
     static const array<double,8> memory{{0,0.125,0.25,0.5,1,2,4,8}};
     static const array<int,5> windows{{1,4,8,16,32}};
     const size_t m = space.writers.size();
-    auto assignment = base.core;
     uint64_t style = index % 4;
     if (family == 0) {
         SeedOptions options;
         options.mode = modes[index % 4];
         options.memory = memory[(index / 4) % 8];
         options.window = windows[(index / 32) % 5];
-        out = operation_plan(g, cores, cfg, options, &assignment, &deadline);
+        out = operation_plan(g, cores, cfg, options, &base.core, &deadline);
     } else if (family == 5) {
         static const array<double,6> weights{{0,0.125,0.25,0.5,1,2}};
         SeedOptions options;
@@ -170,6 +178,8 @@ bool proposal(const Graph &g, int cores, const Neighborhoods &space,
     } else if (family == 6) {
         out = rotated_order(g, base, index, deadline);
     } else {
+        // 只有實際搬移分支需要可修改的分配副本；重排只借用，重新分配不需要它。
+        auto assignment = base.core;
         bool changed = false;
         auto put = [&](const vector<int> &group, int core) {
             for (int v : group) {
@@ -246,10 +256,10 @@ Lane search_lane(const Graph &g, int cores, int lane, int workers, const Result 
                 return lane % 2 ? max(r.refined.cycles, traffic / cfg.bandwidth) +
                                   0.10 * traffic / cfg.bandwidth : r.refined.cycles;
             };
-            return make_tuple(cost(a->result), a->result.refined.route + a->result.refined.spill,
-                              a->result.solution.core, a->result.solution.order) <
-                   make_tuple(cost(b->result), b->result.refined.route + b->result.refined.spill,
-                              b->result.solution.core, b->result.solution.order);
+            return detail::solution_key(cost(a->result), a->result.refined.route + a->result.refined.spill,
+                                        a->result.solution) <
+                   detail::solution_key(cost(b->result), b->result.refined.route + b->result.refined.spill,
+                                        b->result.solution);
         });
         beam.resize(search_limits::timed_beam);
     };
@@ -296,8 +306,8 @@ Lane search_lane(const Graph &g, int cores, int lane, int workers, const Result 
                     if (lane == 3) return m.score + 0.10 * m.spill / cfg.bandwidth;
                     return m.score;
                 };
-                return make_tuple(cost(a.metrics), a.metrics.route + a.metrics.spill, a.solution.core, a.solution.order) <
-                       make_tuple(cost(b.metrics), b.metrics.route + b.metrics.spill, b.solution.core, b.solution.order);
+                return detail::solution_key(cost(a.metrics), a.metrics.route + a.metrics.spill, a.solution) <
+                       detail::solution_key(cost(b.metrics), b.metrics.route + b.metrics.spill, b.solution);
             });
             for (size_t i = 0; i < min(search_limits::timed_refine_per_round, candidates.size()); ++i) {
                 deadline.check();

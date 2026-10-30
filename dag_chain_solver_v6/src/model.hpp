@@ -380,6 +380,10 @@ struct Graph {
     vector<Direct> direct;
     vector<int> topo, dfs_order, dfs_pos, level, height, component, writer_group;
     vector<double> rank, depth;
+    // Immutable derived graph data, built once before search workers start.
+    // MemoryOrder must retain edge insertion order for identical floating-point
+    // sums; traffic/spill traversal historically uses sorted Tensor indices.
+    vector<vector<int>> op_tensor_uses, op_tensor_uses_sorted, tensor_users;
     size_t edge_count = 0;
     int components = 0;
     static void unique_vec(vector<int> &v) {
@@ -642,6 +646,25 @@ struct Graph {
         dfs_pos.resize(n);
         for (int i = 0; i < n; ++i)
             dfs_pos[dfs_order[i]] = i;
+        op_tensor_uses.resize(n);
+        op_tensor_uses_sorted.resize(n);
+        for (int v = 0; v < n; ++v) {
+            auto &uses = op_tensor_uses[v];
+            uses = ops[v].inputs;
+            uses.reserve(uses.size() + ops[v].outputs.size());
+            for (int t : ops[v].outputs)
+                if (find(uses.begin(), uses.end(), t) == uses.end())
+                    uses.push_back(t);
+            op_tensor_uses_sorted[v] = uses;
+            unique_vec(op_tensor_uses_sorted[v]);
+        }
+        tensor_users.resize(tensors.size());
+        for (size_t t = 0; t < tensors.size(); ++t) {
+            auto &uses = tensor_users[t];
+            uses = tensors[t].consumers;
+            uses.insert(uses.end(), tensors[t].producers.begin(), tensors[t].producers.end());
+            unique_vec(uses);
+        }
     }
     int size() const { return int(ops.size()); }
     vector<int> normalize_writers(vector<int> assignment) const {
@@ -889,19 +912,13 @@ struct MemoryOrder {
         : g(gg), cfg(cc), k(kk), remaining(g.tensors.size() * size_t(k)), live(remaining.size()),
           used(k) {
         for (int t = 0; t < (int)g.tensors.size(); ++t) {
-            vector<int> uses = g.tensors[t].consumers;
-            uses.insert(uses.end(), g.tensors[t].producers.begin(), g.tensors[t].producers.end());
-            Graph::unique_vec(uses);
-            for (int v : uses)
+            for (int v : g.tensor_users[t])
                 ++remaining[size_t(t) * k + a[v]];
         }
     }
     double price(int v, int c) const {
         array<double, 2> add{}, release{};
-        vector<int> all = g.ops[v].inputs;
-        for (int t : g.ops[v].outputs)
-            if (find(all.begin(), all.end(), t) == all.end())
-                all.push_back(t);
+        const auto &all = g.op_tensor_uses[v];
         for (int t : all) {
             size_t key = size_t(t) * k + c;
             if (!live[key])
@@ -918,10 +935,7 @@ struct MemoryOrder {
         return value / cfg.bandwidth;
     }
     void commit(int v, int c) {
-        vector<int> all = g.ops[v].inputs;
-        for (int t : g.ops[v].outputs)
-            if (find(all.begin(), all.end(), t) == all.end())
-                all.push_back(t);
+        const auto &all = g.op_tensor_uses[v];
         for (int t : all) {
             size_t key = size_t(t) * k + c;
             if (!live[key]) {
@@ -1081,9 +1095,7 @@ struct TrafficState {
         int src = core[v];
         if (src == dest)
             return;
-        vector<int> touched = g.ops[v].inputs;
-        touched.insert(touched.end(), g.ops[v].outputs.begin(), g.ops[v].outputs.end());
-        Graph::unique_vec(touched);
+        const auto &touched = g.op_tensor_uses_sorted[v];
         for (int t : touched)
             bytes -= tensor_bytes(t);
         for (int d : g.ops[v].direct_inc) {
@@ -1156,10 +1168,7 @@ inline SpillEstimate estimate_spills(const Graph &g, const Config &cfg, const So
         for (int i = m - 1; i >= 0; --i) {
             int v = order[c][i];
             ev[i].v = v;
-            vector<int> tids = g.ops[v].inputs;
-            tids.insert(tids.end(), g.ops[v].outputs.begin(), g.ops[v].outputs.end());
-            Graph::unique_vec(tids);
-            for (int t : tids) {
+            for (int t : g.op_tensor_uses_sorted[v]) {
                 ev[i].uses.emplace_back(t, next[t]);
                 next[t] = i;
             }

@@ -1,0 +1,35 @@
+{
+  "action": "single",
+  "prepare_seconds": 0.5214985000020533,
+  "to_dict_seconds": 0.0011272000010649208,
+  "fingerprint": "7a24d61723266f90034394759e6275dd4aa0857b19532ec6d34a49b89a416511",
+  "fingerprint_seconds": 0.005855399998836219,
+  "route_bytes": 81788928,
+  "route_seconds": 0.01337970000167843,
+  "sketch": 18876009.0,
+  "sketch_seconds": 0.028285200001846533,
+  "lifetime": [
+    1187512320,
+    1189085184
+  ],
+  "lifetime_seconds": 0.016601800001808442,
+  "evaluation_seconds": 4.129909499999485,
+  "makespan": 26411786.0,
+  "movement": {
+    "original_graph_copy_bytes": 81788928,
+    "scheduled_copy_bytes": 624427008,
+    "added_copy_bytes": 542638080,
+    "partition_added_copy_bytes": 0,
+    "spill_added_copy_bytes": 542638080
+  },
+  "result_sha256": "59172699fe3bd4c4d18a478fb242628c4bdefe7d4018883d2155d6375d610d5a",
+  "total_seconds": 4.832690300001559,
+  "exit_code": 0,
+  "stage": "v6_pipes",
+  "case": "case_05",
+  "mode": "single",
+  "budget": 20.0,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 4.9025184999991325
+}

@@ -1,0 +1,45 @@
+{
+  "version": "0.6.1",
+  "budget_seconds": 15,
+  "ctest": {
+    "msvc": {
+      "passed": 9,
+      "failed": 0,
+      "log": "build_msvc/Testing/Temporary/LastTest.log",
+      "executable_sha256": "fdb20987ae2d0bc7f44e26622842deefb6b4d759046dd72de6019908014badc8",
+      "version": "dag-chain-solver 0.6.1"
+    },
+    "mingw": {
+      "passed": 9,
+      "failed": 0,
+      "log": "build_mingw/Testing/Temporary/LastTest.log",
+      "executable_sha256": "7b2b6d9808248797103d7245247ea52e95c606362321ba326febb538bc5d6de1",
+      "version": "dag-chain-solver 0.6.1"
+    }
+  },
+  "quick_validation": "runs/validation_15s/msvc_validation_commands.json",
+  "snapshot_verified_files": 47,
+  "original_v5_unchanged_files": 59,
+  "official_reference_unchanged_files": 24,
+  "public_official_passed": 10,
+  "public_official_failed": 0,
+  "fixed_work_report": "reports/PERF_15S.json",
+  "timed_report": "reports/FIVE_CORES_15S.json",
+  "source_sha256": {
+    "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "src/chain.cpp": "edb8807879630e8dac16152e800e108d6829fdc9344c34782db4ae23d03bd17c",
+    "src/chain.hpp": "0f9f50ad0e957898262ec54b66459a4cfcb239885c9b0268cf8502c97b559f59",
+    "src/main.cpp": "db70877e57b92226be7eec63ad4d122a78fe20249525351dc155efd28f9338bc",
+    "src/model.hpp": "61a566ca38b4dbe643fdf917e7665996728248e9f76ab37e630eb2aaaad4ede5",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "51cd58b052e8c27ba105895d58c25709b1ac3b73c19e0b062e9953dc4dc3e3b6",
+    "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726"
+  }
+}

@@ -6,10 +6,10 @@ namespace search_limits {
 // 可調搜尋參數（不是題目規則）。修改後重新編譯；正式 CLI 不增加調參旗標。
 // 1000 cycles、DDR 60、L1/UB 容量在 Config，屬規則，不能以調參名義改動。
 
-// 目標總牆鐘預算，從讀取輸入前開始。不是每個 worker 各跑 30 秒。
+// 目標總牆鐘預算，從讀取輸入前開始。不是每個 worker 各跑 15 秒。
 // 先完成 v5 種子以保留可用方案，再利用剩餘時間搜尋。大圖種子若已超時，
-// 不會再延長搜尋；此設計不是任意大小輸入都能在 30 秒內完成的硬保證。
-inline constexpr double total_seconds = 30.0; // 最直接調整整體搜尋時間的位置。
+// 不會再延長搜尋；此設計不是任意大小輸入都能在 15 秒內完成的硬保證。
+inline constexpr double total_seconds = 15.0; // 最直接調整整體搜尋時間的位置。
 inline constexpr double quick_test_seconds = 0.50; // 僅測試二進位選用，確保餘量足以進入追加搜尋。
 inline constexpr double timed_reserve_seconds = 0.15; // 為 join、輸出和程序收尾留餘量。
 

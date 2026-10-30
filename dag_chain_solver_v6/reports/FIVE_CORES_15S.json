@@ -1,0 +1,871 @@
+{
+  "version": "0.6.1",
+  "core_limit": 5,
+  "requested_budget_seconds": 15,
+  "completed": true,
+  "row_count": 10,
+  "paths_relative_to": "dag_chain_solver_v6/",
+  "config": {
+    "L1_bytes": 1572864,
+    "UB_bytes": 131072,
+    "DDR_bytes_per_cycle": 60,
+    "cross_core_copy_delay_cycles": 1000,
+    "precedence": "config.txt overrides outdated docs",
+    "sha256": "0ebdd000063a14ab81e8f26e07fe5d82baddba865df7e5e64482ba12137df1e7"
+  },
+  "definitions": {
+    "speedup": "Official single-core cycles divided by new plan cycles; mean is arithmetic mean of ten ratios.",
+    "cycles": "Official simulated completion cycles, including movement/synchronization; not generator runtime.",
+    "generation": "One saved process wall-time measurement per case, including parsing/cache creation/output; scoring is separate.",
+    "history": "0.5.1 historical 30-second run; src algorithm matches saved pre-change v6 0.6.0 except version string.",
+    "comparison": "15 versus 30 seconds and historical runs do not isolate pure implementation speed; use PERF_15S fixed-work benchmark for that.",
+    "copy": "scheduled_copy_bytes; classifications retain official signed partition delta; 1 MiB=1048576 bytes.",
+    "sums": "Sums of independent cases, not one combined workload.",
+    "cores": "Five cores available; schedules may leave cores empty.",
+    "repeatability": "One measurement per case. Timed cutoff can yield different plans on rerun.",
+    "retention": "All ten actual new plans included, no per-case fallback to old plans."
+  },
+  "source_sha256": {
+    "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "src/chain.cpp": "edb8807879630e8dac16152e800e108d6829fdc9344c34782db4ae23d03bd17c",
+    "src/chain.hpp": "0f9f50ad0e957898262ec54b66459a4cfcb239885c9b0268cf8502c97b559f59",
+    "src/main.cpp": "db70877e57b92226be7eec63ad4d122a78fe20249525351dc155efd28f9338bc",
+    "src/model.hpp": "61a566ca38b4dbe643fdf917e7665996728248e9f76ab37e630eb2aaaad4ede5",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "51cd58b052e8c27ba105895d58c25709b1ac3b73c19e0b062e9953dc4dc3e3b6",
+    "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726"
+  },
+  "solver_executable_sha256": "fdb20987ae2d0bc7f44e26622842deefb6b4d759046dd72de6019908014badc8",
+  "official_source_sha256": {
+    "code/contest_io.py": "3deb2d3179f7b02063edc55beb236f525fa8fed5884ce1ca5b1fe89156c63a52",
+    "code/evaluation_validation.py": "99ef09a446b2d9752a83584629c5a158118ae3d7026bbb4723a648d5bc74126f",
+    "code/multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "code/multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "code/multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "code/schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "code/schedule_step2.py": "b80256b9b9e1a2d3ec2a42cf4938123da76ed959bab24fc8dadb8aac32f457d1",
+    "code/schedule_step3.py": "424fea21c6cec1c170fe5b0e4e08c5bb48f24ccb08b5fb38a836a2cb528d7466",
+    "code/singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "code/stub_multicore_cut_and_schedule.py": "9ae9ae4e8875e348e4e2e8f97b78e709bf88e6d0cbcc0bcd888707d34dfcd3ae"
+  },
+  "provenance_sha256": {
+    "measured_summary": "034e53d67271af789f1e539c0dc28f93aa0bb26fce641b383ec2118793e2898d",
+    "historical30_report": "827b81a28472a78d104f2f44cf1fbfeb6b7b81d6e093135aeed277adb5dc0fee",
+    "v5_report": "3d4af7be00d0af39cdf938caa58270fbcaea428b3a247317414f9e28d7c3291c",
+    "rules_manifest": "c17a7b9b17aff6686022dc66fcb7a31a9f6e523f6edd52dd504e4cc646b4c8f5"
+  },
+  "artifacts": {
+    "measured_summary": "runs/five_15s/summary.json",
+    "historical30_report": "../dag_chain_solver_v5_30s/reports/FIVE_CORES_30S.json",
+    "v5_report": "reports/v5_results_baseline.json",
+    "fixed_work_report": "reports/PERF_15S.json"
+  },
+  "verification": {
+    "source_executable_input_plan_result_hashes": true,
+    "official_config_and_code_match": true,
+    "historical30_algorithm_matches_prechange_v6": true,
+    "official_successful_plans": 10
+  },
+  "summary": {
+    "mean_speedup": 2.2505537152080746,
+    "old30_mean_speedup": 2.2547886204945984,
+    "v5_mean_speedup": 2.1953825729220893,
+    "generation_mean_seconds": 14.93949368998874,
+    "generation_min_seconds": 14.892393300076947,
+    "generation_max_seconds": 14.988534400006756,
+    "old30_generation_mean_seconds": 29.957440140028485,
+    "max_observed_peak_working_set_bytes": 195325952,
+    "max_sampled_process_threads": 7,
+    "cycles": 30538485,
+    "copy_bytes": 1647722560,
+    "old30_cycles": 30409920,
+    "old30_copy_bytes": 1642511104,
+    "v5_cycles": 31249356,
+    "v5_copy_bytes": 1690372416,
+    "data_movement_bytes": {
+      "original_graph_copy_bytes": 305180992,
+      "scheduled_copy_bytes": 1647722560,
+      "added_copy_bytes": 1342541568,
+      "partition_added_copy_bytes": 612047232,
+      "spill_added_copy_bytes": 730494336
+    },
+    "cycles_improved_vs_30s": 1,
+    "cycles_unchanged_vs_30s": 4,
+    "cycles_regressed_vs_30s": 5,
+    "copy_improved_vs_30s": 1,
+    "copy_unchanged_vs_30s": 6,
+    "copy_regressed_vs_30s": 3,
+    "mean_speedup_change_vs_30s_percent": -0.18781828363116926,
+    "cycles_sum_change_vs_30s_percent": 0.4227732266313122,
+    "copy_sum_change_vs_30s_percent": 0.31728589154182973
+  },
+  "rows": [
+    {
+      "case": "case_00",
+      "cores": 5,
+      "used_compute_cores": 4,
+      "status": "ok",
+      "generation_seconds": 14.943778799846768,
+      "evaluation_seconds": 1.0641495999880135,
+      "old30_generation_seconds": 29.982896000146866,
+      "singlecore_cycles": 3541355,
+      "cycles": 1053296,
+      "speedup": 3.362165051419544,
+      "copy_bytes": 61571072,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 61571072,
+        "added_copy_bytes": 37978112,
+        "partition_added_copy_bytes": 29491200,
+        "spill_added_copy_bytes": 8486912
+      },
+      "old30_cycles": 1053296,
+      "old30_speedup": 3.362165051419544,
+      "old30_copy_bytes": 61571072,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 61571072,
+        "added_copy_bytes": 37978112,
+        "partition_added_copy_bytes": 29491200,
+        "spill_added_copy_bytes": 8486912
+      },
+      "v5_cycles": 1100879,
+      "v5_speedup": 3.2168430862974042,
+      "v5_copy_bytes": 61177856,
+      "cycles_change_vs_30s_percent": 0.0,
+      "copy_change_vs_30s_percent": 0.0,
+      "speedup_change_vs_30s_percent": 0.0,
+      "cycles_change_vs_v5_percent": -4.32227338336002,
+      "observed_peak_working_set_bytes": 44175360,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "49c190454e82a592e8cab0852fd3b0f110437e1b4006899078c5f6ae2dcb33e4",
+      "result_sha256": "1e7319fde93c6a68a2e034e5794e18c259df87440ecf27ebcac5e16831efec31",
+      "old30_plan_sha256": "49c190454e82a592e8cab0852fd3b0f110437e1b4006899078c5f6ae2dcb33e4",
+      "old30_result_sha256": "1e7319fde93c6a68a2e034e5794e18c259df87440ecf27ebcac5e16831efec31",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_00.json",
+        "plan": "runs/five_15s/case_00/plan_n5.json",
+        "result": "runs/five_15s/case_00/result.json",
+        "trace": "runs/five_15s/case_00/trace.json",
+        "log": "runs/five_15s/case_00/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_00.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_00/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_00/result.json"
+      }
+    },
+    {
+      "case": "case_01",
+      "cores": 5,
+      "used_compute_cores": 1,
+      "status": "ok",
+      "generation_seconds": 14.892393300076947,
+      "evaluation_seconds": 0.21045810007490218,
+      "old30_generation_seconds": 29.935003499966115,
+      "singlecore_cycles": 85856,
+      "cycles": 85617,
+      "speedup": 1.0027915016877489,
+      "copy_bytes": 5111808,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "old30_cycles": 85617,
+      "old30_speedup": 1.0027915016877489,
+      "old30_copy_bytes": 5111808,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "v5_cycles": 85617,
+      "v5_speedup": 1.0027915016877489,
+      "v5_copy_bytes": 5111808,
+      "cycles_change_vs_30s_percent": 0.0,
+      "copy_change_vs_30s_percent": 0.0,
+      "speedup_change_vs_30s_percent": 0.0,
+      "cycles_change_vs_v5_percent": 0.0,
+      "observed_peak_working_set_bytes": 11640832,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 507904,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "9dbc44afe3e528b7bef7b40996b12d3e83362bd740b27a987927f5bd438b1623",
+      "result_sha256": "5606f13e8890a770054abbec62508e9bac7eea6b24daf30ecb015b3cd80120f7",
+      "old30_plan_sha256": "9dbc44afe3e528b7bef7b40996b12d3e83362bd740b27a987927f5bd438b1623",
+      "old30_result_sha256": "5606f13e8890a770054abbec62508e9bac7eea6b24daf30ecb015b3cd80120f7",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_01.json",
+        "plan": "runs/five_15s/case_01/plan_n5.json",
+        "result": "runs/five_15s/case_01/result.json",
+        "trace": "runs/five_15s/case_01/trace.json",
+        "log": "runs/five_15s/case_01/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_01.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_01/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_01/result.json"
+      }
+    },
+    {
+      "case": "case_02",
+      "cores": 5,
+      "used_compute_cores": 1,
+      "status": "ok",
+      "generation_seconds": 14.948407900054008,
+      "evaluation_seconds": 0.2788267999421805,
+      "old30_generation_seconds": 29.871705600060523,
+      "singlecore_cycles": 167400,
+      "cycles": 167400,
+      "speedup": 1.0,
+      "copy_bytes": 10027008,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "old30_cycles": 167400,
+      "old30_speedup": 1.0,
+      "old30_copy_bytes": 10027008,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "v5_cycles": 167400,
+      "v5_speedup": 1.0,
+      "v5_copy_bytes": 10027008,
+      "cycles_change_vs_30s_percent": 0.0,
+      "copy_change_vs_30s_percent": 0.0,
+      "speedup_change_vs_30s_percent": 0.0,
+      "cycles_change_vs_v5_percent": 0.0,
+      "observed_peak_working_set_bytes": 11583488,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1343488,
+          "UB": 0
+        },
+        "1": {
+          "L1": 0,
+          "UB": 0
+        },
+        "2": {
+          "L1": 0,
+          "UB": 0
+        },
+        "3": {
+          "L1": 0,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "f9b17a064f02a5151e293e715d70866417606a68f37794211f7e734d1027080b",
+      "result_sha256": "d88ae7917c78f42107ed3dafc91133883ca2965f5c88eae4fde77310cdf65b28",
+      "old30_plan_sha256": "f9b17a064f02a5151e293e715d70866417606a68f37794211f7e734d1027080b",
+      "old30_result_sha256": "d88ae7917c78f42107ed3dafc91133883ca2965f5c88eae4fde77310cdf65b28",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_02.json",
+        "plan": "runs/five_15s/case_02/plan_n5.json",
+        "result": "runs/five_15s/case_02/result.json",
+        "trace": "runs/five_15s/case_02/trace.json",
+        "log": "runs/five_15s/case_02/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_02.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_02/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_02/result.json"
+      }
+    },
+    {
+      "case": "case_03",
+      "cores": 5,
+      "used_compute_cores": 5,
+      "status": "ok",
+      "generation_seconds": 14.988534400006756,
+      "evaluation_seconds": 2.573415399994701,
+      "old30_generation_seconds": 29.936366599984467,
+      "singlecore_cycles": 6295267,
+      "cycles": 3569539,
+      "speedup": 1.763607849641088,
+      "copy_bytes": 213680128,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 213680128,
+        "added_copy_bytes": 173834240,
+        "partition_added_copy_bytes": 90308608,
+        "spill_added_copy_bytes": 83525632
+      },
+      "old30_cycles": 3545907,
+      "old30_speedup": 1.7753615647562104,
+      "old30_copy_bytes": 210829312,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 210829312,
+        "added_copy_bytes": 170983424,
+        "partition_added_copy_bytes": 90308608,
+        "spill_added_copy_bytes": 80674816
+      },
+      "v5_cycles": 3712002,
+      "v5_speedup": 1.695922308231515,
+      "v5_copy_bytes": 222265344,
+      "cycles_change_vs_30s_percent": 0.6664585393807654,
+      "copy_change_vs_30s_percent": 1.3521914827478998,
+      "speedup_change_vs_30s_percent": -0.6620462754434064,
+      "cycles_change_vs_v5_percent": -3.8379020269924458,
+      "observed_peak_working_set_bytes": 71237632,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1507328,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1507328,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1507328,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1507328,
+          "UB": 0
+        },
+        "4": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "31ba86edbad5f4b305527339209af837b6d97a6e0cd4c5bfef1c6851426303b1",
+      "result_sha256": "e211223911cf8426498bd313e17bf6b2ed869c05d253784fccbe7ded0ac8b58e",
+      "old30_plan_sha256": "7df9bc656e546152f8ff57c40107e46fe53a8e8611ca2e8780498168ba264d9e",
+      "old30_result_sha256": "6b11cb87bd8be2a35c131ca2d0899be9c1efe6f1d42181c57d4eadc094cb5ff4",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_03.json",
+        "plan": "runs/five_15s/case_03/plan_n5.json",
+        "result": "runs/five_15s/case_03/result.json",
+        "trace": "runs/five_15s/case_03/trace.json",
+        "log": "runs/five_15s/case_03/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_03.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_03/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_03/result.json"
+      }
+    },
+    {
+      "case": "case_04",
+      "cores": 5,
+      "used_compute_cores": 4,
+      "status": "ok",
+      "generation_seconds": 14.915281299967319,
+      "evaluation_seconds": 2.2534558998886496,
+      "old30_generation_seconds": 29.936518299859017,
+      "singlecore_cycles": 7080299,
+      "cycles": 2087349,
+      "speedup": 3.392005361824975,
+      "copy_bytes": 118030336,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 118030336,
+        "added_copy_bytes": 75563008,
+        "partition_added_copy_bytes": 57802752,
+        "spill_added_copy_bytes": 17760256
+      },
+      "old30_cycles": 2087349,
+      "old30_speedup": 3.392005361824975,
+      "old30_copy_bytes": 118030336,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 118030336,
+        "added_copy_bytes": 75563008,
+        "partition_added_copy_bytes": 57802752,
+        "spill_added_copy_bytes": 17760256
+      },
+      "v5_cycles": 2117530,
+      "v5_speedup": 3.343659357836725,
+      "v5_copy_bytes": 117014528,
+      "cycles_change_vs_30s_percent": 0.0,
+      "copy_change_vs_30s_percent": 0.0,
+      "speedup_change_vs_30s_percent": 0.0,
+      "cycles_change_vs_v5_percent": -1.4252926759006912,
+      "observed_peak_working_set_bytes": 79745024,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1441792,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "0e816b7eae7820ca6c20042f2882c915a9a417ae55b69d00d953701c10fb3500",
+      "result_sha256": "51e54e20591289bd03ba754448e5630f956c6b69d43e59c05db661d790465a63",
+      "old30_plan_sha256": "0e816b7eae7820ca6c20042f2882c915a9a417ae55b69d00d953701c10fb3500",
+      "old30_result_sha256": "51e54e20591289bd03ba754448e5630f956c6b69d43e59c05db661d790465a63",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_04.json",
+        "plan": "runs/five_15s/case_04/plan_n5.json",
+        "result": "runs/five_15s/case_04/result.json",
+        "trace": "runs/five_15s/case_04/trace.json",
+        "log": "runs/five_15s/case_04/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_04.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_04/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_04/result.json"
+      }
+    },
+    {
+      "case": "case_05",
+      "cores": 5,
+      "used_compute_cores": 5,
+      "status": "ok",
+      "generation_seconds": 14.980237999930978,
+      "evaluation_seconds": 8.601849399972707,
+      "old30_generation_seconds": 30.00566430017352,
+      "singlecore_cycles": 18876779,
+      "cycles": 9129200,
+      "speedup": 2.0677363843491214,
+      "copy_bytes": 543358976,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 543358976,
+        "added_copy_bytes": 461570048,
+        "partition_added_copy_bytes": 77070336,
+        "spill_added_copy_bytes": 384499712
+      },
+      "old30_cycles": 9077958,
+      "old30_speedup": 2.0794080563051733,
+      "old30_copy_bytes": 543293440,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 543293440,
+        "added_copy_bytes": 461504512,
+        "partition_added_copy_bytes": 77070336,
+        "spill_added_copy_bytes": 384434176
+      },
+      "v5_cycles": 9525184,
+      "v5_speedup": 1.9817757851186917,
+      "v5_copy_bytes": 566296576,
+      "cycles_change_vs_30s_percent": 0.5644661497662851,
+      "copy_change_vs_30s_percent": 0.012062726176109706,
+      "speedup_change_vs_30s_percent": -0.561297813609074,
+      "cycles_change_vs_v5_percent": -4.1572320282736825,
+      "observed_peak_working_set_bytes": 195325952,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "1": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "3": {
+          "L1": 1474560,
+          "UB": 0
+        },
+        "4": {
+          "L1": 1474560,
+          "UB": 0
+        }
+      },
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "687985f3fcde29aec18a03db874b8d30002f6589426d95c1d79bc76c26cfcebe",
+      "result_sha256": "4154e849fa6a8478f57606f07700b0bd3bfd8f65d8f8edc37389db092e330069",
+      "old30_plan_sha256": "65c3ca82912ac534e65c8fbc7143c9a83fa8c9219c3873da0f9a5742483c77de",
+      "old30_result_sha256": "d8525e3f6105b21299d3d0f2e6881013abef2e1cdbfb0782437308c83624f54a",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_05.json",
+        "plan": "runs/five_15s/case_05/plan_n5.json",
+        "result": "runs/five_15s/case_05/result.json",
+        "trace": "runs/five_15s/case_05/trace.json",
+        "log": "runs/five_15s/case_05/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_05.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_05/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_05/result.json"
+      }
+    },
+    {
+      "case": "case_06",
+      "cores": 5,
+      "used_compute_cores": 4,
+      "status": "ok",
+      "generation_seconds": 14.92098779999651,
+      "evaluation_seconds": 0.9779324000701308,
+      "old30_generation_seconds": 29.98349460004829,
+      "singlecore_cycles": 3540935,
+      "cycles": 1004044,
+      "speedup": 3.5266731338467237,
+      "copy_bytes": 59572224,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 59572224,
+        "added_copy_bytes": 28901376,
+        "partition_added_copy_bytes": 28901376,
+        "spill_added_copy_bytes": 0
+      },
+      "old30_cycles": 1003676,
+      "old30_speedup": 3.527966196262539,
+      "old30_copy_bytes": 59572224,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 59572224,
+        "added_copy_bytes": 28901376,
+        "partition_added_copy_bytes": 28901376,
+        "spill_added_copy_bytes": 0
+      },
+      "v5_cycles": 1050010,
+      "v5_speedup": 3.372286930600661,
+      "v5_copy_bytes": 59572224,
+      "cycles_change_vs_30s_percent": 0.036665218656217746,
+      "copy_change_vs_30s_percent": 0.0,
+      "speedup_change_vs_30s_percent": -0.03665178020086923,
+      "cycles_change_vs_v5_percent": -4.377672593594351,
+      "observed_peak_working_set_bytes": 40280064,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "1": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "2": {
+          "L1": 1048576,
+          "UB": 0
+        },
+        "3": {
+          "L1": 917504,
+          "UB": 0
+        },
+        "4": {
+          "L1": 0,
+          "UB": 0
+        }
+      },
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "6c41e739e91a1a039c94e50c3835a4e6fbdac68f6179bbbf3ef63b3ef25234c5",
+      "result_sha256": "54c0e37eb8dca0053db9b9ad98adf30723135042c16e0232e9fd48c2dc8807a9",
+      "old30_plan_sha256": "6d892a4f935003ad3499e0547d9555370a45b19ff07d5d22db4144c502cb6093",
+      "old30_result_sha256": "05567d52e0e62ce5bfe08614a2fa1fcd3b6e1896d8022ade796361ffc215c02a",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_06.json",
+        "plan": "runs/five_15s/case_06/plan_n5.json",
+        "result": "runs/five_15s/case_06/result.json",
+        "trace": "runs/five_15s/case_06/trace.json",
+        "log": "runs/five_15s/case_06/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_06.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_06/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_06/result.json"
+      }
+    },
+    {
+      "case": "case_07",
+      "cores": 5,
+      "used_compute_cores": 5,
+      "status": "ok",
+      "generation_seconds": 14.916925999801606,
+      "evaluation_seconds": 6.02135040005669,
+      "old30_generation_seconds": 29.951363399857655,
+      "singlecore_cycles": 6340434,
+      "cycles": 2650139,
+      "speedup": 2.3924911108436198,
+      "copy_bytes": 118629024,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 118629024,
+        "added_copy_bytes": 95095488,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 23555520
+      },
+      "old30_cycles": 2650358,
+      "old30_speedup": 2.3922934184740328,
+      "old30_copy_bytes": 118671712,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 118671712,
+        "added_copy_bytes": 95138176,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 23598208
+      },
+      "v5_cycles": 2708965,
+      "v5_speedup": 2.3405374377299077,
+      "v5_copy_bytes": 121826144,
+      "cycles_change_vs_30s_percent": -0.008263034654187873,
+      "copy_change_vs_30s_percent": -0.03597150431267071,
+      "speedup_change_vs_30s_percent": 0.008263717488010691,
+      "cycles_change_vs_v5_percent": -2.171530455358417,
+      "observed_peak_working_set_bytes": 160817152,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1477824,
+          "UB": 113408
+        },
+        "1": {
+          "L1": 1468928,
+          "UB": 35072
+        },
+        "2": {
+          "L1": 1466688,
+          "UB": 35072
+        },
+        "3": {
+          "L1": 1410880,
+          "UB": 43776
+        },
+        "4": {
+          "L1": 1549760,
+          "UB": 43776
+        }
+      },
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "7c12cb6d17e3f4fce5d798c1f793983030632b2e4ddecb7f9ffbed61b5fdd2de",
+      "result_sha256": "d778b1cc4534c65d853bfe20cc20a79393d304fb81dd9bc3f5ea75d0f8b106d8",
+      "old30_plan_sha256": "681a0da4af942da1beb23857f2504c062c8f83ef1bd5c2d3c853640e07eb4c9c",
+      "old30_result_sha256": "6f39a90163f7d0254240f3c59515e8d9018599620c4a30bcbbe05876ea8185fa",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_07.json",
+        "plan": "runs/five_15s/case_07/plan_n5.json",
+        "result": "runs/five_15s/case_07/result.json",
+        "trace": "runs/five_15s/case_07/trace.json",
+        "log": "runs/five_15s/case_07/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_07.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_07/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_07/result.json"
+      }
+    },
+    {
+      "case": "case_08",
+      "cores": 5,
+      "used_compute_cores": 5,
+      "status": "ok",
+      "generation_seconds": 14.978860600152984,
+      "evaluation_seconds": 5.887114699929953,
+      "old30_generation_seconds": 29.937051800079644,
+      "singlecore_cycles": 15419076,
+      "cycles": 7021942,
+      "speedup": 2.1958421188896176,
+      "copy_bytes": 353516832,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 353516832,
+        "added_copy_bytes": 315555136,
+        "partition_added_copy_bytes": 173410624,
+        "spill_added_copy_bytes": 142144512
+      },
+      "old30_cycles": 6974321,
+      "old30_speedup": 2.2108354347326427,
+      "old30_copy_bytes": 351179040,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 351179040,
+        "added_copy_bytes": 313217344,
+        "partition_added_copy_bytes": 173932864,
+        "spill_added_copy_bytes": 139284480
+      },
+      "v5_cycles": 7004268,
+      "v5_speedup": 2.201382928237469,
+      "v5_copy_bytes": 360486944,
+      "cycles_change_vs_30s_percent": 0.6828048207130122,
+      "copy_change_vs_30s_percent": 0.6656980439379234,
+      "speedup_change_vs_30s_percent": -0.6781742144836844,
+      "cycles_change_vs_v5_percent": 0.25233186394353346,
+      "observed_peak_working_set_bytes": 182829056,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1495488,
+          "UB": 128512
+        },
+        "1": {
+          "L1": 1550272,
+          "UB": 104832
+        },
+        "2": {
+          "L1": 1511872,
+          "UB": 122048
+        },
+        "3": {
+          "L1": 1538368,
+          "UB": 109184
+        },
+        "4": {
+          "L1": 1537664,
+          "UB": 104832
+        }
+      },
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "a24af83b1651109f36944618e9ea9ac25a56a18f8489ae76e98013642901d575",
+      "result_sha256": "9b67d32efcb5bb9dd8421bcfaf52c381218073eeef3b918cfa96391757ff3f7a",
+      "old30_plan_sha256": "26dddd70de5b9d3e82937ea46ca91a6060bd96c96a0410984cc28e31bfdd6c32",
+      "old30_result_sha256": "77c716db3a9f3911a10420df409a884c6f5d1b96bbc4d5b0733da9f0b1344783",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_08.json",
+        "plan": "runs/five_15s/case_08/plan_n5.json",
+        "result": "runs/five_15s/case_08/result.json",
+        "trace": "runs/five_15s/case_08/trace.json",
+        "log": "runs/five_15s/case_08/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_08.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_08/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_08/result.json"
+      }
+    },
+    {
+      "case": "case_09",
+      "cores": 5,
+      "used_compute_cores": 5,
+      "status": "ok",
+      "generation_seconds": 14.909528800053522,
+      "evaluation_seconds": 5.8706330000422895,
+      "old30_generation_seconds": 30.034337300108746,
+      "singlecore_cycles": 6794313,
+      "cycles": 3769959,
+      "speedup": 1.8022246395783084,
+      "copy_bytes": 164225152,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 164225152,
+        "added_copy_bytes": 154044160,
+        "partition_added_copy_bytes": 83522368,
+        "spill_added_copy_bytes": 70521792
+      },
+      "old30_cycles": 3764038,
+      "old30_speedup": 1.805059619483119,
+      "old30_copy_bytes": 164225152,
+      "old30_data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 164225152,
+        "added_copy_bytes": 154044160,
+        "partition_added_copy_bytes": 83522368,
+        "spill_added_copy_bytes": 70521792
+      },
+      "v5_cycles": 3777501,
+      "v5_speedup": 1.7986263934807694,
+      "v5_copy_bytes": 166593984,
+      "cycles_change_vs_30s_percent": 0.1573044692960046,
+      "copy_change_vs_30s_percent": 0.0,
+      "speedup_change_vs_30s_percent": -0.1570574109691969,
+      "cycles_change_vs_v5_percent": -0.19965580419436524,
+      "observed_peak_working_set_bytes": 173760512,
+      "sampled_max_process_threads": 7,
+      "memory_peak_by_core": {
+        "0": {
+          "L1": 1571712,
+          "UB": 55424
+        },
+        "1": {
+          "L1": 1475776,
+          "UB": 18560
+        },
+        "2": {
+          "L1": 1569024,
+          "UB": 36992
+        },
+        "3": {
+          "L1": 1556800,
+          "UB": 18560
+        },
+        "4": {
+          "L1": 1484032,
+          "UB": 0
+        }
+      },
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "86497e6ac3e8718984290ee2ff66acbccb0eb8729b6384fbca7c3e198211bd0a",
+      "result_sha256": "2e462026457651f12b2132a8d5a72b157751ff7ad4a959a0a9be70d9cdadcd8d",
+      "old30_plan_sha256": "9ef6acadc32413355808e95c236fd3f47863269c14765455196778e0db5f95bf",
+      "old30_result_sha256": "870715fcf7dd04bfd1d691434f358fbc3ee4aaa8b5971a5e577414dff53a46e0",
+      "artifacts": {
+        "input": "references/hackathon_20261030/data/case_09.json",
+        "plan": "runs/five_15s/case_09/plan_n5.json",
+        "result": "runs/five_15s/case_09/result.json",
+        "trace": "runs/five_15s/case_09/trace.json",
+        "log": "runs/five_15s/case_09/log.txt",
+        "singlecore_baseline": "reports/singlecore_baseline/case_09.json",
+        "old30_plan": "../dag_chain_solver_v5_30s/runs/five_30s/case_09/plan_n5.json",
+        "old30_result": "../dag_chain_solver_v5_30s/runs/five_30s/case_09/result.json"
+      }
+    }
+  ]
+}

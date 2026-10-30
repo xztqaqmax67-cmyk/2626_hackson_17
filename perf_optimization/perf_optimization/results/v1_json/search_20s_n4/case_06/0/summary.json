@@ -1,0 +1,311 @@
+{
+  "action": "search",
+  "prepare_seconds": 0.07175089999873308,
+  "solve_seconds": 19.609195199998794,
+  "report": {
+    "status": "complete",
+    "solver_version": "scene-b-v5-case-budget",
+    "time_limit": 20.0,
+    "ablation": "full",
+    "feasibility_grace_seconds": 0.0,
+    "search_profile": "compact",
+    "warm_start": null,
+    "stats": {
+      "full_evaluations": 22,
+      "invalid_evaluations": 0,
+      "timeout_evaluations": 0,
+      "expansions": 5,
+      "invalid_expansions": 0,
+      "generated": 312,
+      "duplicates": 111,
+      "safe_pruned": 52,
+      "accepted": 3,
+      "batches": 10,
+      "primary_improvements": 3,
+      "secondary_improvements": 0,
+      "seed_candidates": 6,
+      "elite_restarts": 4,
+      "candidate_pages": 8,
+      "construction_seconds": 2.319142100001045,
+      "screening_seconds": 2.4855176999990363,
+      "expansion_seconds": 1.8839592000003904,
+      "evaluation_seconds": 10.755475700007082,
+      "generation_seconds": 0.09581109999271575,
+      "repair_seconds": 0.0756078999984311,
+      "validation_seconds": 0.10567880000235164,
+      "record_seconds": 7.299999924725853e-05,
+      "checkpoint_seconds": 1.6000012692529708e-06,
+      "coupled_reorders": 4,
+      "coupled_reorder_seconds": 0.2854250999953365,
+      "secondary_centers_expanded": 0,
+      "seed_reorders": 2,
+      "seed_reorder_seconds": 0.929254899998341,
+      "local_improvements": 2,
+      "route_steps": 38,
+      "repair_skipped": 0,
+      "activation_rounds": 0
+    },
+    "history": [
+      {
+        "source": "native_bootstrap",
+        "status": "ok",
+        "seconds": 0.48558320000302047,
+        "elapsed_seconds": 0.4913723999998183,
+        "route": "construction",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "pipe_critical_eft",
+        "status": "ok",
+        "seconds": 0.9068488000011712,
+        "elapsed_seconds": 2.285964699996839,
+        "route": "construction",
+        "makespan": 7070400.0,
+        "added_copy_bytes": 350224384
+      },
+      {
+        "source": "native_lambda_0",
+        "status": "ok",
+        "seconds": 0.4784798000000592,
+        "elapsed_seconds": 3.5034387999985483,
+        "route": "construction",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "structure_atoms_c0.5_merged",
+        "status": "ok",
+        "seconds": 0.5444691999982751,
+        "elapsed_seconds": 4.8084330999990925,
+        "route": "construction",
+        "makespan": 2023892.0,
+        "added_copy_bytes": 55181312
+      },
+      {
+        "source": "native_bootstrap_fifo_measured_8",
+        "status": "ok",
+        "seconds": 0.4980533000016294,
+        "elapsed_seconds": 5.442521599998145,
+        "route": "construction",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_1",
+        "status": "ok",
+        "seconds": 0.44382990000303835,
+        "elapsed_seconds": 7.043200299998716,
+        "route": "native_reference",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_1_fifo_joint",
+        "status": "ok",
+        "seconds": 0.47111040000163484,
+        "elapsed_seconds": 7.730819899999915,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.4484477000005427,
+        "elapsed_seconds": 8.226521699998557,
+        "route": "native_reference",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.44374799999786774,
+        "elapsed_seconds": 8.682563700000173,
+        "route": "native_reference",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.46777510000174516,
+        "elapsed_seconds": 9.273332699998718,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "split_0",
+        "status": "ok",
+        "seconds": 0.45627969999986817,
+        "elapsed_seconds": 9.918567199998506,
+        "route": "native_reference",
+        "makespan": 1477431.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "split_1",
+        "status": "ok",
+        "seconds": 0.469468200000847,
+        "elapsed_seconds": 10.401401999999507,
+        "route": "native_reference",
+        "makespan": 1477431.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "exchange_t11381_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.4566960000011022,
+        "elapsed_seconds": 10.967940700000327,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "split_2",
+        "status": "ok",
+        "seconds": 0.4551090999993903,
+        "elapsed_seconds": 11.457383999997546,
+        "route": "native_reference",
+        "makespan": 1477431.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "consumer_t11381_0_1",
+        "status": "ok",
+        "seconds": 0.49419059999854653,
+        "elapsed_seconds": 13.162250899997161,
+        "route": "native_reference",
+        "makespan": 1034719.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.42638090000036755,
+        "elapsed_seconds": 14.346455299997615,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "consumer_t11381_0_3",
+        "status": "ok",
+        "seconds": 0.502935399999842,
+        "elapsed_seconds": 15.96372689999771,
+        "route": "native_reference",
+        "makespan": 1034719.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.44676590000017313,
+        "elapsed_seconds": 16.42598629999702,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "load_0_2",
+        "status": "ok",
+        "seconds": 0.4704115999993519,
+        "elapsed_seconds": 16.929630499998893,
+        "route": "native_reference",
+        "makespan": 1034719.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "exchange_t11381_0",
+        "status": "ok",
+        "seconds": 0.47819199999867124,
+        "elapsed_seconds": 17.423513300000195,
+        "route": "native_reference",
+        "makespan": 1021735.0,
+        "added_copy_bytes": 28704768
+      },
+      {
+        "source": "load_4_0",
+        "status": "ok",
+        "seconds": 0.4430006000002322,
+        "elapsed_seconds": 18.941473099999712,
+        "route": "native_reference",
+        "makespan": 1051755.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "exchange_t11381_3",
+        "status": "ok",
+        "seconds": 0.46770029999970575,
+        "elapsed_seconds": 19.424454699998023,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      }
+    ],
+    "time_seconds": 19.532511199999135,
+    "problem_instance": null,
+    "first_solution_seconds": 0.4989117000004626,
+    "feasibility_extension_used": false,
+    "makespan": 1021735.0,
+    "source": "exchange_t11381_0",
+    "solution_available": true,
+    "active_cores": 4,
+    "data_movement_bytes": {
+      "original_graph_copy_bytes": 30670848,
+      "scheduled_copy_bytes": 59375616,
+      "added_copy_bytes": 28704768,
+      "partition_added_copy_bytes": 28704768,
+      "spill_added_copy_bytes": 0
+    },
+    "global_lower_bound": 884736.0,
+    "portfolio_policy": "protected native route; independent local objectives; time-weighted fair service",
+    "routes": [
+      {
+        "name": "native_reference",
+        "reference": true,
+        "initial_makespan": 1040640.0,
+        "best_makespan": 1021735.0,
+        "local_improvements": 2,
+        "steps": 21,
+        "seconds": 9.299342099995556,
+        "secondary_centers": 0,
+        "fifo_calls": 0,
+        "activation_calls": 0,
+        "repair_calls": 1,
+        "repair_skipped": 0,
+        "repair_seconds": 0.0444960999993782,
+        "status": "searching"
+      },
+      {
+        "name": "route_native_joint",
+        "reference": false,
+        "initial_makespan": 1040640.0,
+        "best_makespan": 1040640.0,
+        "local_improvements": 0,
+        "steps": 17,
+        "seconds": 4.210306799999671,
+        "secondary_centers": 0,
+        "fifo_calls": 4,
+        "activation_calls": 0,
+        "repair_calls": 1,
+        "repair_skipped": 0,
+        "repair_seconds": 0.04908209999848623,
+        "status": "searching"
+      }
+    ],
+    "termination": "time_limit"
+  },
+  "plan_available": true,
+  "total_seconds": 19.684912599997915,
+  "exit_code": 0,
+  "stage": "v1_json",
+  "case": "case_06",
+  "mode": "search",
+  "budget": 20.0,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 19.72655030000169
+}

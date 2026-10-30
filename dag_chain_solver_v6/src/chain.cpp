@@ -3,6 +3,7 @@
 #include "parallel_jobs.hpp"
 #include "regions.hpp"
 #include "slack.hpp"
+#include "solution_key.hpp"
 #include <optional>
 
 namespace dag_chain {
@@ -118,8 +119,7 @@ struct NoCandidate : runtime_error {
 };
 auto merit(const Entry &e) {
     // This is an internal heuristic, never an official score.
-    return make_tuple(e.metrics.score, e.metrics.route + e.metrics.spill, e.solution.core,
-                      e.solution.order);
+    return detail::solution_key(e.metrics.score, e.metrics.route + e.metrics.spill, e.solution);
 }
 } // namespace
 
@@ -369,9 +369,8 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
         if (collecting_legacy) {
             legacy_pool.push_back({s, m});
             auto legacy_key = [&](const Entry &e) {
-                return make_tuple(e.metrics.score + e.metrics.spill / cfg.bandwidth,
-                                  e.metrics.route + e.metrics.spill, e.solution.core,
-                                  e.solution.order);
+                return detail::solution_key(e.metrics.score + e.metrics.spill / cfg.bandwidth,
+                                            e.metrics.route + e.metrics.spill, e.solution);
             };
             stable_sort(legacy_pool.begin(), legacy_pool.end(), [&](const Entry &a, const Entry &b) {
                 return legacy_key(a) < legacy_key(b);
@@ -653,10 +652,9 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
         ++result.refined_candidates;
         if (!refined.valid)
             continue;
-        auto key = make_tuple(refined.cycles, refined.route + refined.spill,
-                              entry.solution.core, entry.solution.order);
-        auto best = make_tuple(result.refined.cycles, result.refined.route + result.refined.spill,
-                               result.solution.core, result.solution.order);
+        auto key = detail::solution_key(refined.cycles, refined.route + refined.spill, entry.solution);
+        auto best = detail::solution_key(result.refined.cycles,
+                                         result.refined.route + result.refined.spill, result.solution);
         if (!chosen || key < best) {
             chosen = true;
             result.solution = entry.solution;
@@ -675,10 +673,9 @@ static Result solve_at_core_count(const Graph &g, int k, bool baseline_only,
         ++result.refined_candidates;
         if (!refined.valid)
             return;
-        auto key = make_tuple(refined.cycles, refined.route + refined.spill,
-                              candidate.core, candidate.order);
-        auto incumbent = make_tuple(result.refined.cycles, result.refined.route + result.refined.spill,
-                                    result.solution.core, result.solution.order);
+        auto key = detail::solution_key(refined.cycles, refined.route + refined.spill, candidate);
+        auto incumbent = detail::solution_key(result.refined.cycles,
+                                              result.refined.route + result.refined.spill, result.solution);
         if (key < incumbent) {
             result.solution = candidate;
             result.estimate = metrics;
@@ -767,8 +764,8 @@ Result solve(const Graph &g, int k, bool baseline_only, unsigned extensions) {
     // portfolios are not judged by an incompatible pessimistic timing gate.
     Result best = move(portfolios.back());
     auto final_key = [](const Result &r) {
-        return make_tuple(r.refined.cycles, r.refined.route + r.refined.spill,
-                          r.generated_for_cores, r.solution.core, r.solution.order);
+        return detail::solution_key(r.refined.cycles, r.refined.route + r.refined.spill,
+                                    r.generated_for_cores, r.solution);
     };
     for (int i = int(portfolios.size()) - 2; i >= 0; --i)
         if (final_key(portfolios[i]) < final_key(best))

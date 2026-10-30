@@ -1,0 +1,329 @@
+{
+  "action": "search",
+  "prepare_seconds": 0.0707321999980195,
+  "solve_seconds": 19.357225200001267,
+  "report": {
+    "status": "complete",
+    "solver_version": "scene-b-v5-case-budget",
+    "time_limit": 20.0,
+    "ablation": "full",
+    "feasibility_grace_seconds": 0.0,
+    "search_profile": "compact",
+    "warm_start": null,
+    "stats": {
+      "full_evaluations": 24,
+      "invalid_evaluations": 0,
+      "timeout_evaluations": 0,
+      "expansions": 8,
+      "invalid_expansions": 0,
+      "generated": 429,
+      "duplicates": 257,
+      "safe_pruned": 58,
+      "accepted": 4,
+      "batches": 17,
+      "primary_improvements": 4,
+      "secondary_improvements": 0,
+      "seed_candidates": 6,
+      "elite_restarts": 6,
+      "candidate_pages": 13,
+      "construction_seconds": 1.2439045999999507,
+      "screening_seconds": 1.3376401999994414,
+      "expansion_seconds": 2.9428015000012238,
+      "evaluation_seconds": 12.283935800009203,
+      "generation_seconds": 0.09825129999444471,
+      "repair_seconds": 0.27951289999691653,
+      "validation_seconds": 0.1230361000089033,
+      "record_seconds": 8.479999814881012e-05,
+      "checkpoint_seconds": 8.999959391076118e-07,
+      "coupled_reorders": 4,
+      "coupled_reorder_seconds": 0.1900162000056298,
+      "secondary_centers_expanded": 0,
+      "seed_reorders": 2,
+      "seed_reorder_seconds": 0.8418576000040048,
+      "local_improvements": 6,
+      "route_steps": 73,
+      "repair_skipped": 15,
+      "activation_rounds": 0
+    },
+    "history": [
+      {
+        "source": "native_bootstrap",
+        "status": "ok",
+        "seconds": 0.5273618999999599,
+        "elapsed_seconds": 0.5320723000004364,
+        "route": "construction",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "pipe_critical_eft",
+        "status": "ok",
+        "seconds": 0.818435799999861,
+        "elapsed_seconds": 1.86665659999926,
+        "route": "construction",
+        "makespan": 6547656.0,
+        "added_copy_bytes": 321912832
+      },
+      {
+        "source": "native_lambda_0",
+        "status": "ok",
+        "seconds": 0.4866935999998532,
+        "elapsed_seconds": 2.7247821999990265,
+        "route": "construction",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "structure_atoms_c0.5_merged",
+        "status": "ok",
+        "seconds": 0.6161161000018183,
+        "elapsed_seconds": 3.7178195000014966,
+        "route": "construction",
+        "makespan": 2066605.0,
+        "added_copy_bytes": 80740352
+      },
+      {
+        "source": "native_bootstrap_fifo_measured_8",
+        "status": "ok",
+        "seconds": 0.5358032999974967,
+        "elapsed_seconds": 4.328224199998658,
+        "route": "construction",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_1",
+        "status": "ok",
+        "seconds": 0.5294042000023182,
+        "elapsed_seconds": 5.709587299999839,
+        "route": "native_reference",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_1_fifo_joint",
+        "status": "ok",
+        "seconds": 0.5217376000000513,
+        "elapsed_seconds": 6.396610499999952,
+        "route": "route_native_joint",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_2",
+        "status": "ok",
+        "seconds": 0.4499911999992037,
+        "elapsed_seconds": 7.250254599999607,
+        "route": "native_reference",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.4656677999992098,
+        "elapsed_seconds": 7.832686999998259,
+        "route": "route_native_joint",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_2",
+        "status": "ok",
+        "seconds": 0.4793675000000803,
+        "elapsed_seconds": 8.716008399998827,
+        "route": "native_reference",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.4643333999993047,
+        "elapsed_seconds": 9.282308000001649,
+        "route": "route_native_joint",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "split_0",
+        "status": "ok",
+        "seconds": 0.47506760000032955,
+        "elapsed_seconds": 10.317983599998115,
+        "route": "native_reference",
+        "makespan": 1464740.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "exchange_t11237_2",
+        "status": "ok",
+        "seconds": 0.5040502000010747,
+        "elapsed_seconds": 11.416597100000217,
+        "route": "native_reference",
+        "makespan": 1464740.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "consumer_t11237_0_1",
+        "status": "ok",
+        "seconds": 0.5413387999979022,
+        "elapsed_seconds": 11.965494200001558,
+        "route": "native_reference",
+        "makespan": 1788333.0,
+        "added_copy_bytes": 49872896
+      },
+      {
+        "source": "exchange_t11237_3",
+        "status": "ok",
+        "seconds": 0.4426547000002756,
+        "elapsed_seconds": 12.693129999999655,
+        "route": "route_native_joint",
+        "makespan": 1464740.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "split_0",
+        "status": "ok",
+        "seconds": 0.4510286000004271,
+        "elapsed_seconds": 13.318078799999057,
+        "route": "route_native_joint",
+        "makespan": 1510055.0,
+        "added_copy_bytes": 51773440
+      },
+      {
+        "source": "split_1",
+        "status": "ok",
+        "seconds": 0.5057766000027186,
+        "elapsed_seconds": 13.914385200001561,
+        "route": "native_reference",
+        "makespan": 1413340.0,
+        "added_copy_bytes": 49283072
+      },
+      {
+        "source": "exchange_t11237_3",
+        "status": "ok",
+        "seconds": 0.4930854000012914,
+        "elapsed_seconds": 15.055631899998843,
+        "route": "native_reference",
+        "makespan": 1413340.0,
+        "added_copy_bytes": 49283072
+      },
+      {
+        "source": "consumer_t11237_0_1",
+        "status": "ok",
+        "seconds": 0.533411000000342,
+        "elapsed_seconds": 16.157642499998474,
+        "route": "route_native_joint",
+        "makespan": 1770068.0,
+        "added_copy_bytes": 54493184
+      },
+      {
+        "source": "exchange_t11237_4",
+        "status": "ok",
+        "seconds": 0.4781364000009489,
+        "elapsed_seconds": 16.648956900000485,
+        "route": "native_reference",
+        "makespan": 1408310.0,
+        "added_copy_bytes": 50921472
+      },
+      {
+        "source": "exchange_t11265_0",
+        "status": "ok",
+        "seconds": 0.5116917000013927,
+        "elapsed_seconds": 17.64106239999819,
+        "route": "route_native_joint",
+        "makespan": 1413340.0,
+        "added_copy_bytes": 49283072
+      },
+      {
+        "source": "consumer_t11265_5_0",
+        "status": "ok",
+        "seconds": 0.5048361000008299,
+        "elapsed_seconds": 18.21567529999811,
+        "route": "native_reference",
+        "makespan": 1770068.0,
+        "added_copy_bytes": 54493184
+      },
+      {
+        "source": "producer_t11246_0_1",
+        "status": "ok",
+        "seconds": 0.4676051999995252,
+        "elapsed_seconds": 18.691760599998815,
+        "route": "native_reference",
+        "makespan": 1728478.0,
+        "added_copy_bytes": 50331648
+      },
+      {
+        "source": "chain_t14949_1",
+        "status": "ok",
+        "seconds": 0.48034110000298824,
+        "elapsed_seconds": 19.254629200000636,
+        "route": "native_reference",
+        "makespan": 1788110.0,
+        "added_copy_bytes": 54984704
+      }
+    ],
+    "time_seconds": 19.282827499999257,
+    "problem_instance": null,
+    "first_solution_seconds": 0.5320955999995931,
+    "feasibility_extension_used": false,
+    "makespan": 1408310.0,
+    "source": "exchange_t11237_4",
+    "solution_available": true,
+    "active_cores": 4,
+    "data_movement_bytes": {
+      "original_graph_copy_bytes": 23592960,
+      "scheduled_copy_bytes": 74514432,
+      "added_copy_bytes": 50921472,
+      "partition_added_copy_bytes": 37748736,
+      "spill_added_copy_bytes": 13172736
+    },
+    "global_lower_bound": 884736.0,
+    "portfolio_policy": "protected native route; independent local objectives; time-weighted fair service",
+    "routes": [
+      {
+        "name": "native_reference",
+        "reference": true,
+        "initial_makespan": 1557540.0,
+        "best_makespan": 1408310.0,
+        "local_improvements": 3,
+        "steps": 40,
+        "seconds": 9.75226270001076,
+        "secondary_centers": 0,
+        "fifo_calls": 0,
+        "activation_calls": 0,
+        "repair_calls": 4,
+        "repair_skipped": 9,
+        "repair_seconds": 1.6109357999957865,
+        "status": "searching"
+      },
+      {
+        "name": "route_native_joint",
+        "reference": false,
+        "initial_makespan": 1557540.0,
+        "best_makespan": 1408310.0,
+        "local_improvements": 3,
+        "steps": 33,
+        "seconds": 4.915727700004936,
+        "secondary_centers": 0,
+        "fifo_calls": 4,
+        "activation_calls": 0,
+        "repair_calls": 4,
+        "repair_skipped": 6,
+        "repair_seconds": 0.18225320000055945,
+        "status": "searching"
+      }
+    ],
+    "termination": "time_limit"
+  },
+  "plan_available": true,
+  "total_seconds": 19.431868199997552,
+  "exit_code": 0,
+  "stage": "v6_pipes",
+  "case": "case_00",
+  "mode": "search",
+  "budget": 20.0,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 19.48259120000148
+}

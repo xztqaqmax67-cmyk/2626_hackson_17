@@ -1,0 +1,338 @@
+{
+  "action": "search",
+  "prepare_seconds": 0.0687340000004042,
+  "solve_seconds": 19.391210000001593,
+  "report": {
+    "status": "complete",
+    "solver_version": "scene-b-v5-case-budget",
+    "time_limit": 20.0,
+    "ablation": "full",
+    "feasibility_grace_seconds": 0.0,
+    "search_profile": "compact",
+    "warm_start": null,
+    "stats": {
+      "full_evaluations": 25,
+      "invalid_evaluations": 0,
+      "timeout_evaluations": 0,
+      "expansions": 5,
+      "invalid_expansions": 0,
+      "generated": 324,
+      "duplicates": 111,
+      "safe_pruned": 60,
+      "accepted": 3,
+      "batches": 12,
+      "primary_improvements": 3,
+      "secondary_improvements": 0,
+      "seed_candidates": 6,
+      "elite_restarts": 4,
+      "candidate_pages": 9,
+      "construction_seconds": 2.232267999996111,
+      "screening_seconds": 1.940531899999769,
+      "expansion_seconds": 1.8252002999979595,
+      "evaluation_seconds": 11.935038200004783,
+      "generation_seconds": 0.10329219999766792,
+      "repair_seconds": 0.10356120000142255,
+      "validation_seconds": 0.10912240000106976,
+      "record_seconds": 6.930000381544232e-05,
+      "checkpoint_seconds": 3.9999940781854093e-07,
+      "coupled_reorders": 4,
+      "coupled_reorder_seconds": 0.267875700006698,
+      "secondary_centers_expanded": 0,
+      "seed_reorders": 2,
+      "seed_reorder_seconds": 0.884205500002281,
+      "local_improvements": 2,
+      "route_steps": 45,
+      "repair_skipped": 0,
+      "activation_rounds": 0
+    },
+    "history": [
+      {
+        "source": "native_bootstrap",
+        "status": "ok",
+        "seconds": 0.4617763999995077,
+        "elapsed_seconds": 0.46610359999976936,
+        "route": "construction",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "pipe_critical_eft",
+        "status": "ok",
+        "seconds": 0.9451374999989639,
+        "elapsed_seconds": 2.2123798000029637,
+        "route": "construction",
+        "makespan": 7070400.0,
+        "added_copy_bytes": 350224384
+      },
+      {
+        "source": "native_lambda_0",
+        "status": "ok",
+        "seconds": 0.47376770000118995,
+        "elapsed_seconds": 3.4011969000021054,
+        "route": "construction",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "structure_atoms_c0.5_merged",
+        "status": "ok",
+        "seconds": 0.5182349999995495,
+        "elapsed_seconds": 4.656322000002547,
+        "route": "construction",
+        "makespan": 2023892.0,
+        "added_copy_bytes": 55181312
+      },
+      {
+        "source": "native_bootstrap_fifo_measured_8",
+        "status": "ok",
+        "seconds": 0.4605768999972497,
+        "elapsed_seconds": 5.2031639000015275,
+        "route": "construction",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_1",
+        "status": "ok",
+        "seconds": 0.44466209999882267,
+        "elapsed_seconds": 6.599163900002168,
+        "route": "native_reference",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_1_fifo_joint",
+        "status": "ok",
+        "seconds": 0.4603300000017043,
+        "elapsed_seconds": 7.235770100000082,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.44705120000071474,
+        "elapsed_seconds": 7.694011200001114,
+        "route": "native_reference",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.4365963999989617,
+        "elapsed_seconds": 8.13751460000276,
+        "route": "native_reference",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "exchange_t11381_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.47320160000163014,
+        "elapsed_seconds": 8.693434900000284,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "split_0",
+        "status": "ok",
+        "seconds": 0.4552088999989792,
+        "elapsed_seconds": 9.290934200002084,
+        "route": "native_reference",
+        "makespan": 1477431.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "split_1",
+        "status": "ok",
+        "seconds": 0.46141569999963394,
+        "elapsed_seconds": 9.761681900003168,
+        "route": "native_reference",
+        "makespan": 1477431.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "exchange_t11381_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.4458583000014187,
+        "elapsed_seconds": 10.288319300001604,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "split_2",
+        "status": "ok",
+        "seconds": 0.4732977000021492,
+        "elapsed_seconds": 10.77059310000186,
+        "route": "native_reference",
+        "makespan": 1477431.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "consumer_t11381_0_1",
+        "status": "ok",
+        "seconds": 0.48728789999950095,
+        "elapsed_seconds": 12.25147250000009,
+        "route": "native_reference",
+        "makespan": 1034719.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.4180226999997103,
+        "elapsed_seconds": 13.281273900000087,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "consumer_t11381_0_3",
+        "status": "ok",
+        "seconds": 0.46779679999963264,
+        "elapsed_seconds": 14.635489600001165,
+        "route": "native_reference",
+        "makespan": 1034719.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "exchange_t11381_2",
+        "status": "ok",
+        "seconds": 0.41952750000200467,
+        "elapsed_seconds": 15.064270300001226,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "load_0_2",
+        "status": "ok",
+        "seconds": 0.47175459999925806,
+        "elapsed_seconds": 15.544139900001028,
+        "route": "native_reference",
+        "makespan": 1034719.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "exchange_t11381_0",
+        "status": "ok",
+        "seconds": 0.45376430000032997,
+        "elapsed_seconds": 16.005008800002543,
+        "route": "native_reference",
+        "makespan": 1021735.0,
+        "added_copy_bytes": 28704768
+      },
+      {
+        "source": "exchange_t11381_3",
+        "status": "ok",
+        "seconds": 0.4502178000002459,
+        "elapsed_seconds": 16.463001899999654,
+        "route": "route_native_joint",
+        "makespan": 1040640.0,
+        "added_copy_bytes": 28311552
+      },
+      {
+        "source": "load_4_0",
+        "status": "ok",
+        "seconds": 0.45541050000247196,
+        "elapsed_seconds": 17.76469670000006,
+        "route": "native_reference",
+        "makespan": 1051755.0,
+        "added_copy_bytes": 28508160
+      },
+      {
+        "source": "split_0",
+        "status": "ok",
+        "seconds": 0.48746879999816883,
+        "elapsed_seconds": 18.409027500001685,
+        "route": "route_native_joint",
+        "makespan": 1477431.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "consumer_t11381_0_1",
+        "status": "ok",
+        "seconds": 0.4316214000027685,
+        "elapsed_seconds": 18.849672000000282,
+        "route": "native_reference",
+        "makespan": 1071694.0,
+        "added_copy_bytes": 28704768
+      },
+      {
+        "source": "exchange_t11381_4",
+        "status": "ok",
+        "seconds": 0.43505050000021583,
+        "elapsed_seconds": 19.293058800001745,
+        "route": "native_reference",
+        "makespan": 1021735.0,
+        "added_copy_bytes": 28704768
+      }
+    ],
+    "time_seconds": 19.332659200001217,
+    "problem_instance": null,
+    "first_solution_seconds": 0.4661167000012938,
+    "feasibility_extension_used": false,
+    "makespan": 1021735.0,
+    "source": "exchange_t11381_0",
+    "solution_available": true,
+    "active_cores": 4,
+    "data_movement_bytes": {
+      "original_graph_copy_bytes": 30670848,
+      "scheduled_copy_bytes": 59375616,
+      "added_copy_bytes": 28704768,
+      "partition_added_copy_bytes": 28704768,
+      "spill_added_copy_bytes": 0
+    },
+    "global_lower_bound": 884736.0,
+    "portfolio_policy": "protected native route; independent local objectives; time-weighted fair service",
+    "routes": [
+      {
+        "name": "native_reference",
+        "reference": true,
+        "initial_makespan": 1040640.0,
+        "best_makespan": 1021735.0,
+        "local_improvements": 2,
+        "steps": 25,
+        "seconds": 9.35578579999492,
+        "secondary_centers": 0,
+        "fifo_calls": 0,
+        "activation_calls": 0,
+        "repair_calls": 1,
+        "repair_skipped": 0,
+        "repair_seconds": 0.041654900000139605,
+        "status": "searching"
+      },
+      {
+        "name": "route_native_joint",
+        "reference": false,
+        "initial_makespan": 1040640.0,
+        "best_makespan": 1040640.0,
+        "local_improvements": 0,
+        "steps": 20,
+        "seconds": 4.368087100010598,
+        "secondary_centers": 0,
+        "fifo_calls": 4,
+        "activation_calls": 0,
+        "repair_calls": 2,
+        "repair_skipped": 0,
+        "repair_seconds": 0.08919299999979557,
+        "status": "searching"
+      }
+    ],
+    "termination": "time_limit"
+  },
+  "plan_available": true,
+  "total_seconds": 19.464077500000712,
+  "exit_code": 0,
+  "stage": "v5_cache",
+  "case": "case_06",
+  "mode": "search",
+  "budget": 20.0,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 19.500312699998176
+}

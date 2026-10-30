@@ -1,0 +1,311 @@
+{
+  "action": "search",
+  "prepare_seconds": 0.06540310000127647,
+  "solve_seconds": 19.30836740000086,
+  "report": {
+    "status": "complete",
+    "solver_version": "scene-b-v5-case-budget",
+    "time_limit": 20.0,
+    "ablation": "full",
+    "feasibility_grace_seconds": 0.0,
+    "search_profile": "compact",
+    "warm_start": null,
+    "stats": {
+      "full_evaluations": 22,
+      "invalid_evaluations": 0,
+      "timeout_evaluations": 0,
+      "expansions": 8,
+      "invalid_expansions": 0,
+      "generated": 362,
+      "duplicates": 196,
+      "safe_pruned": 56,
+      "accepted": 4,
+      "batches": 15,
+      "primary_improvements": 4,
+      "secondary_improvements": 0,
+      "seed_candidates": 6,
+      "elite_restarts": 5,
+      "candidate_pages": 11,
+      "construction_seconds": 1.5665583000009065,
+      "screening_seconds": 1.3630690999998478,
+      "expansion_seconds": 2.9160099000000628,
+      "evaluation_seconds": 10.925778600005287,
+      "generation_seconds": 0.0748047999877599,
+      "repair_seconds": 0.2832208999971044,
+      "validation_seconds": 0.1135697999925469,
+      "record_seconds": 7.049999840091914e-05,
+      "checkpoint_seconds": 7.999988156370819e-07,
+      "coupled_reorders": 4,
+      "coupled_reorder_seconds": 0.27954000000318047,
+      "secondary_centers_expanded": 0,
+      "seed_reorders": 2,
+      "seed_reorder_seconds": 0.9340400000000955,
+      "local_improvements": 5,
+      "route_steps": 62,
+      "repair_skipped": 11,
+      "activation_rounds": 0
+    },
+    "history": [
+      {
+        "source": "native_bootstrap",
+        "status": "ok",
+        "seconds": 0.46673400000145193,
+        "elapsed_seconds": 0.47260930000265944,
+        "route": "construction",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "pipe_critical_eft",
+        "status": "ok",
+        "seconds": 0.7630088999976579,
+        "elapsed_seconds": 2.058892900000501,
+        "route": "construction",
+        "makespan": 6547656.0,
+        "added_copy_bytes": 321912832
+      },
+      {
+        "source": "native_lambda_0",
+        "status": "ok",
+        "seconds": 0.4945923999985098,
+        "elapsed_seconds": 2.9801112999994075,
+        "route": "construction",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "structure_atoms_c0.5_merged",
+        "status": "ok",
+        "seconds": 0.5774481999978889,
+        "elapsed_seconds": 3.9403559999991558,
+        "route": "construction",
+        "makespan": 2066605.0,
+        "added_copy_bytes": 80740352
+      },
+      {
+        "source": "native_bootstrap_fifo_measured_8",
+        "status": "ok",
+        "seconds": 0.5004039000014018,
+        "elapsed_seconds": 4.57434529999955,
+        "route": "construction",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_1",
+        "status": "ok",
+        "seconds": 0.49983340000108,
+        "elapsed_seconds": 6.195071500002086,
+        "route": "native_reference",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_1_fifo_joint",
+        "status": "ok",
+        "seconds": 0.5065279999980703,
+        "elapsed_seconds": 6.920326300001761,
+        "route": "route_native_joint",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_2",
+        "status": "ok",
+        "seconds": 0.46328210000137915,
+        "elapsed_seconds": 7.826635900000838,
+        "route": "native_reference",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.493753700000525,
+        "elapsed_seconds": 8.912320200000977,
+        "route": "route_native_joint",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "exchange_t11237_2",
+        "status": "ok",
+        "seconds": 0.46896380000180216,
+        "elapsed_seconds": 9.417152800000622,
+        "route": "native_reference",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "split_0",
+        "status": "ok",
+        "seconds": 0.496541000000434,
+        "elapsed_seconds": 10.554027000001952,
+        "route": "native_reference",
+        "makespan": 1464740.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "exchange_t11237_2",
+        "status": "ok",
+        "seconds": 0.43566830000054324,
+        "elapsed_seconds": 11.59984170000098,
+        "route": "native_reference",
+        "makespan": 1464740.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "exchange_t11237_2_fifo_joint",
+        "status": "ok",
+        "seconds": 0.4452510000010079,
+        "elapsed_seconds": 12.152170400000614,
+        "route": "route_native_joint",
+        "makespan": 1557540.0,
+        "added_copy_bytes": 39845888
+      },
+      {
+        "source": "consumer_t11237_0_1",
+        "status": "ok",
+        "seconds": 0.45665160000135074,
+        "elapsed_seconds": 12.644474299999274,
+        "route": "native_reference",
+        "makespan": 1788333.0,
+        "added_copy_bytes": 49872896
+      },
+      {
+        "source": "exchange_t11237_3",
+        "status": "ok",
+        "seconds": 0.4293613000008918,
+        "elapsed_seconds": 13.087316600001941,
+        "route": "native_reference",
+        "makespan": 1464740.0,
+        "added_copy_bytes": 44564480
+      },
+      {
+        "source": "split_0",
+        "status": "ok",
+        "seconds": 0.43824250000034226,
+        "elapsed_seconds": 13.81917009999961,
+        "route": "native_reference",
+        "makespan": 1510055.0,
+        "added_copy_bytes": 51773440
+      },
+      {
+        "source": "split_1",
+        "status": "ok",
+        "seconds": 0.4829295999988972,
+        "elapsed_seconds": 14.748329800000647,
+        "route": "route_native_joint",
+        "makespan": 1413340.0,
+        "added_copy_bytes": 49283072
+      },
+      {
+        "source": "exchange_t11237_3",
+        "status": "ok",
+        "seconds": 0.49827690000165603,
+        "elapsed_seconds": 15.991203400000813,
+        "route": "route_native_joint",
+        "makespan": 1413340.0,
+        "added_copy_bytes": 49283072
+      },
+      {
+        "source": "consumer_t11237_0_1",
+        "status": "ok",
+        "seconds": 0.5366505999991205,
+        "elapsed_seconds": 16.737551900001563,
+        "route": "native_reference",
+        "makespan": 1770068.0,
+        "added_copy_bytes": 54493184
+      },
+      {
+        "source": "exchange_t11237_4",
+        "status": "ok",
+        "seconds": 0.4946553000008862,
+        "elapsed_seconds": 17.644719100000657,
+        "route": "native_reference",
+        "makespan": 1408310.0,
+        "added_copy_bytes": 50921472
+      },
+      {
+        "source": "exchange_t11265_0",
+        "status": "ok",
+        "seconds": 0.468763000000763,
+        "elapsed_seconds": 18.59585380000135,
+        "route": "native_reference",
+        "makespan": 1413340.0,
+        "added_copy_bytes": 49283072
+      },
+      {
+        "source": "consumer_t11265_5_0",
+        "status": "ok",
+        "seconds": 0.5082390999996278,
+        "elapsed_seconds": 19.12120060000234,
+        "route": "native_reference",
+        "makespan": 1770068.0,
+        "added_copy_bytes": 54493184
+      }
+    ],
+    "time_seconds": 19.211127900001884,
+    "problem_instance": null,
+    "first_solution_seconds": 0.48026600000230246,
+    "feasibility_extension_used": false,
+    "makespan": 1408310.0,
+    "source": "exchange_t11237_4",
+    "solution_available": true,
+    "active_cores": 4,
+    "data_movement_bytes": {
+      "original_graph_copy_bytes": 23592960,
+      "scheduled_copy_bytes": 74514432,
+      "added_copy_bytes": 50921472,
+      "partition_added_copy_bytes": 37748736,
+      "spill_added_copy_bytes": 13172736
+    },
+    "global_lower_bound": 884736.0,
+    "portfolio_policy": "protected native route; independent local objectives; time-weighted fair service",
+    "routes": [
+      {
+        "name": "native_reference",
+        "reference": true,
+        "initial_makespan": 1557540.0,
+        "best_makespan": 1408310.0,
+        "local_improvements": 3,
+        "steps": 36,
+        "seconds": 9.555602799991902,
+        "secondary_centers": 0,
+        "fifo_calls": 0,
+        "activation_calls": 0,
+        "repair_calls": 4,
+        "repair_skipped": 7,
+        "repair_seconds": 1.6135963999986416,
+        "status": "searching"
+      },
+      {
+        "name": "route_native_joint",
+        "reference": false,
+        "initial_makespan": 1557540.0,
+        "best_makespan": 1413340.0,
+        "local_improvements": 2,
+        "steps": 26,
+        "seconds": 4.49812679999377,
+        "secondary_centers": 0,
+        "fifo_calls": 4,
+        "activation_calls": 0,
+        "repair_calls": 4,
+        "repair_skipped": 4,
+        "repair_seconds": 0.18492980000155512,
+        "status": "searching"
+      }
+    ],
+    "termination": "time_limit"
+  },
+  "plan_available": true,
+  "total_seconds": 19.377986200001033,
+  "exit_code": 0,
+  "stage": "v4_scores",
+  "case": "case_00",
+  "mode": "search",
+  "budget": 20.0,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 19.41607809999914
+}

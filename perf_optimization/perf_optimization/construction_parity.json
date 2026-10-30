@@ -1,0 +1,20 @@
+[
+  {
+    "case": "case_01",
+    "identical": true,
+    "baseline_seconds": 0.1503238000004785,
+    "final_seconds": 0.059735699996963376
+  },
+  {
+    "case": "case_03",
+    "identical": true,
+    "baseline_seconds": 2.7598964999997406,
+    "final_seconds": 1.7965594999986934
+  },
+  {
+    "case": "case_08",
+    "identical": true,
+    "baseline_seconds": 9.897484599998279,
+    "final_seconds": 6.274417599997832
+  }
+]

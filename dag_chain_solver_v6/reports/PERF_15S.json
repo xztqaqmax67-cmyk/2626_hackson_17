@@ -1,0 +1,885 @@
+{
+  "measurement": "fixed_work_deterministic_seed_search",
+  "cores": 5,
+  "repetitions": 3,
+  "cases": [
+    "case_00",
+    "case_05",
+    "case_08"
+  ],
+  "completed": true,
+  "definitions": {
+    "workload": "chain_diagnostics calls solve(), not solve_for_budget(); search limits in seconds are not active.",
+    "primary_timing": "Whole process wall time including parsing, immutable cache construction, solve, and output.",
+    "secondary_timing": "Diagnostic seconds field: solve only, excludes parsing and output.",
+    "equivalence": "Exact emitted plan bytes and all diagnostic fields other than seconds, across versions and repetitions.",
+    "aggregation": "Sum of per-case median times; ratio old/new. Not an arithmetic mean of speedup ratios.",
+    "scope": "Covers seed search comparator and MemoryOrder changes. Does not measure timed anytime neighborhood generation or prove arbitrary-input correctness.",
+    "timing_limit": "Three serial repetitions by default, alternating old/new order. No statistical significance claim.",
+    "scoring": "No official scorer is invoked; reported estimates are internal values."
+  },
+  "executable_sha256": {
+    "old": "b21d3dc4f037c78d3bc28f3f2126288998c22a3dfe7fda8b1b0cad6c895dd9a8",
+    "new": "f5176ee95bad79c620bcfcf59b5f895258e5b245d0376e59d9e86895d4607e15"
+  },
+  "executable_paths": {
+    "old": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+    "new": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe"
+  },
+  "source_sha256": {
+    "old": {
+      "CMakeLists.txt": "1ef2c59f06a27f094abc1873dce3ecaec5abb6448b63501c14a935302c8b2bee",
+      "tests/diagnostics.cpp": "a9b93c0ed43fb3d54bcd0917bba0ba575157211011b11cc86e66bbd8a2bb9038",
+      "src/anytime.cpp": "93573f1cba219e4a5081298b2e5ba94cb7ac3c7b33138bedf2c7499a2e4c6e74",
+      "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+      "src/chain.cpp": "86cc636853ceee2060e04883e8161472374383c50a43badf7dc80864c5d308da",
+      "src/chain.hpp": "0f9f50ad0e957898262ec54b66459a4cfcb239885c9b0268cf8502c97b559f59",
+      "src/main.cpp": "1435c693887fb087e8b3ecbedbb2ccb0c9070d8114492984a48465bea54e581b",
+      "src/model.hpp": "934517d5975379791a479f6e67716af2261847b26c13d2aed54123195d24666e",
+      "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+      "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+      "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+      "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+      "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+      "src/search_limits.hpp": "7ea15c4d5bacc88898353b55a86a146a2b6a8db5602d00722c38046af3cc034b",
+      "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+      "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2"
+    },
+    "new": {
+      "CMakeLists.txt": "13258765798b55592b55a39a2eb24da1c806c884f3e1a18504f6298cf18044ab",
+      "tests/diagnostics.cpp": "a9b93c0ed43fb3d54bcd0917bba0ba575157211011b11cc86e66bbd8a2bb9038",
+      "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+      "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+      "src/chain.cpp": "edb8807879630e8dac16152e800e108d6829fdc9344c34782db4ae23d03bd17c",
+      "src/chain.hpp": "0f9f50ad0e957898262ec54b66459a4cfcb239885c9b0268cf8502c97b559f59",
+      "src/main.cpp": "db70877e57b92226be7eec63ad4d122a78fe20249525351dc155efd28f9338bc",
+      "src/model.hpp": "61a566ca38b4dbe643fdf917e7665996728248e9f76ab37e630eb2aaaad4ede5",
+      "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+      "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+      "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+      "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+      "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+      "src/search_limits.hpp": "51cd58b052e8c27ba105895d58c25709b1ac3b73c19e0b062e9953dc4dc3e3b6",
+      "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+      "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+      "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726"
+    }
+  },
+  "input_sha256": {
+    "case_00": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+    "case_05": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+    "case_08": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45"
+  },
+  "build_settings": {
+    "old": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CXX_COMPILER": "D:/mingw/x86_64-15.1.0-release-win32-seh-ucrt-rt_v12-rev0/mingw64/bin/g++.exe",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_GENERATOR": "Ninja"
+    },
+    "new": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CXX_COMPILER": "D:/mingw/x86_64-15.1.0-release-win32-seh-ucrt-rt_v12-rev0/mingw64/bin/g++.exe",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_GENERATOR": "Ninja"
+    }
+  },
+  "runs": [
+    {
+      "case": "case_00",
+      "variant": "old",
+      "repetition": 1,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_00.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_00\\rep_1_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 1.4040215001441538,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_00\\rep_1_old",
+      "solve_seconds": 1.256488,
+      "diagnostic": {
+        "estimated_cycles": 1095310.04174824,
+        "estimated_route_bytes": 53084160,
+        "estimated_spill_bytes": 8093696,
+        "coarse_sketch": 899435,
+        "coarse_spill": 8093696,
+        "candidates": 196,
+        "refined_candidates": 90,
+        "region_proposals": 0,
+        "slack_proposals": 8,
+        "effective_cores": 4,
+        "label": "memory_order_dfs_retained_migration_1_3"
+      },
+      "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+      "plan": "runs\\perf_15s\\case_00\\rep_1_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_00",
+      "variant": "new",
+      "repetition": 1,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_00.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_00\\rep_1_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 1.1668714999686927,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_00\\rep_1_new",
+      "solve_seconds": 1.017523,
+      "diagnostic": {
+        "estimated_cycles": 1095310.04174824,
+        "estimated_route_bytes": 53084160,
+        "estimated_spill_bytes": 8093696,
+        "coarse_sketch": 899435,
+        "coarse_spill": 8093696,
+        "candidates": 196,
+        "refined_candidates": 90,
+        "region_proposals": 0,
+        "slack_proposals": 8,
+        "effective_cores": 4,
+        "label": "memory_order_dfs_retained_migration_1_3"
+      },
+      "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+      "plan": "runs\\perf_15s\\case_00\\rep_1_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_00",
+      "variant": "new",
+      "repetition": 2,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_00.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_00\\rep_2_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 1.0524623999372125,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_00\\rep_2_new",
+      "solve_seconds": 1.00533,
+      "diagnostic": {
+        "estimated_cycles": 1095310.04174824,
+        "estimated_route_bytes": 53084160,
+        "estimated_spill_bytes": 8093696,
+        "coarse_sketch": 899435,
+        "coarse_spill": 8093696,
+        "candidates": 196,
+        "refined_candidates": 90,
+        "region_proposals": 0,
+        "slack_proposals": 8,
+        "effective_cores": 4,
+        "label": "memory_order_dfs_retained_migration_1_3"
+      },
+      "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+      "plan": "runs\\perf_15s\\case_00\\rep_2_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_00",
+      "variant": "old",
+      "repetition": 2,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_00.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_00\\rep_2_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 1.3331842001061887,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_00\\rep_2_old",
+      "solve_seconds": 1.286085,
+      "diagnostic": {
+        "estimated_cycles": 1095310.04174824,
+        "estimated_route_bytes": 53084160,
+        "estimated_spill_bytes": 8093696,
+        "coarse_sketch": 899435,
+        "coarse_spill": 8093696,
+        "candidates": 196,
+        "refined_candidates": 90,
+        "region_proposals": 0,
+        "slack_proposals": 8,
+        "effective_cores": 4,
+        "label": "memory_order_dfs_retained_migration_1_3"
+      },
+      "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+      "plan": "runs\\perf_15s\\case_00\\rep_2_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_00",
+      "variant": "old",
+      "repetition": 3,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_00.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_00\\rep_3_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 1.3287017000839114,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_00\\rep_3_old",
+      "solve_seconds": 1.277086,
+      "diagnostic": {
+        "estimated_cycles": 1095310.04174824,
+        "estimated_route_bytes": 53084160,
+        "estimated_spill_bytes": 8093696,
+        "coarse_sketch": 899435,
+        "coarse_spill": 8093696,
+        "candidates": 196,
+        "refined_candidates": 90,
+        "region_proposals": 0,
+        "slack_proposals": 8,
+        "effective_cores": 4,
+        "label": "memory_order_dfs_retained_migration_1_3"
+      },
+      "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+      "plan": "runs\\perf_15s\\case_00\\rep_3_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_00",
+      "variant": "new",
+      "repetition": 3,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_00.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_00\\rep_3_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 1.110976800089702,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_00\\rep_3_new",
+      "solve_seconds": 1.062781,
+      "diagnostic": {
+        "estimated_cycles": 1095310.04174824,
+        "estimated_route_bytes": 53084160,
+        "estimated_spill_bytes": 8093696,
+        "coarse_sketch": 899435,
+        "coarse_spill": 8093696,
+        "candidates": 196,
+        "refined_candidates": 90,
+        "region_proposals": 0,
+        "slack_proposals": 8,
+        "effective_cores": 4,
+        "label": "memory_order_dfs_retained_migration_1_3"
+      },
+      "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+      "plan": "runs\\perf_15s\\case_00\\rep_3_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_05",
+      "variant": "new",
+      "repetition": 1,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_05.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_05\\rep_1_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 6.4315653999801725,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_05\\rep_1_new",
+      "solve_seconds": 6.145144,
+      "diagnostic": {
+        "estimated_cycles": 9534691.76942904,
+        "estimated_route_bytes": 139984896,
+        "estimated_spill_bytes": 426311680,
+        "coarse_sketch": 4733291,
+        "coarse_spill": 426311680,
+        "candidates": 207,
+        "refined_candidates": 88,
+        "region_proposals": 0,
+        "slack_proposals": 14,
+        "effective_cores": 4,
+        "label": "retained_migration_1_2"
+      },
+      "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+      "plan": "runs\\perf_15s\\case_05\\rep_1_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_05",
+      "variant": "old",
+      "repetition": 1,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_05.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_05\\rep_1_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 7.938719700090587,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_05\\rep_1_old",
+      "solve_seconds": 7.702448,
+      "diagnostic": {
+        "estimated_cycles": 9534691.76942904,
+        "estimated_route_bytes": 139984896,
+        "estimated_spill_bytes": 426311680,
+        "coarse_sketch": 4733291,
+        "coarse_spill": 426311680,
+        "candidates": 207,
+        "refined_candidates": 88,
+        "region_proposals": 0,
+        "slack_proposals": 14,
+        "effective_cores": 4,
+        "label": "retained_migration_1_2"
+      },
+      "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+      "plan": "runs\\perf_15s\\case_05\\rep_1_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_05",
+      "variant": "old",
+      "repetition": 2,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_05.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_05\\rep_2_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 7.78865969995968,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_05\\rep_2_old",
+      "solve_seconds": 7.547247,
+      "diagnostic": {
+        "estimated_cycles": 9534691.76942904,
+        "estimated_route_bytes": 139984896,
+        "estimated_spill_bytes": 426311680,
+        "coarse_sketch": 4733291,
+        "coarse_spill": 426311680,
+        "candidates": 207,
+        "refined_candidates": 88,
+        "region_proposals": 0,
+        "slack_proposals": 14,
+        "effective_cores": 4,
+        "label": "retained_migration_1_2"
+      },
+      "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+      "plan": "runs\\perf_15s\\case_05\\rep_2_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_05",
+      "variant": "new",
+      "repetition": 2,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_05.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_05\\rep_2_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 6.223675299901515,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_05\\rep_2_new",
+      "solve_seconds": 6.023591,
+      "diagnostic": {
+        "estimated_cycles": 9534691.76942904,
+        "estimated_route_bytes": 139984896,
+        "estimated_spill_bytes": 426311680,
+        "coarse_sketch": 4733291,
+        "coarse_spill": 426311680,
+        "candidates": 207,
+        "refined_candidates": 88,
+        "region_proposals": 0,
+        "slack_proposals": 14,
+        "effective_cores": 4,
+        "label": "retained_migration_1_2"
+      },
+      "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+      "plan": "runs\\perf_15s\\case_05\\rep_2_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_05",
+      "variant": "new",
+      "repetition": 3,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_05.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_05\\rep_3_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 6.363807799993083,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_05\\rep_3_new",
+      "solve_seconds": 6.157482,
+      "diagnostic": {
+        "estimated_cycles": 9534691.76942904,
+        "estimated_route_bytes": 139984896,
+        "estimated_spill_bytes": 426311680,
+        "coarse_sketch": 4733291,
+        "coarse_spill": 426311680,
+        "candidates": 207,
+        "refined_candidates": 88,
+        "region_proposals": 0,
+        "slack_proposals": 14,
+        "effective_cores": 4,
+        "label": "retained_migration_1_2"
+      },
+      "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+      "plan": "runs\\perf_15s\\case_05\\rep_3_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_05",
+      "variant": "old",
+      "repetition": 3,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_05.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_05\\rep_3_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 7.548141200095415,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_05\\rep_3_old",
+      "solve_seconds": 7.336812,
+      "diagnostic": {
+        "estimated_cycles": 9534691.76942904,
+        "estimated_route_bytes": 139984896,
+        "estimated_spill_bytes": 426311680,
+        "coarse_sketch": 4733291,
+        "coarse_spill": 426311680,
+        "candidates": 207,
+        "refined_candidates": 88,
+        "region_proposals": 0,
+        "slack_proposals": 14,
+        "effective_cores": 4,
+        "label": "retained_migration_1_2"
+      },
+      "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+      "plan": "runs\\perf_15s\\case_05\\rep_3_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_08",
+      "variant": "old",
+      "repetition": 1,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_08.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_08\\rep_1_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 8.856231499928981,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_08\\rep_1_old",
+      "solve_seconds": 8.684844,
+      "diagnostic": {
+        "estimated_cycles": 7126425.83988188,
+        "estimated_route_bytes": 211058976,
+        "estimated_spill_bytes": 149422976,
+        "coarse_sketch": 5946384,
+        "coarse_spill": 149422976,
+        "candidates": 619,
+        "refined_candidates": 157,
+        "region_proposals": 16,
+        "slack_proposals": 16,
+        "effective_cores": 5,
+        "label": "region_bands4_dfs_writer_repair"
+      },
+      "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+      "plan": "runs\\perf_15s\\case_08\\rep_1_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_08",
+      "variant": "new",
+      "repetition": 1,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_08.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_08\\rep_1_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 7.618999799946323,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_08\\rep_1_new",
+      "solve_seconds": 7.40314,
+      "diagnostic": {
+        "estimated_cycles": 7126425.83988188,
+        "estimated_route_bytes": 211058976,
+        "estimated_spill_bytes": 149422976,
+        "coarse_sketch": 5946384,
+        "coarse_spill": 149422976,
+        "candidates": 619,
+        "refined_candidates": 157,
+        "region_proposals": 16,
+        "slack_proposals": 16,
+        "effective_cores": 5,
+        "label": "region_bands4_dfs_writer_repair"
+      },
+      "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+      "plan": "runs\\perf_15s\\case_08\\rep_1_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_08",
+      "variant": "new",
+      "repetition": 2,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_08.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_08\\rep_2_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 7.704337099799886,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_08\\rep_2_new",
+      "solve_seconds": 7.554949,
+      "diagnostic": {
+        "estimated_cycles": 7126425.83988188,
+        "estimated_route_bytes": 211058976,
+        "estimated_spill_bytes": 149422976,
+        "coarse_sketch": 5946384,
+        "coarse_spill": 149422976,
+        "candidates": 619,
+        "refined_candidates": 157,
+        "region_proposals": 16,
+        "slack_proposals": 16,
+        "effective_cores": 5,
+        "label": "region_bands4_dfs_writer_repair"
+      },
+      "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+      "plan": "runs\\perf_15s\\case_08\\rep_2_new\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_08",
+      "variant": "old",
+      "repetition": 2,
+      "pair_order": [
+        "new",
+        "old"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_08.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_08\\rep_2_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 8.85926830000244,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_08\\rep_2_old",
+      "solve_seconds": 8.710926,
+      "diagnostic": {
+        "estimated_cycles": 7126425.83988188,
+        "estimated_route_bytes": 211058976,
+        "estimated_spill_bytes": 149422976,
+        "coarse_sketch": 5946384,
+        "coarse_spill": 149422976,
+        "candidates": 619,
+        "refined_candidates": 157,
+        "region_proposals": 16,
+        "slack_proposals": 16,
+        "effective_cores": 5,
+        "label": "region_bands4_dfs_writer_repair"
+      },
+      "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+      "plan": "runs\\perf_15s\\case_08\\rep_2_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_08",
+      "variant": "old",
+      "repetition": 3,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\snapshots\\v6_0_6_0_before_perf_15s\\build_perf\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_08.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_08\\rep_3_old\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 8.995422800071537,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_08\\rep_3_old",
+      "solve_seconds": 8.829193,
+      "diagnostic": {
+        "estimated_cycles": 7126425.83988188,
+        "estimated_route_bytes": 211058976,
+        "estimated_spill_bytes": 149422976,
+        "coarse_sketch": 5946384,
+        "coarse_spill": 149422976,
+        "candidates": 619,
+        "refined_candidates": 157,
+        "region_proposals": 16,
+        "slack_proposals": 16,
+        "effective_cores": 5,
+        "label": "region_bands4_dfs_writer_repair"
+      },
+      "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+      "plan": "runs\\perf_15s\\case_08\\rep_3_old\\plan.json",
+      "matches_all_prior_runs": true
+    },
+    {
+      "case": "case_08",
+      "variant": "new",
+      "repetition": 3,
+      "pair_order": [
+        "old",
+        "new"
+      ],
+      "command": [
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\build_mingw\\bin\\chain_diagnostics.exe",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\references\\hackathon_20261030\\data\\case_08.json",
+        "5",
+        "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v6\\runs\\perf_15s\\case_08\\rep_3_new\\plan.json"
+      ],
+      "status": "ok",
+      "process_wall_seconds": 7.820858299965039,
+      "exit_code": 0,
+      "artifacts": "runs\\perf_15s\\case_08\\rep_3_new",
+      "solve_seconds": 7.501878,
+      "diagnostic": {
+        "estimated_cycles": 7126425.83988188,
+        "estimated_route_bytes": 211058976,
+        "estimated_spill_bytes": 149422976,
+        "coarse_sketch": 5946384,
+        "coarse_spill": 149422976,
+        "candidates": 619,
+        "refined_candidates": 157,
+        "region_proposals": 16,
+        "slack_proposals": 16,
+        "effective_cores": 5,
+        "label": "region_bands4_dfs_writer_repair"
+      },
+      "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+      "plan": "runs\\perf_15s\\case_08\\rep_3_new\\plan.json",
+      "matches_all_prior_runs": true
+    }
+  ],
+  "rows": [
+    {
+      "case": "case_00",
+      "cores": 5,
+      "exact_parity": true,
+      "old": {
+        "process_wall_seconds": 1.3331842001061887,
+        "solve_seconds": 1.277086,
+        "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+        "diagnostic": {
+          "estimated_cycles": 1095310.04174824,
+          "estimated_route_bytes": 53084160,
+          "estimated_spill_bytes": 8093696,
+          "coarse_sketch": 899435,
+          "coarse_spill": 8093696,
+          "candidates": 196,
+          "refined_candidates": 90,
+          "region_proposals": 0,
+          "slack_proposals": 8,
+          "effective_cores": 4,
+          "label": "memory_order_dfs_retained_migration_1_3"
+        }
+      },
+      "new": {
+        "process_wall_seconds": 1.110976800089702,
+        "solve_seconds": 1.017523,
+        "plan_sha256": "1ee53440d7382d7466ad8b6b8f1e4d407dfdfea05f5662feb3a270b546193ce5",
+        "diagnostic": {
+          "estimated_cycles": 1095310.04174824,
+          "estimated_route_bytes": 53084160,
+          "estimated_spill_bytes": 8093696,
+          "coarse_sketch": 899435,
+          "coarse_spill": 8093696,
+          "candidates": 196,
+          "refined_candidates": 90,
+          "region_proposals": 0,
+          "slack_proposals": 8,
+          "effective_cores": 4,
+          "label": "memory_order_dfs_retained_migration_1_3"
+        }
+      },
+      "process_speedup": 1.2000108373087046,
+      "solve_speedup": 1.255093005268677
+    },
+    {
+      "case": "case_05",
+      "cores": 5,
+      "exact_parity": true,
+      "old": {
+        "process_wall_seconds": 7.78865969995968,
+        "solve_seconds": 7.547247,
+        "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+        "diagnostic": {
+          "estimated_cycles": 9534691.76942904,
+          "estimated_route_bytes": 139984896,
+          "estimated_spill_bytes": 426311680,
+          "coarse_sketch": 4733291,
+          "coarse_spill": 426311680,
+          "candidates": 207,
+          "refined_candidates": 88,
+          "region_proposals": 0,
+          "slack_proposals": 14,
+          "effective_cores": 4,
+          "label": "retained_migration_1_2"
+        }
+      },
+      "new": {
+        "process_wall_seconds": 6.363807799993083,
+        "solve_seconds": 6.145144,
+        "plan_sha256": "dcb1ad1ed1b2949760297a09b911df8aba33cd7c37b6b33c220c315061c96175",
+        "diagnostic": {
+          "estimated_cycles": 9534691.76942904,
+          "estimated_route_bytes": 139984896,
+          "estimated_spill_bytes": 426311680,
+          "coarse_sketch": 4733291,
+          "coarse_spill": 426311680,
+          "candidates": 207,
+          "refined_candidates": 88,
+          "region_proposals": 0,
+          "slack_proposals": 14,
+          "effective_cores": 4,
+          "label": "retained_migration_1_2"
+        }
+      },
+      "process_speedup": 1.2238992667201776,
+      "solve_speedup": 1.228164384756484
+    },
+    {
+      "case": "case_08",
+      "cores": 5,
+      "exact_parity": true,
+      "old": {
+        "process_wall_seconds": 8.85926830000244,
+        "solve_seconds": 8.710926,
+        "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+        "diagnostic": {
+          "estimated_cycles": 7126425.83988188,
+          "estimated_route_bytes": 211058976,
+          "estimated_spill_bytes": 149422976,
+          "coarse_sketch": 5946384,
+          "coarse_spill": 149422976,
+          "candidates": 619,
+          "refined_candidates": 157,
+          "region_proposals": 16,
+          "slack_proposals": 16,
+          "effective_cores": 5,
+          "label": "region_bands4_dfs_writer_repair"
+        }
+      },
+      "new": {
+        "process_wall_seconds": 7.704337099799886,
+        "solve_seconds": 7.501878,
+        "plan_sha256": "264f4cd99436ecc9c730a636c81b0a5e81c1ed76c47c170e9c136ab6ccc0dce5",
+        "diagnostic": {
+          "estimated_cycles": 7126425.83988188,
+          "estimated_route_bytes": 211058976,
+          "estimated_spill_bytes": 149422976,
+          "coarse_sketch": 5946384,
+          "coarse_spill": 149422976,
+          "candidates": 619,
+          "refined_candidates": 157,
+          "region_proposals": 16,
+          "slack_proposals": 16,
+          "effective_cores": 5,
+          "label": "region_bands4_dfs_writer_repair"
+        }
+      },
+      "process_speedup": 1.14990662859658,
+      "solve_speedup": 1.1611660440225768
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "median_time_sums": {
+      "old": {
+        "process_wall_seconds": 17.98111220006831,
+        "solve_seconds": 17.535259
+      },
+      "new": {
+        "process_wall_seconds": 15.179121699882671,
+        "solve_seconds": 14.664545
+      }
+    },
+    "process_speedup": 1.1845950349161043,
+    "solve_speedup": 1.1957588182926917,
+    "all_plans_and_diagnostics_identical": true,
+    "process_time_reduction_percent": 15.582965441787266
+  }
+}

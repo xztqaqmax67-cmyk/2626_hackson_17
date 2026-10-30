@@ -1,0 +1,26 @@
+{
+  "ops": [
+    {"id": 1, "op": "COMPUTE", "pipe": "PIPE_M", "cycles": 40},
+    {"id": 2, "op": "COMPUTE", "pipe": "PIPE_V", "cycles": 20},
+    {"id": 3, "op": "COMPUTE", "pipe": "PIPE_M", "cycles": 30},
+    {"id": 4, "op": "COMPUTE", "pipe": "PIPE_V", "cycles": 10}
+  ],
+  "tensors": [
+    {"id": 101, "pos": "UB", "size": 64},
+    {"id": 102, "pos": "UB", "size": 64},
+    {"id": 103, "pos": "UB", "size": 32},
+    {"id": 104, "pos": "UB", "size": 64},
+    {"id": 105, "pos": "UB", "size": 32}
+  ],
+  "edges": [
+    {"source": 101, "target": 1},
+    {"source": 101, "target": 2},
+    {"source": 1, "target": 102},
+    {"source": 2, "target": 103},
+    {"source": 102, "target": 3},
+    {"source": 103, "target": 4},
+    {"source": 3, "target": 104},
+    {"source": 4, "target": 105},
+    {"source": 1, "target": 4, "data_size": 8}
+  ]
+}

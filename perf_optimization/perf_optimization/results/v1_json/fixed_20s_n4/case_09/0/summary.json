@@ -1,0 +1,11 @@
+{
+  "error": "scheduler deadlock: no_running_or_issuable_op",
+  "exit_code": 1,
+  "stage": "v1_json",
+  "case": "case_09",
+  "mode": "fixed",
+  "budget": 20.0,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 3.0555334000018775
+}

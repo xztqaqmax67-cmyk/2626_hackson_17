@@ -1,0 +1,12 @@
+# 场景 B 开发工具配置，与《提交要求文档》第 5.2 节一致。
+# 正式 npu_sched 使用程序内固定参数，不读取此文件。
+
+[capacity]
+L1 1572864
+UB 131072
+
+[bandwidth]
+bandwidth 60
+
+[multicore_scene_b]
+cross_core_copy_delay_cycles 1000

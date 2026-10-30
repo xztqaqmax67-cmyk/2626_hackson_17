@@ -1,0 +1,302 @@
+{
+  "action": "search",
+  "prepare_seconds": 0.28030650000073365,
+  "solve_seconds": 78.75520350000079,
+  "report": {
+    "status": "complete",
+    "solver_version": "scene-b-v5-case-budget",
+    "time_limit": 80.0,
+    "ablation": "full",
+    "feasibility_grace_seconds": 0.0,
+    "search_profile": "compact",
+    "warm_start": null,
+    "stats": {
+      "full_evaluations": 22,
+      "invalid_evaluations": 9,
+      "timeout_evaluations": 0,
+      "expansions": 9,
+      "invalid_expansions": 0,
+      "generated": 164,
+      "duplicates": 97,
+      "safe_pruned": 0,
+      "accepted": 4,
+      "batches": 5,
+      "primary_improvements": 4,
+      "secondary_improvements": 0,
+      "seed_candidates": 6,
+      "elite_restarts": 4,
+      "candidate_pages": 5,
+      "construction_seconds": 6.068891300001269,
+      "screening_seconds": 4.8657998999988195,
+      "expansion_seconds": 18.091724700003397,
+      "evaluation_seconds": 40.49860550000449,
+      "generation_seconds": 0.3878471999996691,
+      "repair_seconds": 4.503832700003841,
+      "validation_seconds": 0.45731049999812967,
+      "record_seconds": 0.0002353000054426957,
+      "checkpoint_seconds": 4.00003045797348e-07,
+      "coupled_reorders": 4,
+      "coupled_reorder_seconds": 1.2755867000014405,
+      "secondary_centers_expanded": 0,
+      "seed_reorders": 1,
+      "seed_reorder_seconds": 2.161209499998222,
+      "local_improvements": 5,
+      "route_steps": 27,
+      "repair_skipped": 0,
+      "activation_rounds": 1
+    },
+    "history": [
+      {
+        "source": "native_bootstrap",
+        "status": "ok",
+        "seconds": 2.6039721999986796,
+        "elapsed_seconds": 2.6260089999996126,
+        "route": "construction",
+        "makespan": 14739363.0,
+        "added_copy_bytes": 287154432
+      },
+      {
+        "source": "structure_separator4_id",
+        "status": "invalid",
+        "seconds": 0.7004374000025564,
+        "elapsed_seconds": 3.8861274999981106,
+        "route": "construction",
+        "error": "dependency timing violation"
+      },
+      {
+        "source": "pipe_critical_eft",
+        "status": "invalid",
+        "seconds": 0.6363607000021148,
+        "elapsed_seconds": 7.355017699999735,
+        "route": "construction",
+        "error": "subgraph priority order violates an intra-core dependency"
+      },
+      {
+        "source": "native_lambda_0",
+        "status": "invalid",
+        "seconds": 0.38842189999922994,
+        "elapsed_seconds": 9.20204129999911,
+        "route": "construction",
+        "error": "subgraph priority order violates an intra-core dependency"
+      },
+      {
+        "source": "structure_separator4_locality",
+        "status": "invalid",
+        "seconds": 0.4918502000000444,
+        "elapsed_seconds": 9.710186699998303,
+        "route": "construction",
+        "error": "scheduler deadlock: no_running_or_issuable_op"
+      },
+      {
+        "source": "pipe_ready_window",
+        "status": "invalid",
+        "seconds": 0.6375134999980219,
+        "elapsed_seconds": 10.375479999998788,
+        "route": "construction",
+        "error": "subgraph priority order violates an intra-core dependency"
+      },
+      {
+        "source": "native_lambda_1",
+        "status": "invalid",
+        "seconds": 0.3213387000032526,
+        "elapsed_seconds": 11.984134399997856,
+        "route": "construction",
+        "error": "subgraph priority order violates an intra-core dependency"
+      },
+      {
+        "source": "native_bootstrap_fifo_measured_8",
+        "status": "invalid",
+        "seconds": 1.8682084000029135,
+        "elapsed_seconds": 14.156824800000322,
+        "route": "construction",
+        "error": "scheduler deadlock: no_running_or_issuable_op"
+      },
+      {
+        "source": "load_1_0",
+        "status": "ok",
+        "seconds": 2.6079600999983086,
+        "elapsed_seconds": 19.545273099996848,
+        "route": "native_reference",
+        "makespan": 18669876.0,
+        "added_copy_bytes": 286196096
+      },
+      {
+        "source": "consumer_t40558_1_3",
+        "status": "ok",
+        "seconds": 2.5793349999985367,
+        "elapsed_seconds": 24.27090279999902,
+        "route": "route_native_joint",
+        "makespan": 14579050.0,
+        "added_copy_bytes": 204429632
+      },
+      {
+        "source": "load_chain_1_0",
+        "status": "ok",
+        "seconds": 2.535023500000534,
+        "elapsed_seconds": 29.236992799997097,
+        "route": "native_reference",
+        "makespan": 16879917.0,
+        "added_copy_bytes": 199878144
+      },
+      {
+        "source": "center_fifo_joint",
+        "status": "invalid",
+        "seconds": 1.6282449000027555,
+        "elapsed_seconds": 31.23110949999682,
+        "route": "route_native_joint",
+        "error": "scheduler deadlock: no_running_or_issuable_op"
+      },
+      {
+        "source": "load_3_0",
+        "status": "ok",
+        "seconds": 2.6791456999999355,
+        "elapsed_seconds": 35.69863319999786,
+        "route": "native_reference",
+        "makespan": 14739363.0,
+        "added_copy_bytes": 287154432
+      },
+      {
+        "source": "activate_3_to_1_stage4_50",
+        "status": "ok",
+        "seconds": 2.2598834999989776,
+        "elapsed_seconds": 38.25276689999737,
+        "route": "route_native_joint",
+        "makespan": 15448614.0,
+        "added_copy_bytes": 320255104
+      },
+      {
+        "source": "producer_t56821_2_3",
+        "status": "ok",
+        "seconds": 2.7532466999982717,
+        "elapsed_seconds": 43.32380170000033,
+        "route": "native_reference",
+        "makespan": 14274917.0,
+        "added_copy_bytes": 193570688
+      },
+      {
+        "source": "load_chain_1_0",
+        "status": "ok",
+        "seconds": 2.5768838000003598,
+        "elapsed_seconds": 48.303817599997274,
+        "route": "native_reference",
+        "makespan": 16879917.0,
+        "added_copy_bytes": 199878144
+      },
+      {
+        "source": "activate_3_to_1_stage4_50_fifo_joint",
+        "status": "invalid",
+        "seconds": 0.7311153000009654,
+        "elapsed_seconds": 49.42667299999812,
+        "route": "route_native_joint",
+        "error": "scheduler deadlock: no_running_or_issuable_op"
+      },
+      {
+        "source": "activate_3_to_1_stage4_35",
+        "status": "ok",
+        "seconds": 2.3999750000002678,
+        "elapsed_seconds": 51.84819859999698,
+        "route": "route_native_joint",
+        "makespan": 14469576.0,
+        "added_copy_bytes": 321359552
+      },
+      {
+        "source": "producer_t39342_0_3",
+        "status": "ok",
+        "seconds": 2.7279641999994055,
+        "elapsed_seconds": 56.39818529999684,
+        "route": "native_reference",
+        "makespan": 17235280.0,
+        "added_copy_bytes": 190803008
+      },
+      {
+        "source": "activate_3_to_1_stage4_35_fifo_joint",
+        "status": "ok",
+        "seconds": 2.4053874000019277,
+        "elapsed_seconds": 59.262232199998834,
+        "route": "route_native_joint",
+        "makespan": 10861968.0,
+        "added_copy_bytes": 277826368
+      },
+      {
+        "source": "exchange_t40561_7914",
+        "status": "ok",
+        "seconds": 2.436935199999425,
+        "elapsed_seconds": 68.37673969999742,
+        "route": "route_native_joint",
+        "makespan": 12716962.0,
+        "added_copy_bytes": 277808768
+      },
+      {
+        "source": "exchange_t40561_7914_repair",
+        "status": "ok",
+        "seconds": 2.529402199998003,
+        "elapsed_seconds": 77.74087169999984,
+        "route": "route_native_joint",
+        "makespan": 12717679.0,
+        "added_copy_bytes": 277766528
+      }
+    ],
+    "time_seconds": 78.3018837999989,
+    "problem_instance": null,
+    "first_solution_seconds": 2.6260457999997016,
+    "feasibility_extension_used": false,
+    "makespan": 10861968.0,
+    "source": "activate_3_to_1_stage4_35_fifo_joint",
+    "solution_available": true,
+    "active_cores": 4,
+    "data_movement_bytes": {
+      "original_graph_copy_bytes": 37961696,
+      "scheduled_copy_bytes": 315788064,
+      "added_copy_bytes": 277826368,
+      "partition_added_copy_bytes": 170809728,
+      "spill_added_copy_bytes": 107016640
+    },
+    "global_lower_bound": 3019728.75,
+    "portfolio_policy": "protected native route; independent local objectives; time-weighted fair service",
+    "routes": [
+      {
+        "name": "native_reference",
+        "reference": true,
+        "initial_makespan": 14739363.0,
+        "best_makespan": 14274917.0,
+        "local_improvements": 2,
+        "steps": 15,
+        "seconds": 29.14046419999795,
+        "secondary_centers": 0,
+        "fifo_calls": 0,
+        "activation_calls": 0,
+        "repair_calls": 4,
+        "repair_skipped": 0,
+        "repair_seconds": 5.986414499999228,
+        "status": "searching"
+      },
+      {
+        "name": "route_native_joint",
+        "reference": false,
+        "initial_makespan": 14739363.0,
+        "best_makespan": 10861968.0,
+        "local_improvements": 3,
+        "steps": 12,
+        "seconds": 34.47912630000792,
+        "secondary_centers": 0,
+        "fifo_calls": 4,
+        "activation_calls": 2,
+        "repair_calls": 2,
+        "repair_skipped": 0,
+        "repair_seconds": 11.23020120000001,
+        "status": "searching"
+      }
+    ],
+    "termination": "time_limit"
+  },
+  "plan_available": true,
+  "total_seconds": 79.04036489999999,
+  "exit_code": 0,
+  "stage": "v6_pipes",
+  "case": "case_08",
+  "mode": "search",
+  "budget": 80.0,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 79.11892069999885
+}

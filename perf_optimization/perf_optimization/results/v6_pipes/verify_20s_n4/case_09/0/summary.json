@@ -1,0 +1,22 @@
+{
+  "action": "evaluate",
+  "evaluation_seconds": 3.0190108999995573,
+  "makespan": 6909226.0,
+  "movement": {
+    "original_graph_copy_bytes": 10180992,
+    "scheduled_copy_bytes": 186452736,
+    "added_copy_bytes": 176271744,
+    "partition_added_copy_bytes": 35735744,
+    "spill_added_copy_bytes": 140536000
+  },
+  "result_sha256": "bdb6b48b179dc84a519242f2dc2e0fd23d58e625b48e6f0c866a3440e6bd6041",
+  "total_seconds": 3.221092099996895,
+  "exit_code": 0,
+  "stage": "v6_pipes",
+  "case": "case_09",
+  "mode": "verify",
+  "budget": 20,
+  "cores": 4,
+  "repeat": 0,
+  "wall_seconds": 3.2801069999986794
+}

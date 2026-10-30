@@ -1,0 +1,1 @@
+{"graph": "E:\\hackthon\\hackathon_data\\case_09.json", "action": "evaluate", "cores": 4, "budget": 20, "output": "E:\\hackthon\\perf_optimization\\results\\v0_baseline\\verify_20s_n4\\case_09\\0\\plan.json", "plan": "E:\\hackthon\\perf_optimization\\results\\v6_pipes\\search_20s_n4\\case_09\\0\\plan.json"}

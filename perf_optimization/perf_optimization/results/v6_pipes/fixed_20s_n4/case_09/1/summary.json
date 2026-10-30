@@ -1,0 +1,11 @@
+{
+  "error": "scheduler deadlock: no_running_or_issuable_op",
+  "exit_code": 1,
+  "stage": "v6_pipes",
+  "case": "case_09",
+  "mode": "fixed",
+  "budget": 20,
+  "cores": 4,
+  "repeat": 1,
+  "wall_seconds": 2.9448524999970687
+}

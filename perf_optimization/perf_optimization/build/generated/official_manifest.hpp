@@ -1,0 +1,17 @@
+#pragma once
+namespace problem2 {
+inline constexpr char official_manifest[] = R"manifest({"cli_main.cpp":"ea7175cc033c66a4e6dd6ad979f144c431bbbe42a29cdf9e38beaae0d0323970","contest_io.cpp":"59a55667385cf8fce0071b84d6047e90a52dd2e6bd4d8acb54dbd1be2b6a23cf","contest_io.hpp":"b1a82cf54b6e78941108351442770c96646c33e2e7f69d7ef493cb4673838888","evaluation_validation.cpp":"f7a5e6bd8f3c18740988468fbbe8a831c420410eeab5b586fe42d3d81a575c8c","evaluation_validation.hpp":"30267b1190a6f6e123f1ea807dbfc9d673b2e7fa57f224e1dc5dd8f1e582784e","multicore_cut_evaluate_problem_2.cpp":"851c375d0d6066c9f38e7e84d1b4acc3ed4ff3e64da17b4571a9f20184b07ce3","multicore_cut_evaluate_problem_2.hpp":"a10558ddd4e38177fe1bfee6dbacc60c8e5b349dda42d7923d9efc1618c7dd6d","schedule_step1.cpp":"9a9081eb3ef06c0af364a4b7821406e77a9bb7aee3e52a646d57612a3154594f","schedule_step1.hpp":"be15ed03fe47d90fc412a7c1005bd52f8312b989d08a49ad9cc65eeb4848f5f4","schedule_step2.cpp":"ab2910953c78a2601c4c3561b1d6caa183477e01e473071f6bad84788cdafe73","schedule_step2.hpp":"f04aa302ea3509feeb51467c41738794ed5730e524f533f43a69642f26b3d4d3","schedule_step3.cpp":"3fac1dc55545615e6e7587879400c420a8191236548a06ae4be5b5e0cd2625a5","schedule_step3.hpp":"5e03387c35b44058507bef96ca1cc4370fefa5e7df1e03e6468a790b26ef5f22","stub_multicore_cut_and_schedule.cpp":"ac28ac488ae895ef5ca686f49e5791f2887b2d19491962d77a3c6828391dea7b","stub_multicore_cut_and_schedule.hpp":"c9c7e99d7c87b1df81e90e5cda8485635dee8c8f05abc6de823bdf62a5076742","common.hpp":"45a3babff75082c1d6609ca58913742ca66b596ed7c7b473f15b6d94bee1f022"})manifest";
+inline constexpr char original_official_manifest[] = R"manifest({
+  "contest_io.py": "d5936908e4c261c7003b78e783f30bd7d65cb38d6b53a269ea67f0103cac848e",
+  "evaluation_validation.py": "103206b8c5c25e37de50cc3193de3989d7c1e01d4a11cc5f509dedd8f9be9a64",
+  "multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+  "multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+  "multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+  "schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+  "schedule_step2.py": "2836baac176f4e0bdd9eec59b8d9ce254e209e5f7a251e23837ab684312fa0c3",
+  "schedule_step3.py": "50053db0436f1d166dd75436693ba3af49b5c339576beb6e7299477f6b69fc7a",
+  "singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+  "stub_multicore_cut_and_schedule.py": "0a3a3b79b5173b466fc05fc8d33b72d11d90b4df78995435853d91c632a35892"
+}
+)manifest";
+}

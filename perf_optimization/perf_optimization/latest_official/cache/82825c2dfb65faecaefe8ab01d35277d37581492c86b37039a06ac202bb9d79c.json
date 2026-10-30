@@ -1,0 +1,36 @@
+{
+  "status": "ok",
+  "makespan": 14472543,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 37961696,
+    "scheduled_copy_bytes": 278451616,
+    "added_copy_bytes": 240489920,
+    "partition_added_copy_bytes": 55069952,
+    "spill_added_copy_bytes": 185419968
+  },
+  "num_cores": 4,
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 0,
+      "UB": 104576
+    },
+    "1": {
+      "L1": 0,
+      "UB": 0
+    },
+    "2": {
+      "L1": 1453440,
+      "UB": 26368
+    },
+    "3": {
+      "L1": 1569088,
+      "UB": 69632
+    }
+  },
+  "case": "case_08",
+  "engine": "87ee9cad7c1bc8a03f09dddf44a21a35b3444502e6c436939a095fabdcd240de",
+  "graph_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+  "plan_sha256": "82825c2dfb65faecaefe8ab01d35277d37581492c86b37039a06ac202bb9d79c",
+  "evaluation_seconds": 4.349760500001139,
+  "stderr": ""
+}
