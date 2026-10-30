@@ -1,0 +1,38 @@
+name: Team 17 version validation
+on:
+  push:
+    branches: ['codex/v0.8.*']
+  workflow_dispatch:
+jobs:
+  build-and-contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-2022]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: dag_chain_solver_v8_1
+      - name: Configure Linux GCC 11
+        if: runner.os == 'Linux'
+        run: cmake -S dag_chain_solver_v8_1 -B build -DCMAKE_CXX_COMPILER=g++-11 -DCMAKE_BUILD_TYPE=Release -DCHAIN_BUILD_TESTS=ON
+      - name: Configure Windows MSVC
+        if: runner.os == 'Windows'
+        run: cmake -S dag_chain_solver_v8_1 -B build -A x64 -DCHAIN_BUILD_TESTS=ON
+      - name: Build
+        run: cmake --build build --config Release --parallel 4
+      - name: C++ tests
+        run: ctest --test-dir build -C Release --output-on-failure
+      - name: CLI and graph contracts on Linux
+        if: runner.os == 'Linux'
+        run: |
+          python3 dag_chain_solver_v8_1/tests/contracts.py --solver build/bin/npu_sched --out cli
+          python3 dag_chain_solver_v8_1/tests/cli_regressions.py --solver build/bin/npu_sched --out cli
+          python3 dag_chain_solver_v8_1/tests/rules_contracts.py --solver build/bin/npu_sched --out rules
+      - name: CLI and graph contracts on Windows
+        if: runner.os == 'Windows'
+        run: |
+          python dag_chain_solver_v8_1/tests/contracts.py --solver build/bin/npu_sched.exe --out cli
+          python dag_chain_solver_v8_1/tests/cli_regressions.py --solver build/bin/npu_sched.exe --out cli
+          python dag_chain_solver_v8_1/tests/rules_contracts.py --solver build/bin/npu_sched.exe --out rules
