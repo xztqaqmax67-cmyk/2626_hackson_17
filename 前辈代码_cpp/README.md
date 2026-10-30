@@ -1,18 +1,24 @@
 # 前辈代码的 C++ 版本（Hackathon 场景 B）
 
+## 当前源码与构建
+
+当前版本已移除 `tests/`、CMake 测试目标及 Python 测试入口。默认构建正式程序 `npu_sched`；开发求解、独立评分与示例方案工具仍可显式构建。删除测试后已重新编译正式程序及全部保留开发入口，并通过示例求解和独立评分。当前本地构建位于 `build/release_no_tests/bin/`。下文测试数字属于移除前的历史验证记录。
+
+## 2026-10-30 性能优化合并
+
+已合入 `perf_optimization.rar` 的 JSON/索引优化、单遍跨度汇总、标量接口去明细、排序评分预计算、只读结果共享/缓存和 Pipe 定长数组，保留当前链初解与新版官方评分规则。9 组回归通过；10 个固定四核方案完整评分结果一致，本机重复计时的合计评分耗时约减少 39%（1.64×）。这是固定工作量评分的计时，不能视为整体搜索或比赛分数提升。
+
+合并范围、逐例计时、验证和复现命令见 [性能合并记录](reports/perf_merge_20261030.md)。本次独立构建的正式程序位于 `build/perf_merge/bin/npu_sched.exe`。
+
+
 ## 2026-10-30 官方评测对齐
 
 用户提供的 `hackathon.zip` 已原样导入 [`official_evaluator/`](official_evaluator/README.md)，包含官方代码、10 个用例和配置；来源哈希见 `official_evaluator/SOURCE_MANIFEST.json`。
 
-当前 C++ 完整评分已同步官方 **90% 提前换出、多写者重命名/脏回写、扩展序列拓扑检查和写者同核校验**。`npu_sched` 与 `problem2` 共用这些修正。测试与外部评测直接以此份官方 Python 为准，已移除旧参考的 PIPE/COPY 补丁；`benchmark_chain_seeds.py` 默认使用官方 Python，并按官方源码哈希隔离旧缓存。
+当前 C++ 完整评分已同步官方 **90% 提前换出、多写者重命名/脏回写、扩展序列拓扑检查和写者同核校验**。`npu_sched` 与 `problem2` 共用这些修正。测试与外部评测直接以此份官方 Python 为准，已移除旧参考的 PIPE/COPY 补丁；历史链初解评测使用官方 Python，并按官方源码哈希隔离旧缓存。
 
 验证：8/8 组回归通过；已有批量方案及最新链初解各 10 个四核方案，共 **20/20 的内部完整结果与官方一致**。每批有 7 例的旧评分发生变化，详细分差、原因和复现命令见 [官方对齐报告](reports/official_alignment_20261030.md)。下文及旧报告中早先的旧版对照成绩属于历史口径。
 
-已有方案可这样复评（在本目录，先构建 `parity_runner`）：
-
-```powershell
-python tests/compare_official_scores.py --plans output/hackathon_cores_4 --out output/official_recheck
-```
 
 
 ## 当前原地改造方式
@@ -47,7 +53,7 @@ cmake --build build --config Release -j
 .\build\bin\npu_sched.exe "C:\path with spaces\graph.json" --cores=4 --output="out\plan.json"
 ```
 
-多配置生成器也直接输出 `build/bin/npu_sched.exe`。换编译器时使用新的构建目录；旧缓存曾开启测试的，可显式传入 `-DBUILD_TESTING=OFF`。
+多配置生成器也直接输出 `build/bin/npu_sched.exe`。换编译器时使用新的构建目录。
 
 `npu_sched` 的核数范围为 2..5、默认 4，支持 `--version`、`--help`、两种参数写法。省略输出路径时写到图同目录的 `<case>_multicore_res.json`。不接受配置、检查点或评分导出参数。退出码：0 成功、1 内部错误、2 参数错误、3 输入错误、4 输出错误、5 无合法方案。
 
@@ -57,7 +63,7 @@ cmake --build build --config Release -j
 
 本次时限调整已在当前 Windows / MinGW 环境编译并验证（4 核）：`example_graph.json` 整个进程耗时 0.13 秒，`case_03.json` 耗时 86.86 秒，均退出 0、只输出规定的两字段方案，且通过独立 C++ 场景 B 本地复评。大例子确认正式入口已不受 25 秒预算限制；这两例不代替全用例和指定平台的正式验收。
 
-**留待最后调整：** 源码、第三方库仍在原 `problem2/` 目录下；场景 B 评估器移植、配置、测试和开发工具仍保留。本目录尚未完成最终打包，不能直接宣称满足“不得包含官方评估器副本”等条款。
+**留待最后调整：** 源码、第三方库仍在原 `problem2/` 目录下；场景 B 评估器移植、配置和开发工具仍保留。本目录尚未完成最终打包，不能直接宣称满足“不得包含官方评估器副本”等条款。
 
 自有 C++ 代码统一为四空格缩进，Tab 显示宽度 4，禁止实际 Tab 字符；`.clang-format` 与 `.editorconfig` 一起约束后续编辑。公共结构、搜索路线和接口边界补充中文注释，第三方文件保留上游格式。
 
@@ -71,7 +77,7 @@ cmake --build build --config Release --target problem2 multicore_cut_evaluate_pr
 
 保留问题 2 所需的原模块名称和 `problem2/official_code/` 层次，函数声明放在 `.hpp`，实现放在同名 `.cpp`；包入口 `__init__.py` 对应 `__init__.hpp`。同级原 Python 源码和题目数据没有修改。
 
-算法使用原生 **C++17**，以标准 CMake 工程支持 **Windows / Linux**，运行时不调用 Python。关键步骤、数据结构和易混淆的执行规则有中文注释。`tests/` 中的 Python 只负责调用原版进行对照，不是运行依赖。
+算法使用原生 **C++17**，以标准 CMake 工程支持 **Windows / Linux**，运行时不调用 Python。关键步骤、数据结构和易混淆的执行规则有中文注释。
 
 ## 当前提交约束与开发兼容性
 
@@ -169,7 +175,7 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 | `multicore_cut_evaluate_problem_2.exe` | 问题 2 / 场景 B 独立评估 |
 | `stub_multicore_cut_and_schedule.exe` | 生成随机示例方案 |
 
-`parity_runner.exe` 是测试辅助入口。不同平台或多配置构建器的可执行文件后缀、配置子目录可能不同。
+不同平台或多配置构建器的可执行文件后缀、配置子目录可能不同。
 
 ## 原文件与 C++ 文件的对应关系
 
@@ -234,7 +240,7 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 
 ## 已执行的对照验证
 
-对比完整结果结构中的数组顺序、时间线、评分、搬运量和峰值，不只检查最终 makespan。保留的回归测试覆盖：
+对比完整结果结构中的数组顺序、时间线、评分、搬运量和峰值，不只检查最终 makespan。移除测试前的回归验证覆盖：
 
 - 20 组小型 DAG，其中 4 组包含 `PIPE_FIX`：跨核搬运、直接依赖、执行分析、三类邻域与核心启用候选一致。
 - 6 组固定评估次数搜索：剔除耗时字段后，候选历史、统计项、最终评分和最优方案一致。
@@ -247,23 +253,7 @@ MinGW 构建会静态链接 C++ 运行库，便于复制可执行文件运行。
 
 **对照范围：** 旧 Python 附件本身没有第五条 Pipe，也拒绝 COPY `-1`。测试仅在内存中给原版补充提交要求中的 `PIPE_FIX` 硬件列表，并为参考输入替换 COPY 占位值，调度函数保持原样；C++ 正式入口直接读取原始图。这是旧算法的本地对照，不代表已经拿到并验证过新比赛官方评估器。原 Python 文件及下发数据均未改动。
 
-保留同级原版目录时可重跑：
-
-```powershell
-cmake -S . -B build -DBUILD_TESTING=ON -DPROBLEM2_TEST_PYTHON=python解释器完整路径
-cmake --build build --config Release -j 4
-ctest --test-dir build -C Release --output-on-failure
-python tests/check_hackathon.py
-python tests/compare_original.py
-```
-
-复核本次实际批量结果（需保留对应的工作目录）：
-
-```powershell
-python tests/verify_batch.py output/hackathon_cores_4/batch_report.json --inputs ../hackathon_data --work-dir build/hackathon_cores_4_work_v2
-```
-
-`python tests/compare_original.py 1` 只跑首例；`--start 7` 从第 8 例开始。测试需要 Python 3.11+，不安装任何额外 Python 包。Windows 上固定评估次数测试只替换原版不支持的 `SIGALRM` 外壳，不修改搜索算法。
+测试源码及运行脚本已按要求移除，历史结果保留在 `reports/` 中。
 
 ## 等价范围与差异
 

@@ -150,8 +150,11 @@ inline Json array() {
 }
 template <class T> Json id_map_json(const std::map<Id, T> &values) {
     Json j = object();
+    auto &entries = j.get_ref<Json::object_t &>();
+    entries.reserve(values.size());
     for (const auto &[k, v] : values) {
-        j[key(k)] = v;
+        // std::map keys are unique; preserve iteration order without a linear lookup.
+        entries.emplace_back(key(k), Json(v));
     }
     return j;
 }

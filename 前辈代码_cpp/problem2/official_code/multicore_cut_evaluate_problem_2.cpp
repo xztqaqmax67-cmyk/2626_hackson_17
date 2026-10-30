@@ -31,14 +31,19 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
     Id cores = field_id(result.plan_view, "num_cores");
     std::map<Id, Id> mapping, core_of;
     std::map<std::pair<Id, Id>, Id> rank;
+    std::map<Id, Id> block_core;
+    for (Id c = 0; c < cores; ++c) {
+        for (const auto &b : plan.at("core_schedules")[c]) block_core[number(b)] = c;
+    }
     for (auto it = result.plan_view.at("mapping").begin();
          it != result.plan_view.at("mapping").end(); ++it) {
         Id op = std::stoll(it.key()), b = number(it.value());
         mapping[op] = b;
-        core_of[op] = number(result.plan_view.at("core_by_subgraph").at(key(b)));
+        core_of[op] = block_core.at(b);
     }
     struct TaskData {
-        Json ops = array(), tensors = object(), edges = array();
+        Json ops = array(), tensors = array(), edges = array();
+        std::map<Id, std::size_t> tensor_index;
         std::map<Id, Id> op_subgraph;
         Ids order;
     };
@@ -53,6 +58,12 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
         data[c].ops.push_back(op);
         data[c].op_subgraph[field_id(op)] = b;
     };
+    auto add_tensor = [&](Id c, Id tid, const Json &tensor) {
+        auto &task = data[c];
+        auto [it, inserted] = task.tensor_index.emplace(tid, task.tensors.size());
+        if (inserted) task.tensors.push_back(tensor);
+        else task.tensors[it->second] = tensor;
+    };
     // Python 字典按方案映射的插入顺序遍历；生成 COPY ID 前保留此顺序。
     for (auto it = result.plan_view.at("mapping").begin();
          it != result.plan_view.at("mapping").end(); ++it) {
@@ -63,7 +74,7 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
     auto add_copy = [&](Id c, Id local, Id size, Id b, bool out,
                         std::optional<Id> supplied = std::nullopt) {
         Id ddr = supplied ? *supplied : next++, copy = next++;
-        data[c].tensors[key(ddr)] = {{"id", ddr}, {"pos", "DDR"}, {"size", size}};
+        add_tensor(c, ddr, {{"id", ddr}, {"pos", "DDR"}, {"size", size}});
         add_op(c,
                {{"id", copy},
                 {"op", out ? "COPY_OUT" : "COPY_IN"},
@@ -122,7 +133,7 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
         }
         Id size = field_id(tensor, "size");
         for (Id c : touched) {
-            data[c].tensors[key(tid)] = local;
+            add_tensor(c, tid, local);
             for (Id op : producers) {
                 if (core_of[op] == c) {
                     data[c].edges.push_back({{"source", op}, {"target", tid}});
@@ -175,8 +186,8 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
         }
         Id size = std::max<Id>(0, e.value("data_size", Id(0))), local = next++, ddr = next++;
         Json tensor = {{"id", local}, {"pos", "UB"}, {"size", size}};
-        data[src].tensors[key(local)] = tensor;
-        data[dst].tensors[key(local)] = tensor;
+        add_tensor(src, local, tensor);
+        add_tensor(dst, local, tensor);
         data[src].edges.push_back({{"source", a}, {"target", local}});
         data[dst].edges.push_back({{"source", local}, {"target", b}});
         Id out = add_copy(src, local, size, mapping[a], true, ddr),
@@ -471,14 +482,19 @@ Json evaluate_scene_b(const Json &graph, const Json &plan, double bandwidth,
             return std::make_pair(a.at("start").get<double>(), field_id(a, "op_id")) <
                    std::make_pair(b.at("start").get<double>(), field_id(b, "op_id"));
         });
+        std::map<Id, std::pair<double, double>> spans;
+        for (const auto &row : entries) {
+            if (row.at("subgraph_id").is_null()) continue;
+            Id b = field_id(row, "subgraph_id");
+            auto [it, inserted] = spans.try_emplace(
+                b, std::numeric_limits<double>::infinity(), 0.);
+            it->second.first = std::min(it->second.first, row.at("start").get<double>());
+            it->second.second = std::max(it->second.second, row.at("end").get<double>());
+        }
         for (Id b : task.subgraphs) {
-            double a = std::numeric_limits<double>::infinity(), end = 0;
-            for (const auto &row : entries) {
-                if (row.at("subgraph_id") == b) {
-                    a = std::min(a, row.at("start").get<double>());
-                    end = std::max(end, row.at("end").get<double>());
-                }
-            }
+            auto it = spans.find(b);
+            double a = it == spans.end() ? std::numeric_limits<double>::infinity() : it->second.first;
+            double end = it == spans.end() ? 0. : it->second.second;
             if (!std::isfinite(a)) {
                 throw SceneBEvaluationError("subgraph has no scheduled op");
             }

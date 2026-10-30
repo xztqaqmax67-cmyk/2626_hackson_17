@@ -3,10 +3,16 @@
 #include "pipeline.hpp"
 namespace problem2 {
 namespace {
+using PipeTimes = std::array<double, 5>;
+std::size_t pipe_index(const std::string &pipe) {
+    auto it = std::find(PIPES.begin(), PIPES.end(), pipe);
+    if (it == PIPES.end()) throw std::invalid_argument("unknown pipe");
+    return std::size_t(it - PIPES.begin());
+}
 struct Proposal {
     Id op = 0, core = 0, bytes = 0;
     double start = 0, end = 0;
-    std::map<Id, std::map<std::string, double>> rows;
+    std::map<Id, PipeTimes> rows;
     std::map<std::string, double> routes;
 };
 class Placement {
@@ -14,32 +20,27 @@ class Placement {
     const Settings &settings;
 
 public:
-    PipeLoads available, fixed;
+    std::vector<PipeTimes> available, fixed;
+    std::map<Id, std::size_t> op_pipes;
     std::map<Id, double> finish;
     std::map<Id, Id> core;
     std::map<std::string, double> routes;
     Id bytes = 0;
     Placement(const GraphInfo &graph, Id cores, const Settings &cfg)
         : g(graph), settings(cfg), available(cores), fixed(cores) {
-        for (auto *rows : {&available, &fixed}) {
-            for (auto &row : *rows) {
-                for (auto pipe : PIPES) {
-                    row[pipe] = 0;
-                }
-            }
-        }
+        for (Id op : g.ids) op_pipes[op] = pipe_index(field_string(g.ops.at(op), "pipe"));
     }
     Proposal trial(Id v, Id target) const {
         Proposal p;
         p.op = v;
         p.core = target;
-        auto row = [&](Id c) -> std::map<std::string, double> & {
+        auto row = [&](Id c) -> PipeTimes & {
             if (!p.rows.count(c)) {
                 p.rows[c] = available[c];
             }
             return p.rows[c];
         };
-        auto copy = [&](std::string route, Id c, std::string pipe, Id size, double release) {
+        auto copy = [&](std::string route, Id c, std::size_t pipe, Id size, double release) {
             if (routes.count(route)) {
                 return routes.at(route);
             }
@@ -54,8 +55,8 @@ public:
         };
         auto transfer = [&](std::string route, Id source, Id size, double release) {
             route += ":" + key(source) + ":" + key(target);
-            double out = copy("out:" + route, source, "PIPE_MTE3", size, release);
-            return copy("in:" + route, target, "PIPE_MTE2", size,
+            double out = copy("out:" + route, source, 1, size, release);
+            return copy("in:" + route, target, 0, size,
                         out + settings.cross_core_copy_delay);
         };
         double ready = 0;
@@ -67,7 +68,7 @@ public:
             const auto &producers = g.eligible_producers.at(tid);
             if (producers.empty()) {
                 ready = std::max(ready, copy("input:" + key(tid) + ":" + key(target), target,
-                                             "PIPE_MTE2", size, 0));
+                                             0, size, 0));
                 continue;
             }
             std::map<Id, double> releases;
@@ -88,7 +89,7 @@ public:
                 }
             }
         }
-        auto pipe = field_string(g.ops.at(v), "pipe");
+        auto pipe = op_pipes.at(v);
         p.start = std::max(ready, row(target)[pipe]);
         p.end = p.start + g.weight.at(v);
         row(target)[pipe] = p.end;
@@ -111,7 +112,7 @@ public:
                         std::max(releases[source], pred == v ? p.end : finish.at(pred));
                 }
                 for (auto [source, release] : releases) {
-                    copy("output:" + key(tid) + ":" + key(source), source, "PIPE_MTE3",
+                    copy("output:" + key(tid) + ":" + key(source), source, 1,
                          field_id(g.tensors.at(tid), "size"), release);
                 }
             }
@@ -127,7 +128,7 @@ public:
         }
         finish[p.op] = p.end;
         core[p.op] = p.core;
-        fixed[p.core][field_string(g.ops.at(p.op), "pipe")] += field_id(g.ops.at(p.op), "cycles");
+        fixed[p.core][op_pipes.at(p.op)] += field_id(g.ops.at(p.op), "cycles");
         bytes += p.bytes;
     }
 };
@@ -181,7 +182,7 @@ Plan operation_plan(const GraphInfo &g, Id cores, const Settings &settings, doub
         std::optional<Proposal> chosen;
         std::pair<double, std::vector<double>> chosen_key;
         for (const auto &[prio, v] : candidates) {
-            auto pipe = field_string(g.ops.at(v), "pipe");
+            auto pipe = sketch.op_pipes.at(v);
             std::optional<Proposal> best;
             std::tuple<double, Id, double, Id> best_score;
             for (Id c = 0; c < cores; ++c) {
@@ -190,18 +191,18 @@ Plan operation_plan(const GraphInfo &g, Id cores, const Settings &settings, doub
                 }
                 auto trial = sketch.trial(v, c);
                 double load = 0;
-                for (auto p : PIPES) {
+                for (std::size_t p = 0; p < PIPES.size(); ++p) {
                     load = std::max(load, sketch.fixed[c][p] + (p == pipe ? g.weight.at(v) : 0));
                 }
                 auto score = std::make_tuple(trial.end + balance * load, trial.bytes, load, c);
                 if (!best || score < best_score) {
-                    best = trial;
+                    best = std::move(trial);
                     best_score = score;
                 }
             }
             auto score = std::make_pair(best->start, prio);
             if (!chosen || score < chosen_key) {
-                chosen = *best;
+                chosen = std::move(*best);
                 chosen_key = score;
             }
         }

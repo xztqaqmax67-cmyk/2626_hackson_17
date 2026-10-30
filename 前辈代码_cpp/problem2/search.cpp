@@ -1,3 +1,4 @@
+#include "proxy.hpp"
 // 对应 search.py。
 // 场景 B 的完整搜索流程：构造首解、生成种子、多路线搜索、评估与保存。
 #include "search.hpp"
@@ -540,6 +541,8 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                        const GraphInfo *provided_graph = nullptr,
                        const Settings *provided_settings = nullptr, Json *memory_plan = nullptr) {
     const bool memory_only = memory_plan != nullptr;
+    if (!valid_screening_proxy(options.screening_proxy))
+        throw std::invalid_argument("unknown screening proxy: " + options.screening_proxy);
     if (cores < 2 || cores > 5) {
         throw std::invalid_argument("核心数必须为 2 至 5");
     }
@@ -578,6 +581,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                              "candidate_pages",
                              "construction_seconds",
                              "screening_seconds",
+                             "proxy_calls",
                              "expansion_seconds",
                              "evaluation_seconds",
                              "generation_seconds",
@@ -600,6 +604,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                    {"solver_version", "scene-b-v5-case-budget"},
                    {"time_limit", time_limit},
                    {"ablation", options.ablation},
+                   {"screening_proxy", options.screening_proxy},
                    {"feasibility_grace_seconds", grace},
                    {"search_profile", options.compact ? "compact" : "full"},
                    {"warm_start", options.warm_start.empty()
@@ -608,10 +613,11 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                    {"stats", stats},
                    {"history", array()}};
     std::optional<Plan> best_plan;
-    Json best_result, last_result;
+    std::shared_ptr<const Json> last_result;
     Objective best_key = {std::numeric_limits<double>::infinity(), std::numeric_limits<Id>::max()};
     std::map<std::string, std::string> evaluated;
-    std::map<std::string, Json> profile_cache, result_cache;
+    std::map<std::string, Json> profile_cache;
+    std::map<std::string, std::shared_ptr<const Json>> result_cache;
     std::map<std::string, std::pair<double, Id>> proxy_cache;
     std::deque<std::string> result_order, profile_order;
     std::vector<double> durations;
@@ -686,13 +692,15 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
             if (evaluated.count(signature) &&
                 (result_cache.count(signature) || evaluated.at(signature) != "ok")) {
                 increment("duplicates");
-                last_result = result_cache.count(signature) ? result_cache.at(signature) : Json();
+                last_result = result_cache.count(signature) ? result_cache.at(signature) : nullptr;
                 return 0;
             }
             double began = monotonic();
             increment("full_evaluations");
-            auto result = official::evaluate(graph.graph, candidate.to_dict(), settings);
-            last_result = result;
+            auto result_ptr = std::make_shared<const Json>(
+                official::evaluate(graph.graph, candidate.to_dict(), settings));
+            const Json &result = *result_ptr;
+            last_result = result_ptr;
             double elapsed = monotonic() - began;
             durations.push_back(elapsed);
             timing("evaluation_seconds", elapsed);
@@ -700,7 +708,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
             if (!result_cache.count(signature)) {
                 result_order.push_back(signature);
             }
-            result_cache[signature] = result;
+            result_cache[signature] = result_ptr;
             while (result_order.size() > std::size_t(options.compact ? 12 : 64)) {
                 result_cache.erase(result_order.front());
                 result_order.pop_front();
@@ -728,23 +736,22 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 entry["added_copy_bytes"] = score.second;
                 if (score < best_key) {
                     improved = score.first < best_key.first ? 2 : 1;
-                    Json checkpoint = {
-                        {"plan", candidate.to_dict()},
-                        {"official_result", result.at("official_result")},
-                        {"makespan", result.at("makespan")},
-                        {"source", source},
-                        {"elapsed_seconds", monotonic() - started},
-                        {"problem_instance", instance},
-                        {"inherited_validation", record.value("inherited_validation", Json())}};
                     double checkpoint_started = monotonic();
                     if (!memory_only) {
+                        Json checkpoint = {
+                            {"plan", candidate.to_dict()},
+                            {"official_result", result.at("official_result")},
+                            {"makespan", result.at("makespan")},
+                            {"source", source},
+                            {"elapsed_seconds", monotonic() - started},
+                            {"problem_instance", instance},
+                            {"inherited_validation", record.value("inherited_validation", Json())}};
                         atomic_write(output / "best_checkpoint.json", checkpoint);
                     }
                     timing("checkpoint_seconds", monotonic() - checkpoint_started);
                     bool first = !best_plan;
                     best_key = score;
                     best_plan = candidate;
-                    best_result = result;
                     if (first) {
                         record["first_solution_seconds"] = monotonic() - started;
                         record["feasibility_extension_used"] = monotonic() > soft_deadline;
@@ -800,10 +807,20 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
             }
             return profile;
         };
-        auto cheap = [&](const Plan &candidate) {
-            auto signature = candidate.fingerprint();
+        std::unique_ptr<ScreeningProxy> screening;
+        if (options.screening_proxy != "legacy")
+            screening = std::make_unique<ScreeningProxy>(graph);
+        auto cheap = [&](const Plan &candidate, const std::string &signature) {
             if (proxy_cache.count(signature)) {
                 return proxy_cache.at(signature);
+            }
+            increment("proxy_calls");
+            if (screening) {
+                auto metrics = screening->evaluate(candidate, settings, options.screening_proxy == "events");
+                auto score = std::make_pair(metrics.score(options.screening_proxy, settings.bandwidth),
+                                           Id(metrics.route + metrics.spill));
+                proxy_cache[signature] = score;
+                return score;
             }
             double estimate = replay_sketch(graph, candidate, settings);
             Id route = route_bytes(graph, candidate);
@@ -866,8 +883,8 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
         {
             auto row_for = [&](const Plan &plan,
                                const std::string &label) -> std::optional<SearchRow> {
-                if (last_result.is_object() && last_result.at("status") == "ok") {
-                    return SearchRow{objective(last_result), plan, last_result, label};
+                if (last_result && last_result->is_object() && last_result->at("status") == "ok") {
+                    return SearchRow{objective(*last_result), plan, last_result, label};
                 }
                 return {};
             };
@@ -1016,7 +1033,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 if (options.ablation != "construction-only" && options.ablation != "no-repair") {
                     double began = monotonic();
                     for (auto [label, candidate] : reorder_plans(
-                             graph, row.plan, settings, row.result, options.compact ? 1 : 3)) {
+                             graph, row.plan, settings, *row.result, options.compact ? 1 : 3)) {
                         check(true);
                         increment("seed_reorders");
                         auto name = row.label + "_" + label;
@@ -1029,7 +1046,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                     timing("seed_reorder_seconds", monotonic() - began);
                 }
                 polished.push_back(*std::min_element(variants.begin(), variants.end(), better));
-                if (row.plan.fingerprint() == reference_seed.plan.fingerprint()) {
+                if (row.signature() == reference_seed.signature()) {
                     reference_variants = variants;
                 }
             }
@@ -1068,7 +1085,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                 if (improvement) {
                     increment("local_improvements");
                 }
-                return {improvement, row->result};
+                return {improvement, *row->result};
             };
             auto joint = [&](Route &route, const Plan &plan, const Json &result,
                              const std::string &label) -> std::pair<int, Json> {
@@ -1136,7 +1153,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                             return;
                         }
                         Plan center = row->plan;
-                        Json center_result = row->result;
+                        Json center_result = *row->result;
                         if (route.visited.size() > 1) {
                             increment("elite_restarts");
                         }
@@ -1238,7 +1255,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                         increment("safe_pruned");
                                         continue;
                                     }
-                                    ranked.push_back({cheap(candidate.plan), candidate});
+                                    ranked.push_back({cheap(candidate.plan, signature), candidate});
                                 }
                                 timing("screening_seconds", monotonic() - began);
                                 std::stable_sort(
@@ -1310,7 +1327,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                             break;
                                         }
                                         if (local.first == 1) {
-                                            secondary = {{route.best.plan, route.best.result}};
+                                            secondary = {{route.best.plan, *route.best.result}};
                                         }
                                     }
                                     bool should =
@@ -1326,7 +1343,7 @@ static Json solve_impl(const fs::path &graph_path, Id cores, const fs::path &con
                                             break;
                                         }
                                         if (local.first == 1) {
-                                            secondary = {{route.best.plan, route.best.result}};
+                                            secondary = {{route.best.plan, *route.best.result}};
                                         }
                                     }
                                 }

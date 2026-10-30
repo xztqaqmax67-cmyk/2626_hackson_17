@@ -1,0 +1,45 @@
+{
+  "archive": "D:/Tecent/perf_optimization.rar",
+  "archive_sha256": "e2db8bcedb279b923cc8251346b93448865ed0c12e0db666fad3b02811176c4f",
+  "baseline": "current workspace before performance merge (already includes chain seeds and new official rules)",
+  "files": {
+    "common.hpp": {
+      "before_sha256": "d94698d347115557aa1e63b50f41f31e05706aa56df036c70114439c4acbb733",
+      "after_sha256": "45a3babff75082c1d6609ca58913742ca66b596ed7c7b473f15b6d94bee1f022"
+    },
+    "core.cpp": {
+      "before_sha256": "073d96f1485500c62a46baf8b631ebb74d132081af75c2bd71253966adcbbc05",
+      "after_sha256": "5df562d11d9b88fcd70286c854fcf11ad2d2bc208a2208fe2507a7eb6a214d44"
+    },
+    "official_code/multicore_cut_evaluate_problem_2.cpp": {
+      "before_sha256": "ca28c1b40c34f7c79a457d15bd4fe3719280b9c7014d998b5f118f48181b8354",
+      "after_sha256": "b834d19018c0317b842eb5a713a381c5df08adf40f2f6e2b334b7855bdb7f792"
+    },
+    "official_code/stub_multicore_cut_and_schedule.cpp": {
+      "before_sha256": "56ecab1d5df5309985af9de518779a95d43a930cc83b7dc0d72117b074538a3a",
+      "after_sha256": "6a93734b4b8d7155d5edb85f61498ebffbfa1ffc15a563ec5c2b1e7a014a75a2"
+    },
+    "pipeline.cpp": {
+      "before_sha256": "eece519321f1cb347ee34f47abe3f8e3277a6110f8d1303afedd6dc9d7d2aabd",
+      "after_sha256": "bf5bdf4a0367e82a3bd130cf4113e4b88b5cd31fa0a9ae52a6cb8e1488ac9758"
+    },
+    "portfolio.cpp": {
+      "before_sha256": "57deb54fcb6f976d9ada062c95ca4ebd7f0bccc22a635688b619a0c5ac8543c3",
+      "after_sha256": "9c469389fa9cba78bbbbf1cf1b542786e34ba3bbc83d0a32ee3faee1e3cca473"
+    },
+    "portfolio.hpp": {
+      "before_sha256": "d685ed2d15c8c6160eed3ce488b7f392c0aa772b643b88050e6d7dbbe8e0a5bb",
+      "after_sha256": "490b76c11e155f77fdc151dfcfa081dff947083f9020d043d7a464a6a316336b"
+    },
+    "search.cpp": {
+      "before_sha256": "8b4b595bd1944fcd9f63ed0404c575924a30cb519149e3a2cbb2d86723aaf4f3",
+      "after_sha256": "d4cc59be667d6f18a685353439e34f9d734b1d7d84fc6c4164534335555b66a9"
+    }
+  },
+  "concurrent_changes": "Separate screening_proxy experiment preserved; default legacy. search.cpp hash includes that experiment.",
+  "tests": {
+    "ctest_passed": 9,
+    "scalar_detail_plans": 12,
+    "platform": "Windows x64, MinGW GCC 16.1.0, C++17 Release"
+  }
+}

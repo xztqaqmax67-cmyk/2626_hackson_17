@@ -169,9 +169,14 @@ std::map<Id, Id> Plan::owner() const {
 // 内部保留全局块顺序，提交时按核心拆成 FIFO 队列；输出仅含题目规定字段。
 Json Plan::to_dict() const {
     Json mapping = object(), schedules = array();
+    auto &entries = mapping.get_ref<Json::object_t &>();
+    std::size_t count = 0;
+    for (const auto &[b, nodes] : blocks) count += nodes.size();
+    entries.reserve(count);
     for (const auto &[b, nodes] : blocks) {
         for (Id v : nodes) {
-            mapping[key(v)] = b;
+            // A valid Plan covers each operation exactly once.
+            entries.emplace_back(key(v), Json(b));
         }
     }
     for (Id c = 0; c < ncores; ++c) {
@@ -419,7 +424,29 @@ Json route_details(const GraphInfo &g, const Plan &p) {
     return {{"total_ddr_bytes", total}, {"ledger", ledger}};
 }
 Id route_bytes(const GraphInfo &g, const Plan &p) {
-    return field_id(route_details(g, p), "total_ddr_bytes");
+    const auto owner = p.owner();
+    std::map<Id, Id> core;
+    for (Id v : g.ids) core[v] = p.core_of.at(owner.at(v));
+    Id total = 0;
+    for (const auto &[tid, tensor] : g.tensors) {
+        Id size = field_id(tensor, "size");
+        IdSet producers, consumers;
+        for (Id v : g.eligible_producers.at(tid)) producers.insert(core.at(v));
+        for (Id v : g.eligible_consumers.at(tid)) consumers.insert(core.at(v));
+        if (producers.empty()) {
+            for (Id c : consumers) { (void)c; total += size; }
+        }
+        if (g.original_output_relations.count(tid)) {
+            for (Id c : producers) { (void)c; total += size; }
+        }
+        for (Id a : producers) for (Id b : consumers) if (a != b) total += 2 * size;
+    }
+    for (const auto &e : g.direct_edges) {
+        Id a = field_id(e, "source"), b = field_id(e, "target");
+        if (core.count(a) && core.count(b) && core.at(a) != core.at(b))
+            total += 2 * std::max<Id>(0, e.value("data_size", Id(0)));
+    }
+    return total;
 }
 PipeLoads pipe_loads(const GraphInfo &g, const Plan &p) {
     PipeLoads loads(p.ncores);
@@ -624,7 +651,12 @@ Json replay_sketch_details(const GraphInfo &g, const Plan &p, const Settings &se
             {"finish", id_map_json(sketch.finish)}};
 }
 double replay_sketch(const GraphInfo &g, const Plan &p, const Settings &settings, double deadline) {
-    return replay_sketch_details(g, p, settings, deadline).at("makespan").get<double>();
+    Sketch sketch(g, p.ncores, settings);
+    for (Id b : p.order) {
+        check_deadline(deadline);
+        sketch.append(p.blocks.at(b), p.core_of.at(b));
+    }
+    return sketch.makespan();
 }
 Plan migrate(const Plan &p, const Ids &blocks, Id target) {
     if (target < 0 || target >= p.ncores) {
@@ -726,7 +758,8 @@ std::optional<Plan> move_block(const GraphInfo &g, const Plan &p, Id block, Id g
     return result;
 }
 // 用块顺序估算张量存活区间和内存压力；这不是最终的官方物理内存峰值。
-Json lifetime_proxy_details(const GraphInfo &g, const Plan &p, const Capacity &capacity) {
+static Json lifetime_proxy_impl(const GraphInfo &g, const Plan &p, const Capacity &capacity,
+                                bool detailed) {
     auto owner = p.owner();
     std::map<Id, Id> position, local_position, local_count;
     for (std::size_t i = 0; i < p.order.size(); ++i) {
@@ -779,24 +812,26 @@ Json lifetime_proxy_details(const GraphInfo &g, const Plan &p, const Capacity &c
             spans += span;
             events[{c, pos}][a] += size;
             events[{c, pos}][z + 1] -= size;
-            Ids last_blocks;
-            for (Id b : endpoints) {
-                if (position.at(b) == last) {
-                    last_blocks.push_back(b);
+            if (detailed) {
+                Ids last_blocks;
+                for (Id b : endpoints) {
+                    if (position.at(b) == last) {
+                        last_blocks.push_back(b);
+                    }
                 }
+                intervals.push_back({{"tensor_id", tid},
+                                     {"core_id", c},
+                                     {"position", pos},
+                                     {"size", size},
+                                     {"first", first},
+                                     {"last", last},
+                                     {"first_local", a},
+                                     {"last_local", z},
+                                     {"span_bytes", span},
+                                     {"producer_blocks", ps},
+                                     {"consumer_blocks", cs},
+                                     {"last_blocks", last_blocks}});
             }
-            intervals.push_back({{"tensor_id", tid},
-                                 {"core_id", c},
-                                 {"position", pos},
-                                 {"size", size},
-                                 {"first", first},
-                                 {"last", last},
-                                 {"first_local", a},
-                                 {"last_local", z},
-                                 {"span_bytes", span},
-                                 {"producer_blocks", ps},
-                                 {"consumer_blocks", cs},
-                                 {"last_blocks", last_blocks}});
         }
     }
     for (const auto &[location, sequence] : events) {
@@ -807,7 +842,7 @@ Json lifetime_proxy_details(const GraphInfo &g, const Plan &p, const Capacity &c
             maximum = std::max(maximum, live);
             last = index;
         }
-        peak.push_back(
+        if (detailed) peak.push_back(
             {{"core_id", location.first}, {"position", location.second}, {"bytes", maximum}});
     }
     std::stable_sort(intervals.begin(), intervals.end(), [](const Json &a, const Json &b) {
@@ -822,8 +857,11 @@ Json lifetime_proxy_details(const GraphInfo &g, const Plan &p, const Capacity &c
             {"peak", peak},
             {"intervals", intervals}};
 }
+Json lifetime_proxy_details(const GraphInfo &g, const Plan &p, const Capacity &capacity) {
+    return lifetime_proxy_impl(g, p, capacity, true);
+}
 std::pair<Id, Id> lifetime_proxy(const GraphInfo &g, const Plan &p, const Capacity &capacity) {
-    auto value = lifetime_proxy_details(g, p, capacity);
+    auto value = lifetime_proxy_impl(g, p, capacity, false);
     return {field_id(value, "excess_area"), field_id(value, "span_bytes")};
 }
 // 在依赖允许的插入区间内微调块顺序，降低生命周期重叠和换页风险。
@@ -1018,22 +1056,29 @@ std::optional<Plan> repair_order(const GraphInfo &g, const Plan &p, const Settin
         if (candidates.empty()) {
             break;
         }
-        std::stable_sort(candidates.begin(), candidates.end(), [&](const Plan &a, const Plan &b) {
-            return lifetime_proxy(g, a, settings.capacity) <
-                   lifetime_proxy(g, b, settings.capacity);
+        std::vector<std::pair<Id, Id>> life_scores;
+        std::vector<std::size_t> indices(candidates.size());
+        std::iota(indices.begin(), indices.end(), 0);
+        life_scores.reserve(candidates.size());
+        for (const auto &candidate : candidates)
+            life_scores.push_back(lifetime_proxy(g, candidate, settings.capacity));
+        std::stable_sort(indices.begin(), indices.end(), [&](std::size_t a, std::size_t b) {
+            return life_scores[a] < life_scores[b];
         });
-        if (candidates.size() > 3) {
-            candidates.resize(3);
+        if (indices.size() > 3) indices.resize(3);
+        std::optional<std::tuple<double, Id, Id>> best_score;
+        std::size_t best_index = indices.front();
+        for (std::size_t index : indices) {
+            const auto &plan = candidates[index];
+            auto score = std::make_tuple(
+                std::max(replay_sketch(g, plan, settings), route_bytes(g, plan) / settings.bandwidth),
+                life_scores[index].first, life_scores[index].second);
+            if (!best_score || score < *best_score) {
+                best_score = score;
+                best_index = index;
+            }
         }
-        auto score = [&](const Plan &plan) {
-            auto life = lifetime_proxy(g, plan, settings.capacity);
-            return std::make_tuple(std::max(replay_sketch(g, plan, settings),
-                                            route_bytes(g, plan) / settings.bandwidth),
-                                   life.first, life.second);
-        };
-        current =
-            *std::min_element(candidates.begin(), candidates.end(),
-                              [&](const Plan &a, const Plan &b) { return score(a) < score(b); });
+        current = std::move(candidates[best_index]);
     }
     if (current.fingerprint() == p.fingerprint()) {
         return {};

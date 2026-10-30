@@ -69,7 +69,7 @@ Json derive_multicore_plan(const Json &graph, const Json &plan) {
             throw MulticoreCutError("duplicate integer op ids");
         }
         mapping[id] = number(it.value());
-        mapping_json[key(id)] = it.value();
+        mapping_json.get_ref<Json::object_t &>().emplace_back(key(id), it.value());
     }
     IdSet mapped;
     for (auto [op, b] : mapping) {
@@ -85,15 +85,17 @@ Json derive_multicore_plan(const Json &graph, const Json &plan) {
     IdSet blocks, scheduled;
     std::map<Id, Id> core_of, position;
     Json core_orders = object(), nodes = object();
+    std::map<Id, Ids> node_groups;
     for (auto [op, b] : mapping) {
         blocks.insert(b);
     }
     for (Id b : blocks) {
-        nodes[key(b)] = array();
+        node_groups[b];
     }
     for (auto [op, b] : mapping) {
-        nodes[key(b)].push_back(op);
+        node_groups[b].push_back(op);
     }
+    nodes = id_map_json(node_groups);
     for (std::size_t c = 0; c < schedules.size(); ++c) {
         const auto &order = schedules[c];
         if (!order.is_array()) {

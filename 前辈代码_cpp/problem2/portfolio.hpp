@@ -6,8 +6,13 @@ using Objective = std::pair<double, Id>;
 struct SearchRow {
     Objective score;
     Plan plan;
-    Json result;
+    std::shared_ptr<const Json> result;
     std::string label;
+    // Search rows are immutable snapshots; derived keys remain valid across copies.
+    mutable std::optional<std::string> signature_cache = std::nullopt;
+    mutable std::optional<Ids> assignment_cache = std::nullopt;
+    const std::string &signature() const;
+    const Ids &assignment(const GraphInfo &graph) const;
 };
 Objective objective(const Json &result);
 Ids assignment_key(const GraphInfo &graph, const Plan &plan);
