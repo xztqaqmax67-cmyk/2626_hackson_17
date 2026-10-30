@@ -1,0 +1,76 @@
+{
+  "variant": "new",
+  "fixed_hardware": {
+    "L1": 1572864,
+    "UB": 131072,
+    "bandwidth": 60,
+    "delay": 1000
+  },
+  "evaluator": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\前辈代码_cpp\\build\\review_20261030_msvc\\bin\\Release\\parity_runner.exe",
+  "evaluator_sha256": "8abbc48c5a5e423ad883a60f14b26ee3174b8122947277343470c1aded837e9c",
+  "executable_sha256": "3c6e6ebf8fc1a6693185dfe2f1b49aa8dffaa0c4a18dfb5714f6761ee4e46ecd",
+  "source_sha256": {
+    "CMakeLists.txt": "cc897a9ec6067489b3f57d9ad5515c78c9a6e94b3661eddc0c03ff533886bd78",
+    "README.md": "06bfe30e828134b9de0b2fe0146360eb9620ee48b51032c6b7b4f03fa31564e3",
+    "src\\common.hpp": "3cce61e347c015049db4244d9de0c2cc7ecd851eee380ad43096cc71706f8e2b",
+    "src\\core.cpp": "b6d3d562c3355731ffb4f145a76f2c8813f27b900239bb875d60f5b187e4c54f",
+    "src\\core.hpp": "0d5b44652c32caa922dfb03a1c915dccccec4d6e2c47f54e1a5a4409b4b04795",
+    "src\\graph_index.cpp": "ad813e1ca5c8b8c5eaf735af3c0d2927e940c068e451a1dea635058ab4024f53",
+    "src\\graph_index.hpp": "7786a71033af977f30e559ec8091b5fe3857a0fea8eba1e67716f92d78b19238",
+    "src\\main.cpp": "be89a7162c9dbee538ad336284ca277da5ffb180f712d0ca7047b4f599791275",
+    "src\\pipeline.cpp": "8c751a0c5a9187dedb8e01e4735136b10be2240406fab3b34ff429a8c0af17be",
+    "src\\pipeline.hpp": "22867cfcdadfab1cbdeb0437465c083ea593a6e5e41f4edf70366cc2424c9165",
+    "src\\structure.cpp": "ff8088c98e778ba0190a350c60c01df22a6f494b1847b8cd50686dc0433283d8",
+    "src\\structure.hpp": "d433759e329a4ef8979faaec3beaa635e892df5c7458a3e34247fefc1a2a72ef",
+    "src\\submission_cli.hpp": "62e393618df54edcc12618d7a29f1c9dd24738d2f4784efaf6c5c88d9ca233ea",
+    "src\\utils.cpp": "8f76193f702474fbdcaae63e5287a3ec35037c65d4e9fb407abff5ea41200343",
+    "src\\utils.hpp": "2f63336e7668c2ba19c3223fbb8b48fa77041d7060df555bdb6a4b99fe233176",
+    "third_party\\json.hpp": "853b2eb3bf7632c949f4a2dd6fb8a629c5ff25cc0059d29c7d21915dc719487f",
+    "third_party\\LICENSE.json": "6f48a03625699eea99e599744efea0bf9c9dd67a669e65554df1cd726b8a2477",
+    "third_party\\README.md": "aab2b3c0f52fc3131a5a0665f54e0ee9945e3cebdaf1656e8f0c2bf232f5bd75"
+  },
+  "input_sha256": {
+    "case_00": "db61a358898911fb0c9735d2fc7a9be62291fdb4e11be1845f63fed4fb322a67",
+    "case_01": "bf713b3bdc295d3f4a06b0d0501b50dcc03756f1de3b82b132c5d422b55bf360",
+    "case_02": "5ef88c64984767372761df8c3ee73e3465bdf273dd73b1b12bf649f1a51021c1",
+    "case_03": "20058f2e21108e9f016d089cc0b69b26952c2fe6b3eb4b1d02d5500e3cb29132",
+    "case_04": "5b98f3404b88cb0b7289a5c8a44e48c3069430ad579cf1beb36ec378288963d8",
+    "case_05": "df8a9721eddf5a282057b30013e0c3ea2e41cd59e71e8af4ab975ef13b79063f",
+    "case_06": "210db10f359b054da289d631a1ed9e9777dbc3bbe8d83e1516ceebaa9699990a",
+    "case_07": "d3ac5eef4d85d9ad30e062fda58582e96f1709aeb06a85885703fe4d7d74ed95",
+    "case_08": "959d81d4381865134115524192b7e7ddd2c3bd9b8162b37882bd3cfafa8b770c",
+    "case_09": "5316b82560740d4723ef17c3a6c6038cf384684f2076aeae526a01a9b8196b96"
+  },
+  "baseline_source": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\前辈代码_cpp\\output\\review_20261030_msvc\\baselines",
+  "baseline_is_official": false,
+  "score_definition": "mean_N mean_case(T1/TN), failed runs = 0; local Scene A baseline",
+  "per_core": {
+    "2": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.285296675827543
+    },
+    "3": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.5455381837843276
+    },
+    "4": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.598905062274797
+    },
+    "5": {
+      "valid": 10,
+      "total": 10,
+      "mean_speedup": 1.4651369885242558
+    }
+  },
+  "num_valid": 40,
+  "num_runs": 40,
+  "num_byte_identical": 40,
+  "score": 1.4737192276027309,
+  "max_solve_seconds": 32.80155029986054,
+  "inputs_unchanged": true,
+  "wall_seconds": 946.0716950998176
+}

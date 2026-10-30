@@ -1,0 +1,26 @@
+{
+  "old": {
+    "CMakeLists.txt": true,
+    "src\\solver.cpp": true,
+    "src\\submission_cli.hpp": true
+  },
+  "new": {
+    "CMakeLists.txt": true,
+    "src\\common.hpp": true,
+    "src\\core.cpp": true,
+    "src\\core.hpp": true,
+    "src\\graph_index.cpp": true,
+    "src\\graph_index.hpp": true,
+    "src\\main.cpp": true,
+    "src\\pipeline.cpp": true,
+    "src\\pipeline.hpp": true,
+    "src\\structure.cpp": true,
+    "src\\structure.hpp": true,
+    "src\\submission_cli.hpp": true,
+    "src\\utils.cpp": true,
+    "src\\utils.hpp": true,
+    "third_party\\json.hpp": true,
+    "third_party\\LICENSE.json": true,
+    "third_party\\README.md": true
+  }
+}

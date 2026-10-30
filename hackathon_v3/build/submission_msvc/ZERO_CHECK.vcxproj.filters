@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\ROG\Documents\ChatGPT\Hackson\2626_hackson_17\hackathon_v3\build\submission_msvc\CMakeFiles\1a66ee2561f06a5227015a52b991f8cb\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{79A90FD2-876D-3E88-B74E-2125852B6ED0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

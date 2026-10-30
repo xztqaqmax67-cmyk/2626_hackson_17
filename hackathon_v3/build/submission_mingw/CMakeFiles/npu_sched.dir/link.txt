@@ -1,0 +1,3 @@
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E rm -f CMakeFiles\npu_sched.dir/objects.a
+D:\mingw\x86_64-15.1.0-release-win32-seh-ucrt-rt_v12-rev0\mingw64\bin\ar.exe qc CMakeFiles\npu_sched.dir/objects.a @CMakeFiles\npu_sched.dir\objects1.rsp
+D:\mingw\x86_64-15.1.0-release-win32-seh-ucrt-rt_v12-rev0\mingw64\bin\g++.exe -O3 -DNDEBUG -municode -static -static-libgcc -static-libstdc++ -Wl,--whole-archive CMakeFiles\npu_sched.dir/objects.a -Wl,--no-whole-archive -o bin\npu_sched.exe -Wl,--out-implib,libnpu_sched.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\npu_sched.dir\linkLibs.rsp

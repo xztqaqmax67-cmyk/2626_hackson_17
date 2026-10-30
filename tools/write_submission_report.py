@@ -21,6 +21,7 @@ for source,target in [(OUT/'contract/results.json','contract.json'),
                       (OUT/'gcc_check/results.json','gcc_portability.json'),
                       (OUT/'resources/old/resources.json','old_resources.json'),
                       (OUT/'resources/new/resources.json','new_resources.json'),
+                      (OUT/'source_integrity.json','source_integrity.json'),
                       (OUT/'old_final/cores_4/case_00/python_reference.json','python_case00_n4.json'),
                       (OUT/'old_final/cores_2/case_08/python_reference.json','python_case08_n2.json')]:
     if source.is_file():shutil.copyfile(source,REPORT/target)
