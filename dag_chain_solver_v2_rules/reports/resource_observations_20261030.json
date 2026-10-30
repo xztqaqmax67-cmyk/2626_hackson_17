@@ -1,0 +1,48 @@
+{
+  "sample_period_seconds": 0.05,
+  "used_in_timing_statistics": false,
+  "process_threads_include_runtime_threads": true,
+  "peak_observations_are_not_worst_case_guarantees": true,
+  "rows": [
+    {
+      "case": "case_05",
+      "cores": 5,
+      "version": "serial",
+      "observations": {
+        "seconds": 10.326156999915838,
+        "observed_peak_working_set_bytes": 91910144,
+        "sampled_max_process_threads": 4
+      }
+    },
+    {
+      "case": "case_05",
+      "cores": 5,
+      "version": "parallel",
+      "observations": {
+        "seconds": 3.3251622000243515,
+        "observed_peak_working_set_bytes": 91869184,
+        "sampled_max_process_threads": 7
+      }
+    },
+    {
+      "case": "case_07",
+      "cores": 5,
+      "version": "serial",
+      "observations": {
+        "seconds": 10.263865600107238,
+        "observed_peak_working_set_bytes": 71786496,
+        "sampled_max_process_threads": 4
+      }
+    },
+    {
+      "case": "case_07",
+      "cores": 5,
+      "version": "parallel",
+      "observations": {
+        "seconds": 2.09247689996846,
+        "observed_peak_working_set_bytes": 71847936,
+        "sampled_max_process_threads": 7
+      }
+    }
+  ]
+}

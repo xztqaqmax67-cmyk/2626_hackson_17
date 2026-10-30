@@ -1,0 +1,2391 @@
+{
+  "started_utc": "2026-10-30T08:49:45.045830+00:00",
+  "completed": true,
+  "method": "one warmup each, four paired rounds AB/BA/BA/AB; one process at a time; no resource polling",
+  "units": "seconds of complete generator process, including input/output",
+  "hardware": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "logical_processors": 24,
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_name": "Intel(R) Core(TM) Ultra 9 275HX",
+    "power_scheme": "\u7535\u6e90\u65b9\u6848 GUID: 6fecc5ae-f350-48a5-b669-b472cb895ccf  (Turbo)"
+  },
+  "affinity": {
+    "mode": "same highest-efficiency-class core set for both variants",
+    "original_process_mask": "0xffffff",
+    "selected_mask": "0xc03c03",
+    "selected_logical_processors": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      13,
+      22,
+      23
+    ],
+    "detected_efficiency_class_masks": {
+      "1": "0xc03c03",
+      "0": "0x3fc3fc"
+    },
+    "changed_only_this_benchmark_process_and_children": true
+  },
+  "compiler": "MSVC 19.44 x64 Release, same compiler and optimization flags",
+  "versions": {
+    "serial": "dag-chain-solver 0.2.1",
+    "parallel": "dag-chain-solver 0.3.1"
+  },
+  "executable_sha256": {
+    "serial": "c01800bbca1654b577f7b9b038a44168e43ceb9ee19a149914fc3ddbc205b9c4",
+    "parallel": "9bd9946a2ad2d7677034f4b9d9ad49152e0f3dbadbad3c13ac5e7882ef945379"
+  },
+  "shared_model_sha256": "90c4020df23d3f28161787a4d34207a6940fc7183f2f6194e8f5a837a455e761",
+  "shared_search_prefix_sha256": "cb3bace9bcf1f6f5a9bef79986007fbd4fa4af4b58bc76725e41e8e79697c04f",
+  "source_sha256": {
+    "serial": {
+      "src/chain.cpp": "58b6eabe8f8467a16c18299e7c37dd70db0f143b48596d28c5028ef0bd07d152",
+      "src/chain.hpp": "8fcd7ba4c80aa21f3169a1157326cb3cdbfe5df90c14ff9f63fc90a2d7afb415",
+      "src/main.cpp": "9510f92607a97fd4e4f6ffe479e3078af1a76ea9cc9832491a4d19fe20270cc4",
+      "src/model.hpp": "90c4020df23d3f28161787a4d34207a6940fc7183f2f6194e8f5a837a455e761"
+    },
+    "parallel": {
+      "src/chain.cpp": "54a1dabb9444bf69ea9ef25075b4075693b37c25186abbf279f24a8da3531809",
+      "src/chain.hpp": "8fcd7ba4c80aa21f3169a1157326cb3cdbfe5df90c14ff9f63fc90a2d7afb415",
+      "src/main.cpp": "673df6856e75a7b81b1ce1a51845126190cb51d2629209439a5c705d2d7f4a6e",
+      "src/model.hpp": "90c4020df23d3f28161787a4d34207a6940fc7183f2f6194e8f5a837a455e761",
+      "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399"
+    }
+  },
+  "rounds": 4,
+  "warmups_per_version_per_configuration": 1,
+  "rows": [
+    {
+      "case": "case_00",
+      "cores": 2,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "d0d5248a7e4984839a4c5386f8ae2e1357cdee7123bcb33cd29043ed5b349b76",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.4189337,
+        "parallel": 0.3952493
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.2849321,
+          "parallel": 0.441355
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.3480969,
+          "serial": 0.315147
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.3387558,
+          "serial": 0.269373
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.3123547,
+          "parallel": 0.3022008
+        }
+      ],
+      "serial_median_seconds": 0.2986434,
+      "parallel_median_seconds": 0.34342635,
+      "speedup": 0.8695995516942716,
+      "paired_ratio_median": 0.850263084741919,
+      "serial_range_seconds": [
+        0.269373,
+        0.315147
+      ],
+      "parallel_range_seconds": [
+        0.3022008,
+        0.441355
+      ]
+    },
+    {
+      "case": "case_00",
+      "cores": 3,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "0b0ec2b8021387047955ee88d84cac0a904d17e628794e7af875fc1474bfd56e",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.3989882,
+        "serial": 0.7079193
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.5582423,
+          "parallel": 0.4031394
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.3858842,
+          "serial": 0.5871111
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.4277225,
+          "serial": 0.6096197
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.5870229,
+          "parallel": 0.3507112
+        }
+      ],
+      "serial_median_seconds": 0.587067,
+      "parallel_median_seconds": 0.39451179999999997,
+      "speedup": 1.4880847670462582,
+      "paired_ratio_median": 1.4733694203566192,
+      "serial_range_seconds": [
+        0.5582423,
+        0.6096197
+      ],
+      "parallel_range_seconds": [
+        0.3507112,
+        0.4277225
+      ]
+    },
+    {
+      "case": "case_00",
+      "cores": 4,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "c1fa837522899749feff9ec7ebcd7ebc023f2bcd63579f564862d13b42ed831b",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.7995221,
+        "parallel": 0.4574484
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.7586065,
+          "parallel": 0.4302203
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.4360097,
+          "serial": 0.9176918
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.446886,
+          "serial": 0.928784
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.8508975,
+          "parallel": 0.4519174
+        }
+      ],
+      "serial_median_seconds": 0.88429465,
+      "parallel_median_seconds": 0.44144785,
+      "speedup": 2.0031690039944694,
+      "paired_ratio_median": 1.9806036380741436,
+      "serial_range_seconds": [
+        0.7586065,
+        0.928784
+      ],
+      "parallel_range_seconds": [
+        0.4302203,
+        0.4519174
+      ]
+    },
+    {
+      "case": "case_00",
+      "cores": 5,
+      "input_sha256": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "plan_sha256": "b88daea714876e6c79d92aaf6a2da0d1bf65ab4545fb37de5cc248bfa3c8a088",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.4775676,
+        "serial": 1.1805119
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.0352505,
+          "parallel": 0.4032261
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.4402847,
+          "serial": 1.0960587
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.4225066,
+          "serial": 1.1366756
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.9649546,
+          "parallel": 0.5618683
+        }
+      ],
+      "serial_median_seconds": 1.0656546,
+      "parallel_median_seconds": 0.43139565,
+      "speedup": 2.47024883074273,
+      "paired_ratio_median": 2.5284255477184736,
+      "serial_range_seconds": [
+        0.9649546,
+        1.1366756
+      ],
+      "parallel_range_seconds": [
+        0.4032261,
+        0.5618683
+      ]
+    },
+    {
+      "case": "case_01",
+      "cores": 2,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "45e3f99667b7176c0893d64eee34a0d6d9937b4f23e3e91601c36d32d1180173",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.0272962,
+        "parallel": 0.0227537
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0198346,
+          "parallel": 0.0336959
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0226653,
+          "serial": 0.0233639
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0266095,
+          "serial": 0.0308389
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0216743,
+          "parallel": 0.0229814
+        }
+      ],
+      "serial_median_seconds": 0.0225191,
+      "parallel_median_seconds": 0.02479545,
+      "speedup": 0.9081948502648671,
+      "paired_ratio_median": 0.9869730080714247,
+      "serial_range_seconds": [
+        0.0198346,
+        0.0308389
+      ],
+      "parallel_range_seconds": [
+        0.0226653,
+        0.0336959
+      ]
+    },
+    {
+      "case": "case_01",
+      "cores": 3,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "91374ece04f59d94741496f7362a1e9f1835dfff5c1dc7763ac7772a6471127b",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.0293572,
+        "serial": 0.0336302
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0329774,
+          "parallel": 0.0315098
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0292228,
+          "serial": 0.0752529
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0363885,
+          "serial": 0.0289396
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0615411,
+          "parallel": 0.0336748
+        }
+      ],
+      "serial_median_seconds": 0.04725925,
+      "parallel_median_seconds": 0.0325923,
+      "speedup": 1.450012733068854,
+      "paired_ratio_median": 1.4370439766448255,
+      "serial_range_seconds": [
+        0.0289396,
+        0.0752529
+      ],
+      "parallel_range_seconds": [
+        0.0292228,
+        0.0363885
+      ]
+    },
+    {
+      "case": "case_01",
+      "cores": 4,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "239fcf115fc73dbc21e29a0b2abe0c695b55d10dd07e91223721e4ba3c7885a0",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.05728,
+        "parallel": 0.0531591
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0392375,
+          "parallel": 0.0429803
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0386331,
+          "serial": 0.0981218
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0381028,
+          "serial": 0.0632816
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0393364,
+          "parallel": 0.0537376
+        }
+      ],
+      "serial_median_seconds": 0.051308999999999994,
+      "parallel_median_seconds": 0.0408067,
+      "speedup": 1.2573670500187468,
+      "paired_ratio_median": 1.286865286346204,
+      "serial_range_seconds": [
+        0.0392375,
+        0.0981218
+      ],
+      "parallel_range_seconds": [
+        0.0381028,
+        0.0537376
+      ]
+    },
+    {
+      "case": "case_01",
+      "cores": 5,
+      "input_sha256": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "plan_sha256": "06d58e32ccb0c8abe8a3bb8b10fb3889cc345115c86db1cf83e55021efe9e203",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.0666537,
+        "serial": 0.0750129
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0817762,
+          "parallel": 0.0941596
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0486025,
+          "serial": 0.0806761
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0560187,
+          "serial": 0.119259
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0765305,
+          "parallel": 0.0579655
+        }
+      ],
+      "serial_median_seconds": 0.08122615,
+      "parallel_median_seconds": 0.056992100000000004,
+      "speedup": 1.4252177056118303,
+      "paired_ratio_median": 1.49009669363789,
+      "serial_range_seconds": [
+        0.0765305,
+        0.119259
+      ],
+      "parallel_range_seconds": [
+        0.0486025,
+        0.0941596
+      ]
+    },
+    {
+      "case": "case_02",
+      "cores": 2,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "8eb552cf9d74c8e55482cd80d138443cf85e85d2e730eac0eaa47cb751bdfea8",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.0363887,
+        "parallel": 0.0438148
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0502459,
+          "parallel": 0.0521044
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0409593,
+          "serial": 0.0606988
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.04209,
+          "serial": 0.0558706
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0364086,
+          "parallel": 0.0409054
+        }
+      ],
+      "serial_median_seconds": 0.05305825,
+      "parallel_median_seconds": 0.041524649999999996,
+      "speedup": 1.2777530936443777,
+      "paired_ratio_median": 1.1458695813408768,
+      "serial_range_seconds": [
+        0.0364086,
+        0.0606988
+      ],
+      "parallel_range_seconds": [
+        0.0409054,
+        0.0521044
+      ]
+    },
+    {
+      "case": "case_02",
+      "cores": 3,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "e88704078393b0a211438a905fca54262fa0c8c4f4b620ac15a0f5e8ffed691f",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.1035926,
+        "serial": 0.0737024
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.068479,
+          "parallel": 0.0540596
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0666708,
+          "serial": 0.0500664
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0694732,
+          "serial": 0.0493402
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0597366,
+          "parallel": 0.0501315
+        }
+      ],
+      "serial_median_seconds": 0.0549015,
+      "parallel_median_seconds": 0.0603652,
+      "speedup": 0.9094892421461371,
+      "paired_ratio_median": 0.9712737690697634,
+      "serial_range_seconds": [
+        0.0493402,
+        0.068479
+      ],
+      "parallel_range_seconds": [
+        0.0501315,
+        0.0694732
+      ]
+    },
+    {
+      "case": "case_02",
+      "cores": 4,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "79a20404efee1e04f97f8dbd144d4b83a17db848d811f2bfbb0b1c93780b5bd3",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.1800189,
+        "parallel": 0.0443133
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0856236,
+          "parallel": 0.0866362
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0674125,
+          "serial": 0.092043
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0619806,
+          "serial": 0.0835496
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.070108,
+          "parallel": 0.0587567
+        }
+      ],
+      "serial_median_seconds": 0.0845866,
+      "parallel_median_seconds": 0.06469654999999999,
+      "speedup": 1.3074360224772419,
+      "paired_ratio_median": 1.2705937854002018,
+      "serial_range_seconds": [
+        0.070108,
+        0.092043
+      ],
+      "parallel_range_seconds": [
+        0.0587567,
+        0.0866362
+      ]
+    },
+    {
+      "case": "case_02",
+      "cores": 5,
+      "input_sha256": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "plan_sha256": "ef50c3a0b8ad923eb22ed9a6a1e8d1aa570db2e376b55bbc447bbef448cd50ac",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.0577064,
+        "serial": 0.1189581
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.0975491,
+          "parallel": 0.0938211
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.1095051,
+          "serial": 0.1291988
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.0747592,
+          "serial": 0.1139328
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.1584308,
+          "parallel": 0.0566246
+        }
+      ],
+      "serial_median_seconds": 0.1215658,
+      "parallel_median_seconds": 0.08429015000000001,
+      "speedup": 1.4422302012750006,
+      "paired_ratio_median": 1.3519199059157394,
+      "serial_range_seconds": [
+        0.0975491,
+        0.1584308
+      ],
+      "parallel_range_seconds": [
+        0.0566246,
+        0.1095051
+      ]
+    },
+    {
+      "case": "case_03",
+      "cores": 2,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "4b54ed5154291fcfb78f7426e8e16f7aad534c7f3f951dde68fa202c9ad48354",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.6147162,
+        "parallel": 0.5426739
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.6461223,
+          "parallel": 0.6470655
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.6618147,
+          "serial": 0.5264544
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.4784249,
+          "serial": 0.6333105
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.5155867,
+          "parallel": 0.568523
+        }
+      ],
+      "serial_median_seconds": 0.5798824499999999,
+      "parallel_median_seconds": 0.60779425,
+      "speedup": 0.9540768936198392,
+      "paired_ratio_median": 0.9527151830962626,
+      "serial_range_seconds": [
+        0.5155867,
+        0.6461223
+      ],
+      "parallel_range_seconds": [
+        0.4784249,
+        0.6618147
+      ]
+    },
+    {
+      "case": "case_03",
+      "cores": 3,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "7f7cfb1ece2a6538b3304c2a166b10f38db7099a773407f7c7fcb7c288b06396",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.5734528,
+        "serial": 0.9490623
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.1268219,
+          "parallel": 0.5985322
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.6785168,
+          "serial": 1.0341834
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.7078359,
+          "serial": 1.1084801
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.9696765,
+          "parallel": 0.6706642
+        }
+      ],
+      "serial_median_seconds": 1.0713317500000001,
+      "parallel_median_seconds": 0.6745905000000001,
+      "speedup": 1.588121608590693,
+      "paired_ratio_median": 1.545097640378734,
+      "serial_range_seconds": [
+        0.9696765,
+        1.1268219
+      ],
+      "parallel_range_seconds": [
+        0.5985322,
+        0.7078359
+      ]
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "ed9ecf130703eeea8e6753b67ed54342a71111cf3ce49e01bb926fb94c6b1dd0",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 1.5697717,
+        "parallel": 0.7646397
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.6405523,
+          "parallel": 0.7615846
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.6907278,
+          "serial": 1.5517792
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.7752877,
+          "serial": 1.4193797
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.3242165,
+          "parallel": 0.7126622
+        }
+      ],
+      "serial_median_seconds": 1.48557945,
+      "parallel_median_seconds": 0.7371234,
+      "speedup": 2.0153741558062057,
+      "paired_ratio_median": 2.0061282794807145,
+      "serial_range_seconds": [
+        1.3242165,
+        1.6405523
+      ],
+      "parallel_range_seconds": [
+        0.6907278,
+        0.7752877
+      ]
+    },
+    {
+      "case": "case_03",
+      "cores": 5,
+      "input_sha256": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "plan_sha256": "fbd7beeee740ba61c34211fbdb7f203f13305f78273c61179caa6c5c9632280a",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.7173404,
+        "serial": 1.8387574
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.9761012,
+          "parallel": 0.736488
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.6821818,
+          "serial": 1.8168482
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.7188068,
+          "serial": 1.8956166
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.8630667,
+          "parallel": 0.7977152
+        }
+      ],
+      "serial_median_seconds": 1.8793416500000002,
+      "parallel_median_seconds": 0.7276473999999999,
+      "speedup": 2.5827641932067653,
+      "paired_ratio_median": 2.650230777454005,
+      "serial_range_seconds": [
+        1.8168482,
+        1.9761012
+      ],
+      "parallel_range_seconds": [
+        0.6821818,
+        0.7977152
+      ]
+    },
+    {
+      "case": "case_04",
+      "cores": 2,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "639c1c2d5816bf4c3d800e55758869cf5f2f2c23f7880e0782868350d41102ab",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.616129,
+        "parallel": 0.5839557
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.6346072,
+          "parallel": 0.5936235
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.5700293,
+          "serial": 0.6888099
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.5330315,
+          "serial": 0.5946403
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.5321813,
+          "parallel": 0.5500151
+        }
+      ],
+      "serial_median_seconds": 0.61462375,
+      "parallel_median_seconds": 0.5600221999999999,
+      "speedup": 1.097498902722071,
+      "paired_ratio_median": 1.0923109001078042,
+      "serial_range_seconds": [
+        0.5321813,
+        0.6888099
+      ],
+      "parallel_range_seconds": [
+        0.5330315,
+        0.5936235
+      ]
+    },
+    {
+      "case": "case_04",
+      "cores": 3,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "eea753d5f2be3e630220c8951318674fadf3c6c962d1774b5b9d020fc7896236",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.7804023,
+        "serial": 1.0461936
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.9564558,
+          "parallel": 0.6941451
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.6184825,
+          "serial": 0.9785568
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.6830954,
+          "serial": 0.9670679
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.0951291,
+          "parallel": 0.7016424
+        }
+      ],
+      "serial_median_seconds": 0.97281235,
+      "parallel_median_seconds": 0.68862025,
+      "speedup": 1.4126978548771982,
+      "paired_ratio_median": 1.488261151560227,
+      "serial_range_seconds": [
+        0.9564558,
+        1.0951291
+      ],
+      "parallel_range_seconds": [
+        0.6184825,
+        0.7016424
+      ]
+    },
+    {
+      "case": "case_04",
+      "cores": 4,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "3c2f5dca6cfb695ee83a8baf21c6441500920d40295b5d0d3d82ee459cedbd66",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 1.7291085,
+        "parallel": 0.9215481
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.6522885,
+          "parallel": 0.8730074
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.8355495,
+          "serial": 1.9964387
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.8119162,
+          "serial": 1.4547776
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.6741804,
+          "parallel": 0.8433038
+        }
+      ],
+      "serial_median_seconds": 1.66323445,
+      "parallel_median_seconds": 0.83942665,
+      "speedup": 1.9813934308614098,
+      "paired_ratio_median": 1.9389517076584615,
+      "serial_range_seconds": [
+        1.4547776,
+        1.9964387
+      ],
+      "parallel_range_seconds": [
+        0.8119162,
+        0.8730074
+      ]
+    },
+    {
+      "case": "case_04",
+      "cores": 5,
+      "input_sha256": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "plan_sha256": "8a0b2c48f4a60ef4d69b3ed927d7f3c9250e50777eb7549d7c78b865f774590d",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.9097873,
+        "serial": 2.1541769
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 2.1854778,
+          "parallel": 0.8259039
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.9082397,
+          "serial": 2.3557896
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.8197669,
+          "serial": 1.9110114
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 2.1380148,
+          "parallel": 0.9118473
+        }
+      ],
+      "serial_median_seconds": 2.1617463,
+      "parallel_median_seconds": 0.8670718,
+      "speedup": 2.4931571987464016,
+      "paired_ratio_median": 2.4692521340005653,
+      "serial_range_seconds": [
+        1.9110114,
+        2.3557896
+      ],
+      "parallel_range_seconds": [
+        0.8197669,
+        0.9118473
+      ]
+    },
+    {
+      "case": "case_05",
+      "cores": 2,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "40cab8d3f856f9bad59f42a6bbd6de3bbc381088b38984155568ed1028d68bd4",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 1.9095245,
+        "parallel": 1.7986807
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.6233112,
+          "parallel": 1.5394333
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.6594949,
+          "serial": 1.539806
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.706495,
+          "serial": 1.4097633
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.6643417,
+          "parallel": 1.6270814
+        }
+      ],
+      "serial_median_seconds": 1.5815586000000001,
+      "parallel_median_seconds": 1.64328815,
+      "speedup": 0.962435346472863,
+      "paired_ratio_median": 0.9753881954858961,
+      "serial_range_seconds": [
+        1.4097633,
+        1.6643417
+      ],
+      "parallel_range_seconds": [
+        1.5394333,
+        1.706495
+      ]
+    },
+    {
+      "case": "case_05",
+      "cores": 3,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "55094b6dd99e1c63ecaede916e1e4f4622aabc33fcbf5b5864ea8c1ea9c88d58",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 2.0522389,
+        "serial": 3.2470256
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 3.1412943,
+          "parallel": 1.7964724
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.8486179,
+          "serial": 2.6899263
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.8061877,
+          "serial": 3.4260037
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 2.8774046,
+          "parallel": 1.7709605
+        }
+      ],
+      "serial_median_seconds": 3.00934945,
+      "parallel_median_seconds": 1.80133005,
+      "speedup": 1.670626351900364,
+      "paired_ratio_median": 1.6866804871954835,
+      "serial_range_seconds": [
+        2.6899263,
+        3.4260037
+      ],
+      "parallel_range_seconds": [
+        1.7709605,
+        1.8486179
+      ]
+    },
+    {
+      "case": "case_05",
+      "cores": 4,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "45b39b08ac41937fa0e8658090e50e7f44c005a19870360d2371e03892b2bc4f",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 4.7638037,
+        "parallel": 2.0431188
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 4.5795387,
+          "parallel": 1.8901513
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 2.0255485,
+          "serial": 4.5092565
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 2.1115017,
+          "serial": 4.7438548
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 4.9458821,
+          "parallel": 2.0151239
+        }
+      ],
+      "serial_median_seconds": 4.66169675,
+      "parallel_median_seconds": 2.0203362,
+      "speedup": 2.307386636936961,
+      "paired_ratio_median": 2.3347579196751815,
+      "serial_range_seconds": [
+        4.5092565,
+        4.9458821
+      ],
+      "parallel_range_seconds": [
+        1.8901513,
+        2.1115017
+      ]
+    },
+    {
+      "case": "case_05",
+      "cores": 5,
+      "input_sha256": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "plan_sha256": "0a9920d5906b94a0134b9e50aefd04fa35a0575d23aa90690d059f24c46d73c1",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 2.0810642,
+        "serial": 5.4710435
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 5.2482178,
+          "parallel": 1.6540278
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.6140878,
+          "serial": 5.2777981
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.6481491,
+          "serial": 5.0944666
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 5.0640063,
+          "parallel": 1.786341
+        }
+      ],
+      "serial_median_seconds": 5.1713422,
+      "parallel_median_seconds": 1.65108845,
+      "speedup": 3.132080658670951,
+      "paired_ratio_median": 3.1320076954825105,
+      "serial_range_seconds": [
+        5.0640063,
+        5.2777981
+      ],
+      "parallel_range_seconds": [
+        1.6140878,
+        1.786341
+      ]
+    },
+    {
+      "case": "case_06",
+      "cores": 2,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "4daa71233bc86811ade1e041a348e01a14a05e0dacc675a8018e9d46f5f84d3e",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.2853159,
+        "parallel": 0.2818866
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.2881824,
+          "parallel": 0.2851472
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.2893274,
+          "serial": 0.2805107
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.3008101,
+          "serial": 0.2767644
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.2743316,
+          "parallel": 0.2688629
+        }
+      ],
+      "serial_median_seconds": 0.27863755,
+      "parallel_median_seconds": 0.28723730000000003,
+      "speedup": 0.9700604691660867,
+      "paired_ratio_median": 0.990085618256584,
+      "serial_range_seconds": [
+        0.2743316,
+        0.2881824
+      ],
+      "parallel_range_seconds": [
+        0.2688629,
+        0.3008101
+      ]
+    },
+    {
+      "case": "case_06",
+      "cores": 3,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "cd541576609463baf84e709a246ea09be9ad2b1b5ea6c31e9c85b417085c0df0",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.2843877,
+        "serial": 0.476192
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.4774065,
+          "parallel": 0.2947677
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.2773814,
+          "serial": 0.4864937
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.2939982,
+          "serial": 0.4843239
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.4729297,
+          "parallel": 0.2990144
+        }
+      ],
+      "serial_median_seconds": 0.4808652,
+      "parallel_median_seconds": 0.29438295000000003,
+      "speedup": 1.6334682426410903,
+      "paired_ratio_median": 1.6334863884987603,
+      "serial_range_seconds": [
+        0.4729297,
+        0.4864937
+      ],
+      "parallel_range_seconds": [
+        0.2773814,
+        0.2990144
+      ]
+    },
+    {
+      "case": "case_06",
+      "cores": 4,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "42c9a060ee1fdbe1266c0166c58c2c5e768b218da7296525395e0468112ef9fd",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 0.7124516,
+        "parallel": 0.3085994
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.7068252,
+          "parallel": 0.3207385
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.2996584,
+          "serial": 0.7012947
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.2999053,
+          "serial": 0.7081553
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 0.6922367,
+          "parallel": 0.3257091
+        }
+      ],
+      "serial_median_seconds": 0.70405995,
+      "parallel_median_seconds": 0.3103219,
+      "speedup": 2.26880523095534,
+      "paired_ratio_median": 2.2720283809440573,
+      "serial_range_seconds": [
+        0.6922367,
+        0.7081553
+      ],
+      "parallel_range_seconds": [
+        0.2996584,
+        0.3257091
+      ]
+    },
+    {
+      "case": "case_06",
+      "cores": 5,
+      "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "plan_sha256": "533d2d715689df98ba199299a7aa1370462fe6f8b49b6c656cf4c4d6177e0e45",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 0.3181445,
+        "serial": 0.9550658
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.024611,
+          "parallel": 0.3791608
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.4129718,
+          "serial": 0.9457986
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 0.3871286,
+          "serial": 0.9652369
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.1009581,
+          "parallel": 0.4047796
+        }
+      ],
+      "serial_median_seconds": 0.99492395,
+      "parallel_median_seconds": 0.3959541,
+      "speedup": 2.5127254648960577,
+      "paired_ratio_median": 2.5978181232045223,
+      "serial_range_seconds": [
+        0.9457986,
+        1.1009581
+      ],
+      "parallel_range_seconds": [
+        0.3791608,
+        0.4129718
+      ]
+    },
+    {
+      "case": "case_07",
+      "cores": 2,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "a2b9efac383dcf04a055543e511832a84a485959d720d05d0fde07cbfe7289e1",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 1.592135,
+        "parallel": 1.3529204
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.520783,
+          "parallel": 1.4410076
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.5141575,
+          "serial": 1.6942559
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.4386895,
+          "serial": 1.403714
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.562413,
+          "parallel": 1.4190349
+        }
+      ],
+      "serial_median_seconds": 1.541598,
+      "parallel_median_seconds": 1.43984855,
+      "speedup": 1.0706667725574333,
+      "paired_ratio_median": 1.0782000050655833,
+      "serial_range_seconds": [
+        1.403714,
+        1.6942559
+      ],
+      "parallel_range_seconds": [
+        1.4190349,
+        1.5141575
+      ]
+    },
+    {
+      "case": "case_07",
+      "cores": 3,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "9ce8c01e8be1c9750498f9c27fec2933b21ad765cd1347d707dee1fae0fd08be",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 1.5719507,
+        "serial": 2.8015246
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 2.7289682,
+          "parallel": 1.6858728
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.5960048,
+          "serial": 2.8015717
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.5070766,
+          "serial": 2.6299176
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 2.5693252,
+          "parallel": 1.7315129
+        }
+      ],
+      "serial_median_seconds": 2.6794429,
+      "parallel_median_seconds": 1.6409388,
+      "speedup": 1.6328719267287726,
+      "paired_ratio_median": 1.681886482496508,
+      "serial_range_seconds": [
+        2.5693252,
+        2.8015717
+      ],
+      "parallel_range_seconds": [
+        1.5070766,
+        1.7315129
+      ]
+    },
+    {
+      "case": "case_07",
+      "cores": 4,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "c9f91a2c9cab1d719ce823a42e2d4993db1e5103f743f73d2cea9a9bc60cabb5",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 4.1911334,
+        "parallel": 1.5152684
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 3.8194025,
+          "parallel": 1.6482291
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.5025308,
+          "serial": 3.8141584
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.913014,
+          "serial": 4.2104402
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 3.9337739,
+          "parallel": 1.8153225
+        }
+      ],
+      "serial_median_seconds": 3.8765881999999996,
+      "parallel_median_seconds": 1.7317757999999999,
+      "speedup": 2.2385046609382115,
+      "paired_ratio_median": 2.2591111504355297,
+      "serial_range_seconds": [
+        3.8141584,
+        4.2104402
+      ],
+      "parallel_range_seconds": [
+        1.5025308,
+        1.913014
+      ]
+    },
+    {
+      "case": "case_07",
+      "cores": 5,
+      "input_sha256": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "plan_sha256": "1f9ec2a751cdb625d66fde9d736c06e9832d1e41094406368ad58229f71b3fc1",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 1.9909724,
+        "serial": 5.2445899
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 5.5061904,
+          "parallel": 1.8765822
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.9931095,
+          "serial": 4.9308255
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.7437694,
+          "serial": 4.8338767
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 5.0706044,
+          "parallel": 1.7934069
+        }
+      ],
+      "serial_median_seconds": 5.00071495,
+      "parallel_median_seconds": 1.83499455,
+      "speedup": 2.7251933527540992,
+      "paired_ratio_median": 2.7997217086450217,
+      "serial_range_seconds": [
+        4.8338767,
+        5.5061904
+      ],
+      "parallel_range_seconds": [
+        1.7437694,
+        1.9931095
+      ]
+    },
+    {
+      "case": "case_08",
+      "cores": 2,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "a42b7be8a5acacbb0f559fe8b01765aa2575227536789c4ea2649f949bd1f6e4",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 1.6551302,
+        "parallel": 1.649604
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.6084464,
+          "parallel": 1.6391317
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.666666,
+          "serial": 1.7488799
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.6882468,
+          "serial": 1.6860719
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.8893129,
+          "parallel": 1.7676696
+        }
+      ],
+      "serial_median_seconds": 1.7174759,
+      "parallel_median_seconds": 1.6774564,
+      "speedup": 1.0238572519679199,
+      "paired_ratio_median": 1.024020050109288,
+      "serial_range_seconds": [
+        1.6084464,
+        1.8893129
+      ],
+      "parallel_range_seconds": [
+        1.6391317,
+        1.7676696
+      ]
+    },
+    {
+      "case": "case_08",
+      "cores": 3,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "7ee887f58f26770e54ac2000c9e7ce3bafa26781a7ef6044b40bf92c7557e992",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 1.8336547,
+        "serial": 3.06987
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 3.1196761,
+          "parallel": 1.7900441
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.7719293,
+          "serial": 3.0750317
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.76765,
+          "serial": 3.0208605
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 3.1205999,
+          "parallel": 1.6823876
+        }
+      ],
+      "serial_median_seconds": 3.0973539,
+      "parallel_median_seconds": 1.7697896499999999,
+      "speedup": 1.7501254456991542,
+      "paired_ratio_median": 1.7391036582730803,
+      "serial_range_seconds": [
+        3.0208605,
+        3.1205999
+      ],
+      "parallel_range_seconds": [
+        1.6823876,
+        1.7900441
+      ]
+    },
+    {
+      "case": "case_08",
+      "cores": 4,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "b03ed8f17a80d51f1163a22a18e51d72a1fb595ebafc4e22fc59a7b87fa37510",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 4.4487269,
+        "parallel": 1.8681437
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 4.4070219,
+          "parallel": 1.8177096
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.9297542,
+          "serial": 4.4571582
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.8631636,
+          "serial": 4.4516684
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 4.3763098,
+          "parallel": 1.8514434
+        }
+      ],
+      "serial_median_seconds": 4.42934515,
+      "parallel_median_seconds": 1.8573035,
+      "speedup": 2.384825716421683,
+      "paired_ratio_median": 2.37651743853045,
+      "serial_range_seconds": [
+        4.3763098,
+        4.4571582
+      ],
+      "parallel_range_seconds": [
+        1.8177096,
+        1.9297542
+      ]
+    },
+    {
+      "case": "case_08",
+      "cores": 5,
+      "input_sha256": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "plan_sha256": "6b2abd77be1fc21152a5d7696810f5e2e8be6f74bd6b2b323ba0fae1d1bbacfc",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 2.0143557,
+        "serial": 5.8441485
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 5.9020763,
+          "parallel": 2.1304377
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 2.0373208,
+          "serial": 5.8892022
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 2.0224395,
+          "serial": 5.8446451
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 5.8299093,
+          "parallel": 1.9900639
+        }
+      ],
+      "serial_median_seconds": 5.86692365,
+      "parallel_median_seconds": 2.02988015,
+      "speedup": 2.8902808128844457,
+      "paired_ratio_median": 2.8902794170132733,
+      "serial_range_seconds": [
+        5.8299093,
+        5.9020763
+      ],
+      "parallel_range_seconds": [
+        1.9900639,
+        2.1304377
+      ]
+    },
+    {
+      "case": "case_09",
+      "cores": 2,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "cb735a3db66f6862fdc2e88381edc5c563f157fcb76cbcdcc65f1ff39d68e6e0",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 1.5948212,
+        "parallel": 1.5836624
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.5786061,
+          "parallel": 1.595006
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.5802471,
+          "serial": 1.5732514
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.5689542,
+          "serial": 1.5941824
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 1.5801378,
+          "parallel": 1.5749886
+        }
+      ],
+      "serial_median_seconds": 1.57937195,
+      "parallel_median_seconds": 1.57761785,
+      "speedup": 1.0011118662228626,
+      "paired_ratio_median": 0.9994211955566221,
+      "serial_range_seconds": [
+        1.5732514,
+        1.5941824
+      ],
+      "parallel_range_seconds": [
+        1.5689542,
+        1.595006
+      ]
+    },
+    {
+      "case": "case_09",
+      "cores": 3,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "d1eba9d1b7fe609a64ab45b2468cf11b961d7bc5af3546f8d3b13e65337bdce1",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 1.6994756,
+        "serial": 2.9717997
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 2.9203104,
+          "parallel": 1.6970708
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.7058772,
+          "serial": 2.9263137
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.7285841,
+          "serial": 2.883178
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 2.951449,
+          "parallel": 1.6974522
+        }
+      ],
+      "serial_median_seconds": 2.92331205,
+      "parallel_median_seconds": 1.7016647,
+      "speedup": 1.7179130824068924,
+      "paired_ratio_median": 1.718112565854106,
+      "serial_range_seconds": [
+        2.883178,
+        2.951449
+      ],
+      "parallel_range_seconds": [
+        1.6970708,
+        1.7285841
+      ]
+    },
+    {
+      "case": "case_09",
+      "cores": 4,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "f246b2f57e4238d9edb7d2157ca2aca4fb55c7bc0b9b6ccd1bdfe28f699d2e58",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "serial": 4.2885342,
+        "parallel": 1.8479613
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 4.3282697,
+          "parallel": 1.8071852
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.9236503,
+          "serial": 4.3108677
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 1.7991694,
+          "serial": 4.3058592
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 4.3313314,
+          "parallel": 2.1144502
+        }
+      ],
+      "serial_median_seconds": 4.3195687,
+      "parallel_median_seconds": 1.86541775,
+      "speedup": 2.3156039444783882,
+      "paired_ratio_median": 2.3171156963080533,
+      "serial_range_seconds": [
+        4.3058592,
+        4.3313314
+      ],
+      "parallel_range_seconds": [
+        1.7991694,
+        2.1144502
+      ]
+    },
+    {
+      "case": "case_09",
+      "cores": 5,
+      "input_sha256": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4",
+      "plan_sha256": "787adb45e303342d2162cff7f7c9d3574afe695483c383afd652f8b122f4296e",
+      "outputs_identical_to_official_v3": true,
+      "warmups_seconds": {
+        "parallel": 2.3090122,
+        "serial": 6.6646957
+      },
+      "measured_pairs": [
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 6.4772615,
+          "parallel": 2.318993
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 2.4212729,
+          "serial": 6.4381488
+        },
+        {
+          "order": [
+            "parallel",
+            "serial"
+          ],
+          "parallel": 2.3603207,
+          "serial": 6.9567218
+        },
+        {
+          "order": [
+            "serial",
+            "parallel"
+          ],
+          "serial": 8.0679361,
+          "parallel": 2.3267973
+        }
+      ],
+      "serial_median_seconds": 6.716991650000001,
+      "parallel_median_seconds": 2.343559,
+      "speedup": 2.866150009451437,
+      "paired_ratio_median": 2.8702491917577646,
+      "serial_range_seconds": [
+        6.4381488,
+        8.0679361
+      ],
+      "parallel_range_seconds": [
+        2.318993,
+        2.4212729
+      ]
+    }
+  ],
+  "overall": {
+    "configurations": 40,
+    "serial_sum_medians_seconds": 74.41175810000001,
+    "parallel_sum_medians_seconds": 37.593327,
+    "speedup": 1.979387408302543,
+    "saved_seconds": 36.81843110000001,
+    "saved_percent": 49.479318914251,
+    "geometric_mean_case_speedup": 1.6311025141913618
+  },
+  "by_cores": {
+    "2": {
+      "configurations": 10,
+      "serial_sum_medians_seconds": 8.26736895,
+      "parallel_sum_medians_seconds": 8.20301115,
+      "speedup": 1.0078456311741084,
+      "saved_seconds": 0.0643577999999998,
+      "saved_percent": 0.7784556415617594,
+      "geometric_mean_case_speedup": 1.007970790845546
+    },
+    "3": {
+      "configurations": 10,
+      "serial_sum_medians_seconds": 14.923695350000001,
+      "parallel_sum_medians_seconds": 9.0587862,
+      "speedup": 1.6474277039455905,
+      "saved_seconds": 5.864909150000001,
+      "saved_percent": 39.29930900123876,
+      "geometric_mean_case_speedup": 1.5033990122319518
+    },
+    "4": {
+      "configurations": 10,
+      "serial_sum_medians_seconds": 22.1602629,
+      "parallel_sum_medians_seconds": 9.9086563,
+      "speedup": 2.2364548965130617,
+      "saved_seconds": 12.251606599999999,
+      "saved_percent": 55.28637749148725,
+      "geometric_mean_case_speedup": 1.9633254827452407
+    },
+    "5": {
+      "configurations": 10,
+      "serial_sum_medians_seconds": 29.0604309,
+      "parallel_sum_medians_seconds": 10.42287335,
+      "speedup": 2.788140076555761,
+      "saved_seconds": 18.63755755,
+      "saved_percent": 64.13379627485152,
+      "geometric_mean_case_speedup": 2.3790880594637063
+    }
+  },
+  "finished_utc": "2026-10-30T08:59:13.779601+00:00"
+}

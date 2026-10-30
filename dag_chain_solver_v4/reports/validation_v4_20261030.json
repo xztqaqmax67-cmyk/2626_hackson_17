@@ -1,0 +1,105 @@
+{
+  "version": "0.4.0",
+  "date": "2026-10-30",
+  "platform": "Windows x64",
+  "builds": [
+    "MSVC 19.44.35209",
+    "GCC/MinGW 15.1.0"
+  ],
+  "cpp_regression_suites": {
+    "MSVC": 5,
+    "GCC_MinGW": 5
+  },
+  "cli_contracts_passed": [
+    "MSVC",
+    "GCC_MinGW"
+  ],
+  "graph_contract_checks": {
+    "MSVC": 26,
+    "GCC_MinGW": 26
+  },
+  "official_cases_passed": 40,
+  "repeat_identical_cases": 40,
+  "cross_compiler_identical_cases": [
+    {
+      "case": "case_00",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 1.0755669998470694,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "db65cb2da1da8d77ce88762fbd07592964b83aa7d2b9f7f5e73ad2ef2a3203a7"
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 1.909979899879545,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "f38f3063d4fd576b1da6b5c84fe8237727dbbbb3444c8420c231fbb611109e5c"
+    },
+    {
+      "case": "case_05",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 5.724129100097343,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "b52fa4eae00f2b2a93698ffdbd58aed00be1929b3df44a4599560af50153f667"
+    },
+    {
+      "case": "case_08",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 5.860456200083718,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "6ee51ad3cdca5a6bd73928cdcb046ece4388ed9a0a3f91292f9efeda123fd7b9"
+    }
+  ],
+  "native_linux_tested": false,
+  "gcc_9_4_or_11_tested": false,
+  "clean_source_package_build": true,
+  "clean_package_case_00_n4_matches_measured_plan": true,
+  "package_sha256": "27e979821a688b9f2c7c770748321efe84c01cf2933739943542c94a3024cd97",
+  "package_bytes": 31486,
+  "source_sha256": {
+    "src/chain.cpp": "780e1ccd26e95428286efb67f6d12844bced3bea37387388460c6f1cf81e508e",
+    "src/chain.hpp": "07cba1772cb2d6b7c63d255e0cac6a38c03341fdab1fed3e83217078688033c0",
+    "src/main.cpp": "d142bc49504ab6bff7e376d2df756a03820e59997e4c1c49ebaa152e645f5b85",
+    "src/model.hpp": "9a5a4ad3a458e835ab93a2064fd790415757780b13f39d4394186a630df48337",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "65f56e6b92199be667481eb6fb7aa788207db9e6ce51cd73423f95164c278381",
+    "src/refine.hpp": "6fd170a794c7abf6a79fda71080368431b7866766d34b29cb94c073be2b16ad1"
+  },
+  "solver_executable_sha256": "cfdf20a263cf1ece12a844a7d2a9959a8306cc6b57bf5d07358a028a025a78fd",
+  "mingw_executable_sha256": "9b152d3d66fb09d8efc22951f02dbcbb770c9b6dec40f9a2afd210810d0887c6",
+  "original_v3_sources_unchanged": true,
+  "official_reference_files_unchanged": true,
+  "resource_observations": {
+    "maximum_generation_seconds": 6.67810030002147,
+    "mean_generation_seconds": 2.905297127494123,
+    "maximum_sampled_process_threads": 7,
+    "maximum_observed_working_set_bytes": 185208832
+  },
+  "package_members": [
+    "dag_chain_solver_v4/CMakeLists.txt",
+    "dag_chain_solver_v4/README.md",
+    "dag_chain_solver_v4/src/chain.cpp",
+    "dag_chain_solver_v4/src/chain.hpp",
+    "dag_chain_solver_v4/src/main.cpp",
+    "dag_chain_solver_v4/src/model.hpp",
+    "dag_chain_solver_v4/src/parallel_jobs.hpp",
+    "dag_chain_solver_v4/src/refine.cpp",
+    "dag_chain_solver_v4/src/refine.hpp"
+  ]
+}

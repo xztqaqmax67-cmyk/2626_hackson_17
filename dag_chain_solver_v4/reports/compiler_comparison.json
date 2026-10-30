@@ -1,0 +1,50 @@
+{
+  "solver_sha256": "9b152d3d66fb09d8efc22951f02dbcbb770c9b6dec40f9a2afd210810d0887c6",
+  "rows": [
+    {
+      "case": "case_00",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 1.0755669998470694,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "db65cb2da1da8d77ce88762fbd07592964b83aa7d2b9f7f5e73ad2ef2a3203a7"
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 1.909979899879545,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "f38f3063d4fd576b1da6b5c84fe8237727dbbbb3444c8420c231fbb611109e5c"
+    },
+    {
+      "case": "case_05",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 5.724129100097343,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "b52fa4eae00f2b2a93698ffdbd58aed00be1929b3df44a4599560af50153f667"
+    },
+    {
+      "case": "case_08",
+      "cores": 4,
+      "byte_identical": true,
+      "generation": {
+        "seconds": 5.860456200083718,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_max_process_threads": 0
+      },
+      "plan_sha256": "6ee51ad3cdca5a6bd73928cdcb046ece4388ed9a0a3f91292f9efeda123fd7b9"
+    }
+  ],
+  "linux_tested": false
+}

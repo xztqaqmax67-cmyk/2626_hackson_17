@@ -1,0 +1,12 @@
+{
+  "original_v2_tracked_files_preserved": 22,
+  "v3_solver_sources_preserved": true,
+  "supplied_archive_preserved": true,
+  "official_sources_preserved": true,
+  "identical_benchmark_generations": 800,
+  "official_valid": 40,
+  "official_results_matching_v3": 40,
+  "package_sha256": "7fd6f74d47e63954695d481548b22cf2b9887bbc30cc1be7341e03203e65973a",
+  "package_files": 6,
+  "msvc_release_flags": "/O2 /Ob2 /DNDEBUG"
+}
