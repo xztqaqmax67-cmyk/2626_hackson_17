@@ -1,0 +1,300 @@
+--- baseline/problem2/pipeline.cpp
++++ merged/problem2/pipeline.cpp
+@@ -232,9 +232,8 @@
+     return p;
+ }
+ // 依照原版顺序枚举窗口与负载权重，保留不同分配方式作为搜索起点。
+-NamedPlans pipeline_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
+-                               double deadline) {
+-    NamedPlans result;
++void visit_pipeline_seeds(const GraphInfo &g, Id cores, const Settings &settings,
++                          double deadline, const SeedVisitor &visit) {
+     std::set<std::string> seen;
+     for (auto [label, mode, balance, window] :
+          std::vector<std::tuple<std::string, std::string, double, Id>>{
+@@ -245,9 +244,17 @@
+         check_deadline(deadline);
+         auto p = operation_plan(g, cores, settings, balance, window, mode, {}, deadline);
+         if (seen.insert(p.fingerprint()).second) {
+-            result.emplace_back(label, p);
+-        }
+-    }
++            if (!visit(label, std::move(p))) return;
++        }
++    }
++}
++NamedPlans pipeline_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
++                               double deadline) {
++    NamedPlans result;
++    visit_pipeline_seeds(g, cores, settings, deadline, [&](std::string label, Plan p) {
++        result.emplace_back(std::move(label), std::move(p));
++        return true;
++    });
+     return result;
+ }
+ // 保持分配关系，借助已评估的开始时间尝试改善同核顺序。
+--- baseline/problem2/pipeline.hpp
++++ merged/problem2/pipeline.hpp
+@@ -3,6 +3,10 @@
+ namespace problem2 {
+ // 就绪窗口只从依赖已满足的操作中挑选候选，权衡流水线完成时间和核间负载。
+ using NamedPlans = std::vector<std::pair<std::string, Plan>>;
++// 返回 false 即停止该来源，避免构造本轮不会评估的剩余种子。
++using SeedVisitor = std::function<bool(std::string, Plan)>;
++void visit_pipeline_seeds(const GraphInfo &graph, Id cores, const Settings &settings,
++                          double deadline, const SeedVisitor &visit);
+ Plan operation_plan(const GraphInfo &graph, Id cores, const Settings &settings, double balance = 0,
+                     Id window = 1, const std::string &mode = "critical",
+                     const std::optional<std::map<Id, Id>> &assignment = {}, double deadline = 0,
+--- baseline/problem2/search.cpp
++++ merged/problem2/search.cpp
+@@ -937,6 +937,65 @@
+                     seed_rows.push_back(*row);
+                 }
+             }
++            const bool short_budget = options.compact && time_limit <= 30.;
++            bool focus_local = false;
++            // 先改变已有可行分核的粒度；90 秒正式预算同样受益于这个廉价起点。
++            if (options.compact && best_plan) {
++                const Plan anchor = *best_plan;
++                const Objective anchor_score = best_key;
++                Id heavy = -1;
++                double heaviest = -1;
++                for (Id b : anchor.order) {
++                    if (anchor.blocks.at(b).size() < 128) continue;
++                    double work = 0;
++                    for (Id op : anchor.blocks.at(b)) work += graph.weight.at(op);
++                    if (work > heaviest) { heaviest = work; heavy = b; }
++                }
++                auto add_early = [&](const Plan &plan, const std::string &label) {
++                    check(true);
++                    increment("seed_candidates");
++                    evaluate(plan, label);
++                    if (auto row = row_for(plan, label)) seed_rows.push_back(*row);
++                };
++                if (heavy >= 0) {
++                    if (auto divided = split_block(graph, anchor, heavy))
++                        add_early(*divided, "native_early_heavy_split");
++                    Plan granular;
++                    granular.ncores = cores;
++                    granular.next_block_id = anchor.next_block_id;
++                    for (Id b : anchor.order) {
++                        const auto &nodes = anchor.blocks.at(b);
++                        const std::size_t parts = nodes.size() >= 128 ? 4 : 1;
++                        for (std::size_t i = 0; i < parts; ++i) {
++                            Id id = i == 0 ? b : granular.next_block_id++;
++                            granular.blocks[id] = Ids(nodes.begin() + nodes.size() * i / parts,
++                                                     nodes.begin() + nodes.size() * (i + 1) / parts);
++                            granular.core_of[id] = anchor.core_of.at(b);
++                            granular.order.push_back(id);
++                        }
++                    }
++                    granular.validate(graph);
++                    add_early(granular, "native_early_granularity4");
++                    // 短预算才收缩分核探索；正式预算继续保留来源多样性和链初解。
++                    focus_local = short_budget && best_key.first < anchor_score.first * .98;
++                }
++            }
++            // 每来源只构造本轮能使用的前缀，仍由现有固定计算池执行。
++            auto collect_seeds = [&](const auto &visitor) {
++                NamedPlans plans;
++                const double local_deadline = options.compact
++                    ? std::min(deadline, monotonic() + std::max(1., time_limit * .2)) : deadline;
++                try {
++                    visitor(graph, cores, settings, local_deadline,
++                        [&](std::string label, Plan plan) {
++                            plans.emplace_back(std::move(label), std::move(plan));
++                            return !options.compact || plans.size() < 2;
++                        });
++                } catch (const TimeoutError &) {
++                    // 局部额度耗尽时保留此前已完成的种子；全局时限由接收端检查。
++                }
++                return plans;
++            };
+             // 种子来源直接在计算池内构造，不再额外创建保存调用栈的休眠线程。
+             auto legacy = [&]() -> NamedPlans {
+                 NamedPlans plans;
+@@ -947,10 +1006,10 @@
+                 return plans;
+             };
+             auto structure_source = [&]() {
+-                return structure_seed_plans(graph, cores, settings, deadline);
++                return collect_seeds(visit_structure_seeds);
+             };
+             auto pipeline_source = [&]() {
+-                return pipeline_seed_plans(graph, cores, settings, deadline);
++                return collect_seeds(visit_pipeline_seeds);
+             };
+             auto chain_source = [&]() -> NamedPlans {
+                 const double construction_deadline =
+@@ -965,11 +1024,11 @@
+                 return activation_plans(graph, *inherited, settings, deadline, 6);
+             };
+             std::vector<std::function<NamedPlans()>> builders;
+-            if (options.ablation != "construction-only") {
++            if (options.ablation != "construction-only" && !focus_local) {
+                 builders.emplace_back(structure_source);
+                 builders.emplace_back(pipeline_source);
+             }
+-            builders.emplace_back(legacy);
++            if (!short_budget) builders.emplace_back(legacy);
+             const bool with_chain = options.ablation != "construction-only" &&
+                                     options.ablation != "no-chain";
+             if (with_chain) {
+@@ -1000,6 +1059,7 @@
+             if (with_chain) {
+                 seed_limit += 2;
+             }
++            if (short_budget) seed_limit = with_chain ? 4 : 2;
+             while (!active_sources.empty() && seed_count < seed_limit) {
+                 std::vector<std::size_t> active;
+                 struct SeedStep {
+@@ -1020,6 +1080,8 @@
+                 for (std::size_t i = 0; i < steps.size(); ++i) {
+                     if (steps[i].error) break;
+                     if (steps[i].row && Id(seed_plans.size()) < seed_limit - seed_count) {
++                        if (best_plan && pipe_bound(graph, steps[i].row->second) > best_key.first)
++                            continue;
+                         score_positions[i] = seed_plans.size();
+                         seed_plans.push_back(&steps[i].row->second);
+                     }
+@@ -1035,11 +1097,13 @@
+                     active.push_back(index);
+                     ++seed_count;
+                     increment("seed_candidates");
+-                    evaluate(row->second, row->first, std::nullopt,
+-                             seed_scores.empty() ? nullptr : &seed_scores.at(score_positions[i]));
+-                    auto seed = row_for(row->second, row->first);
+-                    if (seed) {
+-                        seed_rows.push_back(*seed);
++                    if (!best_plan || pipe_bound(graph, row->second) <= best_key.first) {
++                        evaluate(row->second, row->first, std::nullopt,
++                                 seed_scores.empty() ? nullptr : &seed_scores.at(score_positions[i]));
++                        auto seed = row_for(row->second, row->first);
++                        if (seed) seed_rows.push_back(*seed);
++                    } else {
++                        increment("safe_pruned");
+                     }
+                     if (seed_count >= seed_limit ||
+                         (seed_count >= 4 && monotonic() >= seed_cutoff)) {
+@@ -1296,7 +1360,9 @@
+                                     profile_cache.erase(profile_order.front());
+                                     profile_order.pop_front();
+                                 }
+-                                auto profile = expand(center, center_result);
++                                // 只有生命周期邻域读取完整 profile，其他族共享空对象。
++                                static const auto empty_profile = std::make_shared<const Json>(object());
++                                auto profile = family == 0 ? expand(center, center_result) : empty_profile;
+                                 if (family == 0 && sweep == 0 &&
+                                     (!profile->value("lifetime_hotspots", array()).empty() ||
+                                      center_result.value("spill_bytes", Id(0)))) {
+--- baseline/problem2/structure.cpp
++++ merged/problem2/structure.cpp
+@@ -394,24 +394,24 @@
+ }
+ } // namespace
+ // 按原版顺序组合结构划分策略；重复方案由指纹去重。
+-NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
+-                                double deadline) {
++void visit_structure_seeds(const GraphInfo &g, Id cores, const Settings &settings,
++                           double deadline, const SeedVisitor &visit) {
+     if (cores < 1) {
+         throw std::invalid_argument("ncores must be positive");
+     }
+     check_deadline(deadline);
+-    NamedPlans result;
+     std::set<std::string> seen;
+     auto add = [&](std::string label, Plan p) {
+         if (seen.insert(p.fingerprint()).second) {
+-            result.emplace_back(label, p);
+-        }
++            return visit(std::move(label), std::move(p));
++        }
++        return true;
+     };
+     if (g.ids.empty()) {
+         Plan p;
+         p.ncores = cores;
+         add("structure_empty", p);
+-        return result;
++        return;
+     }
+     double total = 0, maximum = 0;
+     for (const auto &part : g.atoms) {
+@@ -428,9 +428,9 @@
+         for (double coefficient : {0., .5}) {
+             auto assignment = pack(g, parts, stages, cores, settings, coefficient, deadline);
+             for (bool merged : {true, false}) {
+-                add(std::string("structure_atoms_c") + (coefficient == 0 ? "0" : "0.5") + "_" +
++                if (!add(std::string("structure_atoms_c") + (coefficient == 0 ? "0" : "0.5") + "_" +
+                         (merged ? "merged" : "branches"),
+-                    emit_plan(g, parts, stages, assignment, cores, merged, deadline));
++                    emit_plan(g, parts, stages, assignment, cores, merged, deadline))) return;
+             }
+         }
+     }
+@@ -444,8 +444,8 @@
+             if (assignment) {
+                 for (const auto &mode : threshold == 4 ? std::vector<std::string>{"id", "locality"}
+                                                        : std::vector<std::string>{"id"}) {
+-                    add("structure_separator" + key(threshold) + "_" + mode,
+-                        allocation_plan(g, *assignment, cores, mode));
++                    if (!add("structure_separator" + key(threshold) + "_" + mode,
++                        allocation_plan(g, *assignment, cores, mode))) return;
+                 }
+             }
+         }
+@@ -459,16 +459,16 @@
+             for (bool merged : (width == 4 || width == 8) && !reverse
+                                    ? std::vector<bool>{true, false}
+                                    : std::vector<bool>{true}) {
+-                add("structure_stage" + key(width) + "_" + (reverse ? "reverse" : "forward") + "_" +
++                if (!add("structure_stage" + key(width) + "_" + (reverse ? "reverse" : "forward") + "_" +
+                         (merged ? "merged" : "branches"),
+-                    emit_plan(g, parts, stages, assignment, cores, merged, deadline));
++                    emit_plan(g, parts, stages, assignment, cores, merged, deadline))) return;
+             }
+         }
+         if (Id(g.atoms.size()) >= cores) {
+             auto [parts, stages] = stage_branches(g);
+-            add("structure_atoms_fallback",
++            if (!add("structure_atoms_fallback",
+                 emit_plan(g, parts, stages, pack(g, parts, stages, cores, settings, 0, deadline),
+-                          cores, true, deadline));
++                          cores, true, deadline))) return;
+         }
+         check_deadline(deadline);
+         auto order = reverse_dfs_order(g);
+@@ -490,10 +490,18 @@
+         }
+         Ids stages(parts.size());
+         std::iota(stages.begin(), stages.end(), 0);
+-        add("structure_dfs_4k",
++        if (!add("structure_dfs_4k",
+             emit_plan(g, parts, stages, pack(g, parts, stages, cores, settings, .1, deadline),
+-                      cores, false, deadline));
+-    }
++                      cores, false, deadline))) return;
++    }
++}
++NamedPlans structure_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
++                                double deadline) {
++    NamedPlans result;
++    visit_structure_seeds(g, cores, settings, deadline, [&](std::string label, Plan p) {
++        result.emplace_back(std::move(label), std::move(p));
++        return true;
++    });
+     return result;
+ }
+ } // namespace problem2
+--- baseline/problem2/structure.hpp
++++ merged/problem2/structure.hpp
+@@ -1,6 +1,8 @@
+ #pragma once
+ #include "pipeline.hpp"
+ namespace problem2 {
++void visit_structure_seeds(const GraphInfo &graph, Id cores, const Settings &settings,
++                           double deadline, const SeedVisitor &visit);
+ // 结构种子从层次、分支及反向遍历中提取不同的初始分块；不替代完整评分。
+ std::map<Id, Id> levels(const GraphInfo &graph);
+ std::pair<std::vector<Ids>, Ids> stage_branches(const GraphInfo &graph,

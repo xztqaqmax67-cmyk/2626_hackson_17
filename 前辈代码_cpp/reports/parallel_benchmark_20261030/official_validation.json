@@ -1,0 +1,182 @@
+[
+  {
+    "case": "case_00",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 1324824,
+    "returncode": 0,
+    "seconds": 0.7671346999995876
+  },
+  {
+    "case": "case_00",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 1324824,
+    "returncode": 0,
+    "seconds": 0.7870292999941739
+  },
+  {
+    "case": "case_01",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 85617,
+    "returncode": 0,
+    "seconds": 0.19536369999696035
+  },
+  {
+    "case": "case_01",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 85617,
+    "returncode": 0,
+    "seconds": 0.19007779999810737
+  },
+  {
+    "case": "case_02",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 167400,
+    "returncode": 0,
+    "seconds": 0.21275710000190884
+  },
+  {
+    "case": "case_02",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 167400,
+    "returncode": 0,
+    "seconds": 0.2113692999992054
+  },
+  {
+    "case": "case_03",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 3331160,
+    "returncode": 0,
+    "seconds": 1.339966599996842
+  },
+  {
+    "case": "case_03",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 3331160,
+    "returncode": 0,
+    "seconds": 1.3377787000063108
+  },
+  {
+    "case": "case_04",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 3028250,
+    "returncode": 0,
+    "seconds": 1.6043619000047329
+  },
+  {
+    "case": "case_04",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 2585013,
+    "returncode": 0,
+    "seconds": 1.6285783999992418
+  },
+  {
+    "case": "case_05",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 10201928,
+    "returncode": 0,
+    "seconds": 4.628258700002334
+  },
+  {
+    "case": "case_05",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 10201928,
+    "returncode": 0,
+    "seconds": 4.688271999999415
+  },
+  {
+    "case": "case_06",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 1021735,
+    "returncode": 0,
+    "seconds": 0.7006992000024184
+  },
+  {
+    "case": "case_06",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 1021735,
+    "returncode": 0,
+    "seconds": 0.7076788999984274
+  },
+  {
+    "case": "case_07",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 2920890,
+    "returncode": 0,
+    "seconds": 4.678562100001727
+  },
+  {
+    "case": "case_07",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 2896441,
+    "returncode": 0,
+    "seconds": 4.748400599994056
+  },
+  {
+    "case": "case_08",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 9683712,
+    "returncode": 0,
+    "seconds": 4.274136700005329
+  },
+  {
+    "case": "case_08",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 9479026,
+    "returncode": 0,
+    "seconds": 4.357163499997114
+  },
+  {
+    "case": "case_09",
+    "mode": "serial",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 6703356,
+    "returncode": 0,
+    "seconds": 5.946863800003484
+  },
+  {
+    "case": "case_09",
+    "mode": "parallel",
+    "full_result_equal": true,
+    "difference": null,
+    "makespan": 3834352,
+    "returncode": 0,
+    "seconds": 5.570698999996239
+  }
+]

@@ -5,6 +5,7 @@
 #include "evaluation_validation.hpp"
 #include "schedule_step1.hpp"
 #include "schedule_step2.hpp"
+#include "parallel.hpp"
 namespace problem2 {
 Id copy_traffic_bytes(const Json &graph) {
     auto v = build_graph_views(graph.at("ops"), graph.at("edges"));
@@ -194,25 +195,30 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
            in = add_copy(dst, local, size, mapping[b], false, ddr);
         link(local, size, src, dst, out, in);
     }
-    Id task_copy = 0, spill_copy = 0;
-    for (Id c = 0; c < cores; ++c) {
+    // COPY 编号和跨核链接在上方按原次序生成；以下每核准备完全独立。
+    struct CoreResult {
+        PreparedTask task;
+        Id task_copy = 0, spill_copy = 0;
+    };
+    std::vector<CoreResult> prepared(static_cast<std::size_t>(cores));
+    const auto &priority_rank = rank;
+    auto prepare_core = [&](std::size_t index) {
+        const Id c = Id(index);
+        auto &output = prepared[index];
         auto &d = data[c];
-        Json local = {{"ops", d.ops}, {"tensors", array()}, {"edges", d.edges}};
-        for (const auto &t : d.tensors) {
-            local["tensors"].push_back(t);
-        }
-        task_copy += copy_traffic_bytes(local);
+        Json local = {{"ops", std::move(d.ops)}, {"tensors", std::move(d.tensors)},
+                      {"edges", std::move(d.edges)}};
+        output.task_copy = copy_traffic_bytes(local);
         if (boundary_only) {
-            PreparedTask task;
-            task.raw_graph = local;
-            task.raw_op_subgraph = d.op_subgraph;
-            task.subgraphs = d.order;
-            result.tasks[c] = std::move(task);
-            continue;
+            output.task.raw_graph = std::move(local);
+            output.task.raw_op_subgraph = std::move(d.op_subgraph);
+            output.task.subgraphs = std::move(d.order);
+            return;
         }
         auto seq = step1_schedule(local);
         std::stable_sort(seq.begin(), seq.end(), [&](Id a, Id b) {
-            return rank[{c, d.op_subgraph.at(a)}] < rank[{c, d.op_subgraph.at(b)}];
+            return priority_rank.at({c, d.op_subgraph.at(a)}) <
+                   priority_rank.at({c, d.op_subgraph.at(b)});
         });
         if (!check_topo(local, seq)) {
             throw SceneBEvaluationError(
@@ -221,7 +227,7 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
         auto spills = step2_spill_insertion(local, seq, capacity);
         auto op_subgraph = d.op_subgraph;
         for (const auto &spill : spills.at("spill_records")) {
-            spill_copy +=
+            output.spill_copy +=
                 field_id(spill, "size") * (1 + int(spill.at("spill_out_copies_data").get<bool>()));
             Id next_b = op_subgraph.at(field_id(spill, "next_use_op"));
             if (!spill.at("spill_out_id").is_null()) {
@@ -240,13 +246,24 @@ SceneBTasks build_scene_b_tasks(const Json &graph, const Json &plan, double band
             task =
                 prepare_step3_execution(build_extended_graph(local, spills), capacity, bandwidth);
         }
-        task.raw_graph = local;
-        task.raw_sequence = seq;
-        task.spill_result = spills;
-        task.raw_op_subgraph = d.op_subgraph;
-        task.subgraphs = d.order;
-        task.op_subgraph = op_subgraph;
-        result.tasks[c] = std::move(task);
+        task.raw_graph = std::move(local);
+        task.raw_sequence = std::move(seq);
+        task.spill_result = std::move(spills);
+        task.raw_op_subgraph = std::move(d.op_subgraph);
+        task.subgraphs = std::move(d.order);
+        task.op_subgraph = std::move(op_subgraph);
+        output.task = std::move(task);
+    };
+    if (boundary_only || mapping.size() < 64) {
+        for (Id c = 0; c < cores; ++c) prepare_core(static_cast<std::size_t>(c));
+    } else {
+        parallel_for(static_cast<std::size_t>(cores), prepare_core);
+    }
+    Id task_copy = 0, spill_copy = 0;
+    for (Id c = 0; c < cores; ++c) {
+        task_copy += prepared[c].task_copy;
+        spill_copy += prepared[c].spill_copy;
+        result.tasks.emplace(c, std::move(prepared[c].task));
     }
     Id original = copy_traffic_bytes(graph), partition = task_copy - original;
     result.traffic = {{"original_graph_copy_bytes", original},

@@ -12,8 +12,6 @@ struct SearchOptions {
     fs::path warm_start, inherited_checkpoint, resume_checkpoint;
     // no-chain 仅供开发回归对照，正常求解使用 full。
     std::string ablation = "full";
-    // Development-only screening experiment; official final acceptance is unchanged.
-    std::string screening_proxy = "legacy";
     Id max_evaluations = 0;
     bool compact = false, export_results = true;
 };

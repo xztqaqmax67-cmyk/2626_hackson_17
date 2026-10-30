@@ -232,9 +232,8 @@ Plan operation_plan(const GraphInfo &g, Id cores, const Settings &settings, doub
     return p;
 }
 // 依照原版顺序枚举窗口与负载权重，保留不同分配方式作为搜索起点。
-NamedPlans pipeline_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
-                               double deadline) {
-    NamedPlans result;
+void visit_pipeline_seeds(const GraphInfo &g, Id cores, const Settings &settings,
+                          double deadline, const SeedVisitor &visit) {
     std::set<std::string> seen;
     for (auto [label, mode, balance, window] :
          std::vector<std::tuple<std::string, std::string, double, Id>>{
@@ -245,9 +244,17 @@ NamedPlans pipeline_seed_plans(const GraphInfo &g, Id cores, const Settings &set
         check_deadline(deadline);
         auto p = operation_plan(g, cores, settings, balance, window, mode, {}, deadline);
         if (seen.insert(p.fingerprint()).second) {
-            result.emplace_back(label, p);
+            if (!visit(label, std::move(p))) return;
         }
     }
+}
+NamedPlans pipeline_seed_plans(const GraphInfo &g, Id cores, const Settings &settings,
+                               double deadline) {
+    NamedPlans result;
+    visit_pipeline_seeds(g, cores, settings, deadline, [&](std::string label, Plan p) {
+        result.emplace_back(std::move(label), std::move(p));
+        return true;
+    });
     return result;
 }
 // 保持分配关系，借助已评估的开始时间尝试改善同核顺序。

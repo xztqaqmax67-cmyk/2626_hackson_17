@@ -46,7 +46,7 @@ inline std::string path_utf8(const fs::path &path) {
 // 所有核内/多核模拟、搜索估算及时间线导出共享此表，每条仍只允许一个在飞指令。
 inline const std::array<std::string, 5> PIPES = {"PIPE_MTE2", "PIPE_MTE3", "PIPE_M", "PIPE_V",
                                                  "PIPE_FIX"};
-inline constexpr double DEFAULT_CASE_TIME_LIMIT = 25.0;
+inline constexpr double DEFAULT_CASE_TIME_LIMIT = 30.0;
 inline constexpr double DEFAULT_BATCH_TIME_LIMIT = 300.0;
 inline std::string key(Id id) {
     return std::to_string(id);
@@ -99,13 +99,16 @@ struct TimeoutError : std::runtime_error {
 struct NoFeasiblePlanError : std::runtime_error {
     using std::runtime_error::runtime_error;
 };
+// 所有构造器的局部时限都服从当前线程继承的总时限。
+inline thread_local double execution_deadline = 0;
 inline void check_deadline(double deadline = 0) {
+    if (execution_deadline > 0 && (deadline <= 0 || execution_deadline < deadline))
+        deadline = execution_deadline;
     if (deadline > 0 && monotonic() >= deadline) {
         throw TimeoutError("problem2 construction reached its deadline");
     }
 }
-// 求解器的全局协作式中断点；外层独立进程仍负责强制墙钟上限。
-inline thread_local double execution_deadline = 0;
+// 求解器的协作式中断点；线程池和生成器都显式传递此时限。
 inline void poll_search_deadline() {
     check_deadline(execution_deadline);
 }

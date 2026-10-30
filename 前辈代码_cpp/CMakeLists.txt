@@ -35,7 +35,7 @@ target_sources(problem2_lib PRIVATE
     problem2/activation.cpp
     problem2/structure.cpp)
 target_include_directories(problem2_lib PUBLIC problem2)
-# 标准线程只保存生成器调用栈；GCC/Clang 使用系统 pthread，无第三方包查找。
+# 生成器与有界计算线程池共用标准线程；GCC/Clang 使用系统 pthread。
 # MSVC 的 std::thread 由其运行库提供，不需要额外链接选项。
 if(NOT MSVC AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(problem2_lib PUBLIC -pthread)
@@ -76,8 +76,12 @@ target_link_libraries(problem2 PRIVATE problem2_lib)
 add_executable(npu_sched problem2/main.cpp)
 target_compile_definitions(npu_sched PRIVATE NPU_SCHED_ENTRY=1)
 target_link_libraries(npu_sched PRIVATE problem2_lib)
+# 本地快速运行独立命名且不进入默认提交构建，避免把 30 秒预算带到评测。
+add_executable(npu_sched_local EXCLUDE_FROM_ALL problem2/main.cpp)
+target_compile_definitions(npu_sched_local PRIVATE NPU_SCHED_ENTRY=1 NPU_LOCAL_RUN=1)
+target_link_libraries(npu_sched_local PRIVATE problem2_lib)
 if(MINGW)
-    foreach(target npu_sched problem2 multicore_cut_evaluate_problem_2 stub_multicore_cut_and_schedule)
+    foreach(target npu_sched npu_sched_local problem2 multicore_cut_evaluate_problem_2 stub_multicore_cut_and_schedule)
         target_link_options(${target} PRIVATE -municode -static -static-libgcc -static-libstdc++)
     endforeach()
 endif()

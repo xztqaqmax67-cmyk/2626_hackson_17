@@ -5,21 +5,29 @@ using i64 = Id;
 // Dense immutable access index: built once per search, reused by all candidates.
 // Own lightweight model, ported from dag_chain_solver_v2; no official module calls.
 struct ProxyIndex {
-    struct Op { Id id; vector<int> spill_uses, outputs; };
-    struct Tensor { Id size; int pos; vector<int> producers; };
+    struct Op {
+        vector<int> spill_uses, outputs;
+    };
+    struct Tensor {
+        Id size;
+        int pos;
+    };
     vector<Op> ops;
     vector<Tensor> tensors;
     unordered_map<Id, int> op_index;
     explicit ProxyIndex(const GraphInfo &g) {
-        unordered_map<Id,int> tensor_index;
+        unordered_map<Id, int> tensor_index;
         for (const auto &[id, tensor] : g.tensors) {
             tensor_index[id] = int(tensors.size());
-            tensors.push_back({field_id(tensor,"size"), field_string(tensor,"pos") == "L1" ? 0 : 1, {}});
+            tensors.push_back({field_id(tensor, "size"),
+                               field_string(tensor, "pos") == "L1" ? 0 : 1});
         }
         for (Id id : g.ids) {
             op_index[id] = int(ops.size());
-            Op op; op.id = id;
-            for (Id t : g.op_inputs.at(id)) op.spill_uses.push_back(tensor_index.at(t));
+            Op op;
+            for (Id t : g.op_inputs.at(id)) {
+                op.spill_uses.push_back(tensor_index.at(t));
+            }
             for (Id t : g.op_outputs.at(id)) {
                 op.outputs.push_back(tensor_index.at(t));
                 op.spill_uses.push_back(tensor_index.at(t));
@@ -28,23 +36,21 @@ struct ProxyIndex {
             op.spill_uses.erase(unique(op.spill_uses.begin(), op.spill_uses.end()), op.spill_uses.end());
             ops.push_back(move(op));
         }
-        for (const auto &[id, producers] : g.eligible_producers)
-            for (Id v : producers) tensors[tensor_index.at(id)].producers.push_back(op_index.at(v));
     }
 };
-struct ProxyConfig { std::array<Id,2> capacity; };
-struct ProxyPlan { vector<int> core, order; };
-struct SpillEvent { int tensor, core, previous, next, trigger; bool writeback; };
-struct SpillEstimate {
-    vector<SpillEvent> events;
-    double bytes = 0;
-    std::array<double, 2> peak{};
-    bool infeasible = false;
-    // Legal under the new evaluator; only a hint for optional order improvement.
-    vector<int> partial_write_victims;
+namespace {
+struct ProxyConfig {
+    std::array<Id, 2> capacity;
 };
-inline SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg, const ProxyPlan &s, int k,
-                                     bool collect_events) {
+struct ProxyPlan {
+    vector<int> core, order;
+};
+struct SpillEstimate {
+    double bytes = 0;
+    bool infeasible = false;
+};
+SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg,
+                              const ProxyPlan &s, int k) {
     const int nt = int(g.tensors.size()), NEVER = numeric_limits<int>::max();
     SpillEstimate ans;
     vector<vector<int>> order(k);
@@ -59,10 +65,11 @@ inline SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg
         for (int i = 0; i < m; ++i)
             offsets[i + 1] = offsets[i] + g.ops[order[c][i]].spill_uses.size();
         vector<pair<int, int>> uses(offsets.back());
-        vector<int> next(nt, NEVER), last_writer(nt, -1);
+        vector<int> next(nt, NEVER);
+        vector<unsigned char> local_writer(nt);
         for (int i = 0; i < m; ++i)
             for (int t : g.ops[order[c][i]].outputs)
-                last_writer[t] = i;
+                local_writer[t] = 1;
         for (int i = m - 1; i >= 0; --i) {
             size_t at = offsets[i];
             for (int t : g.ops[order[c][i]].spill_uses) {
@@ -71,7 +78,7 @@ inline SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg
             }
         }
         vector<unsigned char> resident(nt), backed(nt);
-        vector<int> nextuse(nt, NEVER), protect(nt, -1), insertion(nt), previous(nt, -1);
+        vector<int> nextuse(nt, NEVER), protect(nt, -1), insertion(nt);
         // Scheduled reloads precede new allocations, in eviction order. Linked
         // buckets avoid allocating a separate vector for every compute step.
         vector<int> reload_head(m, -1), reload_tail(m, -1), reload_next(nt, -1);
@@ -100,7 +107,7 @@ inline SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg
                 protect[t] = i;
                 if (!resident[t]) {
                     allocate(t);
-                    backed[t] = last_writer[t] < 0; // boundary COPY_IN backing
+                    backed[t] = !local_writer[t]; // boundary COPY_IN backing
                 }
                 nextuse[t] = nxt;
                 if (nxt != NEVER)
@@ -132,10 +139,6 @@ inline SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg
                     auto [n, neg_stamp, t] = heap[mem].top();
                     (void)neg_stamp;
                     heap[mem].pop();
-                    if (g.tensors[t].producers.size() > 1 && last_writer[t] >= i)
-                        ans.partial_write_victims.push_back(t);
-                    if (collect_events)
-                        ans.events.push_back({t,c,previous[t],order[c][n],order[c][i],!backed[t]});
                     resident[t] = 0;
                     used[mem] -= g.tensors[t].size;
                     if (!backed[t]) {
@@ -151,14 +154,12 @@ inline SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg
                 }
                 for (const auto &item : held)
                     heap[mem].push(item);
-                ans.peak[mem] = max(ans.peak[mem], double(used[mem]));
             }
             // Later writers modify the reloaded incarnation and invalidate DDR.
             for (int t : g.ops[order[c][i]].outputs)
                 backed[t] = 0;
             for (auto it = begin; it != end; ++it) {
                 auto [t, nxt] = *it;
-                previous[t] = order[c][i];
                 if (nxt == NEVER) {
                     resident[t] = 0;
                     used[g.tensors[t].pos] -= g.tensors[t].size;
@@ -166,90 +167,38 @@ inline SpillEstimate estimate_spills(const ProxyIndex &g, const ProxyConfig &cfg
             }
         }
     }
-    sort(ans.partial_write_victims.begin(), ans.partial_write_victims.end());
-    ans.partial_write_victims.erase(unique(ans.partial_write_victims.begin(), ans.partial_write_victims.end()), ans.partial_write_victims.end());
     return ans;
 }
+} // namespace
 
-bool valid_screening_proxy(const string &mode) {
-    return mode == "legacy" || mode == "new90" || mode == "half" ||
-           mode == "slack" || mode == "events";
-}
-double ProxyMetrics::score(const string &mode, double bandwidth) const {
-    if (!valid_screening_proxy(mode)) throw invalid_argument("unknown screening proxy: " + mode);
-    const double d = (route + spill) / bandwidth, q = spill / bandwidth;
-    if (mode == "legacy") return max(sketch, route / bandwidth);
-    double value = 0;
-    if (mode == "new90") value = max(sketch,d) + q;
-    if (mode == "half") value = max(sketch + .5*q,d);
-    if (mode == "slack") value = max({sketch,d,pipe_bound+q});
-    if (mode == "events") value = max(event_sketch,d);
-    return value + .03*d + (memory_warning ? 1e18 : 0);
-}
-Json ProxyMetrics::to_json() const {
-    return {{"sketch",sketch},{"route_bytes",route},{"spill_bytes",spill},
-            {"pipe_bound",pipe_bound},{"event_sketch",event_sketch},{"memory_warning",memory_warning}};
+double ProxyMetrics::score(double bandwidth) const {
+    // T 是流水线草图，D 是总 DDR 流量时间；换页额外惩罚保留已验证的权重。
+    const double d = (route + spill) / bandwidth;
+    return max(sketch, d) + spill / bandwidth + .03 * d +
+           (memory_warning ? 1e18 : 0);
 }
 ScreeningProxy::ScreeningProxy(const GraphInfo &graph)
     : graph_(&graph), index_(make_shared<ProxyIndex>(graph)) {}
-ProxyMetrics ScreeningProxy::evaluate(const Plan &plan, const Settings &settings, bool events) const {
+ProxyMetrics ScreeningProxy::evaluate(const Plan &plan, const Settings &settings) const {
     const auto &g = *graph_;
     const auto &idx = *index_;
     ProxyPlan s;
-    s.core.resize(idx.ops.size(),-1);
-    for (Id block : plan.order)
+    s.core.resize(idx.ops.size(), -1);
+    s.order.reserve(idx.ops.size());
+    for (Id block : plan.order) {
         for (Id v : plan.blocks.at(block)) {
             int op = idx.op_index.at(v);
             s.core[op] = int(plan.core_of.at(block));
             s.order.push_back(op);
         }
-    ProxyConfig config{{settings.capacity.at("L1"),settings.capacity.at("UB")}};
-    auto spill = estimate_spills(idx,config,s,int(plan.ncores),events);
+    }
+    ProxyConfig config{{settings.capacity.at("L1"), settings.capacity.at("UB")}};
+    const auto spill = estimate_spills(idx, config, s, int(plan.ncores));
     ProxyMetrics result;
     result.spill = spill.bytes;
     result.memory_warning = spill.infeasible;
-    result.route = double(route_bytes(g,plan));
-    result.sketch = replay_sketch(g,plan,settings);
-    for (const auto &row : pipe_loads(g,plan))
-        for (const auto &[pipe,load] : row) result.pipe_bound = max(result.pipe_bound,load);
-    result.event_sketch = result.sketch;
-    if (!events || spill.events.empty()) return result;
-    vector<vector<int>> after(idx.ops.size()), before(idx.ops.size()), release(idx.ops.size());
-    for (int i = 0; i < int(spill.events.size()); ++i) {
-        const auto &e = spill.events[i];
-        after[e.previous].push_back(i);
-        before[e.next].push_back(i);
-        release[e.trigger].push_back(i);
-    }
-    vector<double> completed(spill.events.size());
-    Sketch timeline(g,plan.ncores,settings);
-    for (int op : s.order) {
-        poll_search_deadline();
-        Id v = idx.ops[op].id, core = s.core[op];
-        double ready = 0;
-        for (int i : release[op]) ready = max(ready,completed[i]);
-        for (int i : before[op]) {
-            const auto &e = spill.events[i];
-            double &pipe = timeline.available[e.core]["PIPE_MTE2"];
-            pipe = max(pipe,completed[i]) + copy_duration(idx.tensors[e.tensor].size,settings.bandwidth);
-            ready = max(ready,pipe);
-        }
-        const auto pipe_name = field_string(g.ops.at(v),"pipe");
-        double &compute_pipe = timeline.available[core][pipe_name];
-        compute_pipe = max(compute_pipe,ready);
-        timeline.append({v},core);
-        for (int i : after[op]) {
-            const auto &e = spill.events[i];
-            double end = timeline.finish.at(v);
-            if (e.writeback) {
-                double &pipe = timeline.available[e.core]["PIPE_MTE3"];
-                pipe = max(pipe,end) + copy_duration(idx.tensors[e.tensor].size,settings.bandwidth);
-                end = pipe;
-            }
-            completed[i] = end;
-        }
-    }
-    result.event_sketch = timeline.makespan();
+    result.route = double(route_bytes(g, plan));
+    result.sketch = replay_sketch(g, plan, settings);
     return result;
 }
 } // namespace problem2
