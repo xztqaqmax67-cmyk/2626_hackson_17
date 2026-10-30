@@ -12,6 +12,7 @@ import math
 from pathlib import Path
 import re
 import subprocess
+import sys
 import time
 
 
@@ -35,6 +36,11 @@ def digest_bytes(value):
 
 
 def digest_file(path):
+    if path.resolve() == Path(__file__).with_name('official_runner.py').resolve():
+        from official_reference import verify_official_sources
+        manifest = verify_official_sources()
+        return digest_bytes(path.read_bytes() + Path(__file__).with_name('official_reference.py').read_bytes()
+                            + canonical(manifest).encode('utf-8'))
     return digest_bytes(path.read_bytes())
 
 
@@ -46,7 +52,8 @@ def write_json(path, value):
 def invoke(executable, request, timeout):
     started = time.perf_counter()
     try:
-        process = subprocess.run([str(executable)], input=json.dumps(request),
+        command = [sys.executable, str(executable)] if executable.suffix == '.py' else [str(executable)]
+        process = subprocess.run(command, input=json.dumps(request),
                                  capture_output=True, encoding="utf-8", errors="replace",
                                  timeout=timeout)
     except subprocess.TimeoutExpired:
@@ -195,7 +202,7 @@ def save(report, output, references):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runner", type=Path, required=True)
-    parser.add_argument("--evaluator", type=Path, help="默认为 runner；可固定评估器以复用跨版本缓存")
+    parser.add_argument("--evaluator", type=Path, help="默认使用 hackathon.zip 官方 Python；可显式指定研究用评估器")
     parser.add_argument("--data", type=Path, default=ROOT / "hackathon_data")
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--families", nargs="+", choices=("chain", "legacy"), default=["chain"])
@@ -207,12 +214,12 @@ def main():
     parser.add_argument("--no-cache", action="store_true")
     parser.add_argument("--cache-dir", type=Path, help="跨实验共享精评缓存，默认 out/evaluation_cache")
     parser.add_argument("--reference-report", type=Path,
-                        default=ROOT / "tmp/review_dag_chain_a697197/runs/four_core/report.json")
+                        help="可选研究对照；需使用相同评估器，默认不混入旧评分报告")
     args = parser.parse_args()
     if args.limit < 1 or args.timeout <= 0 or any(core not in range(2, 6) for core in args.cores):
         parser.error("limit/timeout must be positive and cores must be 2..5")
     args.runner = args.runner.resolve()
-    args.evaluator = (args.evaluator or args.runner).resolve()
+    args.evaluator = (args.evaluator or Path(__file__).with_name('official_runner.py')).resolve()
     args.out.mkdir(parents=True, exist_ok=True)
     cache_directory = args.cache_dir or args.out / "evaluation_cache"
     runner_hash, evaluator_hash = digest_file(args.runner), digest_file(args.evaluator)

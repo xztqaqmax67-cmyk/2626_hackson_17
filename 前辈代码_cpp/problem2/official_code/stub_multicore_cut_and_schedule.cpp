@@ -114,6 +114,18 @@ Json derive_multicore_plan(const Json &graph, const Json &plan) {
         throw MulticoreCutError("core schedules must cover every subgraph exactly once");
     }
     auto views = build_graph_views(graph.at("ops"), graph.at("edges"));
+    for (const auto &[tid, writers] : views.producers) {
+        IdSet writer_cores;
+        for (Id writer : writers) {
+            if (eligible.count(writer)) {
+                writer_cores.insert(core_of.at(mapping.at(writer)));
+            }
+        }
+        if (writer_cores.size() > 1) {
+            throw MulticoreCutError("tensor " + key(tid) + " has writers on multiple cores; "
+                                   "all writers of the same tensor must be scheduled on the same core");
+        }
+    }
     auto contracted = contract_excluded_copy_nodes(as_vector(eligible), views.succs);
     std::set<std::pair<Id, Id>> dependencies;
     for (Id a : eligible) {
@@ -279,8 +291,44 @@ Json generate_multicore_plan(const Json &graph, Id cores, std::uint64_t seed, Id
             mapping[key(order[cursor++])] = b;
         }
     }
+    // 共享写者的子图作为一组分核，保持官方的随机调用次数与组顺序。
+    Ids parent(sizes.size());
+    std::iota(parent.begin(), parent.end(), Id(0));
+    auto find = [&](Id id) {
+        while (parent[id] != id) {
+            parent[id] = parent[parent[id]];
+            id = parent[id];
+        }
+        return id;
+    };
+    for (const auto &[tid, writers] : views.producers) {
+        IdSet blocks;
+        for (Id writer : writers) {
+            if (mapping.contains(key(writer))) {
+                blocks.insert(number(mapping.at(key(writer))));
+            }
+        }
+        for (Id block : blocks) {
+            parent[find(block)] = find(*blocks.begin());
+        }
+    }
+    std::map<Id, Ids> groups;
     for (std::size_t b = 0; b < sizes.size(); ++b) {
-        schedules[rng.below(std::uint64_t(cores))].push_back(b);
+        groups[find(Id(b))].push_back(Id(b));
+    }
+    std::vector<Ids> ordered_groups;
+    for (const auto &[root, group] : groups) {
+        ordered_groups.push_back(group);
+    }
+    std::sort(ordered_groups.begin(), ordered_groups.end());
+    for (const auto &group : ordered_groups) {
+        auto &schedule = schedules[rng.below(std::uint64_t(cores))];
+        for (Id block : group) {
+            schedule.push_back(block);
+        }
+    }
+    for (auto &schedule : schedules) {
+        std::sort(schedule.begin(), schedule.end());
     }
     return {{"node_to_subgraph", mapping}, {"core_schedules", schedules}};
 }

@@ -105,6 +105,12 @@ if(BUILD_TESTING)
     set_tests_properties(generator_protocol PROPERTIES TIMEOUT 15)
     # 仅由开发者显式提供测试解释器；正常构建不搜索 Python 或包外资源。
     set(PROBLEM2_TEST_PYTHON "" CACHE FILEPATH "可选：运行原版对照脚本的 Python 路径")
+    if(PROBLEM2_TEST_PYTHON)
+        add_test(NAME check_official COMMAND "${PROBLEM2_TEST_PYTHON}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/tests/check_official.py")
+        set_tests_properties(check_official PROPERTIES ENVIRONMENT
+            "PROBLEM2_RUNNER=$<TARGET_FILE:parity_runner>;PROBLEM2_BUILD=${CMAKE_CURRENT_BINARY_DIR}")
+    endif()
     if(PROBLEM2_TEST_PYTHON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../前辈代码/problem2/main.py")
         foreach(test compare_multicore compare_search compare_workflow check_hackathon check_chain_integration)
             add_test(NAME ${test} COMMAND "${PROBLEM2_TEST_PYTHON}"

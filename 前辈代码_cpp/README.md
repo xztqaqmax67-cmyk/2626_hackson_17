@@ -1,5 +1,20 @@
 # 前辈代码的 C++ 版本（Hackathon 场景 B）
 
+## 2026-10-30 官方评测对齐
+
+用户提供的 `hackathon.zip` 已原样导入 [`official_evaluator/`](official_evaluator/README.md)，包含官方代码、10 个用例和配置；来源哈希见 `official_evaluator/SOURCE_MANIFEST.json`。
+
+当前 C++ 完整评分已同步官方 **90% 提前换出、多写者重命名/脏回写、扩展序列拓扑检查和写者同核校验**。`npu_sched` 与 `problem2` 共用这些修正。测试与外部评测直接以此份官方 Python 为准，已移除旧参考的 PIPE/COPY 补丁；`benchmark_chain_seeds.py` 默认使用官方 Python，并按官方源码哈希隔离旧缓存。
+
+验证：8/8 组回归通过；已有批量方案及最新链初解各 10 个四核方案，共 **20/20 的内部完整结果与官方一致**。每批有 7 例的旧评分发生变化，详细分差、原因和复现命令见 [官方对齐报告](reports/official_alignment_20261030.md)。下文及旧报告中早先的旧版对照成绩属于历史口径。
+
+已有方案可这样复评（在本目录，先构建 `parity_runner`）：
+
+```powershell
+python tests/compare_official_scores.py --plans output/hackathon_cores_4 --out output/official_recheck
+```
+
+
 ## 当前原地改造方式
 
 本目录集中维护**问题 2／场景 B**。已移除问题 1、问题 3、独立单核评估器及对应构建目标、配置和测试分支；问题 2 评估器中的共享缓存分支也已移除。正式入口和开发求解入口均只接受 2..5 核。
@@ -73,7 +88,7 @@ cmake --build build --config Release --target problem2 multicore_cut_evaluate_pr
 
 `PIPE_FIX` 是第五条独立流水线，与 `PIPE_MTE2`、`PIPE_MTE3`、`PIPE_M`、`PIPE_V` 并列，每条流水线仍只有一个在飞指令。`L1_COPY_UB`、`L1_LOOP_ENHANCE` 等操作按输入的 `pipe` 和 `cycles` 执行，不被误当作 DDR COPY。
 
-第 2 步的最晚使用 victim 规则、第 3 步的乱序/FIFO/内存复用规则没有修改。核内顺序优化仍通过标准方案表达：`pipeline.cpp` 的候选将每个非 DDR COPY 算子作为单独子图，再给出每核子图顺序。搜索也保留较粗分块候选，只有完整评估更好的方案才会保留。目标按 `(makespan, added_copy_bytes)` 比较，优先执行时间，其次数据搬运量。
+第 2 步沿用最晚使用 victim 规则，并已按新官方口径加入 90% 软阈值和多写者换出修复；第 3 步沿用乱序/FIFO/内存复用规则。核内顺序优化仍通过标准方案表达：`pipeline.cpp` 的候选将每个非 DDR COPY 算子作为单独子图，再给出每核子图顺序。搜索也保留较粗分块候选，只有完整评估更好的方案才会保留。目标按 `(makespan, added_copy_bytes)` 比较，优先执行时间，其次数据搬运量。
 
 ## 开发工具：共享 5 分钟的批量运行
 

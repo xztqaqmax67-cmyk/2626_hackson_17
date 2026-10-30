@@ -97,12 +97,8 @@ def main():
     assert rejected.returncode != 0 and protected.read_text(encoding='utf-8') == 'unchanged'
     print('PASS PATH launch / invalid input preserves existing output', flush=True)
 
-    # 较大的真实图验证父进程墙钟上限。仅修改内存中的 COPY 占位值。
+    # 较大的真实图验证父进程墙钟上限。保留原始 COPY 占位值。
     large = json.loads((ROOT/'hackathon_data/case_00.json').read_text(encoding='utf-8'))
-    for op in large['ops']:
-        if op['cycles'] < 0:
-            assert op['op'] in ('COPY_IN', 'COPY_OUT')
-            op['cycles'] = 1
     large_path = directory/'限时计算图.json'
     large_path.write_text(json.dumps(large), encoding='utf-8')
     target = directory/'限时方案.json'
