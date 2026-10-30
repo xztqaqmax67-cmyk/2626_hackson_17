@@ -1,0 +1,233 @@
+{
+  "version": "0.10.1",
+  "verified_utc": "2026-10-30T20:39:55.096347+00:00",
+  "source": {
+    "path": "reports/upgrade/SOURCE_V10_1.json",
+    "sha256": "968732853eb074695e5c606297fd0551f58434184ca8b993f41ca843edd7af6e"
+  },
+  "cpp_tests": {
+    "msvc": {
+      "passed": 17,
+      "tests": [
+        "anytime_deadline",
+        "chain_invariants",
+        "communication_grouping",
+        "feedback_portfolio",
+        "memory_cache_equivalence",
+        "official_spill_feedback",
+        "official_timing",
+        "parallel_jobs",
+        "rules_contract",
+        "rules_memory",
+        "shared_ddr_refinement",
+        "solution_comparison",
+        "spill_optimization",
+        "tensor_groups",
+        "timing_feedback",
+        "v10_portfolio",
+        "v5_structure"
+      ],
+      "junit": {
+        "path": "reports/upgrade/ctest_msvc.xml",
+        "sha256": "39a65175533ed9f39f7a40a8ab9342b45e157cd310e079e99b3196af5c12d708"
+      },
+      "log": {
+        "path": "build_msvc_upgrade/Testing/Temporary/LastTest.log",
+        "sha256": "83ccddf049d6160c9a270325ae184f20e0425c62483a37dd39b63de3abd0d651"
+      },
+      "executable_sha256": {
+        "build_msvc_upgrade/bin/tensor_group_tests.exe": "4b2bc64746b2192806b79e08dacf83aabd883e81ce5c25829b058f05125889c0",
+        "build_msvc_upgrade/bin/official_timing_tests.exe": "c55efb626bd95054e695ad3faf79b5f947388cd236b4bb94d4aa0513c7bbfb1d",
+        "build_msvc_upgrade/bin/v10_search_tests.exe": "4e06ad74439eff0722925d45a6a47351116a1da2cfa90e8e4153bfcabe92ba26",
+        "build_msvc_upgrade/bin/timing_feedback_tests.exe": "22c8ff38e204c64a312e329ced926ade47779a31649b0ce5ce3f9656a2581d05",
+        "build_msvc_upgrade/bin/chain_tests.exe": "24195b8775211bb890774735bb730769bcd63306cf84fd9e38e76c6c91fdce23",
+        "build_msvc_upgrade/bin/parallel_jobs_tests.exe": "2ccc407a830c2050d736e932540bfab10d3d2a2ddd0d3ea33193495fe11fe2e8",
+        "build_msvc_upgrade/bin/rules_memory_tests.exe": "92e8c2d9fc8bb37a8a4a82448f00e688054dde1c41d7bbea503cc73a259d4b11",
+        "build_msvc_upgrade/bin/rules_contract_tests.exe": "fcaaab885cb706002a404277681002f8bd557ba791fd478ae6284010f09dce73",
+        "build_msvc_upgrade/bin/refine_tests.exe": "b2ffe804e9151466039634dd78e67f660e4ec975b01c347c7f5c64838ab0ca98",
+        "build_msvc_upgrade/bin/v5_structure_tests.exe": "2854e1033df33d7d0ce4a113f7218340d113224fb91522e15380bc354d0623cf",
+        "build_msvc_upgrade/bin/anytime_tests.exe": "2ff9fafdc2dbbde67284dd04f172b7e53e6ed2418dbf97613708b4592d750e8f",
+        "build_msvc_upgrade/bin/comparison_tests.exe": "91f56d07f6e32a0f29f56cb70a76cac7bc30035036e4ad8d001ca061ffc58c2d",
+        "build_msvc_upgrade/bin/memory_cache_tests.exe": "4ba8ccb5164aab3114fdfe9326ab9775f98b458c8772853c3afa8069db86a96c",
+        "build_msvc_upgrade/bin/spill_tests.exe": "5b6ed4c0df584eb783289b2e29f20427860de5c291267122c6b1ef1fd935866e",
+        "build_msvc_upgrade/bin/feedback_tests.exe": "13f88e08d4aa6004ae7d3e272e9a2640d82b6702c2ab83c0415170ee2d97377f",
+        "build_msvc_upgrade/bin/portfolio_tests.exe": "3911719429b1312513afa18f7c90e42f13d86d673deaf5da048dcee3ef2b0632",
+        "build_msvc_upgrade/bin/communication_tests.exe": "7b4d8ea8742272f782675f4248a96a449328877a4c735126a7ea5b941264211e"
+      }
+    },
+    "mingw": {
+      "passed": 17,
+      "tests": [
+        "anytime_deadline",
+        "chain_invariants",
+        "communication_grouping",
+        "feedback_portfolio",
+        "memory_cache_equivalence",
+        "official_spill_feedback",
+        "official_timing",
+        "parallel_jobs",
+        "rules_contract",
+        "rules_memory",
+        "shared_ddr_refinement",
+        "solution_comparison",
+        "spill_optimization",
+        "tensor_groups",
+        "timing_feedback",
+        "v10_portfolio",
+        "v5_structure"
+      ],
+      "junit": {
+        "path": "reports/upgrade/ctest_mingw.xml",
+        "sha256": "173dba55df239c7e4d681fe050c943f05ed294b9f3f028d3f2dc4ea12b4fb3ab"
+      },
+      "log": {
+        "path": "build_mingw_upgrade/Testing/Temporary/LastTest.log",
+        "sha256": "72d90eefed6f724e24965b7f2bd0f9903865f39d605edd73981688c6db26996b"
+      },
+      "executable_sha256": {
+        "build_mingw_upgrade/bin/tensor_group_tests.exe": "6bdba785f898edf8775903122e41807a0a01cfea83e86427d9abad7702b186c7",
+        "build_mingw_upgrade/bin/official_timing_tests.exe": "aab2d3ee40f22bcd6fd3e252ac78572c1f465009cbc27fdbbb561b073758ba0a",
+        "build_mingw_upgrade/bin/v10_search_tests.exe": "db1c138e3fa99352a612bd9543cc270b1c1a614a7cf266facceb06118d4091f3",
+        "build_mingw_upgrade/bin/timing_feedback_tests.exe": "aae1b109c3afeff739a4aefb8bedeea9ffb1d24283ccdf453275cb7a2a7cd373",
+        "build_mingw_upgrade/bin/chain_tests.exe": "4af329d57c9988336bba08f5b17ea224a6511c821752b920a7aac60985e0b76b",
+        "build_mingw_upgrade/bin/parallel_jobs_tests.exe": "b454ebb741ec5204cef5f831f42ee794ca0ba62734d5e76e03cb498086d133ea",
+        "build_mingw_upgrade/bin/rules_memory_tests.exe": "ac7eaca83b63dc833a5d39289a26efd4557413127751193c930779bf2ac05193",
+        "build_mingw_upgrade/bin/rules_contract_tests.exe": "232419e955eed2ce7790433c3596f747666a6c0632bf2e2358deb620e47c88e2",
+        "build_mingw_upgrade/bin/refine_tests.exe": "cf1bfa0dffe9ebc4824cc09992dda474a070ebc66213412d0858a9e4bdab1239",
+        "build_mingw_upgrade/bin/v5_structure_tests.exe": "1563870bfbd3a90d5e4967672ebf7e9da0b57f52fee06117a9902620cf5438f1",
+        "build_mingw_upgrade/bin/anytime_tests.exe": "9ddf338015d4a2da210ca4023d55e7ecfbccd2137b9f18c1528ae88ece6b6d21",
+        "build_mingw_upgrade/bin/comparison_tests.exe": "df9557fedfe7be98c796002c16fc7f8d49d82bbf95d3b407dab25103a1f71a61",
+        "build_mingw_upgrade/bin/memory_cache_tests.exe": "0a02f00a265430c3292bf87b60388fa8246d571b6e6d7ee77a6eb250c8c1a5ce",
+        "build_mingw_upgrade/bin/spill_tests.exe": "6363e27c574dabdab51103f1101c07ff72e55e1b2d39be5063e928287f86c6bc",
+        "build_mingw_upgrade/bin/feedback_tests.exe": "b04c02b981dff506cf54de430763af9f12910ee596f9e86fbeed0145b43aa7d6",
+        "build_mingw_upgrade/bin/portfolio_tests.exe": "32726ed7c32dcce3a6771c47e49b38cffbead29129d2c372a0052997cc663920",
+        "build_mingw_upgrade/bin/communication_tests.exe": "bbe1b697a2c51d93f204f4ed96ff08f7065eed2a4f89fe03a10992cb7d5ad609"
+      }
+    }
+  },
+  "cli_and_graph_contracts": {
+    "checks": [
+      {
+        "name": "msvc_cli",
+        "command": [
+          "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\tests\\contracts.py",
+          "--solver",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\build_msvc_upgrade\\bin\\npu_sched.exe",
+          "--out",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\runs\\upgrade\\contracts_msvc"
+        ],
+        "exit_code": 0,
+        "stdout_log": "runs/upgrade/msvc_cli.stdout.txt",
+        "stdout_sha256": "9f96e08cf22dbf7bf887bc59972a147231aac69a53d7f9e57cabcbe893017f75",
+        "stderr_log": "runs/upgrade/msvc_cli.stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solver_path": "build_msvc_upgrade/bin/npu_sched.exe",
+        "solver_sha256": "8254ccda9e2f32362f0717c85177e48f7b76c93778bdce5de351743be7927500",
+        "checker_path": "tests/contracts.py",
+        "checker_sha256": "98f1ff39ad0f65c0975d5f27dcff598dfaead7c246116e7a50d572469238f7e4"
+      },
+      {
+        "name": "mingw_cli",
+        "command": [
+          "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\tests\\contracts.py",
+          "--solver",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\build_mingw_upgrade\\bin\\npu_sched.exe",
+          "--out",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\runs\\upgrade\\contracts_mingw"
+        ],
+        "exit_code": 0,
+        "stdout_log": "runs/upgrade/mingw_cli.stdout.txt",
+        "stdout_sha256": "9f96e08cf22dbf7bf887bc59972a147231aac69a53d7f9e57cabcbe893017f75",
+        "stderr_log": "runs/upgrade/mingw_cli.stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solver_path": "build_mingw_upgrade/bin/npu_sched.exe",
+        "solver_sha256": "3271dcb3a607db84acdb9dcefd0c8676324c188717ca2cae2821fe5de51a2388",
+        "checker_path": "tests/contracts.py",
+        "checker_sha256": "98f1ff39ad0f65c0975d5f27dcff598dfaead7c246116e7a50d572469238f7e4"
+      },
+      {
+        "name": "msvc_graph_26",
+        "command": [
+          "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\tests\\rules_contracts.py",
+          "--solver",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\build_msvc_upgrade\\bin\\npu_sched.exe",
+          "--out",
+          "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\runs\\upgrade\\contracts_msvc"
+        ],
+        "exit_code": 0,
+        "stdout_log": "runs/upgrade/msvc_graph_26.stdout.txt",
+        "stdout_sha256": "0474db8bc3fe8ef63aea539165dce1e5c61856ef9dad8267c5fd1ce9f82deaa9",
+        "stderr_log": "runs/upgrade/msvc_graph_26.stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solver_path": "build_msvc_upgrade/bin/npu_sched.exe",
+        "solver_sha256": "8254ccda9e2f32362f0717c85177e48f7b76c93778bdce5de351743be7927500",
+        "checker_path": "tests/rules_contracts.py",
+        "checker_sha256": "102dcac7123f3e784dadfa2165c6f9fb6c167bf7d60edc9b6d504fa69e5f3ab2"
+      }
+    ],
+    "report": {
+      "path": "runs/upgrade/contracts_checks.json",
+      "sha256": "4723fded2bbc23daa49318e681ec43fb0e1c04e53b30442b75ac321d1a4fb467"
+    }
+  },
+  "synthetic": {
+    "passed": 64,
+    "repeat_identity_passed": 64,
+    "report": {
+      "path": "runs/upgrade/synthetic/report.json",
+      "sha256": "a0a5dafe6c74a9e9e53721daf8205a500bad2e2ecb0fd96e0201bec225cc9bbc"
+    }
+  },
+  "exact_timing": {
+    "passed": 144,
+    "by_group": {
+      "public": 40,
+      "synthetic": 64,
+      "adversarial": 16,
+      "collisions": 4,
+      "precision": 20
+    },
+    "matched_official_rejections": 16,
+    "report": {
+      "path": "runs/upgrade/timing_diff/report.json",
+      "sha256": "51f0771886f6fae3e6834e1df33ed08047bb4c1adc66a2cacc0194b58755a654"
+    },
+    "compared": [
+      "validity",
+      "cycles",
+      "route/spill bytes",
+      "local cycles",
+      "memory peak",
+      "pipe orders",
+      "full memory-dependency metadata",
+      "local/global op timelines"
+    ]
+  },
+  "official": {
+    "passed": 80,
+    "legacy_smoke_identical": 4,
+    "legacy_smoke_official_passed": 4,
+    "report": {
+      "path": "reports/upgrade/RESULTS_V10_1.json",
+      "sha256": "b292bf6bdc0809b0c268be75bc02d5b5f02a93993878c7eac30d31a97e9a542f"
+    }
+  },
+  "preservation": {
+    "v7_unchanged_files": 99,
+    "v8_unchanged_files": 96,
+    "v9_unchanged_files": 177,
+    "official_unchanged_files": 24,
+    "v10_0_unchanged_evidence_files": 84,
+    "v10_0_preserved_binaries": 3,
+    "v10_0_reconstructible_source_files": 32
+  },
+  "limitations": [
+    "Finite differential cases are regression evidence, not universal proof.",
+    "Windows MSVC/MinGW tested; native Linux/older GCC not tested.",
+    "Historical v10.0 generation times may differ due to machine conditions.",
+    "tail_seconds is a component of exact_seconds, not an additional disjoint phase."
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "version": "0.10.0",
+  "verified_utc": "2026-10-30T18:55:47.002282+00:00",
+  "archive": "C:\\Users\\ROG\\Documents\\ChatGPT\\Hackson\\2626_hackson_17\\dag_chain_solver_v10\\dist\\dag_chain_solver_v10.zip",
+  "sha256": "0a62e59aa28fa116b46eae40360df27cc65d41c9e5a4d3d3c3b7e43877d68e2e",
+  "bytes": 105325,
+  "files": {
+    "dag_chain_solver_v10/CMakeLists.txt": "8d54097b3c376d41d8c41fcc31df334611efb1b46f332f6a9dd06e4f008c8648",
+    "dag_chain_solver_v10/README.md": "a073f7b030e4056d704b187e9365cf10f964e808b4323992e5e842589240332a",
+    "dag_chain_solver_v10/SEARCH_LIMITS_zh.md": "60d2c3e2dfc7377033b4c3f5d41572863bdef27671e7f551ad024f2a92f68ffa",
+    "dag_chain_solver_v10/CHANGES_v10_zh.md": "c7d591c97cfd87756f6a0eaa8fe6977476e8abef6c1eda8b17fec9b17bda639c",
+    "dag_chain_solver_v10/src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "dag_chain_solver_v10/src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "dag_chain_solver_v10/src/chain.cpp": "91f412cea250cd25315fff7a8099b10a53e7869385e7212a013cb446431a13a1",
+    "dag_chain_solver_v10/src/chain.hpp": "b0d5dcfa877f1ebae3735c29d8ff8fb93711cff862056d316f312de4d93656df",
+    "dag_chain_solver_v10/src/communication.cpp": "d042023990caa242a4c92ad15d20d74c036db6828ba94109d70e4b3dc7bd7e48",
+    "dag_chain_solver_v10/src/communication.hpp": "6b3e0be9b33112c1c99034763d6a96cc99af38a307c06673049f8f4e0cb42de6",
+    "dag_chain_solver_v10/src/main.cpp": "0e3a3afb118d499ebf6f1d25915b2c8ae881544af575d14a7411a92cc0fc5468",
+    "dag_chain_solver_v10/src/model.hpp": "7aa37a784c97c7bf0924bd150b28489f16a2caf2fde40fc3791273b9b64482c0",
+    "dag_chain_solver_v10/src/official_spill.cpp": "8b223afb1a8c0c5e62961aaefe3ace9df77e32644cdce13d033dcc7850ef8bcb",
+    "dag_chain_solver_v10/src/official_spill.hpp": "204361972179ebdd7bec940303e6872b4c8f38b9a8d68c589fac849fd911e2ef",
+    "dag_chain_solver_v10/src/official_timing.cpp": "8e1a7e0b9b789bcb9897a603ac0cc72e5ab5f4fa35532aaaa9b3e538cf9981f4",
+    "dag_chain_solver_v10/src/official_timing.hpp": "04882ed1ce03f35002190fe6a909008499ac3a7cd6d77785b7e8dbd15e32a4e7",
+    "dag_chain_solver_v10/src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "dag_chain_solver_v10/src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "dag_chain_solver_v10/src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "dag_chain_solver_v10/src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "dag_chain_solver_v10/src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "dag_chain_solver_v10/src/search_limits.hpp": "f780d89c1cb35fbf19c38409e5a6da03628ad7a90043aa55aa4c0c9d0373faa9",
+    "dag_chain_solver_v10/src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "dag_chain_solver_v10/src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "dag_chain_solver_v10/src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+    "dag_chain_solver_v10/src/spill.cpp": "39a08c53f3b88d8fbbbc9b0dce48bf89ce46019725176983ae979b74923f10fe",
+    "dag_chain_solver_v10/src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a",
+    "dag_chain_solver_v10/src/spill_feedback.cpp": "5c7ac5a5a8f25959e9b4ae90b395f6737809bf93c225071f260c46d404d8a854",
+    "dag_chain_solver_v10/src/spill_feedback.hpp": "86ee32c3b7618ba5927286b808bbf67f05e1731920ccfeb6edb54528fff50891",
+    "dag_chain_solver_v10/src/spill_mapping.cpp": "9ca8299a04ede4c3d29e642d12db370fac742638a0ac98f79e6e358a3fedfd38",
+    "dag_chain_solver_v10/src/spill_mapping.hpp": "77e8311c325ac558e4a4e42563f0d955daa4ab34a2ecbd3e835642c88ad39716",
+    "dag_chain_solver_v10/src/tensor_groups.cpp": "fa5950d07df07bea3e2c34cf9ef2967c77c8c32ff878d1612140686d9595dd17",
+    "dag_chain_solver_v10/src/tensor_groups.hpp": "4a6f0298a86ab8b73fa6d53d0fad0cbcebd78799507eb9a322b8d898e4abae40",
+    "dag_chain_solver_v10/src/v10_search.cpp": "4dbfa05818bcbff72e9320751c26a8aced19d9b672eb03401b33053e62ce0f5c",
+    "dag_chain_solver_v10/src/v10_search.hpp": "55acc323fae101a20fbc975c1a92475fc160e77e154d1999701f2747cc4c374a"
+  },
+  "validation_report_sha256": "0a7ee679f24d9ee4596ee8a2ba30cecb148f8b3e749986059117b4a2c6adcf04",
+  "zip_crc_and_exact_contents_passed": true,
+  "compiled_source_hashes_match": true,
+  "backup_policy": "Explicit changed files only; no whole-project snapshots",
+  "backup_rounds": [
+    {
+      "manifest": "backups/20261030T180640_785656Z_v10_harness/manifest.json",
+      "existing_files": 5,
+      "copied_bytes": 29138
+    },
+    {
+      "manifest": "backups/20261030T180742_903902Z_integration_v10/manifest.json",
+      "existing_files": 7,
+      "copied_bytes": 56078
+    },
+    {
+      "manifest": "backups/20261030T180944_101506Z_tensor_group_candidates_initial/manifest.json",
+      "existing_files": 0,
+      "copied_bytes": 0
+    },
+    {
+      "manifest": "backups/20261030T181106_979105Z_timing_ir_start/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 19682
+    },
+    {
+      "manifest": "backups/20261030T181143_336878Z_shared_plan_loader/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 7790
+    },
+    {
+      "manifest": "backups/20261030T181340_729647Z_portfolio_dedup_fix/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 10733
+    },
+    {
+      "manifest": "backups/20261030T181403_927625Z_tensor_group_numeric_restore/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 10682
+    },
+    {
+      "manifest": "backups/20261030T181545_587221Z_timing_unit_tests/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 23593
+    },
+    {
+      "manifest": "backups/20261030T181636_027361Z_portfolio_group_state/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 12095
+    },
+    {
+      "manifest": "backups/20261030T181645_144339Z_timing_test_compile_fix/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 5392
+    },
+    {
+      "manifest": "backups/20261030T181719_074500Z_harness_variant_integrity/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 19219
+    },
+    {
+      "manifest": "backups/20261030T181835_496540Z_timing_large_timestamp/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 29044
+    },
+    {
+      "manifest": "backups/20261030T181854_420009Z_timing_collision_coverage/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 9863
+    },
+    {
+      "manifest": "backups/20261030T181921_419641Z_timing_output_contract/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 24130
+    },
+    {
+      "manifest": "backups/20261030T181954_457024Z_exact_diagnostic_integer/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 13297
+    },
+    {
+      "manifest": "backups/20261030T182025_269709Z_exact_result_guards/manifest.json",
+      "existing_files": 3,
+      "copied_bytes": 28629
+    },
+    {
+      "manifest": "backups/20261030T182106_533322Z_exact_rejection_diagnostics/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 13399
+    },
+    {
+      "manifest": "backups/20261030T182208_119200Z_precision_validity_checks/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 11411
+    },
+    {
+      "manifest": "backups/20261030T182414_264457Z_precision_valid_control/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 13181
+    },
+    {
+      "manifest": "backups/20261030T182546_320646Z_timing_scope_docs/manifest.json",
+      "existing_files": 3,
+      "copied_bytes": 9334
+    },
+    {
+      "manifest": "backups/20261030T182624_985181Z_validation_extra_evidence/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 17842
+    },
+    {
+      "manifest": "backups/20261030T182748_350454Z_report_phase_costs/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 11126
+    },
+    {
+      "manifest": "backups/20261030T182947_636134Z_cumulative_stage_comparisons/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 11620
+    },
+    {
+      "manifest": "backups/20261030T183605_784375Z_final40_report/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 12866
+    },
+    {
+      "manifest": "backups/20261030T183708_592580Z_exact_official_results_docs/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 5661
+    },
+    {
+      "manifest": "backups/20261030T185117_928440Z_conservative_stage_assertions/manifest.json",
+      "existing_files": 1,
+      "copied_bytes": 15244
+    },
+    {
+      "manifest": "backups/20261030T185505_511071Z_final_reports_docs/manifest.json",
+      "existing_files": 2,
+      "copied_bytes": 7073
+    }
+  ],
+  "backup_file_bytes": 428122
+}

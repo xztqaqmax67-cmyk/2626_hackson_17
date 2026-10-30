@@ -1,0 +1,187 @@
+{
+  "version": "0.10.1",
+  "verified_utc": "2026-10-30T20:39:54.967749+00:00",
+  "source_sha256": {
+    "src/anytime.cpp": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef",
+    "src/anytime.hpp": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65",
+    "src/chain.cpp": "91f412cea250cd25315fff7a8099b10a53e7869385e7212a013cb446431a13a1",
+    "src/chain.hpp": "b0d5dcfa877f1ebae3735c29d8ff8fb93711cff862056d316f312de4d93656df",
+    "src/communication.cpp": "d042023990caa242a4c92ad15d20d74c036db6828ba94109d70e4b3dc7bd7e48",
+    "src/communication.hpp": "6b3e0be9b33112c1c99034763d6a96cc99af38a307c06673049f8f4e0cb42de6",
+    "src/main.cpp": "b5727afb290e1786f57c5280108a11f74913ae5e7501f339fc438a992fd39533",
+    "src/model.hpp": "7aa37a784c97c7bf0924bd150b28489f16a2caf2fde40fc3791273b9b64482c0",
+    "src/official_spill.cpp": "8b9b66e98b2564d9fa2901fd7ddcfd9659760def287ff8edba2ec0b3aa276f2c",
+    "src/official_spill.hpp": "204361972179ebdd7bec940303e6872b4c8f38b9a8d68c589fac849fd911e2ef",
+    "src/official_timing.cpp": "8e1a7e0b9b789bcb9897a603ac0cc72e5ab5f4fa35532aaaa9b3e538cf9981f4",
+    "src/official_timing.hpp": "04882ed1ce03f35002190fe6a909008499ac3a7cd6d77785b7e8dbd15e32a4e7",
+    "src/parallel_jobs.hpp": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399",
+    "src/refine.cpp": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9",
+    "src/refine.hpp": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909",
+    "src/regions.cpp": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8",
+    "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+    "src/search_limits.hpp": "4b90f6a5fa7d753ef6fff4bf2b00716c7077766a833a113c1ab1b62e4c999ae5",
+    "src/slack.cpp": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf",
+    "src/slack.hpp": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2",
+    "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+    "src/spill.cpp": "39a08c53f3b88d8fbbbc9b0dce48bf89ce46019725176983ae979b74923f10fe",
+    "src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a",
+    "src/spill_feedback.cpp": "5c7ac5a5a8f25959e9b4ae90b395f6737809bf93c225071f260c46d404d8a854",
+    "src/spill_feedback.hpp": "86ee32c3b7618ba5927286b808bbf67f05e1731920ccfeb6edb54528fff50891",
+    "src/spill_mapping.cpp": "9ca8299a04ede4c3d29e642d12db370fac742638a0ac98f79e6e358a3fedfd38",
+    "src/spill_mapping.hpp": "77e8311c325ac558e4a4e42563f0d955daa4ab34a2ecbd3e835642c88ad39716",
+    "src/tensor_groups.cpp": "fa5950d07df07bea3e2c34cf9ef2967c77c8c32ff878d1612140686d9595dd17",
+    "src/tensor_groups.hpp": "4a6f0298a86ab8b73fa6d53d0fad0cbcebd78799507eb9a322b8d898e4abae40",
+    "src/timing_feedback.cpp": "9a792da3a5c8c899885498cd1dab645143cf5e62491edb8332637f7da3683b10",
+    "src/timing_feedback.hpp": "8556b5d0b3c2a49e4bca02981831f8305a07b3ae72bd3ccd94a7442558b948f2",
+    "src/v10_search.cpp": "5c30d881e0bad85c4f96da4420a004db0ca91ca661ecc4837f41c8b864827d24",
+    "src/v10_search.hpp": "e322456f1a1a4dbf2b2bcea2a0b22ba74b5e905acaf22724f93a85af80276461",
+    "CMakeLists.txt": "c4ccb542dfcb7df92236daedb6bb04e26a00dabaa0e1d6818762aaa7016805e9"
+  },
+  "solver_sha256": {
+    "build_msvc_upgrade/bin/npu_sched.exe": "8254ccda9e2f32362f0717c85177e48f7b76c93778bdce5de351743be7927500",
+    "build_msvc_upgrade/bin/npu_sched_experiment.exe": "be74697ec3d94fabf8b959abf467be272350eed939e7e41d21b54434af8ea32c",
+    "build_msvc_upgrade/bin/timing_diagnostics.exe": "f0fe1a69fc7b07e745107b8beb25c5adf380352ab9028a8e673ab6da348e49e9",
+    "build_mingw_upgrade/bin/npu_sched.exe": "3271dcb3a607db84acdb9dcefd0c8676324c188717ca2cae2821fe5de51a2388",
+    "build_mingw_upgrade/bin/npu_sched_experiment.exe": "f353c668888ab8ba5a098a907bf69fa5072dd760bcb4d921f1a486580aee37a0",
+    "build_mingw_upgrade/bin/timing_diagnostics.exe": "10771462b5f6d1be8492e4fba34814414ce63616857e2e88e57bbda97348e815"
+  },
+  "baseline_manifest": {
+    "path": "reports/upgrade/v10_0_baseline_manifest.json",
+    "sha256": "a660e3f3d7efab47e0a878fb604446f511630f6316e9a7d8eee5c2487a9d179a"
+  },
+  "v10_0_source_evidence": {
+    "src/anytime.cpp": {
+      "path": "src/anytime.cpp",
+      "sha256": "4c00ceb7b23ffc1da259586335123d145289d01ce69cfd468bada1a5ac6c8fef"
+    },
+    "src/anytime.hpp": {
+      "path": "src/anytime.hpp",
+      "sha256": "dbf989ad3a628a1c832ed0fb5b69ee4f72a9c4f4ceb303594ea8e9635d32fa65"
+    },
+    "src/chain.cpp": {
+      "path": "src/chain.cpp",
+      "sha256": "91f412cea250cd25315fff7a8099b10a53e7869385e7212a013cb446431a13a1"
+    },
+    "src/chain.hpp": {
+      "path": "src/chain.hpp",
+      "sha256": "b0d5dcfa877f1ebae3735c29d8ff8fb93711cff862056d316f312de4d93656df"
+    },
+    "src/communication.cpp": {
+      "path": "src/communication.cpp",
+      "sha256": "d042023990caa242a4c92ad15d20d74c036db6828ba94109d70e4b3dc7bd7e48"
+    },
+    "src/communication.hpp": {
+      "path": "src/communication.hpp",
+      "sha256": "6b3e0be9b33112c1c99034763d6a96cc99af38a307c06673049f8f4e0cb42de6"
+    },
+    "src/main.cpp": {
+      "path": "backups/20261030T200711_461333Z_v10_1_exact_search/src/main.cpp",
+      "sha256": "0e3a3afb118d499ebf6f1d25915b2c8ae881544af575d14a7411a92cc0fc5468"
+    },
+    "src/model.hpp": {
+      "path": "src/model.hpp",
+      "sha256": "7aa37a784c97c7bf0924bd150b28489f16a2caf2fde40fc3791273b9b64482c0"
+    },
+    "src/official_spill.cpp": {
+      "path": "backups/20261030T200906_525271Z_v10_1_incarnation_lookup/src/official_spill.cpp",
+      "sha256": "8b223afb1a8c0c5e62961aaefe3ace9df77e32644cdce13d033dcc7850ef8bcb"
+    },
+    "src/official_spill.hpp": {
+      "path": "src/official_spill.hpp",
+      "sha256": "204361972179ebdd7bec940303e6872b4c8f38b9a8d68c589fac849fd911e2ef"
+    },
+    "src/official_timing.cpp": {
+      "path": "src/official_timing.cpp",
+      "sha256": "8e1a7e0b9b789bcb9897a603ac0cc72e5ab5f4fa35532aaaa9b3e538cf9981f4"
+    },
+    "src/official_timing.hpp": {
+      "path": "src/official_timing.hpp",
+      "sha256": "04882ed1ce03f35002190fe6a909008499ac3a7cd6d77785b7e8dbd15e32a4e7"
+    },
+    "src/parallel_jobs.hpp": {
+      "path": "src/parallel_jobs.hpp",
+      "sha256": "71e5c4dd6785ea1ede6c7ffd5fd2cf1f0a5f6266ef253be02cb3b98875f4d399"
+    },
+    "src/refine.cpp": {
+      "path": "src/refine.cpp",
+      "sha256": "ecef87f70dfb1a99e48024380f311b8e2f3c9e720a584960890ff105be4e57d9"
+    },
+    "src/refine.hpp": {
+      "path": "src/refine.hpp",
+      "sha256": "f57b051c445a7feb7969dd3b05ed34900c8a182d40902deb6774d3c402467909"
+    },
+    "src/regions.cpp": {
+      "path": "src/regions.cpp",
+      "sha256": "1ab890fc974e0f3b2d45364afaecbdf983c4548259aa0d93009c975cb60c84e8"
+    },
+    "src/regions.hpp": {
+      "path": "src/regions.hpp",
+      "sha256": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203"
+    },
+    "src/search_limits.hpp": {
+      "path": "backups/20261030T200711_461333Z_v10_1_exact_search/src/search_limits.hpp",
+      "sha256": "f780d89c1cb35fbf19c38409e5a6da03628ad7a90043aa55aa4c0c9d0373faa9"
+    },
+    "src/slack.cpp": {
+      "path": "src/slack.cpp",
+      "sha256": "7a51425a0bdc2a8ad887746f71dc0fb05822d446cdcb39212c32a388f67a95cf"
+    },
+    "src/slack.hpp": {
+      "path": "src/slack.hpp",
+      "sha256": "9d8b4a94a35a50f3a5994a28cefb80384e406cf19f96fa7b34c0504e09e238b2"
+    },
+    "src/solution_key.hpp": {
+      "path": "src/solution_key.hpp",
+      "sha256": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726"
+    },
+    "src/spill.cpp": {
+      "path": "src/spill.cpp",
+      "sha256": "39a08c53f3b88d8fbbbc9b0dce48bf89ce46019725176983ae979b74923f10fe"
+    },
+    "src/spill.hpp": {
+      "path": "src/spill.hpp",
+      "sha256": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a"
+    },
+    "src/spill_feedback.cpp": {
+      "path": "src/spill_feedback.cpp",
+      "sha256": "5c7ac5a5a8f25959e9b4ae90b395f6737809bf93c225071f260c46d404d8a854"
+    },
+    "src/spill_feedback.hpp": {
+      "path": "src/spill_feedback.hpp",
+      "sha256": "86ee32c3b7618ba5927286b808bbf67f05e1731920ccfeb6edb54528fff50891"
+    },
+    "src/spill_mapping.cpp": {
+      "path": "src/spill_mapping.cpp",
+      "sha256": "9ca8299a04ede4c3d29e642d12db370fac742638a0ac98f79e6e358a3fedfd38"
+    },
+    "src/spill_mapping.hpp": {
+      "path": "src/spill_mapping.hpp",
+      "sha256": "77e8311c325ac558e4a4e42563f0d955daa4ab34a2ecbd3e835642c88ad39716"
+    },
+    "src/tensor_groups.cpp": {
+      "path": "src/tensor_groups.cpp",
+      "sha256": "fa5950d07df07bea3e2c34cf9ef2967c77c8c32ff878d1612140686d9595dd17"
+    },
+    "src/tensor_groups.hpp": {
+      "path": "src/tensor_groups.hpp",
+      "sha256": "4a6f0298a86ab8b73fa6d53d0fad0cbcebd78799507eb9a322b8d898e4abae40"
+    },
+    "src/v10_search.cpp": {
+      "path": "backups/20261030T200711_461333Z_v10_1_exact_search/src/v10_search.cpp",
+      "sha256": "4dbfa05818bcbff72e9320751c26a8aced19d9b672eb03401b33053e62ce0f5c"
+    },
+    "src/v10_search.hpp": {
+      "path": "backups/20261030T200711_461333Z_v10_1_exact_search/src/v10_search.hpp",
+      "sha256": "55acc323fae101a20fbc975c1a92475fc160e77e154d1999701f2747cc4c374a"
+    },
+    "CMakeLists.txt": {
+      "path": "backups/20261030T200711_461333Z_v10_1_exact_search/CMakeLists.txt",
+      "sha256": "8d54097b3c376d41d8c41fcc31df334611efb1b46f332f6a9dd06e4f008c8648"
+    }
+  },
+  "python_runtime": {
+    "executable": "C:\\Program Files\\Blender Foundation\\Blender 4.4\\4.4\\python\\bin\\python.exe",
+    "version": "3.11.11 (main, Feb 11 2025, 07:53:58) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0"
+  }
+}
