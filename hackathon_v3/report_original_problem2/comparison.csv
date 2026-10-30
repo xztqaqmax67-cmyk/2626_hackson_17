@@ -1,0 +1,41 @@
+﻿stage,case,multi_status,single_status,original_multicore_makespan,original_singlecore_makespan,original_ddr_bytes,original_speedup,local_v3_multicore_makespan,local_v3_singlecore_makespan,local_v3_speedup,local_v3_ddr_bytes,multi_error,single_error
+strict_matched,case_00,unsupported_negative_copy_cycles,not_run,,,,,1555865.6000000108,5116723.200000122,3.2886665789127845,63438848,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_01,unsupported_negative_copy_cycles,not_run,,,,,95539.20000000007,85708.79999999989,0.897106109324757,5701632,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_02,unsupported_negative_copy_cycles,not_run,,,,,176947.2,167116.79999999984,0.9444444444444435,10616832,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_03,unsupported_negative_copy_cycles,not_run,,,,,4832883.258605525,9805619.20000069,2.0289377324686284,221249536,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_04,unsupported_negative_copy_cycles,not_run,,,,,3068108.8000000026,10373051.733333755,3.380926951917007,123207680,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_05,unsupported_negative_copy_cycles,not_run,,,,,12444380.896404687,28953873.06666181,2.3266623954773746,534773760,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_06,unsupported_negative_copy_cycles,not_run,,,,,1039086.9333333308,4667460.266666663,4.491886209841674,58982400,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_07,unsupported_negative_copy_cycles,not_run,,,,,6155681.792268157,7873998.533333315,1.2791432044494973,363990048,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_08,unsupported_negative_copy_cycles,not_run,,,,,12140434.130887145,17896389.333333742,1.4741144460231907,693112224,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_matched,case_09,unsupported_negative_copy_cycles,not_run,,,,,6995942.095384399,8335832.46666685,1.1915239367356183,416341440,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+compat_matched,case_00,ok,ok,1557540,4711848,63438848,3.02518587002581,1555865.6000000108,5116723.200000122,3.2886665789127845,63438848,,
+compat_matched,case_01,ok,ok,95720,85856,5701632,0.8969494358545759,95539.20000000007,85708.79999999989,0.897106109324757,5701632,,
+compat_matched,case_02,ok,ok,177264,167400,10616832,0.9443541835905768,176947.2,167116.79999999984,0.9444444444444435,10616832,,
+compat_matched,case_03,ok,ok,4346195,8573510,221249536,1.9726473386490941,4832883.258605525,9805619.20000069,2.0289377324686284,221249536,,
+compat_matched,case_04,ok,ok,3071364,9296906,123207680,3.0269632645300266,3068108.8000000026,10373051.733333755,3.380926951917007,123207680,,
+compat_matched,case_05,ok,ok,11237403,26411786,534773760,2.3503460719527456,12444380.896404687,28953873.06666181,2.3266623954773746,534773760,,
+compat_matched,case_06,ok,ok,1040640,4339074,58982400,4.169620618081181,1039086.9333333308,4667460.266666663,4.491886209841674,58982400,,
+compat_matched,case_07,unsupported_PIPE_FIX,unsupported_PIPE_FIX,,,,,6155681.792268157,7873998.533333315,1.2791432044494973,363990048,"[EVALUATION ERROR] op 11229: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'","[EVALUATION ERROR] op 11229: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'"
+compat_matched,case_08,unsupported_PIPE_FIX,unsupported_PIPE_FIX,,,,,12140434.130887145,17896389.333333742,1.4741144460231907,693112224,"[EVALUATION ERROR] op 14099: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'","[EVALUATION ERROR] op 14099: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'"
+compat_matched,case_09,unsupported_PIPE_FIX,unsupported_PIPE_FIX,,,,,6995942.095384399,8335832.46666685,1.1915239367356183,416341440,"[EVALUATION ERROR] op 25964: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'","[EVALUATION ERROR] op 25964: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'"
+strict_original,case_00,unsupported_negative_copy_cycles,not_run,,,,,1555865.6000000108,5116723.200000122,3.2886665789127845,63438848,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_01,unsupported_negative_copy_cycles,not_run,,,,,95539.20000000007,85708.79999999989,0.897106109324757,5701632,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_02,unsupported_negative_copy_cycles,not_run,,,,,176947.2,167116.79999999984,0.9444444444444435,10616832,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_03,unsupported_negative_copy_cycles,not_run,,,,,4832883.258605525,9805619.20000069,2.0289377324686284,221249536,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_04,unsupported_negative_copy_cycles,not_run,,,,,3068108.8000000026,10373051.733333755,3.380926951917007,123207680,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_05,unsupported_negative_copy_cycles,not_run,,,,,12444380.896404687,28953873.06666181,2.3266623954773746,534773760,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_06,unsupported_negative_copy_cycles,not_run,,,,,1039086.9333333308,4667460.266666663,4.491886209841674,58982400,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_07,unsupported_negative_copy_cycles,not_run,,,,,6155681.792268157,7873998.533333315,1.2791432044494973,363990048,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_08,unsupported_negative_copy_cycles,not_run,,,,,12140434.130887145,17896389.333333742,1.4741144460231907,693112224,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+strict_original,case_09,unsupported_negative_copy_cycles,not_run,,,,,6995942.095384399,8335832.46666685,1.1915239367356183,416341440,[EVALUATION ERROR] op 0 cycles must be an integer >= 0; got -1,
+compat_original,case_00,ok,ok,3043084,5198563,163708928,1.7083205721564045,1555865.6000000108,5116723.200000122,3.2886665789127845,63438848,,
+compat_original,case_01,ok,ok,95720,85856,5701632,0.8969494358545759,95539.20000000007,85708.79999999989,0.897106109324757,5701632,,
+compat_original,case_02,ok,ok,177264,167400,10616832,0.9443541835905768,176947.2,167116.79999999984,0.9444444444444435,10616832,,
+compat_original,case_03,ok,ok,7063128,11030371,370507776,1.561683577021399,4832883.258605525,9805619.20000069,2.0289377324686284,221249536,,
+compat_original,case_04,ok,ok,6093196,10394995,327286784,1.7060004306442793,3068108.8000000026,10373051.733333755,3.380926951917007,123207680,,
+compat_original,case_05,ok,timeout,13830794,,767623168,,12444380.896404687,28953873.06666181,2.3266623954773746,534773760,,evaluator exceeded 120.0 seconds
+compat_original,case_06,ok,ok,2651504,4645907,132644864,1.7521780091600843,1039086.9333333308,4667460.266666663,4.491886209841674,58982400,,
+compat_original,case_07,unsupported_PIPE_FIX,unsupported_PIPE_FIX,,,,,6155681.792268157,7873998.533333315,1.2791432044494973,363990048,"[EVALUATION ERROR] op 11229: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'","[EVALUATION ERROR] op 11229: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'"
+compat_original,case_08,unsupported_PIPE_FIX,unsupported_PIPE_FIX,,,,,12140434.130887145,17896389.333333742,1.4741144460231907,693112224,"[EVALUATION ERROR] op 14099: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'","[EVALUATION ERROR] op 14099: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'"
+compat_original,case_09,unsupported_PIPE_FIX,unsupported_PIPE_FIX,,,,,6995942.095384399,8335832.46666685,1.1915239367356183,416341440,"[EVALUATION ERROR] op 25964: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'","[EVALUATION ERROR] op 25964: pipe must be one of PIPE_MTE2, PIPE_MTE3, PIPE_M, PIPE_V; got 'PIPE_FIX'"

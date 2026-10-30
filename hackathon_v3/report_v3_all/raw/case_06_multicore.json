@@ -1,0 +1,58 @@
+{
+  "evaluator_version": "3.0.0",
+  "is_official": false,
+  "makespan": 1039086.9333333308,
+  "total_ddr_bytes": 58982400,
+  "data_movement_bytes": {
+    "scheduled_copy_bytes": 58982400,
+    "spill_added_copy_bytes": 0,
+    "pre_spill_copy_bytes": 58982400
+  },
+  "op_count": 5256,
+  "spill_op_count": 0,
+  "model": {
+    "capacity": {
+      "L1": 1572864,
+      "UB": 131072
+    },
+    "bandwidth_bytes_per_cycle": 60.0,
+    "sync_delay_cycles": 1000.0,
+    "sync_mode": "producer_consumer",
+    "single_core_order": "one-subgraph fixed reverse DFS",
+    "assumptions": [
+      "fractional cycles; deterministic tie breaks",
+      "one source writeback shared by all destination cores and final output",
+      "all writers of a tensor must be on one core; partial writes preserve contents",
+      "virtual-byte memory reuse follows serial priority order; may constrain overlap",
+      "per-pipe priority order is fixed before cross-core simulation; pipes overlap independently",
+      "direct DDR compute operands use UB, inherited from old Scene B",
+      "boundary COPY nodes are regenerated for each placement"
+    ]
+  },
+  "audit_passed": true,
+  "peak_memory_bytes": {
+    "0": {
+      "L1": 1015808
+    },
+    "1": {
+      "L1": 1015808
+    },
+    "2": {
+      "L1": 1015808
+    },
+    "3": {
+      "L1": 1015808
+    }
+  },
+  "checks": [
+    "data_dependencies",
+    "cross_core_sync",
+    "fixed_pipe_order",
+    "compute_cycles",
+    "memory_capacity",
+    "per_transfer_fair_bandwidth",
+    "DDR_byte_conservation"
+  ],
+  "input_graph": "case_06.json",
+  "input_sha256": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0"
+}

@@ -1,0 +1,68 @@
+{
+  "case_00": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 720,
+    "unsupported_pipes": [],
+    "plan_unchanged": true
+  },
+  "case_01": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 168,
+    "unsupported_pipes": [],
+    "plan_unchanged": true
+  },
+  "case_02": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 324,
+    "unsupported_pipes": [],
+    "plan_unchanged": true
+  },
+  "case_03": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 1216,
+    "unsupported_pipes": [],
+    "plan_unchanged": true
+  },
+  "case_04": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 1296,
+    "unsupported_pipes": [],
+    "plan_unchanged": true
+  },
+  "case_05": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 2496,
+    "unsupported_pipes": [],
+    "plan_unchanged": true
+  },
+  "case_06": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 936,
+    "unsupported_pipes": [],
+    "plan_unchanged": true
+  },
+  "case_07": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 934,
+    "unsupported_pipes": [
+      "PIPE_FIX"
+    ],
+    "plan_unchanged": true
+  },
+  "case_08": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 1447,
+    "unsupported_pipes": [
+      "PIPE_FIX"
+    ],
+    "plan_unchanged": true
+  },
+  "case_09": {
+    "only_copy_cycles_changed": true,
+    "normalized_copy_count": 1180,
+    "unsupported_pipes": [
+      "PIPE_FIX"
+    ],
+    "plan_unchanged": true
+  }
+}

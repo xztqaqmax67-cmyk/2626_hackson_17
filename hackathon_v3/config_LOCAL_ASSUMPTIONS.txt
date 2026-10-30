@@ -1,0 +1,11 @@
+# User supplied 2026-10-30: L1=1.5M, UB=128K.
+# M/K are interpreted as MiB/KiB. This is not an official config file.
+[capacity]
+L1 = 1572864
+UB = 131072
+
+[bandwidth]
+bandwidth = 60
+
+[multicore_scene_b]
+cross_core_copy_delay_cycles = 1000
