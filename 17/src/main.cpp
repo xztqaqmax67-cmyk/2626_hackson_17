@@ -136,7 +136,7 @@ int run(const vector<string> &args) {
         return 2;
     }
     if (opt.version) {
-        cout << "dag-chain-solver 0.8.3\n";
+        cout << "dag-chain-solver 0.8.4\n";
         return 0;
     }
     unique_ptr<Graph> graph;
@@ -151,8 +151,11 @@ int run(const vector<string> &args) {
     dag_chain::Result result;
     string output;
     try {
-        // 提交入口只走固定工作量搜索；线程快慢不参与方案选择。
-        result = dag_chain::solve_fixed_work(*graph, opt.cores);
+        // 图解析已完成；从此刻起给种子生成和追加搜索共用 20 秒，不含读图、序列化和写出。
+        // 不为收尾预留时间；预算耗尽时保留完整合法候选，搜索结束后无需等待凑足 20 秒。
+        const auto search_started = chrono::steady_clock::now();
+        result = dag_chain::solve_for_budget(*graph, opt.cores, search_started,
+                                            dag_chain::search_limits::total_seconds);
         validate(*graph, result.solution, opt.cores);
         output = solution_json(*graph, result.solution, opt.cores);
     } catch (const dag_chain::NoCandidate &e) {

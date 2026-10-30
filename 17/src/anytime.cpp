@@ -292,8 +292,8 @@ Lane search_lane(const Graph &g, int cores, int lane, int cursor_start, int curs
     Lane result;
     result.best = seed;
     Deadline deadline;
-    // 正式入口传入固定轮数，关闭时限中断；机器负载不会影响候选集合。
-    // 每条搜索路线（lane）持有自己的 beam、去重集合、游标及当前最优解。
+    // 正式限时入口不传固定轮数，各路线共用请求的搜索起点及截止预算。
+    // 开发固定轮数模式才关闭时限检查；每条路线独立持有 beam、去重集合和当前最优解。
     deadline.start = started;
     deadline.limit = limit;
     deadline.enabled = fixed_rounds == 0;
@@ -420,7 +420,8 @@ Lane search_lane(const Graph &g, int cores, int lane, int cursor_start, int curs
             prune_beam();
         }
     } catch (const SearchExpired &) {
-        // 开发限时模式中，被中断的候选只存在于局部变量，不覆盖已有有效解。
+        // 构造、粗估及精评在内部检查点协作中断，检查间隔和线程汇合可能稍超预算。
+        // 未完成候选不发布，只返回已完整精评并通过校验的已有方案。
         result.stats.cancelled = 1;
         result.stats.deadline_reached = true;
     }
@@ -444,6 +445,8 @@ Result continue_from_seed_for_budget(const Graph &g, int cores, Clock::time_poin
             throw runtime_error("incomplete continuation seed");
         validate(g, candidate.solution, cores);
     }
+    // 正式配置的 reserve 为 0：种子已用时间仍计入 seconds，不重新启动追加搜索计时。
+    // 预算耗尽或邻域耗尽都直接返回，不休眠、不等待凑满预算。
     const double limit = max(0.0, seconds - search_limits::timed_reserve_seconds);
     Result best = seed;
     if (limit > 0 && elapsed() < limit && g.size() > 0) {
@@ -523,6 +526,8 @@ Result solve_for_budget(const Graph &g, int cores, Clock::time_point started, do
         throw runtime_error("invalid internal time budget");
     const auto base_started = Clock::now();
     vector<Result> portfolio;
+    // 基础求解接口没有 Deadline，必须先完成一个合法种子。started 由 main 在解析后设置，
+    // 这段耗时也属于 20 秒；若种子已超预算，后续检查会跳过追加搜索，而非再给 20 秒。
     Result seed = solve(g, cores, false, 7, &portfolio);
     const double base_seconds = chrono::duration<double>(Clock::now() - base_started).count();
     TimedSearchStats stats;
@@ -542,7 +547,7 @@ Result solve_fixed_work(const Graph &g, int cores, TimedSearchStats *statistics)
     stats.base_seconds = chrono::duration<double>(Clock::now() - started).count();
     Result best = seed;
 
-    // 工作量只取决于图规模：小图追加 4 轮，中图 2 轮，超大图沿用种子解。
+    // 开发对照接口：小图追加 4 轮，中图 2 轮，超大图沿用种子解；正式入口不调用。
     // 这里只控制搜索成本，不修改输入图、依赖或硬件规则。
     const size_t graph_work = g.ops.size() + g.tensors.size() + g.edge_count;
     const size_t rounds = graph_work > search_limits::large_graph_work ? 0

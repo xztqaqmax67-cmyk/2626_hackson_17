@@ -6,21 +6,22 @@ namespace search_limits {
 // 调整搜索工作量的参数，修改后须重新编译；正式 CLI 不提供调参选项。
 // 跨核延迟、DDR 带宽及 L1/UB 容量定义在 Config 中，属于固定题目规则。
 
-// 正式程序使用固定工作量搜索；限时模式仅供开发测试。
-// 关闭限时模式时，total_seconds 不参与正式求解的候选选择。
-inline constexpr bool enable_timed_search = false;
+// 正式入口采用纯搜索时间预算，起点位于图解析完成之后、求解调用之前。
+// 候选数量会受机器负载及线程推进速度影响，因此不保证重复输出完全相同。
+inline constexpr bool enable_timed_search = true;
 
-// 固定工作量追加搜索：每条路线每轮最多粗估 12 次、精评 3 次。
-// 小图 4 轮、中图 2 轮、超大图不追加；四条路线独立搜索后按固定顺序归并。
+// 固定工作量接口仅保留作开发对照，正式入口不调用。每条路线每轮最多粗估 12 次、精评 3 次。
+// 恢复对照额度：小图 4 轮、中图 2 轮、超大图不追加；路线结束后按固定顺序归并。
 inline constexpr bool enable_fixed_search = true;
 inline constexpr std::size_t fixed_rounds_small = 4;
 inline constexpr std::size_t fixed_rounds_medium = 2;
 
-// 开发限时模式的总时间预算，从读取输入前开始，所有工作线程共用。
-// 基础种子必须先完整生成，剩余时间用于追加搜索，因此这不是强制运行时限。
-inline constexpr double total_seconds = 15.0;         // 仅控制开发限时模式。
-inline constexpr double quick_test_seconds = 0.50;    // 开发测试二进制使用的短预算。
-inline constexpr double timed_reserve_seconds = 0.15; // 为线程汇合、输出和程序收尾预留时间。
+// 20 秒包含完整种子生成和追加搜索，所有路线共用一个 steady_clock 起点；不含读图与写出。
+// 不扣除任何收尾预留，也不等待凑足预算。基础种子尚不可中断，若其自身超预算，
+// 仍须完整生成后直接返回；追加搜索采用协作检查，因此这是预算而非强制硬截止。
+inline constexpr double total_seconds = 20.0;       // 正式纯搜索预算。
+inline constexpr double quick_test_seconds = 0.50; // 仅保留供开发测试使用。
+inline constexpr double timed_reserve_seconds = 0.0; // 不预留时间。
 
 // 追加搜索的宽度与存储上限。beam 保留多个方向，避免只沿当前赢家探索。
 inline constexpr int timed_workers = 4; // 含调用线程，最多四条路线，不嵌套启动线程池。
