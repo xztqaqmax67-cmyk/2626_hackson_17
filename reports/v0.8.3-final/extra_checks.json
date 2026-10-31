@@ -1,0 +1,111 @@
+{
+  "archive_sha256": "de3d43cc152984d9b0d5fd40634c1d575fed6599bd84749f3cabff7106ec7dfa",
+  "static_checks_passed": true,
+  "tests": [
+    {
+      "name": "appendix_A",
+      "cores": 2,
+      "passed": true,
+      "makespan": 6,
+      "added_copy_bytes": 0,
+      "plan_sha256": "2d3592550c04c233dd719482140b64b3637093f63d3b5b2fbbaf6562a0adf315"
+    },
+    {
+      "name": "appendix_A",
+      "cores": 3,
+      "passed": true,
+      "makespan": 6,
+      "added_copy_bytes": 0,
+      "plan_sha256": "ef726aaac9162be8e4285b2734ff8c5a33d7fcac9309ecd516c994852c4c6110"
+    },
+    {
+      "name": "appendix_A",
+      "cores": 4,
+      "passed": true,
+      "makespan": 6,
+      "added_copy_bytes": 0,
+      "plan_sha256": "5a7b4dbe1daccabdc052fcc6ab3c7c8c182f20324b366e605684c55c9f4d038a"
+    },
+    {
+      "name": "appendix_A",
+      "cores": 5,
+      "passed": true,
+      "makespan": 6,
+      "added_copy_bytes": 0,
+      "plan_sha256": "80fb5ca88c2497576ad7df53320981c2e54ad7c9ce0b4c69d98f300ce33a9adf"
+    },
+    {
+      "name": "public_graph_reference",
+      "cores": 4,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "f5cac4b2c2a1681ed3df96396cfce4db202aa3c9e01e6b8fee562e62750100d8"
+    },
+    {
+      "name": "ignore_config_and_hardware_environment",
+      "cores": 4,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "f5cac4b2c2a1681ed3df96396cfce4db202aa3c9e01e6b8fee562e62750100d8"
+    },
+    {
+      "name": "independent_working_directory",
+      "cores": 4,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "f5cac4b2c2a1681ed3df96396cfce4db202aa3c9e01e6b8fee562e62750100d8"
+    },
+    {
+      "name": "filename_independence",
+      "cores": 4,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "f5cac4b2c2a1681ed3df96396cfce4db202aa3c9e01e6b8fee562e62750100d8"
+    },
+    {
+      "name": "relabeled_reversed_arrays",
+      "cores": 2,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "399b82d42078694b5ab1d4a5ab310a97302c084f5e755caea76701b57a2ae973"
+    },
+    {
+      "name": "relabeled_reversed_arrays",
+      "cores": 3,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "ac23ca0bb98118687a3209ec93d3183f953e9f7911a79b1bab59eeb43ea7ffb0"
+    },
+    {
+      "name": "relabeled_reversed_arrays",
+      "cores": 4,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "2231ed0da6b04b961781846f3c4510c73a9291c3283158da7fed68d220be1fb1"
+    },
+    {
+      "name": "relabeled_reversed_arrays",
+      "cores": 5,
+      "passed": true,
+      "makespan": 85617,
+      "added_copy_bytes": 0,
+      "plan_sha256": "cba70cac99a64ce1a9b3daebe0758068eadaf62d80b02aae3a9db629486b3b13"
+    }
+  ],
+  "passed": 12,
+  "total": 12,
+  "fixed_work_90s_cutoff_present": false,
+  "input_extensions": [
+    "PIPE_FIX",
+    "direct Op-to-Op edges",
+    "COPY cycles=-1"
+  ],
+  "note": "Extensions do not change the required input contract. No universal hidden-input 90-second bound was proven."
+}

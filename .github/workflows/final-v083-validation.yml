@@ -1,0 +1,72 @@
+name: Team 17 v0.8.3 final submission validation
+
+on:
+  push:
+    branches: ['main', 'codex/final-v0.8.3-20261031']
+    paths:
+      - '17.zip'
+      - '17/**'
+      - '17.manifest.json'
+      - 'overnight/final_ci_tools/**'
+      - '.github/workflows/final-v083-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  clean-zip-build-and-contracts:
+    name: Final ZIP / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-2022]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /17.zip
+            /17.manifest.json
+            /overnight/final_ci_tools/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify ZIP identity and extract into a new directory
+        run: python overnight/final_ci_tools/inspect_zip.py --archive 17.zip --manifest 17.manifest.json --destination ci-unpacked --report ci-output/package-inspection.json
+      - name: Configure extracted 17 with Linux GCC 11
+        if: runner.os == 'Linux'
+        run: cmake -S ci-unpacked/17 -B ci-unpacked/17/build -DCMAKE_CXX_COMPILER=g++-11 -DCMAKE_BUILD_TYPE=Release
+      - name: Configure extracted 17 with Windows MSVC
+        if: runner.os == 'Windows'
+        run: cmake -S ci-unpacked/17 -B ci-unpacked/17/build -A x64
+      - name: Build extracted submission only
+        timeout-minutes: 10
+        run: cmake --build ci-unpacked/17/build --config Release --parallel 4
+      - name: Linux CLI and 26 graph contracts
+        if: runner.os == 'Linux'
+        run: |
+          python overnight/final_ci_tools/contracts.py --solver ci-unpacked/17/build/bin/npu_sched --out ci-output/cli
+          python overnight/final_ci_tools/cli_regressions.py --solver ci-unpacked/17/build/bin/npu_sched --out ci-output/cli-regressions
+          python overnight/final_ci_tools/rules_contracts.py --solver ci-unpacked/17/build/bin/npu_sched --out ci-output/rules
+      - name: Windows CLI and 26 graph contracts
+        if: runner.os == 'Windows'
+        run: |
+          python overnight/final_ci_tools/contracts.py --solver ci-unpacked/17/build/bin/npu_sched.exe --out ci-output/cli
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python overnight/final_ci_tools/cli_regressions.py --solver ci-unpacked/17/build/bin/npu_sched.exe --out ci-output/cli-regressions
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python overnight/final_ci_tools/rules_contracts.py --solver ci-unpacked/17/build/bin/npu_sched.exe --out ci-output/rules
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Retain package identity and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: team17-final-validation-${{ matrix.os }}
+          path: ci-output/
+          if-no-files-found: warn

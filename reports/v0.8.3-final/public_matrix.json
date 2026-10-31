@@ -1,0 +1,3084 @@
+{
+  "version": "0.8.3",
+  "archive_sha256": "de3d43cc152984d9b0d5fd40634c1d575fed6599bd84749f3cabff7106ec7dfa",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "started_utc": "2026-10-30T23:51:32.328051+00:00",
+  "finished_utc": "2026-10-31T00:06:21.680598+00:00",
+  "summary": {
+    "expected": 40,
+    "completed": 40,
+    "accepted": 40,
+    "deterministic": 40,
+    "mean_speedup_zero_for_invalid": 1.995020387979078,
+    "official_cycles_sum": 137645274,
+    "official_copy_bytes_sum": 7034797952,
+    "v8_historical_mean_speedup": 1.9333032828541161,
+    "v8_mean_speedup_change_percent": 3.1923136774406835,
+    "v8_improved_groups": 24,
+    "v8_regressed_groups": 2,
+    "v8_equal_groups": 14,
+    "complete": true,
+    "all_accepted": true,
+    "solver_invocations": 80,
+    "timeouts": 0,
+    "max_seconds": 30.69048760000078,
+    "mean_seconds": 8.950175347499817,
+    "sampled_peak_rss_mib": 184.99609375,
+    "sampled_peak_threads": 5,
+    "by_cores": {
+      "2": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 1.543134130073367,
+        "official_cycles_sum": 41838356,
+        "official_copy_bytes_sum": 1884118144,
+        "v8_historical_mean_speedup": 1.519993093605255,
+        "v8_mean_speedup_change_percent": 1.522443527241557,
+        "v8_improved_groups": 5,
+        "v8_regressed_groups": 1,
+        "v8_equal_groups": 4
+      },
+      "3": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 1.866497341361601,
+        "official_cycles_sum": 35830098,
+        "official_copy_bytes_sum": 1800487488,
+        "v8_historical_mean_speedup": 1.812858910165422,
+        "v8_mean_speedup_change_percent": 2.9587758261498953,
+        "v8_improved_groups": 7,
+        "v8_regressed_groups": 1,
+        "v8_equal_groups": 2
+      },
+      "4": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 2.253045700355306,
+        "official_cycles_sum": 30479195,
+        "official_copy_bytes_sum": 1709101184,
+        "v8_historical_mean_speedup": 2.1682582196845277,
+        "v8_mean_speedup_change_percent": 3.9103959067714023,
+        "v8_improved_groups": 7,
+        "v8_regressed_groups": 0,
+        "v8_equal_groups": 3
+      },
+      "5": {
+        "expected": 10,
+        "completed": 10,
+        "accepted": 10,
+        "deterministic": 10,
+        "mean_speedup_zero_for_invalid": 2.317404380126038,
+        "official_cycles_sum": 29497625,
+        "official_copy_bytes_sum": 1641091136,
+        "v8_historical_mean_speedup": 2.2321029079612593,
+        "v8_mean_speedup_change_percent": 3.8215743485899845,
+        "v8_improved_groups": 5,
+        "v8_regressed_groups": 0,
+        "v8_equal_groups": 5
+      }
+    }
+  },
+  "identity": {
+    "executable_sha256": "9fbc71e3ba5b9b020895b6ced593744d6aa10734fcb5fe9270fbac2d9c60134e",
+    "source_sha256": {
+      "CMakeLists.txt": "63cde013f539a2e694e253c02296904b2a0923c71389b9b3a3fe367a77d6efa1",
+      "src/anytime.cpp": "f6f2fa1dfdbd8df26516cbd6f15f6ff8a90110a47d4c379d0412621e79d2e6c6",
+      "src/anytime.hpp": "921b8fe1ff98f1a5b76bcfb7bed7417b9724f293d21c9072220729b06eaf02ce",
+      "src/chain.cpp": "0b651ab5ff7a98524bfb47511e37fb7989c8b0f3323aafb36f1455f83686cd3f",
+      "src/chain.hpp": "666a22914e0292efbde789618b83266238f3a4bd7a18a905ba44fb0ebaedc9fb",
+      "src/main.cpp": "084b9e137d6a344779ebb700491a16956c8d1d0e1936bc93b775c4ec8c07a87c",
+      "src/memory_grid.hpp": "d9194d52f9fd04570fa8fd2643c7c4f10e56027f7a80428807075d2fdd2bef54",
+      "src/model.hpp": "397bbb089840678b269da62e02a5dced5a6e1fa54fa1a1eaf37a978fbea5400c",
+      "src/parallel_jobs.hpp": "55a84920da3537c94d0b611fbf67ceb2caed5ab0d54e49ad944e3a1639acde98",
+      "src/refine.cpp": "749646af711f78d79f15ef0faf719d10169bc7c10ae45c09d40a324e503c3176",
+      "src/refine.hpp": "ef1b8bd659c496598d28b170fa9decabf0aa1d486582d2e2406ea9b261c1b9fb",
+      "src/regions.cpp": "025a739669caa7acac69dec2e5669ba1435679f4e5f8bb91a8ddd3a99c223367",
+      "src/regions.hpp": "0426076931259b0280213c161d261c8092a37dbb692941ea4d243d9e582da203",
+      "src/search_limits.hpp": "52034cc8a0ad3a1e3e558dc8ec52338590db0ceaf90bcc06caeaed2d7a405e26",
+      "src/slack.cpp": "9d2787042b02e0a0358abff153b2416afe33e6051579bede9f3533675ad1af6c",
+      "src/slack.hpp": "cac4e771e11d4e8bf6e12688d9bbc0377c880cba64ed4cb79db81e039a1fa918",
+      "src/solution_key.hpp": "bb357c394d9e82754a37a247856c815735ab5920121116d0346ec283284eb726",
+      "src/spill.cpp": "69750c59f20bf465d798359cdd4713475bb51ef0638a0bf402fbeaba381d8b7b",
+      "src/spill.hpp": "13b86bcff70a0ef612f0292a0acda7f0ae0a7362de5e2e2342cf461a0f08941a",
+      "src/tensor_neighborhood.cpp": "9eb136160fb85d82442db6df4b73509926394413592a171793993dc6bdbe67d9",
+      "src/tensor_neighborhood.hpp": "1d267989bf3426c10ddf2885c956614628afbbd7ff2fe24f8837716061ae128a"
+    },
+    "input_sha256": {
+      "case_00": "a8f6dd8b995296e74b19a48cce4d910f3096be2de3ee4198f322e65af8d8c7fc",
+      "case_01": "07f1878dd48555f0d1569af94825e586a198e87c5391532306599deccc6e93f7",
+      "case_02": "b35c480f33c4c4f4d3b3b6dc6c0307f7f74d77bd375be9596eff9d4236b4b4c9",
+      "case_03": "2d098e3c81144b9e94e6cd2c8e97325c941112ec50148abd9e6e607bf381fb86",
+      "case_04": "002da95c66652c572515dcdb18ab547c325cbdbbccb0483873c73f3372676965",
+      "case_05": "b808c1815aef9679fc9af7c70bdb21f41732aef88479defa411e4a49e231f515",
+      "case_06": "4b6dcffa27112d5f36bd758173c73139d57fb62c8f7ebab06962644796ccc3d0",
+      "case_07": "af5039c3c02610ccaf19a26877f6a71c85b6ab58ce0f80d0dbddafe1331ec7d6",
+      "case_08": "9023008116cda6952e4632517903cc7954e3401e7465acdb7effb530cfec2f45",
+      "case_09": "c140e44fec78d902eb21f1ffbfddc0ce2eebcb62e2a843cedc12dad773b95ec4"
+    },
+    "official_manifest_sha256": "c87f5f44e27345a97321098c95299bb622cc2d6b98f260120e54e0ca0a2b95e0",
+    "benchmark_sha256": "a5eac9854885edfd96c731cb6fd79b2818462ee51c0757df260463bedfdbafc2",
+    "helper_sha256": {
+      "benchmark_official_search.py": "ed917a4fdb63de290dedba6dd70ded8bd3820b8a1c9a3812a421d58a3e836f3d",
+      "benchmark_search_upgrade.py": "409f54ca1b5d132901611ca8e0a005f0203ccfb14769ed25f10f6105f1d23327"
+    },
+    "historical_v8_sha256": "4f1ce8b07e789e9669923b3f9af812ff39065ba34626b6b536005ebc435697a0",
+    "rules_manifest_sha256": null,
+    "singlecore_reference_sha256": "2268f6a7e0a007f68b489921adf194e0db22f361b7bff74afe4b8e078d434307",
+    "cases": [
+      "case_00",
+      "case_01",
+      "case_02",
+      "case_03",
+      "case_04",
+      "case_05",
+      "case_06",
+      "case_07",
+      "case_08",
+      "case_09"
+    ],
+    "cores": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "settings": {
+      "bandwidth": 60,
+      "capacity": {
+        "L1": 1572864,
+        "UB": 131072
+      },
+      "delay": 1000
+    },
+    "hard_timeout_seconds": 90
+  },
+  "notes": "Fresh serial paired runs using the unchanged supplied Scene B evaluator. Other solver processes ran concurrently, affecting wall times. RSS/threads are sampled peaks. Single-core references were reused, not rerun. These are local results, not competition-server scores.",
+  "runs": [
+    {
+      "case": "case_00",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 1975355,
+      "speedup": 1.7927688947050024,
+      "singlecore_cycles": 3541355,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 105447424,
+        "added_copy_bytes": 81854464,
+        "partition_added_copy_bytes": 16515072,
+        "spill_added_copy_bytes": 65339392
+      },
+      "structure_passed": true,
+      "plan_sha256": "234f6cd31a70c1943acb62a6e8543ea36f506f6992a453cd6d51776bc75c939a",
+      "official_result_sha256": "bdf169ef68c6bdc9486bd7a14c6c19dd8d4f51e3575a0aef45190e2ede912d74",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 1975355,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 105447424,
+          "added_copy_bytes": 81854464,
+          "partition_added_copy_bytes": 16515072,
+          "spill_added_copy_bytes": 65339392
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 2.4810337999988405,
+        "cpu_seconds": 4.390625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 20602880,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 2.4131272999984503,
+        "cpu_seconds": 4.28125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 18944000,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_00",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 1409886,
+      "speedup": 2.5118023726741026,
+      "singlecore_cycles": 3541355,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 79560704,
+        "added_copy_bytes": 55967744,
+        "partition_added_copy_bytes": 20054016,
+        "spill_added_copy_bytes": 35913728
+      },
+      "structure_passed": true,
+      "plan_sha256": "9e0cc71f734909373a9b13e79d35966cf25fd498d89a9602214ea2230029dbd2",
+      "official_result_sha256": "a08d0883cbf23cd16bc567a0b75b7d9e64a609b8eadc8ef43f78b2e3ca8ccba6",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 1409886,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 79560704,
+          "added_copy_bytes": 55967744,
+          "partition_added_copy_bytes": 20054016,
+          "spill_added_copy_bytes": 35913728
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 2.439869500001805,
+        "cpu_seconds": 5.265625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 26869760,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 1.8916859999990265,
+        "cpu_seconds": 4.71875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 24338432,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_00",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 1079555,
+      "speedup": 3.280384047130531,
+      "singlecore_cycles": 3541355,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 62619648,
+        "added_copy_bytes": 39026688,
+        "partition_added_copy_bytes": 29753344,
+        "spill_added_copy_bytes": 9273344
+      },
+      "structure_passed": true,
+      "plan_sha256": "ece1c45dd6febce7e1486e8f18329b67c02209e4519f6a4fd9ab58e3375510d6",
+      "official_result_sha256": "de1325b1ee21a4387308fa4704a0873519fb37418e92194e788a248398958479",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 1079555,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 62619648,
+          "added_copy_bytes": 39026688,
+          "partition_added_copy_bytes": 29753344,
+          "spill_added_copy_bytes": 9273344
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 1.8355443999971612,
+        "cpu_seconds": 5.59375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 31981568,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 1.879719299999124,
+        "cpu_seconds": 5.78125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 31748096,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_00",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 1086901,
+      "speedup": 3.258213029521548,
+      "singlecore_cycles": 3541355,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23592960,
+        "scheduled_copy_bytes": 61014016,
+        "added_copy_bytes": 37421056,
+        "partition_added_copy_bytes": 29753344,
+        "spill_added_copy_bytes": 7667712
+      },
+      "structure_passed": true,
+      "plan_sha256": "8542c48f771dd49b8e4004f5b91c4a28c51091f9cf9c8e5e10de2a1648144c05",
+      "official_result_sha256": "8f06ee858d1d85658dcf9f9ee53c37907da69b74fc64f213041de1e97bc3dccb",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 1086901,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23592960,
+          "scheduled_copy_bytes": 61014016,
+          "added_copy_bytes": 37421056,
+          "partition_added_copy_bytes": 29753344,
+          "spill_added_copy_bytes": 7667712
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 1.8378376999971806,
+        "cpu_seconds": 6.46875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 38506496,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 1.8533148000024084,
+        "cpu_seconds": 6.421875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 43442176,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_01",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 85617,
+      "speedup": 1.0027915016877489,
+      "singlecore_cycles": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "b714dae7ec677b6bec269b993b151ff454d1d30eb377fe16b446a76b00b9f86a",
+      "official_result_sha256": "378b5703c9b4bca06ebf077fc05aa0b5fc4bcea31900bbf8a292e24a1c5094d8",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.08308589999796823,
+        "cpu_seconds": 0.03125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 7516160,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.07568069999979343,
+        "cpu_seconds": 0.046875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 7450624,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_01",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 85617,
+      "speedup": 1.0027915016877489,
+      "singlecore_cycles": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "6f4907f2dfee4a7566274a2020f74771ac5846d511cac65557808ef9567ea3c0",
+      "official_result_sha256": "e9d74f0eb5362ca81818cab8f96b032cf9bd788592f3f98c2f4c5cb01d5c8cf2",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.08116030000019236,
+        "cpu_seconds": 0.0625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 7872512,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.08249390000128187,
+        "cpu_seconds": 0.125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 7696384,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_01",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 85617,
+      "speedup": 1.0027915016877489,
+      "singlecore_cycles": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "f5cac4b2c2a1681ed3df96396cfce4db202aa3c9e01e6b8fee562e62750100d8",
+      "official_result_sha256": "b8cd2a3c8125a1be21f89d79f27691d498d71c7cde318fff709a8a234114a019",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.08335349999833852,
+        "cpu_seconds": 0.109375,
+        "peak_threads": 4,
+        "peak_rss_bytes": 8138752,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.08475720000205911,
+        "cpu_seconds": 0.09375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 8568832,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_01",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 85617,
+      "speedup": 1.0027915016877489,
+      "singlecore_cycles": 85856,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 5111808,
+        "scheduled_copy_bytes": 5111808,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "9dbc44afe3e528b7bef7b40996b12d3e83362bd740b27a987927f5bd438b1623",
+      "official_result_sha256": "fc22910637b49251dcb9ece44f7c1e24453730e0b5b2bc5894dea4f78885bfbf",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 85617,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 5111808,
+          "scheduled_copy_bytes": 5111808,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 507904,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.08749879999959376,
+        "cpu_seconds": 0.125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 8683520,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.09047189999910188,
+        "cpu_seconds": 0.25,
+        "peak_threads": 2,
+        "peak_rss_bytes": 8486912,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_02",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 167400,
+      "speedup": 1.0,
+      "singlecore_cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "6f6c14466b80558df335a1efce06f4e7066915a90ff2fa584388aec9d07d5fe3",
+      "official_result_sha256": "4f21e9e870104700e4e8427be9de6a6eade350b1947037a6ba9c955770d648b1",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.2445350000016333,
+        "cpu_seconds": 0.515625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 7835648,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.2369475000014063,
+        "cpu_seconds": 0.4375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 7950336,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_02",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 167400,
+      "speedup": 1.0,
+      "singlecore_cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "aaa0fbe77388e32d1a1fca3fba5eb68bae640ef0a440f2b0cbf6c70cca19c2c6",
+      "official_result_sha256": "a4986ad4572063e7c1c0783a368fddfbe8ec4c80d9dc8585b954f83c83ce4c76",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.24608580000131042,
+        "cpu_seconds": 0.5,
+        "peak_threads": 5,
+        "peak_rss_bytes": 8491008,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.24909349999870756,
+        "cpu_seconds": 0.5,
+        "peak_threads": 5,
+        "peak_rss_bytes": 8822784,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_02",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 167400,
+      "speedup": 1.0,
+      "singlecore_cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "5edabb5d8ed57b2311ac7413a638d14d9cefccf74c4bba200edaa1369fd6d777",
+      "official_result_sha256": "48642fe6dad08e4402871a27d27c12c463fd492b29f3854dd031ff086e1c9e31",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.2545143999996071,
+        "cpu_seconds": 0.609375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9314304,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.26338460000260966,
+        "cpu_seconds": 0.609375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 9510912,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_02",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 167400,
+      "speedup": 1.0,
+      "singlecore_cycles": 167400,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10027008,
+        "scheduled_copy_bytes": 10027008,
+        "added_copy_bytes": 0,
+        "partition_added_copy_bytes": 0,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "f9b17a064f02a5151e293e715d70866417606a68f37794211f7e734d1027080b",
+      "official_result_sha256": "0dc80a34ddbb7897cd01a481f24925ffe70c60b8583e2daa410bc0c68e4a460e",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 167400,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10027008,
+          "scheduled_copy_bytes": 10027008,
+          "added_copy_bytes": 0,
+          "partition_added_copy_bytes": 0,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1343488,
+            "UB": 0
+          },
+          "1": {
+            "L1": 0,
+            "UB": 0
+          },
+          "2": {
+            "L1": 0,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 1,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 0.2776198999999906,
+        "cpu_seconds": 0.671875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 10571776,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 0.27132300000084797,
+        "cpu_seconds": 0.703125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 10915840,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_03",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3704606,
+      "speedup": 1.6993081045595673,
+      "singlecore_cycles": 6295267,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 220069888,
+        "added_copy_bytes": 180224000,
+        "partition_added_copy_bytes": 22020096,
+        "spill_added_copy_bytes": 158203904
+      },
+      "structure_passed": true,
+      "plan_sha256": "fa921515e7517eee74042caef9e2b6c5594f31431c4b5d645e3ffc6ffb9fe90e",
+      "official_result_sha256": "fdadfa4a56057270e1095155b8da8dbc716f0633c326e22ef1491598db46e6e6",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 3704606,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 220069888,
+          "added_copy_bytes": 180224000,
+          "partition_added_copy_bytes": 22020096,
+          "spill_added_copy_bytes": 158203904
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 4.316621199999645,
+        "cpu_seconds": 7.15625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 33492992,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 4.391490699999849,
+        "cpu_seconds": 7.359375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 33148928,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_03",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3609038,
+      "speedup": 1.744306100406812,
+      "singlecore_cycles": 6295267,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 215580672,
+        "added_copy_bytes": 175734784,
+        "partition_added_copy_bytes": 16777216,
+        "spill_added_copy_bytes": 158957568
+      },
+      "structure_passed": true,
+      "plan_sha256": "b8477f853c54fbe700b3eeb4c6668555a216d7db8504207cea8f1490e7e4a2a1",
+      "official_result_sha256": "97a73df6f263b431db0e821ce97da9657f9813b5cf99a8643d96425cca4c0d61",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 3609038,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 215580672,
+          "added_copy_bytes": 175734784,
+          "partition_added_copy_bytes": 16777216,
+          "spill_added_copy_bytes": 158957568
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1507328,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 4.920115100001567,
+        "cpu_seconds": 13.21875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 39706624,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 5.41644290000113,
+        "cpu_seconds": 14.203125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 40370176,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_03",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3609038,
+      "speedup": 1.744306100406812,
+      "singlecore_cycles": 6295267,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 215580672,
+        "added_copy_bytes": 175734784,
+        "partition_added_copy_bytes": 16777216,
+        "spill_added_copy_bytes": 158957568
+      },
+      "structure_passed": true,
+      "plan_sha256": "870b35846de6df8342f1b91c96651908649430234de6271b00cb9e91316d97e9",
+      "official_result_sha256": "8e485d32a923178b15b1cc9bee911a0a617af3abd75d20c31b16907e17ae9302",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 3609038,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 215580672,
+          "added_copy_bytes": 175734784,
+          "partition_added_copy_bytes": 16777216,
+          "spill_added_copy_bytes": 158957568
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 5.750982199999271,
+        "cpu_seconds": 17.953125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 57319424,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 6.055930000002263,
+        "cpu_seconds": 18.546875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 57356288,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_03",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3609038,
+      "speedup": 1.744306100406812,
+      "singlecore_cycles": 6295267,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 39845888,
+        "scheduled_copy_bytes": 215580672,
+        "added_copy_bytes": 175734784,
+        "partition_added_copy_bytes": 16777216,
+        "spill_added_copy_bytes": 158957568
+      },
+      "structure_passed": true,
+      "plan_sha256": "329d7972cca4efc92ed4254d3ce1746dd609144e6f5ae83d142e605af06d38ca",
+      "official_result_sha256": "9a788ecb02053d244ddad59c094d0a53615f9364e57b010d4bc5ebc7ca11580f",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 3609038,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 39845888,
+          "scheduled_copy_bytes": 215580672,
+          "added_copy_bytes": 175734784,
+          "partition_added_copy_bytes": 16777216,
+          "spill_added_copy_bytes": 158957568
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "3": {
+            "L1": 0,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 5.616317600000912,
+        "cpu_seconds": 20.3125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 64983040,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 5.867745700001251,
+        "cpu_seconds": 21.3125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 66093056,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_04",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3996069,
+      "speedup": 1.7718160021761387,
+      "singlecore_cycles": 7080299,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 213123072,
+        "added_copy_bytes": 170655744,
+        "partition_added_copy_bytes": 31850496,
+        "spill_added_copy_bytes": 138805248
+      },
+      "structure_passed": true,
+      "plan_sha256": "b14fc6a7b7bae75213d56842383b8007e2847ae2ec9a7e7382a6474610b2c5f3",
+      "official_result_sha256": "02843318ddacccfebfc730134dc3a318ec61fe0f493d1c6faec7d76beb612e96",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 3996069,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 213123072,
+          "added_copy_bytes": 170655744,
+          "partition_added_copy_bytes": 31850496,
+          "spill_added_copy_bytes": 138805248
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1507328,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 7.929807199998322,
+        "cpu_seconds": 12.75,
+        "peak_threads": 5,
+        "peak_rss_bytes": 40611840,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 8.284095700000762,
+        "cpu_seconds": 13.328125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 37703680,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_04",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 2763708,
+      "speedup": 2.5618838893255003,
+      "singlecore_cycles": 7080299,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 155418624,
+        "added_copy_bytes": 112951296,
+        "partition_added_copy_bytes": 38535168,
+        "spill_added_copy_bytes": 74416128
+      },
+      "structure_passed": true,
+      "plan_sha256": "9a4d2110987ab9490106435048ff07c5e1c422c07f1a9a984091de411ae55bb0",
+      "official_result_sha256": "f4dec9a34fba227aa55ec193ef7a25e61381f579b040c5db0e82f58ede7a3226",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 2763708,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 155418624,
+          "added_copy_bytes": 112951296,
+          "partition_added_copy_bytes": 38535168,
+          "spill_added_copy_bytes": 74416128
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 10.495611899998039,
+        "cpu_seconds": 28.140625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 46325760,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 8.333453399998689,
+        "cpu_seconds": 22.703125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 48189440,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_04",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 2054594,
+      "speedup": 3.446081804969741,
+      "singlecore_cycles": 7080299,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 117669888,
+        "added_copy_bytes": 75202560,
+        "partition_added_copy_bytes": 58064896,
+        "spill_added_copy_bytes": 17137664
+      },
+      "structure_passed": true,
+      "plan_sha256": "84625edde922effd46a3d8fc29825d0ce751b16bd9e14490cf4461c0cade3e54",
+      "official_result_sha256": "a4212ce5954b241ed907c1a2521950fa32df1303067e76e602ed9b4e8b93924a",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 2054594,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 117669888,
+          "added_copy_bytes": 75202560,
+          "partition_added_copy_bytes": 58064896,
+          "spill_added_copy_bytes": 17137664
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 12.37194449999879,
+        "cpu_seconds": 34.578125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 59760640,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 10.587568700000702,
+        "cpu_seconds": 29.875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 58589184,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_04",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 2056849,
+      "speedup": 3.442303737415824,
+      "singlecore_cycles": 7080299,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 42467328,
+        "scheduled_copy_bytes": 116064256,
+        "added_copy_bytes": 73596928,
+        "partition_added_copy_bytes": 58064896,
+        "spill_added_copy_bytes": 15532032
+      },
+      "structure_passed": true,
+      "plan_sha256": "4e7501e943240db1b6231320df88e22475a3ae3819be2014b0c5e8c5949cfcbd",
+      "official_result_sha256": "3b0f542004ec14f30ec0f486b14c745ab598a85d3f6f15c2b93b316b1655bf70",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 2056849,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 42467328,
+          "scheduled_copy_bytes": 116064256,
+          "added_copy_bytes": 73596928,
+          "partition_added_copy_bytes": 58064896,
+          "spill_added_copy_bytes": 15532032
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 9.283447000001615,
+        "cpu_seconds": 33.890625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 86048768,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 8.556306700000277,
+        "cpu_seconds": 31.0625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 75096064,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_05",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 10930550,
+      "speedup": 1.7269743059589866,
+      "singlecore_cycles": 18876779,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 641105920,
+        "added_copy_bytes": 559316992,
+        "partition_added_copy_bytes": 19660800,
+        "spill_added_copy_bytes": 539656192
+      },
+      "structure_passed": true,
+      "plan_sha256": "45e0dc413dfba84634dc23c3c50f5916f7ad973bd095e409c5da084e2953a2d1",
+      "official_result_sha256": "aedda9affa0a96438c106fc629da689a038f21237dd68335b49ae497b4eddb74",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 10930550,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 641105920,
+          "added_copy_bytes": 559316992,
+          "partition_added_copy_bytes": 19660800,
+          "spill_added_copy_bytes": 539656192
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1507328,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 30.012602399998286,
+        "cpu_seconds": 53.40625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 95797248,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 30.69048760000078,
+        "cpu_seconds": 54.390625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 92766208,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_05",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 9919758,
+      "speedup": 1.9029475315829276,
+      "singlecore_cycles": 18876779,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 589037568,
+        "added_copy_bytes": 507248640,
+        "partition_added_copy_bytes": 39714816,
+        "spill_added_copy_bytes": 467533824
+      },
+      "structure_passed": true,
+      "plan_sha256": "34766a2ef2479c23af78e1e13dde46e9d0d0194402bae07d01799fb6306a7599",
+      "official_result_sha256": "8ac72afe9575e927951d81d435100070b52ab87d86052e706a3ecf6fbec39be8",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 9919758,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 589037568,
+          "added_copy_bytes": 507248640,
+          "partition_added_copy_bytes": 39714816,
+          "spill_added_copy_bytes": 467533824
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 23.672919199998432,
+        "cpu_seconds": 63.609375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 109060096,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 22.457717699999193,
+        "cpu_seconds": 59.859375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 114896896,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_05",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 9405139,
+      "speedup": 2.0070707088964874,
+      "singlecore_cycles": 18876779,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 560889856,
+        "added_copy_bytes": 479100928,
+        "partition_added_copy_bytes": 58195968,
+        "spill_added_copy_bytes": 420904960
+      },
+      "structure_passed": true,
+      "plan_sha256": "ac52aa89f6f109d8c7dd93f35250cc3e440c2076f5cde45f0569014d82c10083",
+      "official_result_sha256": "7937e868abd826efd8f3f49d39046744b1cf60b14332949dffaafa5104b47a24",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 9405139,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 560889856,
+          "added_copy_bytes": 479100928,
+          "partition_added_copy_bytes": 58195968,
+          "spill_added_copy_bytes": 420904960
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 30.078326600003493,
+        "cpu_seconds": 93.765625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 155234304,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 27.14723039999808,
+        "cpu_seconds": 84.265625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 149852160,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_05",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 9060481,
+      "speedup": 2.0834190811724014,
+      "singlecore_cycles": 18876779,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 81788928,
+        "scheduled_copy_bytes": 542310400,
+        "added_copy_bytes": 460521472,
+        "partition_added_copy_bytes": 77070336,
+        "spill_added_copy_bytes": 383451136
+      },
+      "structure_passed": true,
+      "plan_sha256": "c50748d6eb23af5795a6e0dee474b209f21cafeaa9a5fc89148a592b92efa716",
+      "official_result_sha256": "91b54114771b72a0f84b780075fa6df643fbb0c14be2f259d1e03e31cc25b1af",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 9060481,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 81788928,
+          "scheduled_copy_bytes": 542310400,
+          "added_copy_bytes": 460521472,
+          "partition_added_copy_bytes": 77070336,
+          "spill_added_copy_bytes": 383451136
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1474560,
+            "UB": 0
+          },
+          "4": {
+            "L1": 1474560,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 5,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 22.963503899998614,
+        "cpu_seconds": 81.484375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 193982464,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 18.980290800001967,
+        "cpu_seconds": 67.1875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 186834944,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_06",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 1787448,
+      "speedup": 1.9810002864418992,
+      "singlecore_cycles": 3540935,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 64094208,
+        "added_copy_bytes": 33423360,
+        "partition_added_copy_bytes": 9830400,
+        "spill_added_copy_bytes": 23592960
+      },
+      "structure_passed": true,
+      "plan_sha256": "ed79f5fba78a97d13e1a0ac543f165cd0ae989ea9ec1e7b0849744cb1700aa20",
+      "official_result_sha256": "e7d5c95fa57e4341f50988d228b3922d40618b409a35b3061a1b6638a9bd569a",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 1787448,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 64094208,
+          "added_copy_bytes": 33423360,
+          "partition_added_copy_bytes": 9830400,
+          "spill_added_copy_bytes": 23592960
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1441792,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1441792,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 5.638238999999885,
+        "cpu_seconds": 10.5625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 19075072,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 4.719299799999135,
+        "cpu_seconds": 8.859375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 21729280,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_06",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 1215358,
+      "speedup": 2.9134913334178076,
+      "singlecore_cycles": 3540935,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 49938432,
+        "added_copy_bytes": 19267584,
+        "partition_added_copy_bytes": 19267584,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "058a51b647549eef7412765625b9e8ae23c82a1b6a60c5105228fe94db2c85e4",
+      "official_result_sha256": "d852e823d463e0f873b500631c01612bb7c79dc26e4417fcf297de69162b0fec",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 1215358,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 49938432,
+          "added_copy_bytes": 19267584,
+          "partition_added_copy_bytes": 19267584,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1114112,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1310720,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1114112,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 4.99924970000211,
+        "cpu_seconds": 9.734375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 23949312,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 4.899848699998984,
+        "cpu_seconds": 9.484375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 23658496,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_06",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 993401,
+      "speedup": 3.564456850758153,
+      "singlecore_cycles": 3540935,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 58982400,
+        "added_copy_bytes": 28311552,
+        "partition_added_copy_bytes": 28311552,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "45885cdb8c5097dc0620d26da770663532c68fe10f495ca8992707266a00d8a6",
+      "official_result_sha256": "d06c34afeb1ca3917c462ae5584bca17242f0ae9bd3b8cf1fa892e781935fd14",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 993401,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 58982400,
+          "added_copy_bytes": 28311552,
+          "partition_added_copy_bytes": 28311552,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "1": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "2": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "3": {
+            "L1": 1081344,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 3.4333824000023014,
+        "cpu_seconds": 9.53125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 37261312,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 3.5016328999990947,
+        "cpu_seconds": 10.171875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 31158272,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_06",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 1004044,
+      "speedup": 3.5266731338467237,
+      "singlecore_cycles": 3540935,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 30670848,
+        "scheduled_copy_bytes": 59572224,
+        "added_copy_bytes": 28901376,
+        "partition_added_copy_bytes": 28901376,
+        "spill_added_copy_bytes": 0
+      },
+      "structure_passed": true,
+      "plan_sha256": "6c41e739e91a1a039c94e50c3835a4e6fbdac68f6179bbbf3ef63b3ef25234c5",
+      "official_result_sha256": "28626139568e02884d008f63c7fc35e45e868276d148b5df3167d6c431bd34bf",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 1004044,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 30670848,
+          "scheduled_copy_bytes": 59572224,
+          "added_copy_bytes": 28901376,
+          "partition_added_copy_bytes": 28901376,
+          "spill_added_copy_bytes": 0
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "1": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "2": {
+            "L1": 1048576,
+            "UB": 0
+          },
+          "3": {
+            "L1": 917504,
+            "UB": 0
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 3.4054269999978715,
+        "cpu_seconds": 11.734375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 37789696,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 3.4590214999989257,
+        "cpu_seconds": 11.828125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 38141952,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_07",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 4108235,
+      "speedup": 1.5433474472614153,
+      "singlecore_cycles": 6340434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 109184608,
+        "added_copy_bytes": 85651072,
+        "partition_added_copy_bytes": 26787200,
+        "spill_added_copy_bytes": 58863872
+      },
+      "structure_passed": true,
+      "plan_sha256": "3b12288804841eccf9a02b58aa898d3a3a588baa2491113aeba586a9e73f558a",
+      "official_result_sha256": "b8dd88da0f5d3fe6d63ac18241b38239cdc8d87cd6cd591242ef902a603213d0",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 4108235,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 109184608,
+          "added_copy_bytes": 85651072,
+          "partition_added_copy_bytes": 26787200,
+          "spill_added_copy_bytes": 58863872
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1450304,
+            "UB": 0
+          },
+          "1": {
+            "L1": 1478592,
+            "UB": 43776
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 15.13667649999843,
+        "cpu_seconds": 28.53125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 68526080,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 16.61085479999747,
+        "cpu_seconds": 31.65625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 70889472,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_07",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3870512,
+      "speedup": 1.6381383134841074,
+      "singlecore_cycles": 6340434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 129719136,
+        "added_copy_bytes": 106185600,
+        "partition_added_copy_bytes": 61655488,
+        "spill_added_copy_bytes": 44530112
+      },
+      "structure_passed": true,
+      "plan_sha256": "c0bb018f27fc6774bb2ef4968656b2673063140f45f9d4a67c1ff1196fcd3bff",
+      "official_result_sha256": "a3382ea224bdb7b6188ee3d7217f36e076c764b06a05208eeeae3fd8493ca723",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 3870512,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 129719136,
+          "added_copy_bytes": 106185600,
+          "partition_added_copy_bytes": 61655488,
+          "spill_added_copy_bytes": 44530112
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1517120,
+            "UB": 26240
+          },
+          "1": {
+            "L1": 1525952,
+            "UB": 26368
+          },
+          "2": {
+            "L1": 1485056,
+            "UB": 26368
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 14.83208829999785,
+        "cpu_seconds": 35.59375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 89141248,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 17.404335100000026,
+        "cpu_seconds": 41.0,
+        "peak_threads": 5,
+        "peak_rss_bytes": 91320320,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_07",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 2663113,
+      "speedup": 2.3808355109227435,
+      "singlecore_cycles": 6340434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 125509856,
+        "added_copy_bytes": 101976320,
+        "partition_added_copy_bytes": 67995840,
+        "spill_added_copy_bytes": 33980480
+      },
+      "structure_passed": true,
+      "plan_sha256": "be0e4392075a4bad9168fbdd1277778acf9ded5aec3542cd5247595e3a9fc365",
+      "official_result_sha256": "0bb692312c4a62b4dfcc0aa52cfde3d9417d84555dc371d5bdf8ce917215416f",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 2663113,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 125509856,
+          "added_copy_bytes": 101976320,
+          "partition_added_copy_bytes": 67995840,
+          "spill_added_copy_bytes": 33980480
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1509312,
+            "UB": 43776
+          },
+          "1": {
+            "L1": 1469056,
+            "UB": 78592
+          },
+          "2": {
+            "L1": 1519808,
+            "UB": 122112
+          },
+          "3": {
+            "L1": 1536768,
+            "UB": 104704
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 13.283325899999909,
+        "cpu_seconds": 39.859375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 120283136,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 15.097981300001265,
+        "cpu_seconds": 45.546875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 120602624,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_07",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 2153554,
+      "speedup": 2.9441722845120206,
+      "singlecore_cycles": 6340434,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 23533536,
+        "scheduled_copy_bytes": 116142048,
+        "added_copy_bytes": 92608512,
+        "partition_added_copy_bytes": 71539968,
+        "spill_added_copy_bytes": 21068544
+      },
+      "structure_passed": true,
+      "plan_sha256": "3d7cde388c97251ad00e573e61c36edeb49ec077a2f31c070dbfe44fc9947426",
+      "official_result_sha256": "121431e5fd4f35861764d813f522463a6a73a0881431a8298854dee1388985da",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 2153554,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 23533536,
+          "scheduled_copy_bytes": 116142048,
+          "added_copy_bytes": 92608512,
+          "partition_added_copy_bytes": 71539968,
+          "spill_added_copy_bytes": 21068544
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1495744,
+            "UB": 87296
+          },
+          "1": {
+            "L1": 1413760,
+            "UB": 96000
+          },
+          "2": {
+            "L1": 1482816,
+            "UB": 78592
+          },
+          "3": {
+            "L1": 1471488,
+            "UB": 104704
+          },
+          "4": {
+            "L1": 1467712,
+            "UB": 87296
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 5,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 11.598520499999722,
+        "cpu_seconds": 41.90625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 153456640,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 11.801380299999437,
+        "cpu_seconds": 42.9375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 155156480,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_08",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 10272226,
+      "speedup": 1.5010452456945553,
+      "singlecore_cycles": 15419076,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 323203872,
+        "added_copy_bytes": 285242176,
+        "partition_added_copy_bytes": 61538816,
+        "spill_added_copy_bytes": 223703360
+      },
+      "structure_passed": true,
+      "plan_sha256": "17ec8b1bd39af8544477f0dee766f1ce187432daf7c6b5f3add0459bd2dd2fdf",
+      "official_result_sha256": "6485e737810a302da5af6fafebe985630299e4fbf122740b5327a900da58f9bf",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 10272226,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 323203872,
+          "added_copy_bytes": 285242176,
+          "partition_added_copy_bytes": 61538816,
+          "spill_added_copy_bytes": 223703360
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1545728,
+            "UB": 122240
+          },
+          "1": {
+            "L1": 1572672,
+            "UB": 128512
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 13.407395300000644,
+        "cpu_seconds": 21.703125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 69275648,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 13.97698930000115,
+        "cpu_seconds": 22.671875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 65609728,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_08",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 8442608,
+      "speedup": 1.8263403914998777,
+      "singlecore_cycles": 15419076,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 381622816,
+        "added_copy_bytes": 343661120,
+        "partition_added_copy_bytes": 141953280,
+        "spill_added_copy_bytes": 201707840
+      },
+      "structure_passed": true,
+      "plan_sha256": "f929c0f29568b7220c6c2d9e5788b7f6573cdab38344135c747993d3984e7c2e",
+      "official_result_sha256": "424d9188729b2a419c95c11f4a1cf8af85eda7ae06501f234ff4558686faab28",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 8442608,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 381622816,
+          "added_copy_bytes": 343661120,
+          "partition_added_copy_bytes": 141953280,
+          "spill_added_copy_bytes": 201707840
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1563008,
+            "UB": 130688
+          },
+          "1": {
+            "L1": 1570816,
+            "UB": 113408
+          },
+          "2": {
+            "L1": 1568256,
+            "UB": 104576
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 15.00881809999919,
+        "cpu_seconds": 38.796875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 103682048,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 11.118091299998923,
+        "cpu_seconds": 27.203125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 103415808,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_08",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 6496240,
+      "speedup": 2.3735385392165314,
+      "singlecore_cycles": 15419076,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 348674720,
+        "added_copy_bytes": 310713024,
+        "partition_added_copy_bytes": 136039744,
+        "spill_added_copy_bytes": 174673280
+      },
+      "structure_passed": true,
+      "plan_sha256": "95c1e7e61800c02b8edf0a18ec1bf0d56e4a3a605d4e9fac68b9b4c676504a6c",
+      "official_result_sha256": "f15994e6b1e6f1100ce19f45b91a7e525f7dda4375ef88df7494957ae0436689",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 6496240,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 348674720,
+          "added_copy_bytes": 310713024,
+          "partition_added_copy_bytes": 136039744,
+          "spill_added_copy_bytes": 174673280
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1566272,
+            "UB": 128384
+          },
+          "1": {
+            "L1": 1568960,
+            "UB": 122048
+          },
+          "2": {
+            "L1": 1570688,
+            "UB": 128512
+          },
+          "3": {
+            "L1": 1565888,
+            "UB": 122048
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 15.245221400000446,
+        "cpu_seconds": 45.328125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 142864384,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 13.1374579000003,
+        "cpu_seconds": 38.125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 143527936,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_08",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 6496240,
+      "speedup": 2.3735385392165314,
+      "singlecore_cycles": 15419076,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 37961696,
+        "scheduled_copy_bytes": 348674720,
+        "added_copy_bytes": 310713024,
+        "partition_added_copy_bytes": 136039744,
+        "spill_added_copy_bytes": 174673280
+      },
+      "structure_passed": true,
+      "plan_sha256": "73384d4bdbd8123b93bf790412d19ed0debb31e02d5d00cdf66cae974277ccad",
+      "official_result_sha256": "9efc23b3189dbaf501b236fc942a0dcb16311ceff73c56e41124209bc006c4df",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 6496240,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 37961696,
+          "scheduled_copy_bytes": 348674720,
+          "added_copy_bytes": 310713024,
+          "partition_added_copy_bytes": 136039744,
+          "spill_added_copy_bytes": 174673280
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1566272,
+            "UB": 128384
+          },
+          "1": {
+            "L1": 1568960,
+            "UB": 122048
+          },
+          "2": {
+            "L1": 1570688,
+            "UB": 128512
+          },
+          "3": {
+            "L1": 1565888,
+            "UB": 122048
+          },
+          "4": {
+            "L1": 0,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 15.228840700001456,
+        "cpu_seconds": 55.703125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 182099968,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 15.12843200000134,
+        "cpu_seconds": 55.828125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 191184896,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_09",
+      "cores": 2,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 4810850,
+      "speedup": 1.4122895122483552,
+      "singlecore_cycles": 6794313,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 192750336,
+        "added_copy_bytes": 182569344,
+        "partition_added_copy_bytes": 57850240,
+        "spill_added_copy_bytes": 124719104
+      },
+      "structure_passed": true,
+      "plan_sha256": "517ddee88daaa85ebad3778cd0079b79361359f0ba13bd2623929e124ae42668",
+      "official_result_sha256": "d18a450e13bcc1ccd10a826f3edd5e1d57a41764cd865cb8d292e406629df7cd",
+      "official": {
+        "scene": "B",
+        "num_cores": 2,
+        "makespan": 4810850,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 192750336,
+          "added_copy_bytes": 182569344,
+          "partition_added_copy_bytes": 57850240,
+          "spill_added_copy_bytes": 124719104
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1572224,
+            "UB": 36992
+          },
+          "1": {
+            "L1": 1571712,
+            "UB": 26624
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 2,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 12.571758099998988,
+        "cpu_seconds": 23.625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 68845568,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 14.829766799997742,
+        "cpu_seconds": 27.03125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 65572864,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_09",
+      "cores": 3,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 4346213,
+      "speedup": 1.5632719795371282,
+      "singlecore_cycles": 6794313,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 184470720,
+        "added_copy_bytes": 174289728,
+        "partition_added_copy_bytes": 74939712,
+        "spill_added_copy_bytes": 99350016
+      },
+      "structure_passed": true,
+      "plan_sha256": "5ca2f5e5efc8a5951deb0ec5ad71a77ff9bbe4ba5c3644549f1498355c5e4ac4",
+      "official_result_sha256": "57458f7967e317223fbf8e6a07e287943abf29e4b3eac222662f24f34c98a49a",
+      "official": {
+        "scene": "B",
+        "num_cores": 3,
+        "makespan": 4346213,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 184470720,
+          "added_copy_bytes": 174289728,
+          "partition_added_copy_bytes": 74939712,
+          "spill_added_copy_bytes": 99350016
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1570304,
+            "UB": 27776
+          },
+          "1": {
+            "L1": 1566144,
+            "UB": 26624
+          },
+          "2": {
+            "L1": 1571968,
+            "UB": 55424
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 3,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 10.971134199997323,
+        "cpu_seconds": 25.890625,
+        "peak_threads": 5,
+        "peak_rss_bytes": 98603008,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 15.625421999997343,
+        "cpu_seconds": 38.234375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 90476544,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_09",
+      "cores": 4,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3925098,
+      "speedup": 1.7309919395643114,
+      "singlecore_cycles": 6794313,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 204035328,
+        "added_copy_bytes": 193854336,
+        "partition_added_copy_bytes": 119947136,
+        "spill_added_copy_bytes": 73907200
+      },
+      "structure_passed": true,
+      "plan_sha256": "40966f1a462c017239ef364bd7936f3ddf752a751c668516096a2efb9a592645",
+      "official_result_sha256": "9fdf077818c0efe2ddeb851b2084ce88b51d6c788b18d53466a4d1f5c208a73b",
+      "official": {
+        "scene": "B",
+        "num_cores": 4,
+        "makespan": 3925098,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 204035328,
+          "added_copy_bytes": 193854336,
+          "partition_added_copy_bytes": 119947136,
+          "spill_added_copy_bytes": 73907200
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1565824,
+            "UB": 36992
+          },
+          "1": {
+            "L1": 1571328,
+            "UB": 83072
+          },
+          "2": {
+            "L1": 1563200,
+            "UB": 36992
+          },
+          "3": {
+            "L1": 1566976,
+            "UB": 27776
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 4,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 11.344304499998543,
+        "cpu_seconds": 34.109375,
+        "peak_threads": 5,
+        "peak_rss_bytes": 131174400,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 16.663341900002706,
+        "cpu_seconds": 48.46875,
+        "peak_threads": 5,
+        "peak_rss_bytes": 129900544,
+        "returncode": 0,
+        "timeout": false
+      }
+    },
+    {
+      "case": "case_09",
+      "cores": 5,
+      "accepted": true,
+      "deterministic": true,
+      "cycles": 3777501,
+      "speedup": 1.7986263934807694,
+      "singlecore_cycles": 6794313,
+      "data_movement_bytes": {
+        "original_graph_copy_bytes": 10180992,
+        "scheduled_copy_bytes": 166593984,
+        "added_copy_bytes": 156412992,
+        "partition_added_copy_bytes": 82633536,
+        "spill_added_copy_bytes": 73779456
+      },
+      "structure_passed": true,
+      "plan_sha256": "e842efecf018a3c31e5a29bb942066876876b7ed75dd08370f32620d9a331c6e",
+      "official_result_sha256": "e085e0a0619a82572cf3408a57e68e7882e7a44f300acf347f7c7cd90793e406",
+      "official": {
+        "scene": "B",
+        "num_cores": 5,
+        "makespan": 3777501,
+        "data_movement_bytes": {
+          "original_graph_copy_bytes": 10180992,
+          "scheduled_copy_bytes": 166593984,
+          "added_copy_bytes": 156412992,
+          "partition_added_copy_bytes": 82633536,
+          "spill_added_copy_bytes": 73779456
+        },
+        "memory_peak_by_core": {
+          "0": {
+            "L1": 1571712,
+            "UB": 46208
+          },
+          "1": {
+            "L1": 1476608,
+            "UB": 18560
+          },
+          "2": {
+            "L1": 1569024,
+            "UB": 27776
+          },
+          "3": {
+            "L1": 1546496,
+            "UB": 18560
+          },
+          "4": {
+            "L1": 1487232,
+            "UB": 0
+          }
+        },
+        "capacity_bytes": {
+          "L1": 1572864,
+          "UB": 131072
+        },
+        "bandwidth_bytes_per_cycle": 60,
+        "cross_core_copy_delay_cycles": 1000,
+        "validation_kind": "unmodified_official_python_scene_b",
+        "structure_passed": true,
+        "active_cores": 5,
+        "full_timeline_saved": false
+      },
+      "first": {
+        "wall_seconds": 14.654767699998047,
+        "cpu_seconds": 52.8125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 159412224,
+        "returncode": 0,
+        "timeout": false
+      },
+      "repeat": {
+        "wall_seconds": 13.755925099998422,
+        "cpu_seconds": 48.453125,
+        "peak_threads": 5,
+        "peak_rss_bytes": 157253632,
+        "returncode": 0,
+        "timeout": false
+      }
+    }
+  ]
+}
